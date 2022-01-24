@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "md3-app",
+    "slug": "md3-app",
+    "version": "0.1.2",
+    "owner": "efoken",
+    "assetBundlePatterns": ["**/*"]
+  }
+}

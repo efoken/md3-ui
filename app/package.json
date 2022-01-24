@@ -1,0 +1,23 @@
+{
+  "name": "@md3-ui/app",
+  "version": "1.0.0",
+  "private": true,
+  "main": "__generated__/AppEntry.js",
+  "dependencies": {
+    "@md3-ui/app-bar": "^1.0.0",
+    "expo": "^44.0.5",
+    "react": "^17.0.2",
+    "react-native": "^0.67.1"
+  },
+  "devDependencies": {
+    "babel-preset-expo": "^9.0.2",
+    "expo-yarn-workspaces": "^1.7.0"
+  },
+  "scripts": {
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "postinstall": "expo-yarn-workspaces postinstall",
+    "start": "expo start",
+    "web": "expo start --web"
+  }
+}

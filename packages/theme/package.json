@@ -1,0 +1,17 @@
+{
+  "name": "@md3-ui/theme",
+  "version": "1.0.0",
+  "main": "dist/md3-ui-theme.cjs.js",
+  "license": "MIT",
+  "dependencies": {
+    "polished": "^4.1.4"
+  },
+  "devDependencies": {
+    "@types/react-native": "^0.66.15",
+    "react-native": "^0.67.1"
+  },
+  "peerDependencies": {
+    "@types/react-native": "^0.66.15",
+    "react-native": "^0.67.1"
+  }
+}

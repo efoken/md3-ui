@@ -1,0 +1,14 @@
+{
+  "name": "@md3-ui/hooks",
+  "version": "1.0.0",
+  "main": "dist/md3-ui-hooks.cjs.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.38",
+    "react": "^17.0.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.38",
+    "react": "^17.0.2"
+  }
+}
