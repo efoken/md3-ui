@@ -1,7 +1,8 @@
-import { TextProvider, Text } from "@md3-ui/layout"
+import { Text, TextProvider } from "@md3-ui/layout"
 import {
   OwnerStateProps,
   styled,
+  SxProps,
   useTheme,
   useThemeProps,
 } from "@md3-ui/styles"
@@ -11,12 +12,15 @@ import { ButtonBase, ButtonBaseProps } from "./button-base"
 
 export interface ButtonProps extends ButtonBaseProps {
   children?: React.ReactNode
+  /** @default false */
+  disabled?: boolean
   icon?: React.ReactElement
   styles?: {
     root?: ViewStyle
     icon?: ViewStyle
     label?: TextStyle
   }
+  sx?: SxProps
   /** @default "elevated" */
   variant?: "elevated" | "filled" | "tonal" | "outlined" | "text"
 }
@@ -26,60 +30,62 @@ export type ButtonStyleKey = keyof NonNullable<ButtonProps["styles"]>
 const ButtonRoot = styled(ButtonBase, {
   name: "Button",
   slot: "Root",
-})<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ ownerState, theme }) => [
-  {
-    alignItems: "center",
-    borderRadius: 20,
-    flexDirection: "row",
-    height: 40,
-    paddingHorizontal: theme.spacing(3),
+})<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(
+  ({ theme, ownerState }) => [
+    {
+      alignItems: "center",
+      borderRadius: 20,
+      flexDirection: "row",
+      height: 40,
+      paddingHorizontal: theme.spacing(3),
 
-    ...(ownerState.variant === "elevated" && {
-      ...theme.elevation[1],
-      backgroundColor: theme.color.surface.main,
+      ...(ownerState.variant === "elevated" && {
+        ...theme.elevation.level1,
+        backgroundColor: theme.color.surface,
 
-      ":hover": {
-        ...theme.elevation[2],
-      },
-    }),
+        ":hover": {
+          ...theme.elevation.level2,
+        },
+      }),
 
-    ...(ownerState.variant === "filled" && {
-      ...theme.elevation[0],
-      backgroundColor: theme.color.primary.main,
+      ...(ownerState.variant === "filled" && {
+        ...theme.elevation.level0,
+        backgroundColor: theme.color.primary,
 
-      ":hover": {
-        ...theme.elevation[1],
-      },
-    }),
+        ":hover": {
+          ...theme.elevation.level1,
+        },
+      }),
 
-    ...(ownerState.variant === "tonal" && {
-      ...theme.elevation[0],
-      backgroundColor: theme.color.secondary.container,
+      ...(ownerState.variant === "tonal" && {
+        ...theme.elevation.level0,
+        backgroundColor: theme.color["secondary-container"],
 
-      ":hover": {
-        ...theme.elevation[1],
-      },
-    }),
+        ":hover": {
+          ...theme.elevation.level1,
+        },
+      }),
 
-    ...(ownerState.variant === "outlined" && {
-      ...theme.elevation[0],
-      backgroundColor: "transparent",
-      borderColor: theme.color.outline,
-      borderWidth: 1,
-      paddingHorizontal: theme.spacing(3) - 1,
+      ...(ownerState.variant === "outlined" && {
+        ...theme.elevation.level0,
+        backgroundColor: "rgba(255, 255, 255, 0)",
+        borderColor: theme.color.outline,
+        borderWidth: 1,
+        paddingHorizontal: theme.spacing(3) - 1,
 
-      ":focus": {
-        borderColor: theme.color.primary.main,
-      },
-    }),
+        ":focus": {
+          borderColor: theme.color.primary,
+        },
+      }),
 
-    ...(ownerState.variant === "text" && {
-      ...theme.elevation[0],
-      minWidth: 48,
-      paddingHorizontal: theme.spacing(1.5),
-    }),
-  },
-])
+      ...(ownerState.variant === "text" && {
+        ...theme.elevation.level0,
+        minWidth: 48,
+        paddingHorizontal: theme.spacing(1.5),
+      }),
+    },
+  ]
+)
 
 const ButtonIcon = styled(View, {
   name: "Button",
@@ -92,25 +98,27 @@ const ButtonIcon = styled(View, {
 const ButtonContent = styled(TextProvider, {
   name: "Button",
   slot: "Content",
-})<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ theme, ownerState }) => ({
-  color:
-    ownerState.variant === "elevated"
-      ? theme.color.primary.main
-      : ownerState.variant === "filled"
-      ? theme.color.primary["on-main"]
-      : ownerState.variant === "tonal"
-      ? theme.color.secondary["on-container"]
-      : ownerState.variant === "outlined"
-      ? theme.color.primary.main
-      : ownerState.variant === "text"
-      ? theme.color.primary.main
-      : "inherit",
-}))
+})<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(
+  ({ theme, ownerState }) => ({
+    color:
+      ownerState.variant === "elevated"
+        ? theme.color.primary
+        : ownerState.variant === "filled"
+        ? theme.color["on-primary"]
+        : ownerState.variant === "tonal"
+        ? theme.color["on-secondary-container"]
+        : ownerState.variant === "outlined"
+        ? theme.color.primary
+        : ownerState.variant === "text"
+        ? theme.color.primary
+        : "inherit",
+  })
+)
 
 const ButtonLabel = styled(Text, {
   name: "Button",
   slot: "Label",
-})<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ theme }) => ({
+})<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(({ theme }) => ({
   ...theme.typescale["label-large"],
   textAlign: "center",
 }))
@@ -118,6 +126,7 @@ const ButtonLabel = styled(Text, {
 export const Button = React.forwardRef<View, ButtonProps>((inProps, ref) => {
   const {
     children,
+    disabled = false,
     icon,
     style,
     styles,
@@ -128,6 +137,7 @@ export const Button = React.forwardRef<View, ButtonProps>((inProps, ref) => {
   const theme = useTheme()
 
   const ownerState = {
+    disabled,
     variant,
   }
 
@@ -136,29 +146,29 @@ export const Button = React.forwardRef<View, ButtonProps>((inProps, ref) => {
       ref={ref}
       hoverColor={
         variant === "elevated"
-          ? theme.color.primary.main
+          ? theme.color.primary
           : variant === "filled"
-          ? theme.color.primary["on-main"]
+          ? theme.color["on-primary"]
           : variant === "tonal"
-          ? theme.color.secondary["on-container"]
+          ? theme.color["on-secondary-container"]
           : variant === "outlined"
-          ? theme.color.primary.main
+          ? theme.color.primary
           : variant === "text"
-          ? theme.color.primary.main
+          ? theme.color.primary
           : undefined
       }
       ownerState={ownerState}
       pressedColor={
         variant === "elevated"
-          ? theme.color.primary.main
+          ? theme.color.primary
           : variant === "filled"
-          ? theme.color.primary["on-main"]
+          ? theme.color["on-primary"]
           : variant === "tonal"
-          ? theme.color.secondary["on-container"]
+          ? theme.color["on-secondary-container"]
           : variant === "outlined"
-          ? theme.color.primary.main
+          ? theme.color.primary
           : variant === "text"
-          ? theme.color.primary.main
+          ? theme.color.primary
           : undefined
       }
       style={[style, styles?.root]}

@@ -5,7 +5,7 @@ import { View } from "react-native"
 export interface AppBarProps {}
 
 const AppBarRoot = styled(View)(({ theme }) => ({
-  backgroundColor: theme.color.surface.main,
+  backgroundColor: theme.color.surface,
   height: 64,
   width: "100%",
 }))

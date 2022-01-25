@@ -1,14 +1,14 @@
 import { Platform, ViewStyle } from "react-native"
 
 export type Elevation = {
-  0: ViewStyle
-  1: ViewStyle
-  2: ViewStyle
+  level0: ViewStyle
+  level1: ViewStyle
+  level2: ViewStyle
 }
 
 export function createElevation(elevation: Partial<Elevation>): Elevation {
   return {
-    0: Platform.select({
+    level0: Platform.select({
       default: {
         elevation: 0,
       },
@@ -17,7 +17,7 @@ export function createElevation(elevation: Partial<Elevation>): Elevation {
           "0px 0px 0px 0px rgba(0, 0, 0, 0.3), 0px 0px 0px 0px rgba(0, 0, 0, 0.15)",
       },
     }),
-    1: Platform.select({
+    level1: Platform.select({
       default: {
         elevation: 1,
         shadowColor: "#000",
@@ -30,7 +30,7 @@ export function createElevation(elevation: Partial<Elevation>): Elevation {
           "0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15)",
       },
     }),
-    2: Platform.select({
+    level2: Platform.select({
       default: {
         elevation: 2,
         shadowColor: "#000",

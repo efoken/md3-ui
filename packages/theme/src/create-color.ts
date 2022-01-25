@@ -53,137 +53,119 @@ export type Color = {
   mode: "dark" | "light"
   background: string
   outline: string
-  primary: {
-    main: string
-    container: string
-    "on-main": string
-    "on-container": string
-  }
-  secondary: {
-    main: string
-    container: string
-    "on-main": string
-    "on-container": string
-  }
-  tertiary: {
-    main: string
-    container: string
-    "on-main": string
-    "on-container": string
-  }
-  error: {
-    main: string
-    container: string
-    "on-main": string
-    "on-container": string
-  }
-  surface: {
-    main: string
-    variant: string
-    "on-main": string
-    "on-variant": string
-  }
-  inverse: {
-    surface: {
-      main: string
-      "on-main": string
-    }
-  }
+  primary: string
+  "on-primary": string
+  "primary-container": string
+  "on-primary-container": string
+  secondary: string
+  "on-secondary": string
+  "secondary-container": string
+  "on-secondary-container": string
+  tertiary: string
+  "on-tertiary": string
+  "tertiary-container": string
+  "on-tertiary-container": string
+  error: string
+  "on-error": string
+  "error-container": string
+  "on-error-container": string
+  surface: string
+  "on-surface": string
+  "surface-variant": string
+  "on-surface-variant": string
+  "inverse-surface": string
+  "inverse-on-surface": string
 }
 
 function getDefaultPrimary(mode = "light") {
   return mode === "dark"
     ? {
-        main: MdSysColorPrimaryDark,
-        "on-main": MdSysColorOnPrimaryDark,
-        container: MdSysColorPrimaryContainerDark,
-        "on-container": MdSysColorOnPrimaryContainerDark,
+        primary: MdSysColorPrimaryDark,
+        "on-primary": MdSysColorOnPrimaryDark,
+        "primary-container": MdSysColorPrimaryContainerDark,
+        "on-primary-container": MdSysColorOnPrimaryContainerDark,
       }
     : {
-        main: MdSysColorPrimaryLight,
-        "on-main": MdSysColorOnPrimaryLight,
-        container: MdSysColorPrimaryContainerLight,
-        "on-container": MdSysColorOnPrimaryContainerLight,
+        primary: MdSysColorPrimaryLight,
+        "on-primary": MdSysColorOnPrimaryLight,
+        "primary-container": MdSysColorPrimaryContainerLight,
+        "on-primary-container": MdSysColorOnPrimaryContainerLight,
       }
 }
 
 function getDefaultSecondary(mode = "light") {
   return mode === "dark"
     ? {
-        main: MdSysColorSecondaryDark,
-        "on-main": MdSysColorOnSecondaryDark,
-        container: MdSysColorSecondaryContainerDark,
-        "on-container": MdSysColorOnSecondaryContainerDark,
+        secondary: MdSysColorSecondaryDark,
+        "on-secondary": MdSysColorOnSecondaryDark,
+        "secondary-container": MdSysColorSecondaryContainerDark,
+        "on-secondary-container": MdSysColorOnSecondaryContainerDark,
       }
     : {
-        main: MdSysColorSecondaryLight,
-        "on-main": MdSysColorOnSecondaryLight,
-        container: MdSysColorSecondaryContainerLight,
-        "on-container": MdSysColorOnSecondaryContainerLight,
+        secondary: MdSysColorSecondaryLight,
+        "on-secondary": MdSysColorOnSecondaryLight,
+        "secondary-container": MdSysColorSecondaryContainerLight,
+        "on-secondary-container": MdSysColorOnSecondaryContainerLight,
       }
 }
 
 function getDefaultTertiary(mode = "light") {
   return mode === "dark"
     ? {
-        main: MdSysColorTertiaryDark,
-        "on-main": MdSysColorOnTertiaryDark,
-        container: MdSysColorTertiaryContainerDark,
-        "on-container": MdSysColorOnTertiaryContainerDark,
+        tertiary: MdSysColorTertiaryDark,
+        "on-tertiary": MdSysColorOnTertiaryDark,
+        "tertiary-container": MdSysColorTertiaryContainerDark,
+        "on-tertiary-container": MdSysColorOnTertiaryContainerDark,
       }
     : {
-        main: MdSysColorTertiaryLight,
-        "on-main": MdSysColorOnTertiaryLight,
-        container: MdSysColorTertiaryContainerLight,
-        "on-container": MdSysColorOnTertiaryContainerLight,
+        tertiary: MdSysColorTertiaryLight,
+        "on-tertiary": MdSysColorOnTertiaryLight,
+        "tertiary-container": MdSysColorTertiaryContainerLight,
+        "on-tertiary-container": MdSysColorOnTertiaryContainerLight,
       }
 }
 
 function getDefaultError(mode = "light") {
   return mode === "dark"
     ? {
-        main: MdSysColorErrorDark,
-        "on-main": MdSysColorOnErrorDark,
-        container: MdSysColorErrorContainerDark,
-        "on-container": MdSysColorOnErrorContainerDark,
+        error: MdSysColorErrorDark,
+        "on-error": MdSysColorOnErrorDark,
+        "error-container": MdSysColorErrorContainerDark,
+        "on-error-container": MdSysColorOnErrorContainerDark,
       }
     : {
-        main: MdSysColorErrorLight,
-        "on-main": MdSysColorOnErrorLight,
-        container: MdSysColorErrorContainerLight,
-        "on-container": MdSysColorOnErrorContainerLight,
+        error: MdSysColorErrorLight,
+        "on-error": MdSysColorOnErrorLight,
+        "error-container": MdSysColorErrorContainerLight,
+        "on-error-container": MdSysColorOnErrorContainerLight,
       }
 }
 
 function getDefaultSurface(mode = "light") {
   return mode === "dark"
     ? {
-        main: MdSysColorSurfaceDark,
-        "on-main": MdSysColorOnSurfaceDark,
-        variant: MdSysColorSurfaceVariantDark,
-        "on-variant": MdSysColorOnSurfaceVariantDark,
+        surface: MdSysColorSurfaceDark,
+        "on-surface": MdSysColorOnSurfaceDark,
+        "surface-variant": MdSysColorSurfaceVariantDark,
+        "on-surface-variant": MdSysColorOnSurfaceVariantDark,
       }
     : {
-        main: MdSysColorSurfaceLight,
-        "on-main": MdSysColorOnSurfaceLight,
-        variant: MdSysColorSurfaceVariantLight,
-        "on-variant": MdSysColorOnSurfaceVariantLight,
+        surface: MdSysColorSurfaceLight,
+        "on-surface": MdSysColorOnSurfaceLight,
+        "surface-variant": MdSysColorSurfaceVariantLight,
+        "on-surface-variant": MdSysColorOnSurfaceVariantLight,
       }
 }
 
 function getDefaultInverse(mode = "light") {
   return mode === "dark"
     ? {
-        surface: {
-          main: MdSysColorInverseSurfaceDark,
-          "on-main": MdSysColorInverseOnSurfaceDark,
-        },
+        "inverse-surface": MdSysColorInverseSurfaceDark,
+        "inverse-on-surface": MdSysColorInverseOnSurfaceDark,
       }
     : {
-        surface: {
-          main: MdSysColorInverseSurfaceLight,
-          "on-main": MdSysColorInverseOnSurfaceLight,
-        },
+        "inverse-surface": MdSysColorInverseSurfaceLight,
+        "inverse-on-surface": MdSysColorInverseOnSurfaceLight,
       }
 }
 
@@ -200,22 +182,23 @@ export function createColor(color: Partial<Color>): Color {
       ? MdSysColorOutlineDark
       : MdSysColorOutlineLight
 
-  const primary = color.primary ?? getDefaultPrimary(mode)
-  const secondary = color.secondary ?? getDefaultSecondary(mode)
-  const tertiary = color.tertiary ?? getDefaultTertiary(mode)
-  const error = color.error ?? getDefaultError(mode)
-  const surface = color.surface ?? getDefaultSurface(mode)
-  const inverse = color.inverse ?? getDefaultInverse(mode)
+  const primary = getDefaultPrimary(mode)
+  const secondary = getDefaultSecondary(mode)
+  const tertiary = getDefaultTertiary(mode)
+  const error = getDefaultError(mode)
+  const surface = getDefaultSurface(mode)
+  const inverse = getDefaultInverse(mode)
 
   return {
     mode,
     background,
     outline,
-    primary,
-    secondary,
-    tertiary,
-    error,
-    surface,
-    inverse,
+    ...primary,
+    ...secondary,
+    ...tertiary,
+    ...error,
+    ...surface,
+    ...inverse,
+    ...color,
   }
 }
