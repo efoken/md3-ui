@@ -2,8 +2,8 @@ import { useForkRef } from "@md3-ui/hooks"
 import {
   Global,
   styled,
-  useTheme,
   StyleSheet,
+  useTheme,
   useThemeProps,
 } from "@md3-ui/styles"
 import { splitProps } from "@md3-ui/utils"
@@ -94,7 +94,7 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
         "right",
         "top",
         "width",
-      ]
+      ],
     )
 
     const hoverColor = theme.utils.rgba(hoverColorProp ?? "#000", hoverOpacity)
@@ -108,7 +108,7 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
           theme.utils.mix(
             pressedOpacity,
             pressedColor,
-            backgroundColor.toString()
+            backgroundColor.toString(),
           )
 
     const removeRipple = (rippleID: number) => () => {
@@ -147,7 +147,7 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
               animation: "touchable-animation 550ms ease-in",
               backgroundColor: theme.utils.rgba(
                 pressedColor,
-                pressedOpacity - hoverOpacity
+                pressedOpacity - hoverOpacity,
               ),
               borderRadius: "50%",
               height: rippleSize,
@@ -175,7 +175,7 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
         pressedColor,
         pressedOpacity,
         hoverOpacity,
-      ]
+      ],
     )
 
     const isNonNativeButton = React.useCallback(() => {
@@ -213,7 +213,7 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
           onPress?.(event as any)
         }
       },
-      [appendRipple, disabled, isNonNativeButton, onKeyDown, onPress]
+      [appendRipple, disabled, isNonNativeButton, onKeyDown, onPress],
     )
 
     const handleKeyUp = React.useCallback(
@@ -230,7 +230,7 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
           onPress?.(event as any)
         }
       },
-      [isNonNativeButton, onKeyUp, onPress]
+      [isNonNativeButton, onKeyUp, onPress],
     )
 
     React.useEffect(() => {
@@ -354,5 +354,5 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
     ) : (
       button
     )
-  }
+  },
 )
