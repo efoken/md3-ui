@@ -16,7 +16,7 @@ type ThemedProps<Theme, Name extends keyof any> = Theme extends {
 function getThemeProps<
   Theme extends ThemeWithProps<any>,
   Props,
-  Name extends keyof any
+  Name extends keyof any,
 >({
   props,
   name,
@@ -32,14 +32,14 @@ function getThemeProps<
 
   return resolveProps(
     theme.components[name].defaultProps ?? {},
-    props
+    props,
   ) as Props & ThemedProps<Theme, Name>
 }
 
 export function useThemeProps<
   Theme extends ThemeWithProps<any>,
   Props,
-  Name extends keyof any
+  Name extends keyof any,
 >({
   name,
   props,

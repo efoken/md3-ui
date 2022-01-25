@@ -4,6 +4,7 @@
   "main": "dist/md3-ui-utils.cjs.js",
   "license": "MIT",
   "dependencies": {
+    "@emotion/react": "^11.7.1",
     "dot-prop": "^7.1.1"
   }
 }

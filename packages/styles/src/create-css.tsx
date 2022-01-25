@@ -6,9 +6,9 @@ import { NamedStyles } from "./types"
 export const css = createEmotionCss(
   class extends StyleSheet {
     static create<T extends NamedStyles<T> | NamedStyles<any>>(
-      styles: T | NamedStyles<T>
+      styles: T | NamedStyles<T>,
     ): T {
       return mapValues(styles, (style) => this.flatten(style)) as T
     }
-  }
+  },
 )

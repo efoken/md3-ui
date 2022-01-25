@@ -1,5 +1,5 @@
 import { getProperty } from "dot-prop"
-import { isPlainObject } from "./assertion"
+import { isObject } from "./assertion"
 
 export const get = getProperty
 
@@ -31,18 +31,14 @@ export function mergeDeep<T>(
 ): T {
   const output = options.clone ? { ...target } : target
 
-  if (isPlainObject(target) && isPlainObject(source)) {
+  if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
       // Avoid prototype pollution
       if (key === "__proto__") {
         return
       }
 
-      if (
-        isPlainObject(source[key]) &&
-        key in target &&
-        isPlainObject(target[key])
-      ) {
+      if (isObject(source[key]) && key in target && isObject(target[key])) {
         // Since `output` is a clone of `target` and we have narrowed `target`
         // in this block we can cast to the same type.
         ;(output as Record<keyof any, unknown>)[key] = mergeDeep(

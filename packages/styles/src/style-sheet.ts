@@ -34,14 +34,14 @@ function getDefaultMediaValues(): Partial<MediaQuery.MediaValues> {
 // eslint-disable-next-line unicorn/no-static-only-class
 export class StyleSheet {
   static create<T extends NamedStyles<T> | NamedStyles<any>>(
-    styles: T | NamedStyles<T>
+    styles: T | NamedStyles<T>,
   ): T {
     return RNStyleSheet.create(styles)
   }
 
   static createWithMedia<T extends NamedStyles<T> | NamedStyles<any>>(
     stylesWithQuery: T | NamedStyles<T>,
-    mediaValues: Partial<MediaQuery.MediaValues> = {}
+    mediaValues: Partial<MediaQuery.MediaValues> = {},
   ): {
     styles: T
     fullStyles: T
@@ -79,7 +79,7 @@ export class StyleSheet {
             if (isMedia(query)) {
               const isMatchingMediaQuery = MediaQuery.match(
                 query.replace("@media", ""),
-                { ...getDefaultMediaValues(), ...mediaValues }
+                { ...getDefaultMediaValues(), ...mediaValues },
               )
 
               if (isMatchingMediaQuery) {

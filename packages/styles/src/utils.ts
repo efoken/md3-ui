@@ -1,4 +1,4 @@
-import { isMedia } from "@md3-ui/utils"
+import { isMedia, mergeDeep } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import { PixelRatio } from "react-native"
 import { AllStyle } from "./types"
@@ -12,23 +12,9 @@ const createReactDOMStyle =
 const prefixStyles = require("react-native-web/dist/modules/prefixStyles")
   .default as typeof import("react-native-web/dist/modules/prefixStyles").default
 
-function parseRem(str: string) {
-  const value = Number.parseFloat(str)
-  const unit = /(em|rem|px)?\s*$/.exec(str)?.[1]
-
-  switch (unit) {
-    case "em":
-      return value * 16 * PixelRatio.getFontScale()
-    case "rem":
-      return value * 16 * PixelRatio.getFontScale()
-    default:
-      return value
-  }
-}
-
 export function findBreakpoints(emotionStyles: AllStyle) {
   const allMedia = Object.keys(emotionStyles).filter(
-    (item) => isMedia(item) && item.includes("width")
+    (item) => isMedia(item) && item.includes("width"),
   )
 
   const mediaValues = allMedia.reduce((acc, query) => {
@@ -36,7 +22,9 @@ export function findBreakpoints(emotionStyles: AllStyle) {
     data.forEach((item) => {
       item.expressions.forEach((exp) => {
         if (exp.value.includes("rem") || exp.value.includes("em")) {
-          acc.add(parseRem(exp.value))
+          acc.add(
+            Number.parseInt(exp.value, 10) * 16 * PixelRatio.getFontScale(),
+          )
         } else {
           acc.add(Number.parseInt(exp.value, 10))
         }
@@ -80,4 +68,13 @@ export function createDeclarationBlock(style: Record<string, any>) {
     .sort()
     .join(";")
   return `{${declarationsString};}`
+}
+
+export function merge<T>(acc: T, item: unknown) {
+  if (!item) {
+    return acc
+  }
+  return mergeDeep(acc, item, {
+    clone: false, // No need to clone deep, it's way faster.
+  })
 }

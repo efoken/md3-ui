@@ -2,6 +2,15 @@ import { PropsOf } from "@emotion/react"
 import { Theme } from "@md3-ui/theme"
 import * as React from "react"
 import { ImageStyle, TextStyle, ViewStyle } from "react-native"
+import {
+  BackgroundProps,
+  BorderProps,
+  DisplayProps,
+  FlexboxProps,
+  PositionProops,
+  SizingProps,
+  SpacingProps,
+} from "./system/types"
 
 export type AllStyle = ViewStyle | TextStyle | ImageStyle
 
@@ -20,7 +29,26 @@ export type NamedStyles<T> = {
   [P in keyof T]: AllStyle
 }
 
-export type SxProps = Record<string, any>
+export type ResponsiveValue<T> = T | (T | null)[] | { [key: string]: T | null }
+
+export type AllSystemProps = BackgroundProps &
+  BorderProps &
+  DisplayProps &
+  FlexboxProps &
+  PositionProops &
+  SizingProps &
+  SpacingProps
+
+export type SystemProps = {
+  [K in keyof AllSystemProps]:
+    | ResponsiveValue<AllSystemProps[K]>
+    | ((theme: Theme) => ResponsiveValue<AllSystemProps[K]>)
+    | SystemStyleObject
+}
+
+export type SystemStyleObject = SystemProps | Record<string, SystemProps> | null
+
+export type SxProps = SystemStyleObject
 
 export type OwnerStateProps<T> = {
   ownerState: Required<T>
@@ -30,7 +58,7 @@ type InterpolationPrimitive = null | undefined | boolean | number | string
 
 type Interpolation<
   P = unknown,
-  S extends AllStyle = AllStyleWithMediaAndPseudo
+  S extends AllStyle = AllStyleWithMediaAndPseudo,
 > =
   | InterpolationPrimitive
   | S
@@ -50,7 +78,7 @@ export interface StyledComponent<InnerProps, OwnerState, P>
 export interface CreateStyledComponent<
   ComponentProps extends {},
   SpecificComponentProps extends {} = {},
-  JSXProps extends {} = {}
+  JSXProps extends {} = {},
 > {
   <AdditionalProps extends {} = {}>(
     ...styles: Interpolation<
@@ -70,7 +98,7 @@ export interface CommonStyledOptions {
   slot?: string
   overridesResolver?: (
     props: any,
-    styles: Record<string, CSSInterpolation>
+    styles: Record<string, CSSInterpolation>,
   ) => CSSInterpolation
   skipVariantsResolver?: boolean
   skipSx?: boolean
@@ -87,7 +115,7 @@ export interface StyledOptions extends CommonStyledOptions {
  */
 export interface FilteringStyledOptions<
   Props,
-  ForwardedProps extends keyof Props = keyof Props
+  ForwardedProps extends keyof Props = keyof Props,
 > extends CommonStyledOptions {
   label?: string
   shouldForwardProp?: (propName: keyof any) => propName is ForwardedProps
@@ -97,10 +125,10 @@ export interface FilteringStyledOptions<
 export interface CreateStyled {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
@@ -115,7 +143,7 @@ export interface CreateStyled {
 
   <C extends React.ComponentClass<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions
+    options?: StyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
@@ -130,10 +158,10 @@ export interface CreateStyled {
 
   <
     C extends React.JSXElementConstructor<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>
+    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>
+    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
@@ -144,7 +172,7 @@ export interface CreateStyled {
 
   <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
     component: C,
-    options?: StyledOptions
+    options?: StyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
@@ -155,10 +183,10 @@ export interface CreateStyled {
 
   <
     Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag]
+    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
-    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>
+    options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
   ): CreateStyledComponent<
     {
       theme?: Theme
@@ -170,7 +198,7 @@ export interface CreateStyled {
 
   <Tag extends keyof JSX.IntrinsicElements>(
     tag: Tag,
-    options?: StyledOptions
+    options?: StyledOptions,
   ): CreateStyledComponent<
     {
       theme?: Theme

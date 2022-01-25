@@ -1,10 +1,11 @@
 import { Theme } from "@md3-ui/theme"
-import { objectFilter } from "@md3-ui/utils"
+import { objectFilter, __DEV__ } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import * as React from "react"
 import { useWindowDimensions } from "react-native"
 import { useTheme } from "./context"
 import { css } from "./create-css"
+import { styleFunctions } from "./style-functions"
 import { StyleSheet } from "./style-sheet"
 import {
   AllStyle,
@@ -24,16 +25,16 @@ function getDisplayName(Component: React.ElementType) {
 function useStyleSheet(
   styles: AllStyle,
   mediaValues?: Partial<MediaQuery.MediaValues>,
-  breakpoint?: string | number
+  breakpoint?: string | number,
 ) {
   const { ids, styles: createdStyles } = React.useMemo(
     () =>
       StyleSheet.createWithMedia(
         { styles: objectFilter(styles, (style) => style != null) },
-        mediaValues
+        mediaValues,
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [breakpoint, mediaValues, styles]
+    [breakpoint, mediaValues, styles],
   )
   return { id: ids.styles, style: createdStyles.styles }
 }
@@ -48,14 +49,15 @@ export const styled: CreateStyled = <
   T extends React.ComponentType<{
     style?: NamedStyles<any>
     theme?: Theme
-  }>
+  }>,
 >(
   Component: T,
   {
     name: componentName,
     slot: componentSlot,
     shouldForwardProp = defaultShouldForwardProp,
-  }: StyledOptions = {}
+    skipSx = false,
+  }: StyledOptions = {},
 ) => {
   const shouldUseAs = !shouldForwardProp("as")
 
@@ -69,22 +71,26 @@ export const styled: CreateStyled = <
 
         const mergedProps = React.useMemo(
           () => ({ ...props, theme }),
-          [props, theme]
+          [props, theme],
         )
 
         const extendedStyles = React.useMemo<AllStyle>(
-          () => css.apply(mergedProps, styles) || {},
-          [mergedProps]
+          () =>
+            css.apply(mergedProps, [
+              ...styles,
+              skipSx ? {} : styleFunctions(mergedProps),
+            ]) || {},
+          [mergedProps],
         )
 
         const breakpoints = React.useMemo(
           () => findBreakpoints(extendedStyles),
-          [extendedStyles]
+          [extendedStyles],
         )
 
         const getBreakpoint = React.useCallback(
           (newWidth: number) => breakpoints.find((item) => newWidth < item),
-          [breakpoints]
+          [breakpoints],
         )
 
         const [breakpoint, setBreakpoint] = React.useState(getBreakpoint(width))
@@ -112,10 +118,10 @@ export const styled: CreateStyled = <
         ) : (
           <FinalTag {...newProps} />
         )
-      }
+      },
     ) as StyledComponent<T, React.ComponentProps<T>, {}>
 
-    if (process.env.NODE_ENV !== "production") {
+    if (__DEV__) {
       let displayName: string | undefined
       if (componentName) {
         displayName = `${componentName}${componentSlot || ""}`
