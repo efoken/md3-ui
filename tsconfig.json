@@ -13,5 +13,5 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
-  "include": ["app", "packages", "types"]
+  "include": ["app/**/*", "packages/**/*", "types/**/*"]
 }
