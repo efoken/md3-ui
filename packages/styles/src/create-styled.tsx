@@ -1,8 +1,8 @@
 import { Theme } from "@md3-ui/theme"
-import { objectFilter, __DEV__ } from "@md3-ui/utils"
+import { isFunction, objectFilter, __DEV__ } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import * as React from "react"
-import { useWindowDimensions } from "react-native"
+import { PressableStateCallbackType, useWindowDimensions } from "react-native"
 import { useTheme } from "./context"
 import { css } from "./create-css"
 import { styleFunctions } from "./style-functions"
@@ -109,8 +109,18 @@ export const styled: CreateStyled = <
         }, {} as Record<string, any>)
 
         newProps.ref = ref
-        newProps.dataSet = { ...dataSet, media: styleSheet.id }
-        newProps.style = [styleSheet.style, style]
+        newProps.dataSet = styleSheet.id
+          ? {
+              ...dataSet,
+              media: `${dataSet?.media ?? ""} ${styleSheet.id}`.trim(),
+            }
+          : dataSet
+        newProps.style = isFunction(style)
+          ? (state: PressableStateCallbackType) => [
+              styleSheet.style,
+              style(state),
+            ]
+          : [styleSheet.style, style]
 
         return typeof FinalTag === "string" ? (
           // eslint-disable-next-line global-require, import/no-extraneous-dependencies

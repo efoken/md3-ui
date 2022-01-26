@@ -1,13 +1,16 @@
-import { FlexStyle, ViewStyle } from "react-native"
+import {
+  FlexStyle as RNFlexStyle,
+  ViewStyle as RNViewStyle,
+} from "react-native"
 
-export type BackgroundProps = {
+export interface BackgroundProps {
   backgroundColor?: string
   bgColor?: string
 }
 
-export type BorderProps = {
-  borderStyle?: ViewStyle["borderStyle"]
-  borderWidth?: ViewStyle["borderWidth"]
+export interface BorderProps {
+  borderStyle?: RNViewStyle["borderStyle"]
+  borderWidth?: RNViewStyle["borderWidth"]
   borderRadius?: number
   borderTopColor?: string
   borderTopRadius?: number
@@ -24,44 +27,46 @@ export type BorderProps = {
   borderLeftWidth?: number
 }
 
-export type DisplayProps = {
-  display?: FlexStyle["display"]
-  overflow?: FlexStyle["overflow"]
+export interface DisplayProps {
+  display?: RNFlexStyle["display"]
+  overflow?: RNFlexStyle["overflow"]
 }
 
-export type FlexboxProps = {
-  alignContent?: FlexStyle["alignContent"]
-  alignItems?: FlexStyle["alignItems"]
-  alignSelf?: FlexStyle["alignSelf"]
-  flex?: FlexStyle["flex"]
-  flexBasis?: FlexStyle["flexBasis"]
-  flexDirection?: FlexStyle["flexDirection"]
-  flexGrow?: FlexStyle["flexGrow"]
-  flexShrink?: FlexStyle["flexShrink"]
-  flexWrap?: FlexStyle["flexWrap"]
-  justifyContent?: FlexStyle["justifyContent"]
+export interface FlexboxProps {
+  alignContent?: RNFlexStyle["alignContent"]
+  alignItems?: RNFlexStyle["alignItems"]
+  alignSelf?: RNFlexStyle["alignSelf"]
+  flex?: RNFlexStyle["flex"]
+  flexBasis?: RNFlexStyle["flexBasis"]
+  flexDirection?: RNFlexStyle["flexDirection"]
+  flexGrow?: RNFlexStyle["flexGrow"]
+  flexShrink?: RNFlexStyle["flexShrink"]
+  flexWrap?: RNFlexStyle["flexWrap"]
+  justifyContent?: RNFlexStyle["justifyContent"]
 }
 
-export type PositionProops = {
-  position?: FlexStyle["position"]
-  zIndex?: FlexStyle["zIndex"]
-  top?: FlexStyle["top"]
-  right?: FlexStyle["right"]
-  bottom?: FlexStyle["bottom"]
-  left?: FlexStyle["left"]
+export interface PositionProops {
+  position?: RNFlexStyle["position"]
+  zIndex?: RNFlexStyle["zIndex"]
+  top?: RNFlexStyle["top"]
+  right?: RNFlexStyle["right"]
+  bottom?: RNFlexStyle["bottom"]
+  left?: RNFlexStyle["left"]
+  start?: RNFlexStyle["start"]
+  end?: RNFlexStyle["end"]
 }
 
-export type SizingProps = {
-  width?: FlexStyle["width"]
-  maxWidth?: FlexStyle["maxWidth"]
-  minWidth?: FlexStyle["minWidth"]
-  height?: FlexStyle["height"]
-  maxHeight?: FlexStyle["maxHeight"]
-  minHeight?: FlexStyle["minHeight"]
+export interface SizingProps {
+  width?: RNFlexStyle["width"]
+  maxWidth?: RNFlexStyle["maxWidth"]
+  minWidth?: RNFlexStyle["minWidth"]
+  height?: RNFlexStyle["height"]
+  maxHeight?: RNFlexStyle["maxHeight"]
+  minHeight?: RNFlexStyle["minHeight"]
   size?: string | number
 }
 
-export type SpacingProps = {
+export interface SpacingProps {
   padding?: number
   paddingTop?: number
   paddingRight?: number

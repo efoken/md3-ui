@@ -7,7 +7,6 @@ export const position = style({
 
 export const zIndex = style({
   prop: "zIndex",
-  // TODO: themeKey: "zIndex",
 })
 
 export const top = style({
@@ -26,6 +25,14 @@ export const left = style({
   prop: "left",
 })
 
+export const start = style({
+  prop: "start",
+})
+
+export const end = style({
+  prop: "end",
+})
+
 export const display = compose<keyof PositionProops>(
   position,
   zIndex,
@@ -33,4 +40,6 @@ export const display = compose<keyof PositionProops>(
   right,
   bottom,
   left,
+  start,
+  end,
 )

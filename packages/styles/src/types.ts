@@ -1,7 +1,11 @@
 import { PropsOf } from "@emotion/react"
 import { Theme } from "@md3-ui/theme"
 import * as React from "react"
-import { ImageStyle, TextStyle, ViewStyle } from "react-native"
+import {
+  ImageStyle as RNImageStyle,
+  TextStyle as RNTextStyle,
+  ViewStyle as RNViewStyle,
+} from "react-native"
 import {
   BackgroundProps,
   BorderProps,
@@ -12,7 +16,7 @@ import {
   SpacingProps,
 } from "./system/types"
 
-export type AllStyle = ViewStyle | TextStyle | ImageStyle
+export type AllStyle = RNViewStyle | RNTextStyle | RNImageStyle
 
 type Media = `@media (${"min-width" | "max-width"}: ${number | ""}${
   | number
@@ -50,8 +54,8 @@ export type SystemStyleObject = SystemProps | Record<string, SystemProps> | null
 
 export type SxProps = SystemStyleObject
 
-export type OwnerStateProps<T> = {
-  ownerState: Required<T>
+export interface OwnerStateProps<T> {
+  ownerState: T
 }
 
 type InterpolationPrimitive = null | undefined | boolean | number | string
