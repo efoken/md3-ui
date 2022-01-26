@@ -4,7 +4,7 @@ import { MdAdd } from "react-icons/md"
 import { Button, ButtonProps } from "../src"
 
 export default {
-  title: "Components/Common buttons",
+  title: "Components/Buttons/Common buttons",
   component: Button,
   argTypes: {
     disabled: { type: "boolean" },

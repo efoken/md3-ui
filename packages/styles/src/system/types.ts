@@ -1,5 +1,6 @@
 import {
   FlexStyle as RNFlexStyle,
+  TextStyle as RNTextStyle,
   ViewStyle as RNViewStyle,
 } from "react-native"
 
@@ -85,4 +86,15 @@ export interface SpacingProps {
   marginEnd?: number
   marginX?: number
   marginY?: number
+}
+
+export interface TypescaleProps {
+  textAlign?: RNTextStyle["textAlign"]
+  textDecorationLine?: RNTextStyle["textDecorationLine"]
+  textDecorationStyle?: RNTextStyle["textDecorationStyle"]
+  textDecorationColor?: RNTextStyle["textDecorationColor"]
+  textShadowColor?: RNTextStyle["textShadowColor"]
+  textShadowOffset?: RNTextStyle["textShadowOffset"]
+  textShadowRadius?: RNTextStyle["textShadowRadius"]
+  textTransform?: RNTextStyle["textTransform"]
 }

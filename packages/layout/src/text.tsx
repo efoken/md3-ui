@@ -2,6 +2,7 @@ import {
   OwnerStateProps,
   styled,
   StyleSheet,
+  SxProps,
   useThemeProps,
 } from "@md3-ui/styles"
 import { objectFilter } from "@md3-ui/utils"
@@ -61,6 +62,7 @@ export interface TextProps extends RNTextProps {
   styles?: {
     root?: RNTextStyle
   }
+  sx?: SxProps
   /** @default "body-medium" */
   variant?:
     | "display-large"

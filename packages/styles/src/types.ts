@@ -14,6 +14,7 @@ import {
   PositionProops,
   SizingProps,
   SpacingProps,
+  TypescaleProps,
 } from "./system/types"
 
 export type AllStyle = RNViewStyle | RNTextStyle | RNImageStyle
@@ -41,7 +42,8 @@ export type AllSystemProps = BackgroundProps &
   FlexboxProps &
   PositionProops &
   SizingProps &
-  SpacingProps
+  SpacingProps &
+  TypescaleProps
 
 export type SystemProps = {
   [K in keyof AllSystemProps]:

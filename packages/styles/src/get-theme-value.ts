@@ -6,6 +6,7 @@ import { flexbox } from "./system/flexbox"
 import { position } from "./system/position"
 import { sizing } from "./system/sizing"
 import { spacing } from "./system/spacing"
+import { typescale } from "./system/typescale"
 
 const filterPropsMapping = {
   background: background.filterProps,
@@ -15,6 +16,7 @@ const filterPropsMapping = {
   position: position.filterProps,
   sizing: sizing.filterProps,
   spacing: spacing.filterProps,
+  typescale: typescale.filterProps,
 }
 
 const styleFunctionMapping = {
@@ -25,6 +27,7 @@ const styleFunctionMapping = {
   position,
   sizing,
   spacing,
+  typescale,
 }
 
 // eslint-disable-next-line unicorn/prefer-object-from-entries
