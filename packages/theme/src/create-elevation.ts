@@ -1,12 +1,12 @@
 import { Platform, ViewStyle } from "react-native"
 
-export type Elevation = {
+export interface Elevation {
   level0: ViewStyle
   level1: ViewStyle
   level2: ViewStyle
 }
 
-export function createElevation(elevation: Partial<Elevation>): Elevation {
+export function createElevation(elevation?: Partial<Elevation>): Elevation {
   return {
     level0: Platform.select({
       default: {

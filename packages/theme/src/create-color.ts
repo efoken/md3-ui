@@ -169,7 +169,7 @@ function getDefaultInverse(mode = "light") {
       }
 }
 
-export function createColor(color: Partial<Color>): Color {
+export function createColor(color: Partial<Color> = {}): Color {
   const { mode = "light" } = color
 
   const background =

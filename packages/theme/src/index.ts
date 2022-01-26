@@ -22,14 +22,18 @@ declare module "@emotion/react" {
   export interface Theme extends DefaultTheme {}
 }
 
-export const theme: Theme = {
-  color: createColor({}),
-  elevation: createElevation({}),
-  typescale: createTypescale({}),
-  spacing: (value) => value * 8,
-  utils: {
-    mix,
-    rgba,
-  },
-  components: {},
+export function createTheme(theme: Partial<Theme> = {}): Theme {
+  return {
+    color: createColor(theme.color),
+    elevation: createElevation(theme.elevation),
+    typescale: createTypescale(theme.typescale),
+    spacing: (value) => value * 8,
+    utils: {
+      mix,
+      rgba,
+    },
+    components: {},
+  }
 }
+
+export const theme = createTheme()

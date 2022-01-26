@@ -32,7 +32,7 @@ import {
   MdSysTypescaleTitleSmallSize,
 } from "./tokens"
 
-export type Typescale = {
+export interface Typescale {
   "display-large": TextStyle
   "display-medium": TextStyle
   "display-small": TextStyle
@@ -50,7 +50,7 @@ export type Typescale = {
   "body-small": TextStyle
 }
 
-export function createTypescale(typescale: Partial<Typescale>): Typescale {
+export function createTypescale(typescale?: Partial<Typescale>): Typescale {
   return {
     "display-large": {
       fontFamily: MdSysTypescaleDisplayLargeFamily,
@@ -58,7 +58,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleDisplayLargeSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["display-large"],
+      ...typescale?.["display-large"],
     },
     "display-medium": {
       fontFamily: MdSysTypescaleDisplayMediumFamily,
@@ -66,7 +66,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleDisplayMediumSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["display-medium"],
+      ...typescale?.["display-medium"],
     },
     "display-small": {
       fontFamily: MdSysTypescaleDisplaySmallFamily,
@@ -74,7 +74,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleDisplaySmallSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["display-small"],
+      ...typescale?.["display-small"],
     },
     "headline-large": {
       fontFamily: MdSysTypescaleHeadlineLargeFamily,
@@ -82,7 +82,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleHeadlineLargeSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["headline-large"],
+      ...typescale?.["headline-large"],
     },
     "headline-medium": {
       fontFamily: MdSysTypescaleHeadlineMediumFamily,
@@ -90,7 +90,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleHeadlineMediumSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["headline-medium"],
+      ...typescale?.["headline-medium"],
     },
     "headline-small": {
       fontFamily: MdSysTypescaleHeadlineSmallFamily,
@@ -98,7 +98,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleHeadlineSmallSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["headline-small"],
+      ...typescale?.["headline-small"],
     },
     "title-large": {
       fontFamily: MdSysTypescaleTitleLargeFamily,
@@ -106,7 +106,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleTitleLargeSize, 10),
       letterSpacing: 0,
       fontWeight: "400",
-      ...typescale["title-large"],
+      ...typescale?.["title-large"],
     },
     "title-medium": {
       fontFamily: MdSysTypescaleTitleMediumFamily,
@@ -114,7 +114,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleTitleMediumSize, 10),
       letterSpacing: 0.15,
       fontWeight: "500",
-      ...typescale["title-medium"],
+      ...typescale?.["title-medium"],
     },
     "title-small": {
       fontFamily: MdSysTypescaleTitleSmallFamily,
@@ -122,7 +122,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleTitleSmallSize, 10),
       letterSpacing: 0.1,
       fontWeight: "500",
-      ...typescale["title-small"],
+      ...typescale?.["title-small"],
     },
     "label-large": {
       fontFamily: MdSysTypescaleLabelLargeFamily,
@@ -130,7 +130,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleLabelLargeSize, 10),
       letterSpacing: 0.1,
       fontWeight: "500",
-      ...typescale["label-large"],
+      ...typescale?.["label-large"],
     },
     "label-medium": {
       fontFamily: MdSysTypescaleLabelMediumFamily,
@@ -138,7 +138,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleLabelMediumSize, 10),
       letterSpacing: 0.5,
       fontWeight: "500",
-      ...typescale["label-medium"],
+      ...typescale?.["label-medium"],
     },
     "label-small": {
       fontFamily: MdSysTypescaleLabelSmallFamily,
@@ -146,7 +146,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleLabelSmallSize, 10),
       letterSpacing: 0.5,
       fontWeight: "500",
-      ...typescale["label-small"],
+      ...typescale?.["label-small"],
     },
     "body-large": {
       fontFamily: MdSysTypescaleBodyLargeFamily,
@@ -154,7 +154,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleBodyLargeSize, 10),
       letterSpacing: 0.25,
       fontWeight: "400",
-      ...typescale["body-large"],
+      ...typescale?.["body-large"],
     },
     "body-medium": {
       fontFamily: MdSysTypescaleBodyMediumFamily,
@@ -162,7 +162,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleBodyMediumSize, 10),
       letterSpacing: 0.25,
       fontWeight: "400",
-      ...typescale["body-medium"],
+      ...typescale?.["body-medium"],
     },
     "body-small": {
       fontFamily: MdSysTypescaleBodySmallFamily,
@@ -170,7 +170,7 @@ export function createTypescale(typescale: Partial<Typescale>): Typescale {
       fontSize: Number.parseInt(MdSysTypescaleBodySmallSize, 10),
       letterSpacing: 0.4,
       fontWeight: "400",
-      ...typescale["body-small"],
+      ...typescale?.["body-small"],
     },
   }
 }
