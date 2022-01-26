@@ -11,17 +11,17 @@ import {
   StyleProp,
   Text as RNText,
   TextProps as RNTextProps,
-  TextStyle,
+  TextStyle as RNTextStyle,
 } from "react-native"
 
-type TextContextType = {
-  style: TextStyle
+interface TextContextType {
+  style: RNTextStyle
 }
 
 const TextContext = React.createContext<TextContextType>(undefined as any)
 
 export interface TextProviderProps {
-  style?: StyleProp<TextStyle>
+  style?: StyleProp<RNTextStyle>
 }
 
 export const TextProvider: React.FC<TextProviderProps> = ({
@@ -39,7 +39,7 @@ export const TextProvider: React.FC<TextProviderProps> = ({
           style={{
             ...objectFilter(
               style,
-              (v, k) => k === "color" || k === "fontFamily"
+              (v, k) => k === "color" || k === "fontFamily",
             ),
             display: "contents",
           }}
@@ -59,7 +59,7 @@ export function useTextContext() {
 
 export interface TextProps extends RNTextProps {
   styles?: {
-    root: TextStyle
+    root?: RNTextStyle
   }
   /** @default "body-medium" */
   variant?:
@@ -84,7 +84,7 @@ const TextRoot = styled(RNText, {
   name: "Text",
   slot: "Root",
 })<OwnerStateProps<Pick<TextProps, "variant">>>(({ theme, ownerState }) => ({
-  ...theme.typescale[ownerState.variant],
+  ...(ownerState.variant != null && theme.typescale[ownerState.variant]),
 }))
 
 export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {

@@ -1,11 +1,15 @@
 import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/styles"
 import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
 import * as React from "react"
-import { FlexStyle, View as RNView, ViewStyle } from "react-native"
+import {
+  FlexStyle,
+  View as RNView,
+  ViewStyle as RNViewStyle,
+} from "react-native"
 
 export interface StackTypeMap<
   P = {},
-  C extends React.ElementType = typeof RNView
+  C extends React.ElementType = typeof RNView,
 > {
   props: P & {
     children?: React.ReactNode
@@ -14,8 +18,8 @@ export interface StackTypeMap<
     /** @default 0 */
     spacing?: number
     styles?: {
-      root?: ViewStyle
-      item?: ViewStyle
+      root?: RNViewStyle
+      item?: RNViewStyle
     }
   }
   defaultAs: C
@@ -23,7 +27,7 @@ export interface StackTypeMap<
 
 export type StackProps<
   C extends React.ElementType = StackTypeMap["defaultAs"],
-  P = {}
+  P = {},
 > = OverrideProps<StackTypeMap<P, C>, C>
 
 export type StackStyleKey = keyof NonNullable<StackProps["styles"]>
@@ -36,7 +40,7 @@ const StackRoot = styled(RNView, {
     flexDirection: ownerState.direction,
     marginLeft: -theme.spacing(ownerState.spacing),
     marginTop: -theme.spacing(ownerState.spacing),
-  })
+  }),
 )
 
 const StackItem = styled(RNView, {
@@ -46,7 +50,7 @@ const StackItem = styled(RNView, {
   ({ theme, ownerState }) => ({
     marginLeft: theme.spacing(ownerState.spacing),
     marginTop: theme.spacing(ownerState.spacing),
-  })
+  }),
 )
 
 export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
@@ -65,9 +69,16 @@ export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
   }
 
   return (
-    <StackRoot ref={ref} ownerState={ownerState} {...props}>
+    <StackRoot
+      ref={ref}
+      ownerState={ownerState}
+      style={[style, styles?.root]}
+      {...props}
+    >
       {React.Children.map(children, (child) => (
-        <StackItem ownerState={ownerState}>{child}</StackItem>
+        <StackItem ownerState={ownerState} style={styles?.item}>
+          {child}
+        </StackItem>
       ))}
     </StackRoot>
   )

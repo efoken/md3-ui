@@ -1,49 +1,64 @@
+import { Meta, Story } from "@storybook/react"
 import { Stack } from "@md3-ui/layout"
 import { MdAdd } from "react-icons/md"
-import { Button } from "../src"
+import { Button, ButtonProps } from "../src"
 
 export default {
-  title: "Components/Inputs/Button",
-}
+  title: "Components/Common buttons",
+  component: Button,
+  argTypes: {
+    disabled: { type: "boolean" },
+  },
+} as Meta<ButtonProps>
 
-export const Elevated = () => (
+export const Elevated: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
-    <Button>Elevated button</Button>
-    <Button icon={<MdAdd />}>Elevated button</Button>
+    <Button {...args}>Elevated button</Button>
+    <Button {...args} icon={<MdAdd />}>
+      Elevated button
+    </Button>
   </Stack>
 )
 
-export const Filled = () => (
+export const Filled: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
-    <Button variant="filled">Filled button</Button>
-    <Button variant="filled" icon={<MdAdd />}>
+    <Button {...args} variant="filled">
+      Filled button
+    </Button>
+    <Button {...args} variant="filled" icon={<MdAdd />}>
       Filled button
     </Button>
   </Stack>
 )
 
-export const Tonal = () => (
+export const Tonal: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
-    <Button variant="tonal">Tonal button</Button>
-    <Button variant="tonal" icon={<MdAdd />}>
+    <Button {...args} variant="tonal">
+      Tonal button
+    </Button>
+    <Button {...args} variant="tonal" icon={<MdAdd />}>
       Tonal button
     </Button>
   </Stack>
 )
 
-export const Outlined = () => (
+export const Outlined: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
-    <Button variant="outlined">Outlined button</Button>
-    <Button variant="outlined" icon={<MdAdd />}>
+    <Button {...args} variant="outlined">
+      Outlined button
+    </Button>
+    <Button {...args} variant="outlined" icon={<MdAdd />}>
       Outlined button
     </Button>
   </Stack>
 )
 
-export const Text = () => (
+export const Text: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
-    <Button variant="text">Text button</Button>
-    <Button variant="text" icon={<MdAdd />}>
+    <Button {...args} variant="text">
+      Text button
+    </Button>
+    <Button {...args} variant="text" icon={<MdAdd />}>
       Text button
     </Button>
   </Stack>

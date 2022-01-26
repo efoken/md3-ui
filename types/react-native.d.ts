@@ -21,6 +21,8 @@ declare module "react-native" {
     /** @platform web */
     cursor?: React.CSSProperties["cursor"]
     /** @platform web */
+    outlineWidth?: React.CSSProperties["outlineWidth"]
+    /** @platform web */
     transition?: React.CSSProperties["transition"]
     /** @platform web */
     userSelect?: React.CSSProperties["userSelect"]

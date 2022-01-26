@@ -1,3 +1,4 @@
+import { useBoolean } from "@md3-ui/hooks"
 import { Text, TextProvider } from "@md3-ui/layout"
 import {
   OwnerStateProps,
@@ -7,7 +8,11 @@ import {
   useThemeProps,
 } from "@md3-ui/styles"
 import * as React from "react"
-import { TextStyle, View, ViewStyle } from "react-native"
+import {
+  TextStyle as RNTextStyle,
+  View as RNView,
+  ViewStyle as RNViewStyle,
+} from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
 
 export interface ButtonProps extends ButtonBaseProps {
@@ -16,9 +21,10 @@ export interface ButtonProps extends ButtonBaseProps {
   disabled?: boolean
   icon?: React.ReactElement
   styles?: {
-    root?: ViewStyle
-    icon?: ViewStyle
-    label?: TextStyle
+    root?: RNViewStyle
+    content?: RNTextStyle
+    icon?: RNViewStyle
+    label?: RNTextStyle
   }
   sx?: SxProps
   /** @default "elevated" */
@@ -30,7 +36,7 @@ export type ButtonStyleKey = keyof NonNullable<ButtonProps["styles"]>
 const ButtonRoot = styled(ButtonBase, {
   name: "Button",
   slot: "Root",
-})<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(
+})<OwnerStateProps<Pick<ButtonProps, "disabled" | "icon" | "variant">>>(
   ({ theme, ownerState }) => [
     {
       alignItems: "center",
@@ -43,8 +49,17 @@ const ButtonRoot = styled(ButtonBase, {
         ...theme.elevation.level1,
         backgroundColor: theme.color.surface,
 
+        ...(ownerState.disabled && {
+          ...theme.elevation.level0,
+          backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+        }),
+
         ":hover": {
           ...theme.elevation.level2,
+        },
+
+        ":focus": {
+          ...theme.elevation.level1,
         },
       }),
 
@@ -52,8 +67,17 @@ const ButtonRoot = styled(ButtonBase, {
         ...theme.elevation.level0,
         backgroundColor: theme.color.primary,
 
+        ...(ownerState.disabled && {
+          ...theme.elevation.level0,
+          backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+        }),
+
         ":hover": {
           ...theme.elevation.level1,
+        },
+
+        ":focus": {
+          ...theme.elevation.level0,
         },
       }),
 
@@ -61,8 +85,16 @@ const ButtonRoot = styled(ButtonBase, {
         ...theme.elevation.level0,
         backgroundColor: theme.color["secondary-container"],
 
+        ...(ownerState.disabled && {
+          backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+        }),
+
         ":hover": {
           ...theme.elevation.level1,
+        },
+
+        ":focus": {
+          ...theme.elevation.level0,
         },
       }),
 
@@ -73,6 +105,10 @@ const ButtonRoot = styled(ButtonBase, {
         borderWidth: 1,
         paddingHorizontal: theme.spacing(3) - 1,
 
+        ...(ownerState.disabled && {
+          borderColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+        }),
+
         ":focus": {
           borderColor: theme.color.primary,
         },
@@ -81,49 +117,61 @@ const ButtonRoot = styled(ButtonBase, {
       ...(ownerState.variant === "text" && {
         ...theme.elevation.level0,
         minWidth: 48,
-        paddingHorizontal: theme.spacing(1.5),
+        paddingLeft: theme.spacing(1.5),
+        paddingRight: ownerState.icon ? theme.spacing(2) : theme.spacing(1.5),
       }),
     },
-  ]
+  ],
 )
-
-const ButtonIcon = styled(View, {
-  name: "Button",
-  slot: "Icon",
-})(({ theme }) => ({
-  marginLeft: -theme.spacing(1),
-  marginRight: theme.spacing(1),
-}))
 
 const ButtonContent = styled(TextProvider, {
   name: "Button",
   slot: "Content",
 })<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(
   ({ theme, ownerState }) => ({
-    color:
-      ownerState.variant === "elevated"
-        ? theme.color.primary
-        : ownerState.variant === "filled"
-        ? theme.color["on-primary"]
-        : ownerState.variant === "tonal"
-        ? theme.color["on-secondary-container"]
-        : ownerState.variant === "outlined"
-        ? theme.color.primary
-        : ownerState.variant === "text"
-        ? theme.color.primary
-        : "inherit",
-  })
+    ...(ownerState.variant === "elevated" && {
+      color: theme.color.primary,
+    }),
+
+    ...(ownerState.variant === "filled" && {
+      color: theme.color["on-primary"],
+    }),
+
+    ...(ownerState.variant === "tonal" && {
+      color: theme.color["on-secondary-container"],
+    }),
+
+    ...(ownerState.variant === "outlined" && {
+      color: theme.color.primary,
+    }),
+
+    ...(ownerState.variant === "text" && {
+      color: theme.color.primary,
+    }),
+
+    ...(ownerState.disabled && {
+      color: theme.utils.rgba(theme.color["on-surface"], 0.38),
+    }),
+  }),
 )
+
+const ButtonIcon = styled(RNView, {
+  name: "Button",
+  slot: "Icon",
+})<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ theme, ownerState }) => ({
+  marginLeft: ownerState.variant === "text" ? 0 : -theme.spacing(1),
+  marginRight: theme.spacing(1),
+}))
 
 const ButtonLabel = styled(Text, {
   name: "Button",
   slot: "Label",
-})<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(({ theme }) => ({
+})(({ theme }) => ({
   ...theme.typescale["label-large"],
   textAlign: "center",
 }))
 
-export const Button = React.forwardRef<View, ButtonProps>((inProps, ref) => {
+export const Button = React.forwardRef<RNView, ButtonProps>((inProps, ref) => {
   const {
     children,
     disabled = false,
@@ -136,29 +184,25 @@ export const Button = React.forwardRef<View, ButtonProps>((inProps, ref) => {
 
   const theme = useTheme()
 
+  const [hovered, handleHover] = useBoolean()
+  const [focused, handleFocus] = useBoolean()
+
   const ownerState = {
     disabled,
+    focused,
+    hovered,
+    icon,
     variant,
   }
 
   return (
     <ButtonRoot
       ref={ref}
-      hoverColor={
-        variant === "elevated"
-          ? theme.color.primary
-          : variant === "filled"
-          ? theme.color["on-primary"]
-          : variant === "tonal"
-          ? theme.color["on-secondary-container"]
-          : variant === "outlined"
-          ? theme.color.primary
-          : variant === "text"
-          ? theme.color.primary
-          : undefined
-      }
+      accessibilityRole="button"
+      accessibilityState={{ disabled: disabled || undefined }}
+      disabled={disabled}
       ownerState={ownerState}
-      pressedColor={
+      rippleColor={
         variant === "elevated"
           ? theme.color.primary
           : variant === "filled"
@@ -171,20 +215,22 @@ export const Button = React.forwardRef<View, ButtonProps>((inProps, ref) => {
           ? theme.color.primary
           : undefined
       }
-      style={[style, styles?.root]}
+      style={[styles?.root, style]}
+      onBlur={handleFocus.off}
+      onFocus={handleFocus.on}
+      onHoverIn={handleHover.on}
+      onHoverOut={handleHover.off}
       {...props}
     >
-      <ButtonContent ownerState={ownerState}>
+      <ButtonContent ownerState={ownerState} style={styles?.content}>
         {icon && (
-          <ButtonIcon style={styles?.icon}>
+          <ButtonIcon ownerState={ownerState} style={styles?.icon}>
             {React.cloneElement(icon, {
               size: 18,
             })}
           </ButtonIcon>
         )}
-        <ButtonLabel ownerState={ownerState} style={styles?.label}>
-          {children}
-        </ButtonLabel>
+        <ButtonLabel style={styles?.label}>{children}</ButtonLabel>
       </ButtonContent>
     </ButtonRoot>
   )

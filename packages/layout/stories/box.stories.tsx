@@ -2,7 +2,7 @@ import * as React from "react"
 import { Box, Text } from "../src"
 
 export default {
-  title: "Components/Layout/Box",
+  title: "Layout/Box",
 }
 
 export const Basic = () => (

@@ -1,41 +1,69 @@
 import { useForkRef } from "@md3-ui/hooks"
 import {
   Global,
+  OwnerStateProps,
   styled,
   StyleSheet,
+  SxProps,
   useTheme,
   useThemeProps,
 } from "@md3-ui/styles"
 import { splitProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
+  ButtonProps,
   Platform,
-  Pressable,
-  PressableProps,
+  Pressable as RNPressable,
+  PressableProps as RNPressableProps,
   StyleProp,
-  View,
-  ViewStyle,
+  View as RNView,
+  ViewStyle as RNViewStyle,
 } from "react-native"
 
 export type ButtonBaseProps = Omit<
-  PressableProps,
+  RNPressableProps,
   "children" | "disabled" | "style"
 > & {
+  /** @default false */
   centerRipple?: boolean
   children?: React.ReactNode
+  /** @default false */
   disabled?: boolean
-  disableHover?: boolean
+  /** @default false */
   disableRipple?: boolean
+  focusColor?: string
+  /** @default 0.12 */
+  focusOpacity?: string
   hoverColor?: string
+  /** @default 0.08 */
   hoverOpacity?: number
   pressedColor?: string
+  /** @default 0.12 */
   pressedOpacity?: number
-  pressedStyle?: StyleProp<ViewStyle>
-  rippleSize?: number
-  style?: StyleProp<ViewStyle>
+  rippleColor?: string
+  style?: StyleProp<RNViewStyle>
+  styles?: {
+    root?: RNViewStyle
+    container?: RNViewStyle
+  }
+  sx?: SxProps
 }
 
-const ButtonBaseContainer = styled(View, {
+const ButtonBaseRoot = styled(RNPressable, {
+  name: "ButtonBase",
+  slot: "Root",
+})<OwnerStateProps<Pick<ButtonProps, "disabled">>>(
+  ({ ownerState }) =>
+    Platform.OS === "web" && {
+      cursor: ownerState.disabled ? "default" : "pointer",
+      outlineWidth: 0,
+      overflow: "hidden",
+      transition: "box-shadow 200ms linear",
+      userSelect: "none",
+    },
+)
+
+const ButtonBaseContainer = styled(RNView, {
   name: "ButtonBase",
   slot: "Container",
 })({
@@ -43,14 +71,15 @@ const ButtonBaseContainer = styled(View, {
   overflow: "hidden",
 })
 
-export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
+export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
   (inProps, ref) => {
     const {
       centerRipple = false,
       children,
       disabled = false,
-      disableHover = false,
       disableRipple = false,
+      focusColor: focusColorProp,
+      focusOpacity = 0.12,
       hoverColor: hoverColorProp,
       hoverOpacity = 0.08,
       onKeyDown,
@@ -58,15 +87,15 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
       onPress,
       pressedColor: pressedColorProp,
       pressedOpacity = 0.12,
-      pressedStyle,
-      rippleSize: rippleSizeProp = 100,
+      rippleColor,
       style,
+      styles,
       ...props
     } = useThemeProps({ name: "ButtonBase", props: inProps })
 
     const theme = useTheme()
 
-    const rootRef = React.useRef<View>(null)
+    const rootRef = React.useRef<RNView>(null)
     const handleRef = useForkRef(rootRef, ref)
 
     const [ripples, setRipples] = React.useState<
@@ -97,8 +126,10 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
       ],
     )
 
-    const hoverColor = theme.utils.rgba(hoverColorProp ?? "#000", hoverOpacity)
-    const pressedColor = pressedColorProp ?? "#000"
+    const hoverColor = rippleColor ?? hoverColorProp ?? theme.color.background
+    const focusColor = rippleColor ?? focusColorProp ?? hoverColor
+    const pressedColor =
+      rippleColor ?? pressedColorProp ?? theme.color.background
 
     const underlayColor =
       // When button has no background color, simply use `rippleColor` as is
@@ -116,26 +147,45 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
     }
 
     const appendRipple = React.useCallback(
-      (event?: MouseEvent) => {
+      (event: TouchEvent | MouseEvent | {} = {}) => {
         const currentRef = rootRef.current as HTMLDivElement | null
 
         if (disabled || disableRipple || currentRef == null) {
           return
         }
 
-        const { clientX = 0, clientY = 0 } = event ?? {}
-        const { height, width, top, left } = currentRef.getBoundingClientRect()
+        const { width, height, left, top } = currentRef.getBoundingClientRect()
 
-        const rippleSize = Math.min(height, width, rippleSizeProp)
+        // Get the size of the ripple
+        let rippleX: number
+        let rippleY: number
+        let rippleSize: number
 
-        const positionTop =
-          clientX > 0 && !centerRipple
-            ? clientY - top - rippleSize / 2
-            : rippleSize / 2 - height / 2
-        const positionLeft =
-          clientY > 0 && !centerRipple
-            ? clientX - left - rippleSize / 2
-            : width / 2 - rippleSize / 2
+        if (
+          centerRipple ||
+          (!("clientX" in event) && !("touches" in event)) ||
+          ("clientX" in event && event?.clientX === 0 && event?.clientY === 0)
+        ) {
+          rippleX = Math.round(width / 2)
+          rippleY = Math.round(height / 2)
+        } else {
+          const { clientX, clientY } =
+            "touches" in event ? event.touches[0] : event
+          rippleX = Math.round(clientX - left)
+          rippleY = Math.round(clientY - top)
+        }
+
+        if (centerRipple) {
+          rippleSize = Math.sqrt((2 * width ** 2 + height ** 2) / 3)
+        } else {
+          const sizeX =
+            Math.max(Math.abs(currentRef.clientWidth - rippleX), rippleX) * 2 +
+            2
+          const sizeY =
+            Math.max(Math.abs(currentRef.clientHeight - rippleY), rippleY) * 2 +
+            2
+          rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2)
+        }
 
         const rippleID =
           ripples.length === 0 ? 1 : ripples[ripples.length - 1].id + 1
@@ -144,17 +194,17 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
           <span
             key={rippleID}
             style={{
-              animation: "touchable-animation 550ms ease-in",
+              animation: "button-base-animation 550ms ease-in",
               backgroundColor: theme.utils.rgba(
                 pressedColor,
                 pressedOpacity - hoverOpacity,
               ),
               borderRadius: "50%",
               height: rippleSize,
-              left: positionLeft,
+              left: -(rippleSize / 2) + rippleX,
               pointerEvents: "none",
               position: "absolute",
-              top: positionTop,
+              top: -(rippleSize / 2) + rippleY,
               width: rippleSize,
               zIndex: -1,
             }}
@@ -168,7 +218,6 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
         rootRef,
         disabled,
         disableRipple,
-        rippleSizeProp,
         centerRipple,
         ripples,
         theme,
@@ -238,34 +287,40 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
 
       if (Platform.OS === "web" && currentRef != null) {
         currentRef.addEventListener("mousedown", appendRipple)
+        currentRef.addEventListener("touchstart", appendRipple)
 
         return () => {
           currentRef.removeEventListener("mousedown", appendRipple)
+          currentRef.removeEventListener("touchend", appendRipple)
         }
       }
 
       return () => {}
     }, [appendRipple, handleKeyDown, rootRef])
 
+    const ownerState = {
+      disabled,
+    }
+
     const button = (
       <>
         {Platform.OS === "web" && (
           <Global
             styles={{
-              "@keyframes touchable-animation": {
+              "@keyframes button-base-animation": {
                 from: {
                   opacity: 1,
                   transform: "scale(0)",
                 },
                 to: {
                   opacity: 0,
-                  transform: "scale(10)",
+                  transform: "scale(1)",
                 },
               },
             }}
           />
         )}
-        <Pressable
+        <ButtonBaseRoot
           ref={handleRef}
           android_ripple={
             disableRipple
@@ -276,25 +331,18 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
                 }
           }
           disabled={disabled}
+          ownerState={ownerState}
           pointerEvents={disabled ? "none" : undefined}
           {...(Platform.OS === "web" && {
-            style: ({ pressed }) => [
-              {
-                cursor: disabled ? "default" : "pointer",
-                overflow: "hidden",
-                transition: "box-shadow 200ms linear",
-                userSelect: "none",
-              },
-              style,
-              pressed && !disableRipple && pressedStyle,
-            ],
+            style: [styles?.root, style],
           })}
           {...(Platform.OS === "android" && {
             // For Android we need a wrapping View to cut off the ripple effect.
             // Because of this View and when the button should have
             // `position: absolute`, we need to apply it to the wrapper View and
             // override it here to have `position: relative` with 0px inset.
-            style: ({ pressed }) => [
+            style: [
+              styles?.root,
               style,
               {
                 bottom: 0,
@@ -309,13 +357,12 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
                 right: 0,
                 top: 0,
               },
-              pressed && !disableRipple && pressedStyle,
             ],
           })}
           {...(Platform.OS === "ios" && {
             style: ({ pressed }) => [
+              styles?.root,
               style,
-              pressed && !disableRipple && pressedStyle,
               pressed && !disableRipple && { backgroundColor: underlayColor },
             ],
           })}
@@ -324,16 +371,20 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
           onPress={onPress}
           {...props}
         >
-          {({ hovered }) => (
+          {({ hovered, focused }) => (
             <>
               {React.Children.only(children)}
-              {Platform.OS === "web" && !disableHover && (
+              {Platform.OS === "web" && (
                 <span
                   style={{
-                    backgroundColor: hoverColor,
+                    backgroundColor: focused ? focusColor : hoverColor,
                     bottom: 0,
                     left: 0,
-                    opacity: hovered ? 1 : 0,
+                    opacity: focused
+                      ? focusOpacity
+                      : hovered
+                      ? hoverOpacity
+                      : 0,
                     position: "absolute",
                     right: 0,
                     top: 0,
@@ -345,12 +396,14 @@ export const ButtonBase = React.forwardRef<View, ButtonBaseProps>(
               {ripples.map(({ ripple }) => ripple)}
             </>
           )}
-        </Pressable>
+        </ButtonBaseRoot>
       </>
     )
 
     return Platform.OS === "android" ? (
-      <ButtonBaseContainer style={containerStyle}>{button}</ButtonBaseContainer>
+      <ButtonBaseContainer style={[containerStyle, styles?.container]}>
+        {button}
+      </ButtonBaseContainer>
     ) : (
       button
     )

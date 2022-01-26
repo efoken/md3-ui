@@ -1,7 +1,7 @@
 import { Text } from "../src"
 
 export default {
-  title: "Components/Layout/Text",
+  title: "Layout/Text",
 }
 
 export const Basic = () => (
