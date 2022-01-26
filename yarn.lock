@@ -2078,6 +2078,24 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
+"@storybook/addon-controls@^6.5.0-alpha.23":
+  version "6.5.0-alpha.23"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-controls/-/addon-controls-6.5.0-alpha.23.tgz#c0d19fa921c510a8683c6d12ebe1667ad5813332"
+  integrity sha512-XveHgCpqDsDCng6MXlF5/+GK7Tt6pc0sChhnPgZXBLWcuCmWALijlAh/FfCRw+vv1ImepFD2THrPvhKr3CtdgQ==
+  dependencies:
+    "@storybook/addons" "6.5.0-alpha.23"
+    "@storybook/api" "6.5.0-alpha.23"
+    "@storybook/client-logger" "6.5.0-alpha.23"
+    "@storybook/components" "6.5.0-alpha.23"
+    "@storybook/core-common" "6.5.0-alpha.23"
+    "@storybook/csf" "0.0.2--canary.87bc651.0"
+    "@storybook/node-logger" "6.5.0-alpha.23"
+    "@storybook/store" "6.5.0-alpha.23"
+    "@storybook/theming" "6.5.0-alpha.23"
+    core-js "^3.8.2"
+    lodash "^4.17.21"
+    ts-dedent "^2.0.0"
+
 "@storybook/addons@6.5.0-alpha.23":
   version "6.5.0-alpha.23"
   resolved "https://registry.yarnpkg.com/@storybook/addons/-/addons-6.5.0-alpha.23.tgz#99ee125febd3d96150e35801440b05763bc07a4a"
