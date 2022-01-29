@@ -4,7 +4,7 @@
   "main": "dist/md3-ui-app-bar.cjs.js",
   "license": "MIT",
   "dependencies": {
-    "@md3-ui/styles": "^1.0.0",
+    "@md3-ui/system": "^1.0.0",
     "@md3-ui/utils": "^1.0.0"
   },
   "devDependencies": {

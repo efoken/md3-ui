@@ -1,6 +1,6 @@
 import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
-import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/styles"
+import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,

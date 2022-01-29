@@ -1,4 +1,4 @@
-import { createView, SxProps } from "@md3-ui/styles"
+import { createView, SxProps } from "@md3-ui/system"
 import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
 import { View as RNView } from "react-native"
 

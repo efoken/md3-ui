@@ -1,4 +1,4 @@
-import { styled, SxProps, useThemeProps } from "@md3-ui/styles"
+import { styled, SxProps, useThemeProps } from "@md3-ui/system"
 import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"

@@ -1,4 +1,4 @@
-import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/styles"
+import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"

@@ -6,7 +6,7 @@ import {
   SxProps,
   useTheme,
   useThemeProps,
-} from "@md3-ui/styles"
+} from "@md3-ui/system"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,

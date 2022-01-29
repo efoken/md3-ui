@@ -4,7 +4,7 @@ import {
   StyleSheet,
   SxProps,
   useThemeProps,
-} from "@md3-ui/styles"
+} from "@md3-ui/system"
 import { objectFilter } from "@md3-ui/utils"
 import * as React from "react"
 import {

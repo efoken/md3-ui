@@ -1,5 +1,5 @@
 import { PortalProvider } from "@md3-ui/portal"
-import { ThemeProvider } from "@md3-ui/styles"
+import { ThemeProvider } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
 import * as React from "react"
 

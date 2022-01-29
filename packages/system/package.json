@@ -1,7 +1,7 @@
 {
-  "name": "@md3-ui/styles",
+  "name": "@md3-ui/system",
   "version": "1.0.0",
-  "main": "dist/md3-ui-styles.cjs.js",
+  "main": "dist/md3-ui-system.cjs.js",
   "license": "MIT",
   "dependencies": {
     "@emotion/primitives-core": "^11.0.0",

@@ -1,4 +1,4 @@
-import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/styles"
+import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
 import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
