@@ -117,8 +117,8 @@ const ButtonRoot = styled(ButtonBase, {
       ...(ownerState.variant === "text" && {
         ...theme.elevation.level0,
         minWidth: 48,
-        paddingLeft: theme.spacing(1.5),
-        paddingRight: ownerState.icon ? theme.spacing(2) : theme.spacing(1.5),
+        paddingEnd: ownerState.icon ? theme.spacing(2) : theme.spacing(1.5),
+        paddingStart: theme.spacing(1.5),
       }),
     },
   ],
@@ -159,8 +159,8 @@ const ButtonIcon = styled(RNView, {
   name: "Button",
   slot: "Icon",
 })<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ theme, ownerState }) => ({
-  marginLeft: ownerState.variant === "text" ? 0 : -theme.spacing(1),
-  marginRight: theme.spacing(1),
+  marginEnd: theme.spacing(1),
+  marginStart: ownerState.variant === "text" ? 0 : -theme.spacing(1),
 }))
 
 const ButtonLabel = styled(Text, {
@@ -198,8 +198,6 @@ export const Button = React.forwardRef<RNView, ButtonProps>((inProps, ref) => {
   return (
     <ButtonRoot
       ref={ref}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: disabled || undefined }}
       disabled={disabled}
       ownerState={ownerState}
       rippleColor={

@@ -1,17 +1,54 @@
-import { Box } from "@md3-ui/layout"
-import { ThemeProvider } from "@md3-ui/styles"
-import { createTheme } from "@md3-ui/theme"
-import { DecoratorFn } from "@storybook/react"
+import { Box, createTheme, Md3Provider } from "@md3-ui/core"
+import { DecoratorFn, Parameters } from "@storybook/react"
+import { I18nManager } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 
+export const globalTypes = {
+  direction: {
+    name: "Direction",
+    description: "Direction for layout",
+    defaultValue: "LTR",
+    toolbar: {
+      icon: "globe",
+      items: ["LTR", "RTL"],
+    },
+  },
+}
+
+export const parameters: Parameters = {
+  backgrounds: {
+    grid: {
+      cellSize: 8,
+    },
+    values: [
+      { name: "light", value: "#fffbfe" },
+      { name: "dark", value: "#1c1b1f" },
+    ],
+  },
+  controls: {
+    expanded: true,
+  },
+}
+
 export const decorators: DecoratorFn[] = [
-  (StoryFn) => (
-    <SafeAreaProvider style={{ height: "100%" }}>
-      <ThemeProvider theme={createTheme()}>
-        <Box sx={{ alignItems: "center" }}>
-          <StoryFn />
-        </Box>
-      </ThemeProvider>
-    </SafeAreaProvider>
-  ),
+  (StoryFn, context) => {
+    const { direction } = context.globals
+    const dir = direction.toLowerCase()
+
+    I18nManager.forceRTL(dir === "rtl")
+
+    return (
+      <SafeAreaProvider style={{ height: "100%" }}>
+        <Md3Provider theme={createTheme()}>
+          <Box
+            dir={dir}
+            nativeID="story-wrapper"
+            sx={{ alignItems: "flex-start" }}
+          >
+            <StoryFn />
+          </Box>
+        </Md3Provider>
+      </SafeAreaProvider>
+    )
+  },
 ]

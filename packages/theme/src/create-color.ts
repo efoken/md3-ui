@@ -49,7 +49,7 @@ import {
   MdSysColorTertiaryLight,
 } from "./tokens"
 
-export type Color = {
+export interface Color {
   mode: "dark" | "light"
   background: string
   outline: string

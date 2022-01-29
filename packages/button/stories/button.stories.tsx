@@ -1,14 +1,12 @@
-import { Meta, Story } from "@storybook/react"
 import { Stack } from "@md3-ui/layout"
+import { Meta, Story } from "@storybook/react"
 import { MdAdd } from "react-icons/md"
-import { Button, ButtonProps } from "../src"
+import { Button, ButtonBase, ButtonProps } from "../src"
 
 export default {
   title: "Components/Buttons/Common buttons",
   component: Button,
-  argTypes: {
-    disabled: { type: "boolean" },
-  },
+  subcomponents: { ButtonBase },
 } as Meta<ButtonProps>
 
 export const Elevated: Story<ButtonProps> = (args) => (

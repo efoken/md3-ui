@@ -1,7 +1,7 @@
 import { resolveProps } from "@md3-ui/utils"
 import { useTheme } from "./context"
 
-type ThemeWithProps<Components> = {
+interface ThemeWithProps<Components> {
   components: {
     [K in keyof Components]: { defaultProps?: Partial<Components[K]> }
   }

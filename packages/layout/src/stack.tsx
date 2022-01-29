@@ -38,8 +38,8 @@ const StackRoot = styled(RNView, {
 })<OwnerStateProps<Pick<StackProps, "direction" | "spacing">>>(
   ({ theme, ownerState }) => ({
     flexDirection: ownerState.direction,
-    marginLeft: -theme.spacing(ownerState.spacing),
-    marginTop: -theme.spacing(ownerState.spacing),
+    marginStart: -theme.spacing(ownerState.spacing ?? 0),
+    marginTop: -theme.spacing(ownerState.spacing ?? 0),
   }),
 )
 
@@ -48,8 +48,8 @@ const StackItem = styled(RNView, {
   slot: "Item",
 })<OwnerStateProps<Pick<StackProps, "direction" | "spacing">>>(
   ({ theme, ownerState }) => ({
-    marginLeft: theme.spacing(ownerState.spacing),
-    marginTop: theme.spacing(ownerState.spacing),
+    marginStart: theme.spacing(ownerState.spacing ?? 0),
+    marginTop: theme.spacing(ownerState.spacing ?? 0),
   }),
 )
 

@@ -65,6 +65,8 @@ declare module "react-native" {
     /** @platform web */
     dataSet?: Record<string, any>
     /** @platform web */
+    dir?: string
+    /** @platform web */
     href?: string
     /** @platform web */
     hrefAttrs?: {
@@ -72,5 +74,7 @@ declare module "react-native" {
       rel?: string
       target?: "blank" | "self" | "parent" | "top"
     }
+    /** @platform web */
+    lang?: string
   }
 }

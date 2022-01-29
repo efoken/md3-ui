@@ -1,11 +1,12 @@
-import * as React from "react"
-import { Box, Text } from "../src"
+import { Meta, Story } from "@storybook/react"
+import { Box, BoxProps, Text } from "../src"
 
 export default {
   title: "Layout/Box",
-}
+  component: Box,
+} as Meta<BoxProps>
 
-export const Basic = () => (
+export const Basic: Story = () => (
   <Box>
     <Box sx={{ bgColor: "error" }}>
       <Text style={{ color: "white" }}>Welcome to Box</Text>
@@ -19,7 +20,7 @@ export const Basic = () => (
   </Box>
 )
 
-export const Spacer = () => (
+export const Spacer: Story = () => (
   <Box
     sx={{
       flexDirection: { compact: "column", medium: "row" },
@@ -35,7 +36,7 @@ export const Spacer = () => (
   </Box>
 )
 
-export const Square = () => (
+export const Square: Story = () => (
   <Box
     sx={{
       bgColor: "error-container",

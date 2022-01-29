@@ -1,2 +1,5 @@
 export * from "./use-boolean"
+export * from "./use-enhanced-effect"
+export * from "./use-event-callback"
+export * from "./use-force-update"
 export * from "./use-fork-ref"

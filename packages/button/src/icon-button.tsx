@@ -20,8 +20,8 @@ const IconButtonRoot = styled(ButtonBase, {
   alignItems: "center",
   height: 48,
   justifyContent: "center",
-  marginLeft: ownerState.edge === "start" ? -theme.spacing(1.5) : undefined,
-  marginRight: ownerState.edge === "end" ? -theme.spacing(1.5) : undefined,
+  marginEnd: ownerState.edge === "end" ? -theme.spacing(1.5) : undefined,
+  marginStart: ownerState.edge === "start" ? -theme.spacing(1.5) : undefined,
   width: 48,
 }))
 

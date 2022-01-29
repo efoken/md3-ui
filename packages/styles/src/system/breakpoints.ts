@@ -10,7 +10,12 @@ const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for types.
   keys: ["compact", "medium", "expanded"],
-  up: (key: string) => `@media (min-width: ${values[key]}px)`,
+  up: (key: string) =>
+    key === "medium"
+      ? // Phones in landscape mode still use `compact`
+        // See: https://m3.material.io/foundations/adaptive-design/large-screens/overview
+        `@media (min-width: ${values[key]}px) and (orientation: portrait)`
+      : `@media (min-width: ${values[key]}px)`,
 }
 
 export function handleBreakpoints(

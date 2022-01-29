@@ -1,4 +1,6 @@
-import { DistributiveOmit } from "@emotion/react"
+export type DistributiveOmit<T, K extends keyof any> = T extends any
+  ? Omit<T, K>
+  : never
 
 export interface OverridableTypeMap {
   props: {}
@@ -15,7 +17,7 @@ export type BaseProps<M extends OverridableTypeMap> = M["props"]
  */
 export type OverrideProps<
   M extends OverridableTypeMap,
-  C extends React.ElementType
+  C extends React.ElementType,
 > = BaseProps<M> &
   DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
 
@@ -35,8 +37,8 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
-      as: C
-    } & OverrideProps<M, C>
+      as?: C
+    } & OverrideProps<M, C>,
   ): JSX.Element
   (props: DefaultComponentProps<M>): JSX.Element
   propTypes?: any

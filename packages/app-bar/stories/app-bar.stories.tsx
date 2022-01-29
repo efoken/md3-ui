@@ -1,5 +1,6 @@
 import { IconButton } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
+import { Meta } from "@storybook/react"
 import {
   MdAttachment,
   MdCalendarToday,
@@ -7,11 +8,13 @@ import {
   MdMoreVert,
   MdPerson,
 } from "react-icons/md"
-import { AppBar, Toolbar } from "../src"
+import { AppBar, AppBarProps, Toolbar } from "../src"
 
 export default {
   title: "Components/Top app bar",
-}
+  component: AppBar,
+  subcomponents: { Toolbar },
+} as Meta<AppBarProps>
 
 export const CenterAligned = () => (
   <AppBar>
@@ -19,7 +22,7 @@ export const CenterAligned = () => (
       <IconButton
         accessibilityLabel="menu"
         edge="start"
-        sx={{ marginRight: 1.5 }}
+        sx={{ marginEnd: 1.5 }}
       >
         <MdMenu />
       </IconButton>
@@ -29,7 +32,7 @@ export const CenterAligned = () => (
       <IconButton
         accessibilityLabel="profile"
         edge="end"
-        sx={{ marginLeft: 1.5 }}
+        sx={{ marginStart: 1.5 }}
       >
         <MdPerson />
       </IconButton>
@@ -43,7 +46,7 @@ export const Small = () => (
       <IconButton
         accessibilityLabel="menu"
         edge="start"
-        sx={{ marginRight: 0.5 }}
+        sx={{ marginEnd: 0.5 }}
       >
         <MdMenu />
       </IconButton>
@@ -78,7 +81,7 @@ export const Medium = () => (
       </IconButton>
       <Text
         variant="headline-small"
-        sx={{ alignSelf: "flex-end", marginLeft: -4.5, flexGrow: 1 }}
+        sx={{ alignSelf: "flex-end", marginStart: -4.5, flexGrow: 1 }}
       >
         Headline Small
       </Text>
@@ -110,7 +113,7 @@ export const Large = () => (
       </IconButton>
       <Text
         variant="headline-medium"
-        sx={{ alignSelf: "flex-end", marginLeft: -4.5, flexGrow: 1 }}
+        sx={{ alignSelf: "flex-end", marginStart: -4.5, flexGrow: 1 }}
       >
         Headline Medium
       </Text>

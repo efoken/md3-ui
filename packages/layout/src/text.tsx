@@ -80,6 +80,7 @@ export interface TextProps extends RNTextProps {
     | "body-large"
     | "body-medium"
     | "body-small"
+    | "inherit"
 }
 
 const TextRoot = styled(RNText, {
@@ -87,6 +88,14 @@ const TextRoot = styled(RNText, {
   slot: "Root",
 })<OwnerStateProps<Pick<TextProps, "variant">>>(({ theme, ownerState }) => ({
   ...(ownerState.variant != null && theme.typescale[ownerState.variant]),
+  ...(Platform.OS === "web" &&
+    ownerState.variant === "inherit" && {
+      fontFamily: "inherit",
+      fontSize: "inherit",
+      fontWeight: "inherit",
+      letterSpacing: "inherit",
+      lineHeight: "inherit",
+    }),
 }))
 
 export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
@@ -94,7 +103,7 @@ export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
     children,
     style,
     styles,
-    variant = "body-medium",
+    variant = "inherit",
     ...props
   } = useThemeProps({ name: "Text", props: inProps })
 

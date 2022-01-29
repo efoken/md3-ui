@@ -1,4 +1,4 @@
-import { useForkRef } from "@md3-ui/hooks"
+import { useForkRef, useEventCallback } from "@md3-ui/hooks"
 import {
   Global,
   OwnerStateProps,
@@ -227,60 +227,54 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       ],
     )
 
-    const isNonNativeButton = React.useCallback(() => {
+    const isNonNativeButton = () => {
       const buttonEl = rootRef.current as HTMLElement | null
       return (
         buttonEl?.tagName !== "BUTTON" &&
         !(buttonEl?.tagName === "A" && (buttonEl as HTMLAnchorElement).href)
       )
-    }, [rootRef])
+    }
 
-    const handleKeyDown = React.useCallback(
-      (event: React.KeyboardEvent) => {
-        if (event.key === "Enter" || event.key === " ") {
-          appendRipple()
-        }
+    const handleKeyDown = useEventCallback((event: React.KeyboardEvent) => {
+      if (event.key === "Enter" || event.key === " ") {
+        appendRipple()
+      }
 
-        if (
-          event.target === event.currentTarget &&
-          isNonNativeButton() &&
-          event.key === " "
-        ) {
-          event.preventDefault()
-        }
+      if (
+        event.target === event.currentTarget &&
+        isNonNativeButton() &&
+        event.key === " "
+      ) {
+        event.preventDefault()
+      }
 
-        onKeyDown?.(event)
+      onKeyDown?.(event)
 
-        // Keyboard accessibility for non interactive elements
-        if (
-          event.target === event.currentTarget &&
-          isNonNativeButton() &&
-          event.key === "Enter" &&
-          !disabled
-        ) {
-          event.preventDefault()
-          onPress?.(event as any)
-        }
-      },
-      [appendRipple, disabled, isNonNativeButton, onKeyDown, onPress],
-    )
+      // Keyboard accessibility for non interactive elements
+      if (
+        event.target === event.currentTarget &&
+        isNonNativeButton() &&
+        event.key === "Enter" &&
+        !disabled
+      ) {
+        event.preventDefault()
+        onPress?.(event as any)
+      }
+    })
 
-    const handleKeyUp = React.useCallback(
-      (event: React.KeyboardEvent) => {
-        onKeyUp?.(event)
+    const handleKeyUp = useEventCallback((event: React.KeyboardEvent) => {
+      onKeyUp?.(event)
 
-        // Keyboard accessibility for non interactive elements
-        if (
-          event.target === event.currentTarget &&
-          isNonNativeButton() &&
-          event.key === " " &&
-          !event.defaultPrevented
-        ) {
-          onPress?.(event as any)
-        }
-      },
-      [isNonNativeButton, onKeyUp, onPress],
-    )
+      // Keyboard accessibility for non interactive elements
+      if (
+        event.target === event.currentTarget &&
+        isNonNativeButton() &&
+        event.key === " " &&
+        !event.defaultPrevented
+      ) {
+        onPress?.(event as any)
+      }
+    })
 
     React.useEffect(() => {
       const currentRef = rootRef.current as HTMLDivElement | null
@@ -322,6 +316,8 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         )}
         <ButtonBaseRoot
           ref={handleRef}
+          accessibilityRole="button"
+          accessibilityState={{ disabled: disabled || undefined }}
           android_ripple={
             disableRipple
               ? {}

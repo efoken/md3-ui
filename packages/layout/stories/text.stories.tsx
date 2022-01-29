@@ -1,10 +1,13 @@
+import { Meta, Story } from "@storybook/react"
+import { TextProps } from "react-native"
 import { Text } from "../src"
 
 export default {
   title: "Layout/Text",
-}
+  component: Text,
+} as Meta<TextProps>
 
-export const Basic = () => (
+export const Basic: Story = () => (
   <>
     <Text variant="display-large">Display Large</Text>
     <Text variant="display-medium">Display Medium</Text>

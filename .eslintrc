@@ -26,6 +26,7 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "unicorn/no-array-for-each": "off",
     "unicorn/no-array-reduce": "off",
     "unicorn/no-null": "off",

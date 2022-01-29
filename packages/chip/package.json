@@ -1,0 +1,23 @@
+{
+  "name": "@md3-ui/chip",
+  "version": "1.0.0",
+  "main": "dist/md3-ui-chip.cjs.js",
+  "license": "MIT",
+  "dependencies": {
+    "@md3-ui/button": "^1.0.0",
+    "@md3-ui/layout": "^1.0.0",
+    "@md3-ui/styles": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.38",
+    "@types/react-native": "^0.66.15",
+    "react": "^17.0.2",
+    "react-native": "^0.67.1"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.38",
+    "@types/react-native": "^0.66.15",
+    "react": "^17.0.2",
+    "react-native": "^0.67.1"
+  }
+}
