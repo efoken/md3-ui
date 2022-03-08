@@ -52,6 +52,9 @@
     "prestorybook": "rimraf node_modules/.cache/storybook",
     "storybook": "start-storybook -p 6006"
   },
+  "lint-staged": {
+    "*.{js,jsx,json,ts,tsx}": "prettier --write"
+  },
   "preconstruct": {
     "packages": [
       "packages/*"
