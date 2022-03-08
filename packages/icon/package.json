@@ -1,0 +1,25 @@
+{
+  "name": "@md3-ui/icon",
+  "version": "1.0.0",
+  "main": "dist/md3-ui-icon.cjs.js",
+  "license": "MIT",
+  "dependencies": {
+    "@md3-ui/layout": "^1.0.0",
+    "@md3-ui/system": "^1.0.0",
+    "@md3-ui/utils": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/react-native": "^0.67.2",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3",
+    "react-native-svg": "^12.3.0"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/react-native": "^0.67.2",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3",
+    "react-native-svg": "^12.3.0"
+  }
+}

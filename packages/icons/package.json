@@ -1,0 +1,36 @@
+{
+  "name": "@md3-ui/icons",
+  "version": "1.0.0",
+  "main": "dist/md3-ui-icons.cjs.js",
+  "license": "MIT",
+  "dependencies": {
+    "@md3-ui/icon": "^1.0.0"
+  },
+  "devDependencies": {
+    "@svgr/core": "^6.2.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash": "^4.14.179",
+    "@types/react": "^17.0.39",
+    "@types/react-native": "^0.67.2",
+    "@types/svgo": "^2.6.2",
+    "cross-fetch": "^3.1.5",
+    "fs-extra": "^10.0.1",
+    "lodash": "^4.17.21",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3",
+    "react-native-svg": "^12.3.0",
+    "svgo": "^2.8.0",
+    "yargs": "^17.3.1"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.39",
+    "@types/react-native": "^0.67.2",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3",
+    "react-native-svg": "^12.3.0"
+  },
+  "scripts": {
+    "download": "ts-node scripts/download.ts",
+    "generate": "ts-node scripts/generate.ts"
+  }
+}
