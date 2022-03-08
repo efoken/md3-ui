@@ -1,6 +1,6 @@
 import { IconButton } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
-import { Meta } from "@storybook/react"
+import { Meta, Story } from "@storybook/react"
 import {
   MdAttachment,
   MdCalendarToday,
@@ -16,7 +16,7 @@ export default {
   subcomponents: { Toolbar },
 } as Meta<AppBarProps>
 
-export const CenterAligned = () => (
+export const CenterAligned: Story<AppBarProps> = () => (
   <AppBar>
     <Toolbar>
       <IconButton
@@ -40,7 +40,7 @@ export const CenterAligned = () => (
   </AppBar>
 )
 
-export const Small = () => (
+export const Small: Story<AppBarProps> = () => (
   <AppBar>
     <Toolbar>
       <IconButton
@@ -66,7 +66,7 @@ export const Small = () => (
   </AppBar>
 )
 
-export const Medium = () => (
+export const Medium: Story<AppBarProps> = () => (
   <AppBar>
     <Toolbar
       sx={{
@@ -98,7 +98,7 @@ export const Medium = () => (
   </AppBar>
 )
 
-export const Large = () => (
+export const Large: Story<AppBarProps> = () => (
   <AppBar>
     <Toolbar
       sx={{

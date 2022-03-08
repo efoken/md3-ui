@@ -1,11 +1,11 @@
 import { Meta, Story } from "@storybook/react"
 import * as React from "react"
-import { Portal } from "../src"
+import { Portal, PortalProps } from "../src"
 
 export default {
-  title: "Components/Portal",
+  title: "Utils/Portal",
   component: Portal,
-} as Meta
+} as Meta<PortalProps>
 
 export const Basic: Story = () => (
   <>

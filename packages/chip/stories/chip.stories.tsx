@@ -6,12 +6,30 @@ export default {
   component: Chip,
 } as Meta<ChipProps>
 
-export const Assist: Story = () => <Chip variant="assist" label="Assist chip" />
+export const Assist: Story<ChipProps> = (args) => <Chip {...args} />
 
-export const Filter: Story = () => <Chip variant="filter" label="Filter chip" />
+Assist.args = {
+  label: "Assist chip",
+  variant: "assist",
+}
 
-export const Input: Story = () => <Chip variant="input" label="Input chip" />
+export const Filter: Story<ChipProps> = (args) => <Chip {...args} />
 
-export const Suggestion: Story = () => (
-  <Chip variant="suggestion" label="Suggestion chip" />
-)
+Filter.args = {
+  label: "Filter chip",
+  variant: "filter",
+}
+
+export const Input: Story<ChipProps> = (args) => <Chip {...args} />
+
+Input.args = {
+  label: "Input chip",
+  variant: "input",
+}
+
+export const Suggestion: Story<ChipProps> = (args) => <Chip {...args} />
+
+Suggestion.args = {
+  label: "Suggestion chip",
+  variant: "suggestion",
+}

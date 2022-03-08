@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react"
 import { TextProps } from "react-native"
-import { Text } from "../src"
+import { Stack, Text } from "../src"
 
 export default {
   title: "Layout/Text",
@@ -8,7 +8,7 @@ export default {
 } as Meta<TextProps>
 
 export const Basic: Story = () => (
-  <>
+  <Stack spacing={1}>
     <Text variant="display-large">Display Large</Text>
     <Text variant="display-medium">Display Medium</Text>
     <Text variant="display-small">Display Small</Text>
@@ -24,5 +24,5 @@ export const Basic: Story = () => (
     <Text variant="body-large">Body Large</Text>
     <Text variant="body-medium">Body Medium</Text>
     <Text variant="body-small">Body Small</Text>
-  </>
+  </Stack>
 )
