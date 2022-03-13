@@ -17,11 +17,19 @@ declare module "react-native" {
 
   export interface ViewStyle {
     /** @platform web */
+    animationDuration?: React.CSSProperties["animationDuration"]
+    /** @platform web */
+    animationKeyframes?: Record<string, ViewStyle>
+    /** @platform web */
+    animationTimingFunction?: React.CSSProperties["animationTimingFunction"]
+    /** @platform web */
     boxShadow?: React.CSSProperties["boxShadow"]
     /** @platform web */
     cursor?: React.CSSProperties["cursor"]
     /** @platform web */
     outlineWidth?: React.CSSProperties["outlineWidth"]
+    /** @platform web */
+    pointerEvents?: React.CSSProperties["pointerEvents"]
     /** @platform web */
     transition?: React.CSSProperties["transition"]
     /** @platform web */

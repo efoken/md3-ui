@@ -1,6 +1,5 @@
-import { useForkRef, useEventCallback } from "@md3-ui/hooks"
+import { useEventCallback, useForkRef } from "@md3-ui/hooks"
 import {
-  Global,
   OwnerStateProps,
   styled,
   StyleSheet,
@@ -11,7 +10,6 @@ import {
 import { splitProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
-  ButtonProps,
   Platform,
   Pressable as RNPressable,
   PressableProps as RNPressableProps,
@@ -52,7 +50,7 @@ export type ButtonBaseProps = Omit<
 const ButtonBaseRoot = styled(RNPressable, {
   name: "ButtonBase",
   slot: "Root",
-})<OwnerStateProps<Pick<ButtonProps, "disabled">>>(
+})<OwnerStateProps<Pick<ButtonBaseProps, "disabled">>>(
   ({ ownerState }) =>
     Platform.OS === "web" && {
       cursor: ownerState.disabled ? "default" : "pointer",
@@ -70,6 +68,38 @@ const ButtonBaseContainer = styled(RNView, {
   backgroundColor: "rgba(255, 255, 255, 0)",
   overflow: "hidden",
 })
+
+const ButtonBaseRipple = styled("span", {
+  name: "ButtonBase",
+  slot: "Ripple",
+})<
+  OwnerStateProps<
+    Required<
+      Pick<ButtonBaseProps, "hoverOpacity" | "pressedColor" | "pressedOpacity">
+    >
+  >
+>(({ ownerState, theme }) => ({
+  animationDuration: "550ms",
+  animationKeyframes: {
+    "0%": {
+      opacity: 1,
+      transform: [{ scale: 0 }],
+    },
+    "100%": {
+      opacity: 0,
+      transform: [{ scale: 1 }],
+    },
+  },
+  animationTimingFunction: "ease-in",
+  backgroundColor: theme.utils.rgba(
+    ownerState.pressedColor,
+    ownerState.pressedOpacity - ownerState.hoverOpacity,
+  ),
+  borderRadius: 999,
+  pointerEvents: "none",
+  position: "absolute",
+  zIndex: -1,
+}))
 
 export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
   (inProps, ref) => {
@@ -99,7 +129,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
     const handleRef = useForkRef(rootRef, ref)
 
     const [ripples, setRipples] = React.useState<
-      { id: number; ripple: React.ReactNode }[]
+      { id: number; ripple: React.ReactElement }[]
     >([])
 
     const [{ backgroundColor = null, ...containerStyle } = {}] = splitProps(
@@ -191,22 +221,18 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
           ripples.length === 0 ? 1 : ripples[ripples.length - 1].id + 1
 
         const ripple = (
-          <span
+          <ButtonBaseRipple
             key={rippleID}
+            ownerState={{
+              hoverOpacity,
+              pressedColor,
+              pressedOpacity,
+            }}
             style={{
-              animation: "button-base-animation 550ms ease-in",
-              backgroundColor: theme.utils.rgba(
-                pressedColor,
-                pressedOpacity - hoverOpacity,
-              ),
-              borderRadius: "50%",
               height: rippleSize,
               left: -(rippleSize / 2) + rippleX,
-              pointerEvents: "none",
-              position: "absolute",
               top: -(rippleSize / 2) + rippleY,
               width: rippleSize,
-              zIndex: -1,
             }}
             onAnimationEnd={removeRipple(rippleID)}
           />
@@ -220,7 +246,6 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         disableRipple,
         centerRipple,
         ripples,
-        theme,
         pressedColor,
         pressedOpacity,
         hoverOpacity,
@@ -297,103 +322,81 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
     }
 
     const button = (
-      <>
-        {Platform.OS === "web" && (
-          <Global
-            styles={{
-              "@keyframes button-base-animation": {
-                from: {
-                  opacity: 1,
-                  transform: "scale(0)",
-                },
-                to: {
-                  opacity: 0,
-                  transform: "scale(1)",
-                },
-              },
-            }}
-          />
+      <ButtonBaseRoot
+        ref={handleRef}
+        accessibilityRole="button"
+        accessibilityState={{ disabled: disabled || undefined }}
+        android_ripple={
+          disableRipple
+            ? {}
+            : {
+                borderless: true,
+                color: pressedColor,
+              }
+        }
+        disabled={disabled}
+        ownerState={ownerState}
+        pointerEvents={disabled ? "none" : undefined}
+        {...(Platform.OS === "web" && {
+          style: [styles?.root, style],
+        })}
+        {...(Platform.OS === "android" && {
+          // For Android we need a wrapping View to cut off the ripple effect.
+          // Because of this View and when the button should have
+          // `position: absolute`, we need to apply it to the wrapper View and
+          // override it here to have `position: relative` with 0px inset.
+          style: [
+            styles?.root,
+            style,
+            {
+              bottom: 0,
+              left: 0,
+              marginBottom: 0,
+              marginEnd: 0,
+              marginLeft: 0,
+              marginRight: 0,
+              marginStart: 0,
+              marginTop: 0,
+              position: "relative",
+              right: 0,
+              top: 0,
+            },
+          ],
+        })}
+        {...(Platform.OS === "ios" && {
+          style: ({ pressed }) => [
+            styles?.root,
+            style,
+            pressed && !disableRipple && { backgroundColor: underlayColor },
+          ],
+        })}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        onPress={onPress}
+        {...props}
+      >
+        {({ hovered, focused }) => (
+          <>
+            {React.Children.only(children)}
+            {Platform.OS === "web" && (
+              <span
+                style={{
+                  backgroundColor: focused ? focusColor : hoverColor,
+                  bottom: 0,
+                  left: 0,
+                  opacity: focused ? focusOpacity : hovered ? hoverOpacity : 0,
+                  position: "absolute",
+                  right: 0,
+                  top: 0,
+                  transition: "opacity 200ms linear",
+                  zIndex: -1,
+                }}
+              />
+            )}
+            {ripples.map(({ ripple }) => ripple)}
+          </>
         )}
-        <ButtonBaseRoot
-          ref={handleRef}
-          accessibilityRole="button"
-          accessibilityState={{ disabled: disabled || undefined }}
-          android_ripple={
-            disableRipple
-              ? {}
-              : {
-                  borderless: true,
-                  color: pressedColor,
-                }
-          }
-          disabled={disabled}
-          ownerState={ownerState}
-          pointerEvents={disabled ? "none" : undefined}
-          {...(Platform.OS === "web" && {
-            style: [styles?.root, style],
-          })}
-          {...(Platform.OS === "android" && {
-            // For Android we need a wrapping View to cut off the ripple effect.
-            // Because of this View and when the button should have
-            // `position: absolute`, we need to apply it to the wrapper View and
-            // override it here to have `position: relative` with 0px inset.
-            style: [
-              styles?.root,
-              style,
-              {
-                bottom: 0,
-                left: 0,
-                marginBottom: 0,
-                marginEnd: 0,
-                marginLeft: 0,
-                marginRight: 0,
-                marginStart: 0,
-                marginTop: 0,
-                position: "relative",
-                right: 0,
-                top: 0,
-              },
-            ],
-          })}
-          {...(Platform.OS === "ios" && {
-            style: ({ pressed }) => [
-              styles?.root,
-              style,
-              pressed && !disableRipple && { backgroundColor: underlayColor },
-            ],
-          })}
-          onKeyDown={handleKeyDown}
-          onKeyUp={handleKeyUp}
-          onPress={onPress}
-          {...props}
-        >
-          {({ hovered, focused }) => (
-            <>
-              {React.Children.only(children)}
-              {Platform.OS === "web" && (
-                <span
-                  style={{
-                    backgroundColor: focused ? focusColor : hoverColor,
-                    bottom: 0,
-                    left: 0,
-                    opacity: focused
-                      ? focusOpacity
-                      : hovered
-                      ? hoverOpacity
-                      : 0,
-                    position: "absolute",
-                    right: 0,
-                    top: 0,
-                    transition: "opacity 200ms linear",
-                    zIndex: -1,
-                  }}
-                />
-              )}
-              {ripples.map(({ ripple }) => ripple)}
-            </>
-          )}
-        </ButtonBaseRoot>
-      </>
+      </ButtonBaseRoot>
     )
 
     return Platform.OS === "android" ? (
