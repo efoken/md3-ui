@@ -1,0 +1,227 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> should render 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  data-media="md3-a95ihm md3-nhshwt"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(103, 80, 164); display: contents;"
+  >
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(103, 80, 164);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(103, 80, 164); opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;
+
+exports[`<Button /> should render a button with icon 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  data-media="md3-a95ihm md3-nhshwt"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(103, 80, 164); display: contents;"
+  >
+    <div
+      class="css-view-1dbjc4n r-marginLeft-htfu76 r-marginRight-1kb76zh"
+      data-class="Button-icon"
+    >
+      <span
+        size="18"
+      >
+        icon
+      </span>
+    </div>
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(103, 80, 164);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-backgroundColor-15l9ap5 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;
+
+exports[`<Button /> should render a filled button 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-15l9ap5 r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  data-media="md3-1uu7n76 md3-1h0vom5"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(255, 255, 255); display: contents;"
+  >
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(255, 255, 255);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(255, 255, 255); opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;
+
+exports[`<Button /> should render a text button 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-minWidth-1v6e3re r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-paddingLeft-f727ji r-paddingRight-j2kj52 r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(103, 80, 164); display: contents;"
+  >
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(103, 80, 164);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-backgroundColor-15l9ap5 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;
+
+exports[`<Button /> should render a tonal button 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  data-media="md3-1uu7n76 md3-1h0vom5"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(29, 25, 43); display: contents;"
+  >
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(29, 25, 43);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(29, 25, 43); opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;
+
+exports[`<Button /> should render an elevated button 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  data-media="md3-a95ihm md3-nhshwt"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(103, 80, 164); display: contents;"
+  >
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(103, 80, 164);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(103, 80, 164); opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;
+
+exports[`<Button /> should render an outlined button 1`] = `
+<div
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1stjixc r-borderColor-1t01w60 r-borderRadius-y47klf r-borderWidth-rs99b7 r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-ju726h r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  data-class="Button-root ButtonBase-root"
+  data-media="md3-1ly7fol"
+  role="button"
+  tabindex="0"
+>
+  <div
+    style="color: rgb(103, 80, 164); display: contents;"
+  >
+    <div
+      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      data-class="Button-label Text-root"
+      dir="auto"
+      style="color: rgb(103, 80, 164);"
+    >
+      Hello World
+    </div>
+  </div>
+  <span
+    class="r-backgroundColor-15l9ap5 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="opacity: 0;"
+  />
+  <span
+    data-class="ButtonBase-rippleContainer"
+  />
+</div>
+`;

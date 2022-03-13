@@ -9,6 +9,7 @@
     "airbnb/hooks",
     "prettier"
   ],
+  "plugins": ["testing-library"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -35,7 +36,8 @@
   },
   "overrides": [
     {
-      "files": ["*.stories.tsx"],
+      "files": ["*.{stories,test}.tsx"],
+      "extends": ["plugin:testing-library/react"],
       "rules": {
         "import/no-extraneous-dependencies": "off"
       }

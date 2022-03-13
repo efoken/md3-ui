@@ -1,0 +1,23 @@
+{
+  "name": "@md3-ui/test-utils",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.tsx",
+  "dependencies": {
+    "@md3-ui/core": "^1.0.0",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.40",
+    "@types/react-native": "^0.67.2",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.40",
+    "@types/react-native": "^0.67.2",
+    "react": "^17.0.2",
+    "react-native": "^0.67.3"
+  }
+}

@@ -13,7 +13,7 @@
     "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
-  "include": ["app/**/*", "packages/**/*", "types/**/*"],
+  "include": ["app/**/*", "packages/**/*", "tools/**/*", "types/**/*"],
   "ts-node": {
     "compilerOptions": {
       "module": "CommonJS",

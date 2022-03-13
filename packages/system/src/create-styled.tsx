@@ -45,6 +45,14 @@ export function defaultShouldForwardProp(prop: keyof any) {
   )
 }
 
+function lowerCaseFirst(str: string) {
+  return str.charAt(0).toLowerCase() + str.slice(1)
+}
+
+function addClass(classes: string, className?: string) {
+  return [...new Set([...classes.split(" "), className])].join(" ").trim()
+}
+
 export const styled: CreateStyled = <
   T extends React.ComponentType<{
     style?: NamedStyles<any>
@@ -61,8 +69,12 @@ export const styled: CreateStyled = <
 ) => {
   const shouldUseAs = !shouldForwardProp("as")
 
+  const label = componentName
+    ? `${componentName}-${lowerCaseFirst(componentSlot || "Root")}`
+    : undefined
+
   return function createStyledComponent(...styles: any[]) {
-    const Styled = React.forwardRef<typeof Component, React.ComponentProps<T>>(
+    const Styled = React.forwardRef<T, React.ComponentProps<T>>(
       ({ dataSet, style, ...props }: React.ComponentProps<T> & any, ref) => {
         const theme = useTheme()
         const { width } = useWindowDimensions()
@@ -109,12 +121,13 @@ export const styled: CreateStyled = <
         }, {} as Record<string, any>)
 
         newProps.ref = ref
-        newProps.dataSet = styleSheet.id
-          ? {
-              ...dataSet,
-              media: `${dataSet?.media ?? ""} ${styleSheet.id}`.trim(),
-            }
-          : dataSet
+        newProps.dataSet = {
+          ...dataSet,
+          class: addClass(dataSet?.class ?? "", label),
+          ...(styleSheet.id && {
+            media: addClass(dataSet?.media ?? "", styleSheet.id),
+          }),
+        }
         newProps.style = isFunction(style)
           ? (state: PressableStateCallbackType) => [
               styleSheet.style,
@@ -132,14 +145,9 @@ export const styled: CreateStyled = <
     ) as StyledComponent<T, React.ComponentProps<T>, {}>
 
     if (__DEV__) {
-      let displayName: string | undefined
-      if (componentName) {
-        displayName = `${componentName}${componentSlot || ""}`
-      }
-      if (displayName == null) {
-        displayName = `WithStyle(${getDisplayName(Component)})`
-      }
-      Styled.displayName = displayName
+      Styled.displayName = componentName
+        ? `${componentName}${componentSlot || ""}`
+        : `WithStyle(${getDisplayName(Component)})`
     }
 
     return Styled

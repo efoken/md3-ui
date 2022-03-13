@@ -69,6 +69,24 @@ const ButtonBaseContainer = styled(RNView, {
   overflow: "hidden",
 })
 
+const ButtonBaseHover = styled("span", {
+  name: "ButtonBase",
+  slot: "Hover",
+})({
+  bottom: 0,
+  left: 0,
+  position: "absolute",
+  right: 0,
+  top: 0,
+  transition: "opacity 200ms linear",
+  zIndex: -1,
+})
+
+const ButtonBaseRippleContainer = styled("span", {
+  name: "ButtonBase",
+  slot: "RippleContainer",
+})()
+
 const ButtonBaseRipple = styled("span", {
   name: "ButtonBase",
   slot: "Ripple",
@@ -112,6 +130,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       focusOpacity = 0.12,
       hoverColor: hoverColorProp,
       hoverOpacity = 0.08,
+      href,
       onKeyDown,
       onKeyUp,
       onPress,
@@ -324,7 +343,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
     const button = (
       <ButtonBaseRoot
         ref={handleRef}
-        accessibilityRole="button"
+        accessibilityRole={href ? undefined : "button"}
         accessibilityState={{ disabled: disabled || undefined }}
         android_ripple={
           disableRipple
@@ -335,6 +354,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
               }
         }
         disabled={disabled}
+        href={href}
         ownerState={ownerState}
         pointerEvents={disabled ? "none" : undefined}
         {...(Platform.OS === "web" && {
@@ -379,21 +399,18 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
           <>
             {React.Children.only(children)}
             {Platform.OS === "web" && (
-              <span
+              <ButtonBaseHover
                 style={{
                   backgroundColor: focused ? focusColor : hoverColor,
-                  bottom: 0,
-                  left: 0,
                   opacity: focused ? focusOpacity : hovered ? hoverOpacity : 0,
-                  position: "absolute",
-                  right: 0,
-                  top: 0,
-                  transition: "opacity 200ms linear",
-                  zIndex: -1,
                 }}
               />
             )}
-            {ripples.map(({ ripple }) => ripple)}
+            {Platform.OS === "web" && !disableRipple && (
+              <ButtonBaseRippleContainer>
+                {ripples.map(({ ripple }) => ripple)}
+              </ButtonBaseRippleContainer>
+            )}
           </>
         )}
       </ButtonBaseRoot>
