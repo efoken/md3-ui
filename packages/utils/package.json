@@ -4,6 +4,6 @@
   "main": "dist/md3-ui-utils.cjs.js",
   "license": "MIT",
   "dependencies": {
-    "@emotion/react": "^11.8.1"
+    "@emotion/react": "^11.8.2"
   }
 }
