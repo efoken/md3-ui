@@ -8,6 +8,7 @@
     "@md3-ui/button": "^1.0.0",
     "@md3-ui/chip": "^1.0.0",
     "@md3-ui/hooks": "^1.0.0",
+    "@md3-ui/icon": "^1.0.0",
     "@md3-ui/layout": "^1.0.0",
     "@md3-ui/portal": "^1.0.0",
     "@md3-ui/system": "^1.0.0",
