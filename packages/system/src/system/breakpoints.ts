@@ -1,4 +1,5 @@
-import { AllStyle } from "../types"
+import { Theme } from "@md3-ui/theme"
+import { AllStyle, ResponsiveValue } from "../types"
 
 const values = {
   compact: 0,
@@ -16,18 +17,19 @@ const defaultBreakpoints = {
         // See: https://m3.material.io/foundations/adaptive-design/large-screens/overview
         `@media (min-width: ${values[key]}px) and (orientation: portrait)`
       : `@media (min-width: ${values[key]}px)`,
+  values: undefined,
 }
 
-export function handleBreakpoints(
-  props: any,
+export function handleBreakpoints<P extends { theme?: Theme }>(
+  props: P,
   propValue: any,
   styleFromPropValue: (propValueFinal: number | string | AllStyle) => any,
 ) {
-  const { theme = {} } = props
+  const { theme } = props
 
   if (Array.isArray(propValue)) {
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints
-    // eslint-disable-next-line unicorn/prefer-object-from-entries
+    const themeBreakpoints = theme?.breakpoints || defaultBreakpoints
+
     return propValue.reduce((acc, item, index) => {
       acc[themeBreakpoints.up(themeBreakpoints.keys[index])] =
         styleFromPropValue(propValue[index])
@@ -36,8 +38,8 @@ export function handleBreakpoints(
   }
 
   if (typeof propValue === "object") {
-    const themeBreakpoints = theme.breakpoints || defaultBreakpoints
-    // eslint-disable-next-line unicorn/prefer-object-from-entries
+    const themeBreakpoints = theme?.breakpoints || defaultBreakpoints
+
     return Object.keys(propValue).reduce((acc, breakpoint) => {
       // Key is the breakpoint
       if (Object.keys(themeBreakpoints.values || values).includes(breakpoint)) {
@@ -76,4 +78,67 @@ export function removeUnusedBreakpoints(breakpointKeys: string[], style: any) {
     }
     return acc
   }, style)
+}
+
+export function computeBreakpointsBase(
+  breakpointValues: ResponsiveValue<any>,
+  themeBreakpoints: typeof values,
+) {
+  // Fixed value
+  if (typeof breakpointValues !== "object") {
+    return {}
+  }
+  const base: Record<string, boolean> = {}
+  const breakpointsKeys = Object.keys(themeBreakpoints)
+  if (Array.isArray(breakpointValues)) {
+    breakpointsKeys.forEach((breakpoint, i) => {
+      if (i < breakpointValues.length) {
+        base[breakpoint] = true
+      }
+    })
+  } else {
+    breakpointsKeys.forEach((breakpoint) => {
+      if (breakpointValues[breakpoint] != null) {
+        base[breakpoint] = true
+      }
+    })
+  }
+  return base
+}
+
+export function resolveBreakpointValues<T>({
+  base: baseProp,
+  breakpoints: themeBreakpoints,
+  values: breakpointValues,
+}: {
+  base?: Record<string, boolean>
+  breakpoints: typeof values
+  values: ResponsiveValue<T>
+}) {
+  const base =
+    baseProp ?? computeBreakpointsBase(breakpointValues, themeBreakpoints)
+  const keys = Object.keys(base)
+
+  if (keys.length === 0) {
+    return breakpointValues
+  }
+
+  let previous: string | number
+
+  return keys.reduce((acc, breakpoint, i) => {
+    if (Array.isArray(breakpointValues)) {
+      acc[breakpoint] =
+        breakpointValues[i] != null
+          ? breakpointValues[i]
+          : breakpointValues[previous]
+      previous = i
+    } else {
+      acc[breakpoint] =
+        breakpointValues[breakpoint] != null
+          ? breakpointValues[breakpoint]
+          : breakpointValues[previous] || breakpointValues
+      previous = breakpoint
+    }
+    return acc
+  }, {} as Record<keyof typeof values, T>)
 }

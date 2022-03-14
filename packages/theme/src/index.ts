@@ -1,9 +1,11 @@
 import { mix, rgba } from "polished"
+import { Breakpoints, createBreakpoints } from "./create-breakpoints"
 import { Color, createColor } from "./create-color"
 import { createElevation, Elevation } from "./create-elevation"
 import { createTypescale, Typescale } from "./create-typescale"
 
 export interface Theme {
+  breakpoints: Breakpoints
   color: Color
   elevation: Elevation
   typescale: Typescale
@@ -24,6 +26,7 @@ declare module "@emotion/react" {
 
 export function createTheme(theme: Partial<Theme> = {}): Theme {
   return {
+    breakpoints: createBreakpoints(),
     color: createColor(theme.color),
     elevation: createElevation(theme.elevation),
     typescale: createTypescale(theme.typescale),
