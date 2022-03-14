@@ -32,6 +32,7 @@
     "unicorn/no-array-reduce": "off",
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
+    "unicorn/prefer-object-from-entries": "off",
     "unicorn/prevent-abbreviations": "off"
   },
   "overrides": [

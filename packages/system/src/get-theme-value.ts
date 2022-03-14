@@ -30,7 +30,6 @@ const styleFunctionMapping = {
   typescale,
 }
 
-// eslint-disable-next-line unicorn/prefer-object-from-entries
 export const propToStyleFunction = Object.keys(filterPropsMapping).reduce(
   (acc, styleFnName) => {
     filterPropsMapping[styleFnName].forEach((propName: any) => {

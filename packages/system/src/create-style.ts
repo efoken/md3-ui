@@ -80,7 +80,7 @@ export function style<PropKey extends string>(options: StyleOptions<PropKey>) {
 export function compose<PropKey extends string>(
   ...styles: { (props: any): any; filterProps: PropKey[] }[]
 ) {
-  // eslint-disable-next-line @typescript-eslint/no-shadow, unicorn/prefer-object-from-entries
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   const handlers = styles.reduce((acc, style) => {
     style.filterProps.forEach((prop: any) => {
       acc[prop] = style
@@ -90,7 +90,6 @@ export function compose<PropKey extends string>(
   }, {})
 
   const fn = (props: any) =>
-    // eslint-disable-next-line unicorn/prefer-object-from-entries
     Object.keys(props).reduce<any>((acc, prop) => {
       if (handlers[prop]) {
         return merge(acc, handlers[prop](props))
