@@ -1,4 +1,4 @@
-import { isMedia, isMediaOrPseudo } from "@md3-ui/utils"
+import { isMedia, isMediaOrPseudo, mergeDeep } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import {
   Appearance,
@@ -102,6 +102,17 @@ export class StyleSheet {
   }
 
   static flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T {
-    return RNStyleSheet.flatten(style) ?? ({} as any)
+    return Array.isArray(style)
+      ? style
+          .flat()
+          .filter(Boolean)
+          .reduce(
+            // For retrieving all styles in React Native Web, we need to call
+            // the original `flatten` method here.
+            // Note, that this behaviour may change in the future.
+            (acc, newStyle) => mergeDeep(acc, RNStyleSheet.flatten(newStyle)),
+            {} as any,
+          )
+      : style
   }
 }

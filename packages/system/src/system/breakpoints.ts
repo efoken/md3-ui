@@ -20,10 +20,10 @@ const defaultBreakpoints = {
   values: undefined,
 }
 
-export function handleBreakpoints<P extends { theme?: Theme }>(
+export function handleBreakpoints<P extends { theme?: Theme }, T>(
   props: P,
-  propValue: any,
-  styleFromPropValue: (propValueFinal: number | string | AllStyle) => any,
+  propValue: T | Record<keyof Theme["breakpoints"]["values"], T>,
+  styleFromPropValue: (propValueFinal?: T) => AllStyle,
 ) {
   const { theme } = props
 
@@ -120,7 +120,7 @@ export function resolveBreakpointValues<T>({
   const keys = Object.keys(base)
 
   if (keys.length === 0) {
-    return breakpointValues
+    return breakpointValues as T
   }
 
   let previous: string | number
@@ -140,5 +140,5 @@ export function resolveBreakpointValues<T>({
       previous = breakpoint
     }
     return acc
-  }, {} as Record<keyof typeof values, T>)
+  }, {} as Record<keyof Theme["breakpoints"]["values"], T>)
 }

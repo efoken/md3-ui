@@ -25,16 +25,18 @@ type Media = `@media (${"min-width" | "max-width"}: ${number | ""}${
 
 type Pseudo = ":active" | ":focus" | ":hover"
 
-export type AllStyleWithMediaAndPseudo = AllStyle &
-  {
-    [key in Media | Pseudo]?: AllStyle
-  }
+export type AllStyleWithMediaAndPseudo = AllStyle & {
+  [key in Media | Pseudo]?: AllStyle
+}
 
 export type NamedStyles<T> = {
   [P in keyof T]: AllStyle
 }
 
-export type ResponsiveValue<T> = T | (T | null)[] | { [key: string]: T | null }
+export type ResponsiveValue<T> =
+  | T
+  | (T | null)[]
+  | Partial<Record<keyof Theme["breakpoints"]["values"], T | null>>
 
 export type AllSystemProps = BackgroundProps &
   BorderProps &
