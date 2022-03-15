@@ -91,7 +91,8 @@ export const Chip = React.forwardRef<RNView, ChipProps>((inProps, ref) => {
         {icon && (
           <ChipIcon ownerState={ownerState} style={styles?.icon}>
             {React.cloneElement(icon, {
-              size: 18,
+              height: 18,
+              width: 18,
             })}
           </ChipIcon>
         )}

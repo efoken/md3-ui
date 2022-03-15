@@ -22,6 +22,14 @@ const IconRoot = styled(Svg, {
   name: "Icon",
   slot: "Root",
 })<OwnerStateProps<Pick<IconProps, "height" | "size" | "width">>>(
+  ({ ownerState }) =>
+    ownerState.size === "small"
+      ? { height: 12, width: 12 }
+      : ownerState.size === "medium"
+      ? { height: 18, width: 18 }
+      : ownerState.size === "large"
+      ? { height: 24, width: 24 }
+      : undefined,
   ({ ownerState }) => ({
     flexShrink: 0,
     height: ownerState.height,
@@ -56,6 +64,7 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
     <IconRoot
       ref={ref}
       color={color}
+      fill={color}
       ownerState={ownerState}
       style={[textStyle, style, styles?.root]}
       {...props}

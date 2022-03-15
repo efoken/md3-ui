@@ -44,7 +44,8 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
         {...props}
       >
         {React.cloneElement(children, {
-          size: 24,
+          height: 24,
+          width: 24,
         })}
       </IconButtonRoot>
     )

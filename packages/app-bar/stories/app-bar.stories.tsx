@@ -1,13 +1,13 @@
 import { IconButton } from "@md3-ui/button"
+import {
+  Attachment,
+  CalendarToday,
+  Menu,
+  MoreVert,
+  Person,
+} from "@md3-ui/icons"
 import { Text } from "@md3-ui/layout"
 import { Meta, Story } from "@storybook/react"
-import {
-  MdAttachment,
-  MdCalendarToday,
-  MdMenu,
-  MdMoreVert,
-  MdPerson,
-} from "react-icons/md"
 import { AppBar, AppBarProps, Toolbar } from "../src"
 
 export default {
@@ -24,7 +24,7 @@ export const CenterAligned: Story<AppBarProps> = () => (
         edge="start"
         sx={{ marginEnd: 1.5 }}
       >
-        <MdMenu />
+        <Menu />
       </IconButton>
       <Text variant="title-large" sx={{ flexGrow: 1, textAlign: "center" }}>
         Title Large
@@ -34,7 +34,7 @@ export const CenterAligned: Story<AppBarProps> = () => (
         edge="end"
         sx={{ marginStart: 1.5 }}
       >
-        <MdPerson />
+        <Person />
       </IconButton>
     </Toolbar>
   </AppBar>
@@ -48,19 +48,19 @@ export const Small: Story<AppBarProps> = () => (
         edge="start"
         sx={{ marginEnd: 0.5 }}
       >
-        <MdMenu />
+        <Menu />
       </IconButton>
       <Text variant="title-large" sx={{ flexGrow: 1 }}>
         Title Large
       </Text>
       <IconButton accessibilityLabel="attachment">
-        <MdAttachment />
+        <Attachment />
       </IconButton>
       <IconButton accessibilityLabel="calendar">
-        <MdCalendarToday />
+        <CalendarToday />
       </IconButton>
       <IconButton accessibilityLabel="profile" edge="end">
-        <MdMoreVert />
+        <MoreVert />
       </IconButton>
     </Toolbar>
   </AppBar>
@@ -77,7 +77,7 @@ export const Medium: Story<AppBarProps> = () => (
       }}
     >
       <IconButton accessibilityLabel="menu" edge="start">
-        <MdMenu />
+        <Menu />
       </IconButton>
       <Text
         variant="headline-small"
@@ -86,13 +86,13 @@ export const Medium: Story<AppBarProps> = () => (
         Headline Small
       </Text>
       <IconButton accessibilityLabel="attachment">
-        <MdAttachment />
+        <Attachment />
       </IconButton>
       <IconButton accessibilityLabel="calendar">
-        <MdCalendarToday />
+        <CalendarToday />
       </IconButton>
       <IconButton accessibilityLabel="profile" edge="end">
-        <MdMoreVert />
+        <MoreVert />
       </IconButton>
     </Toolbar>
   </AppBar>
@@ -109,7 +109,7 @@ export const Large: Story<AppBarProps> = () => (
       }}
     >
       <IconButton accessibilityLabel="menu" edge="start">
-        <MdMenu />
+        <Menu />
       </IconButton>
       <Text
         variant="headline-medium"
@@ -118,13 +118,13 @@ export const Large: Story<AppBarProps> = () => (
         Headline Medium
       </Text>
       <IconButton accessibilityLabel="attachment">
-        <MdAttachment />
+        <Attachment />
       </IconButton>
       <IconButton accessibilityLabel="calendar">
-        <MdCalendarToday />
+        <CalendarToday />
       </IconButton>
       <IconButton accessibilityLabel="profile" edge="end">
-        <MdMoreVert />
+        <MoreVert />
       </IconButton>
     </Toolbar>
   </AppBar>

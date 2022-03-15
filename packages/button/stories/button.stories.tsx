@@ -1,6 +1,6 @@
+import { Add } from "@md3-ui/icons"
 import { Stack } from "@md3-ui/layout"
 import { Meta, Story } from "@storybook/react"
-import { MdAdd } from "react-icons/md"
 import { Button, ButtonBase, ButtonProps } from "../src"
 
 export default {
@@ -12,7 +12,7 @@ export default {
 export const Elevated: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
     <Button {...args} />
-    <Button {...args} icon={<MdAdd />} />
+    <Button {...args} icon={<Add />} />
   </Stack>
 )
 
@@ -24,7 +24,7 @@ Elevated.args = {
 export const Filled: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
     <Button {...args} />
-    <Button {...args} icon={<MdAdd />} />
+    <Button {...args} icon={<Add />} />
   </Stack>
 )
 
@@ -36,7 +36,7 @@ Filled.args = {
 export const Tonal: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
     <Button {...args} />
-    <Button {...args} icon={<MdAdd />} />
+    <Button {...args} icon={<Add />} />
   </Stack>
 )
 
@@ -48,7 +48,7 @@ Tonal.args = {
 export const Outlined: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
     <Button {...args} />
-    <Button {...args} icon={<MdAdd />} />
+    <Button {...args} icon={<Add />} />
   </Stack>
 )
 
@@ -60,7 +60,7 @@ Outlined.args = {
 export const Text: Story<ButtonProps> = (args) => (
   <Stack direction="row" spacing={2}>
     <Button {...args} />
-    <Button {...args} icon={<MdAdd />} />
+    <Button {...args} icon={<Add />} />
   </Stack>
 )
 

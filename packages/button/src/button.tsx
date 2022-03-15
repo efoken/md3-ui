@@ -224,7 +224,8 @@ export const Button = React.forwardRef<RNView, ButtonProps>((inProps, ref) => {
         {icon && (
           <ButtonIcon ownerState={ownerState} style={styles?.icon}>
             {React.cloneElement(icon, {
-              size: 18,
+              height: 18,
+              width: 18,
             })}
           </ButtonIcon>
         )}
