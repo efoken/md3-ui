@@ -22,6 +22,8 @@ export type AppBarProps<
   P = {},
 > = OverrideProps<AppBarTypeMap<P, C>, C>
 
+export type AppBarStyleKey = keyof NonNullable<AppBarProps["styles"]>
+
 const AppBarRoot = styled(RNView)(({ theme }) => ({
   ...theme.elevation.level0,
   backgroundColor: theme.color.surface,

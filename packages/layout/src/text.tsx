@@ -83,6 +83,8 @@ export interface TextProps extends RNTextProps {
     | "inherit"
 }
 
+export type TextStyleKey = keyof NonNullable<TextProps["styles"]>
+
 const TextRoot = styled(RNText, {
   name: "Text",
   slot: "Root",

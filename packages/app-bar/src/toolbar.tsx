@@ -22,6 +22,8 @@ export type ToolbarProps<
   P = {},
 > = OverrideProps<ToolbarTypeMap<P, C>, C>
 
+export type ToolbarStyleKey = keyof NonNullable<ToolbarProps["styles"]>
+
 const ToolbarRoot = styled(RNView, {
   name: "Toolbar",
   slot: "Root",

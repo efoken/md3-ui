@@ -47,6 +47,8 @@ export type ButtonBaseProps = Omit<
   sx?: SxProps
 }
 
+export type ButtonBaseStyleKey = keyof NonNullable<ButtonBaseProps["styles"]>
+
 const ButtonBaseRoot = styled(RNPressable, {
   name: "ButtonBase",
   slot: "Root",
