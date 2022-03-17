@@ -39,5 +39,5 @@ export const AppBar = React.forwardRef<RNView, AppBarProps>((inProps, ref) => {
     props: inProps,
   })
 
-  return <AppBarRoot ref={ref} style={[styles?.root, style]} {...props} />
+  return <AppBarRoot ref={ref} style={[style, styles?.root]} {...props} />
 }) as OverridableComponent<AppBarTypeMap>

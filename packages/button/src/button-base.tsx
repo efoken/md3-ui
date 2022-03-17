@@ -360,7 +360,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         ownerState={ownerState}
         pointerEvents={disabled ? "none" : undefined}
         {...(Platform.OS === "web" && {
-          style: [styles?.root, style],
+          style: [style, styles?.root],
         })}
         {...(Platform.OS === "android" && {
           // For Android we need a wrapping View to cut off the ripple effect.
@@ -368,8 +368,8 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
           // `position: absolute`, we need to apply it to the wrapper View and
           // override it here to have `position: relative` with 0px inset.
           style: [
-            styles?.root,
             style,
+            styles?.root,
             {
               bottom: 0,
               left: 0,
@@ -387,8 +387,8 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         })}
         {...(Platform.OS === "ios" && {
           style: ({ pressed }) => [
-            styles?.root,
             style,
+            styles?.root,
             pressed && !disableRipple && { backgroundColor: underlayColor },
           ],
         })}

@@ -40,6 +40,6 @@ export const Toolbar = React.forwardRef<RNView, ToolbarProps>(
       props: inProps,
     })
 
-    return <ToolbarRoot ref={ref} style={[styles?.root, style]} {...props} />
+    return <ToolbarRoot ref={ref} style={[style, styles?.root]} {...props} />
   },
 ) as OverridableComponent<ToolbarTypeMap>
