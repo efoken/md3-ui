@@ -9,6 +9,8 @@ import {
   MdSysColorInverseOnSurfaceLight,
   MdSysColorInverseSurfaceDark,
   MdSysColorInverseSurfaceLight,
+  MdSysColorOnBackgroundDark,
+  MdSysColorOnBackgroundLight,
   MdSysColorOnErrorContainerDark,
   MdSysColorOnErrorContainerLight,
   MdSysColorOnErrorDark,
@@ -52,6 +54,7 @@ import {
 export interface Color {
   mode: "dark" | "light"
   background: string
+  "on-background": string
   outline: string
   primary: string
   "on-primary": string
@@ -172,15 +175,23 @@ function getDefaultInverse(mode = "light") {
 export function createColor(color: Partial<Color> = {}): Color {
   const { mode = "light" } = color
 
-  const background =
-    color.background ?? mode === "dark"
-      ? MdSysColorBackgroundDark
-      : MdSysColorBackgroundLight
+  const background = {
+    background:
+      color.background ?? mode === "dark"
+        ? MdSysColorBackgroundDark
+        : MdSysColorBackgroundLight,
+    "on-background":
+      color["on-background"] ?? mode === "dark"
+        ? MdSysColorOnBackgroundDark
+        : MdSysColorOnBackgroundLight,
+  }
 
-  const outline =
-    color.outline ?? mode === "dark"
-      ? MdSysColorOutlineDark
-      : MdSysColorOutlineLight
+  const outline = {
+    outline:
+      color.outline ?? mode === "dark"
+        ? MdSysColorOutlineDark
+        : MdSysColorOutlineLight,
+  }
 
   const primary = getDefaultPrimary(mode)
   const secondary = getDefaultSecondary(mode)
@@ -191,8 +202,8 @@ export function createColor(color: Partial<Color> = {}): Color {
 
   return {
     mode,
-    background,
-    outline,
+    ...background,
+    ...outline,
     ...primary,
     ...secondary,
     ...tertiary,
