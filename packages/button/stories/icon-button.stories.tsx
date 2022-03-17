@@ -1,5 +1,5 @@
-import { Menu } from "@md3-ui/icons"
 import { Meta, Story } from "@storybook/react"
+import { Menu } from "../../icons/src/menu"
 import { ButtonBase, IconButton, IconButtonProps } from "../src"
 
 export default {
