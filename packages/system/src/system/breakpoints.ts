@@ -56,10 +56,12 @@ export function handleBreakpoints<P extends { theme?: Theme }, T>(
   return styleFromPropValue(propValue)
 }
 
-export function createEmptyBreakpointObject(breakpointsInput: any = {}) {
-  const breakpointsInOrder = breakpointsInput?.keys?.reduce(
+export function createEmptyBreakpointObject(
+  themeBreakpoints?: Theme["breakpoints"],
+) {
+  const breakpointsInOrder = themeBreakpoints?.keys.reduce(
     (acc: any, key: string) => {
-      const breakpointStyleKey = breakpointsInput.up(key)
+      const breakpointStyleKey = themeBreakpoints.up(key)
       acc[breakpointStyleKey] = {}
       return acc
     },
@@ -68,7 +70,10 @@ export function createEmptyBreakpointObject(breakpointsInput: any = {}) {
   return breakpointsInOrder || {}
 }
 
-export function removeUnusedBreakpoints(breakpointKeys: string[], style: any) {
+export function removeUnusedBreakpoints(
+  breakpointKeys: Theme["breakpoints"]["keys"],
+  style: any,
+) {
   return breakpointKeys.reduce((acc, key) => {
     const breakpointOutput = acc[key]
     const isBreakpointUnused =
@@ -82,22 +87,22 @@ export function removeUnusedBreakpoints(breakpointKeys: string[], style: any) {
 
 export function computeBreakpointsBase(
   breakpointValues: ResponsiveValue<any>,
-  themeBreakpoints: typeof values,
+  themeBreakpoints: Theme["breakpoints"]["values"],
 ) {
   // Fixed value
   if (typeof breakpointValues !== "object") {
     return {}
   }
   const base: Record<string, boolean> = {}
-  const breakpointsKeys = Object.keys(themeBreakpoints)
+  const breakpointKeys = Object.keys(themeBreakpoints)
   if (Array.isArray(breakpointValues)) {
-    breakpointsKeys.forEach((breakpoint, i) => {
+    breakpointKeys.forEach((breakpoint, i) => {
       if (i < breakpointValues.length) {
         base[breakpoint] = true
       }
     })
   } else {
-    breakpointsKeys.forEach((breakpoint) => {
+    breakpointKeys.forEach((breakpoint) => {
       if (breakpointValues[breakpoint] != null) {
         base[breakpoint] = true
       }
@@ -112,7 +117,7 @@ export function resolveBreakpointValues<T>({
   values: breakpointValues,
 }: {
   base?: Record<string, boolean>
-  breakpoints: typeof values
+  breakpoints: Theme["breakpoints"]["values"]
   values: ResponsiveValue<T>
 }) {
   const base =
