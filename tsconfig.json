@@ -3,6 +3,7 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true,
     "incremental": true,
+    "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["dom", "esnext"],
     "module": "esnext",

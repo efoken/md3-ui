@@ -1,6 +1,15 @@
 module.exports = {
   stories: ["../packages/**/*.stories.tsx"],
   addons: ["@storybook/addon-a11y", "@storybook/addon-essentials"],
+  core: {
+    builder: "webpack5",
+  },
+  features: {
+    babelModeV7: true,
+    emotionAlias: false,
+    postcss: false,
+    storyStoreV7: true,
+  },
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
