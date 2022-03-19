@@ -8,19 +8,19 @@
     "@md3-ui/utils": "^1.0.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.40",
-    "@types/react-dom": "^17.0.13",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-native": "^0.67.3"
+    "react-native": "^0.67.4"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.40",
-    "@types/react-dom": "^17.0.13",
+    "@types/react": "^17.0.41",
+    "@types/react-dom": "^17.0.14",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-native": "^0.67.3"
+    "react-native": "^0.67.4"
   }
 }

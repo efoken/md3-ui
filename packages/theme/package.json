@@ -8,10 +8,10 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.67.3",
-    "react-native": "^0.67.3"
+    "react-native": "^0.67.4"
   },
   "peerDependencies": {
     "@types/react-native": "^0.67.3",
-    "react-native": "^0.67.3"
+    "react-native": "^0.67.4"
   }
 }
