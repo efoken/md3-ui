@@ -9,7 +9,7 @@
     "airbnb/hooks",
     "prettier"
   ],
-  "plugins": ["storybook", "testing-library"],
+  "plugins": ["jsdoc", "storybook", "testing-library"],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
@@ -23,6 +23,13 @@
     ],
     "no-nested-ternary": "off",
     "import/prefer-default-export": "off",
+    "jsdoc/multiline-blocks": [
+      "error",
+      {
+        "noSingleLineBlocks": true,
+        "singleLineTags": ["default", "platform"]
+      }
+    ],
     "react/function-component-definition": [
       "error",
       {
