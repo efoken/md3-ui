@@ -11,6 +11,7 @@ import {
   BackgroundProps,
   BorderProps,
   DisplayProps,
+  ElevationProps,
   FlexboxProps,
   PositionProops,
   SizingProps,
@@ -36,6 +37,7 @@ export type ResponsiveValue<T> =
 export type AllSystemProps = BackgroundProps &
   BorderProps &
   DisplayProps &
+  ElevationProps &
   FlexboxProps &
   PositionProops &
   SizingProps &
@@ -113,7 +115,9 @@ export interface StyledOptions extends CommonStyledOptions {
   target?: string
 }
 
-/** Same as `StyledOptions` but `shouldForwardProp` must be a type guard. */
+/**
+ * Same as `StyledOptions` but `shouldForwardProp` must be a type guard.
+ */
 export interface FilteringStyledOptions<
   Props,
   ForwardedProps extends keyof Props = keyof Props,

@@ -9,4 +9,12 @@ const overflow = style({
   prop: "overflow",
 })
 
-export const display = compose<keyof DisplayProps>(displayRaw, overflow)
+const visibility = style({
+  prop: "visibility",
+})
+
+export const display = compose<keyof DisplayProps>(
+  displayRaw,
+  overflow,
+  visibility,
+)

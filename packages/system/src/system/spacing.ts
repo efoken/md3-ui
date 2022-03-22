@@ -37,6 +37,18 @@ const paddingEnd = style({
   themeKey: "spacing",
 })
 
+const paddingHorizontal = style({
+  prop: "paddingHorizontal",
+  styleProp: ["paddingLeft", "paddingRight"],
+  themeKey: "spacing",
+})
+
+const paddingVertical = style({
+  prop: "paddingVertical",
+  styleProp: ["paddingTop", "paddingBottom"],
+  themeKey: "spacing",
+})
+
 const paddingX = style({
   prop: "paddingX",
   styleProp: ["paddingLeft", "paddingRight"],
@@ -85,6 +97,18 @@ const marginEnd = style({
   themeKey: "spacing",
 })
 
+const marginHorizontal = style({
+  prop: "marginHorizontal",
+  styleProp: ["marginLeft", "marginRight"],
+  themeKey: "spacing",
+})
+
+const marginVertical = style({
+  prop: "marginVertical",
+  styleProp: ["marginTop", "marginBottom"],
+  themeKey: "spacing",
+})
+
 const marginX = style({
   prop: "marginX",
   styleProp: ["marginLeft", "marginRight"],
@@ -105,6 +129,8 @@ export const spacing = compose<keyof SpacingProps>(
   paddingLeft,
   paddingStart,
   paddingEnd,
+  paddingHorizontal,
+  paddingVertical,
   paddingX,
   paddingY,
   margin,
@@ -114,6 +140,8 @@ export const spacing = compose<keyof SpacingProps>(
   marginLeft,
   marginStart,
   marginEnd,
+  marginHorizontal,
+  marginVertical,
   marginX,
   marginY,
 )

@@ -50,7 +50,9 @@ function lowerCaseFirst(str: string) {
 }
 
 function addClass(classes: string, className?: string) {
-  return [...new Set([...classes.split(" "), className])].join(" ").trim()
+  return Array.from(new Set([...classes.split(" "), className]))
+    .join(" ")
+    .trim()
 }
 
 export const styled: CreateStyled = <
@@ -147,7 +149,7 @@ export const styled: CreateStyled = <
     if (__DEV__) {
       Styled.displayName = componentName
         ? `${componentName}${componentSlot || ""}`
-        : `WithStyle(${getDisplayName(Component)})`
+        : `styled(${getDisplayName(Component)})`
     }
 
     return Styled

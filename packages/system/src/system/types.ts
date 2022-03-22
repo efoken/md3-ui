@@ -1,3 +1,4 @@
+import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
   TextStyle as RNTextStyle,
@@ -31,6 +32,11 @@ export interface BorderProps {
 export interface DisplayProps {
   display?: RNFlexStyle["display"]
   overflow?: RNFlexStyle["overflow"]
+  visibility?: React.CSSProperties["visibility"]
+}
+
+export interface ElevationProps {
+  elevation?: number
 }
 
 export interface FlexboxProps {
@@ -75,6 +81,8 @@ export interface SpacingProps {
   paddingLeft?: number
   paddingStart?: number
   paddingEnd?: number
+  paddingHorizontal?: number
+  paddingVertical?: number
   paddingX?: number
   paddingY?: number
   margin?: number
@@ -84,6 +92,8 @@ export interface SpacingProps {
   marginLeft?: number
   marginStart?: number
   marginEnd?: number
+  marginHorizontal?: number
+  marginVertical?: number
   marginX?: number
   marginY?: number
 }
