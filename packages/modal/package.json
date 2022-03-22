@@ -1,20 +1,14 @@
 {
-  "name": "@md3-ui/core",
+  "name": "@md3-ui/modal",
   "version": "1.0.0",
-  "main": "dist/md3-ui-core.cjs.js",
+  "main": "dist/md3-ui-modal.cjs.js",
   "license": "MIT",
   "dependencies": {
-    "@md3-ui/app-bar": "^1.0.0",
-    "@md3-ui/button": "^1.0.0",
-    "@md3-ui/card": "^1.0.0",
-    "@md3-ui/chip": "^1.0.0",
     "@md3-ui/hooks": "^1.0.0",
-    "@md3-ui/icon": "^1.0.0",
-    "@md3-ui/layout": "^1.0.0",
-    "@md3-ui/modal": "^1.0.0",
     "@md3-ui/portal": "^1.0.0",
     "@md3-ui/system": "^1.0.0",
-    "@md3-ui/theme": "^1.0.0"
+    "@md3-ui/utils": "^1.0.0",
+    "react-focus-lock": "^2.8.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.41",

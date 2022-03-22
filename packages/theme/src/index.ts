@@ -10,6 +10,9 @@ export interface Theme {
   elevation: Elevation
   typescale: Typescale
   spacing: (value: number) => number
+  zIndex: {
+    modal: number
+  }
   utils: {
     mix: typeof mix
     rgba: typeof rgba
@@ -31,6 +34,9 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
     elevation: createElevation(theme.elevation),
     typescale: createTypescale(theme.typescale),
     spacing: (value) => value * 8,
+    zIndex: {
+      modal: 1300,
+    },
     utils: {
       mix,
       rgba,

@@ -1,4 +1,5 @@
 export * from "./assertion"
+export * from "./dom"
 export * from "./function"
 export * from "./object"
 export * from "./props"
