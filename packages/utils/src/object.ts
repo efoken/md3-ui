@@ -25,7 +25,6 @@ export function mapValues<T extends object, TResult>(
   return Object.fromEntries(
     Object.entries(obj).map(([key, value]) => [
       key,
-      // eslint-disable-next-line no-nested-ternary
       cb == null
         ? value
         : typeof cb === "string"

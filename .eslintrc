@@ -13,7 +13,14 @@
   "parserOptions": {
     "project": "./tsconfig.json"
   },
+  "reportUnusedDisableDirectives": true,
   "rules": {
+    "no-console": [
+      "error",
+      {
+        "allow": ["warn", "error"]
+      }
+    ],
     "no-nested-ternary": "off",
     "import/prefer-default-export": "off",
     "react/function-component-definition": [
@@ -33,6 +40,7 @@
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
     "unicorn/prefer-object-from-entries": "off",
+    "unicorn/prefer-spread": "off",
     "unicorn/prevent-abbreviations": "off"
   },
   "overrides": [

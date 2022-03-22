@@ -98,7 +98,7 @@ export function compose<PropKey extends string>(
     }, {})
 
   fn.filterProps = styles.reduce<PropKey[]>(
-    // eslint-disable-next-line @typescript-eslint/no-shadow, unicorn/prefer-spread
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     (acc, style) => acc.concat(style.filterProps),
     [],
   )

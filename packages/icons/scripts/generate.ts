@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies, no-console */
+/* eslint-disable import/no-extraneous-dependencies */
 import { Queue } from "@md3-ui/utils"
 import { Config, transform } from "@svgr/core"
 import * as fse from "fs-extra"
