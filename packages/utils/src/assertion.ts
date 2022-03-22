@@ -1,6 +1,6 @@
 // Function assertions
 export function isFunction<T extends Function = Function>(
-  value: any
+  value: any,
 ): value is T {
   return typeof value === "function"
 }
@@ -19,11 +19,17 @@ export function isEmptyObject(value: any) {
 }
 
 // String assertions
-export function isMedia(value: string) {
+export type Media = `@media (${"min-width" | "max-width"}: ${number | ""}${
+  | number
+  | ""}${number}${"px" | "em" | "rem"})`
+
+export function isMedia(value: string): value is Media {
   return value.startsWith("@media")
 }
 
-export function isPseudo(value: string) {
+export type Pseudo = ":active" | ":focus" | ":hover"
+
+export function isPseudo(value: string): value is Pseudo {
   return value.startsWith(":")
 }
 

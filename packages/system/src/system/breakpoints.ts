@@ -22,7 +22,7 @@ const defaultBreakpoints = {
 
 export function handleBreakpoints<P extends { theme?: Theme }, T>(
   props: P,
-  propValue: T | Record<keyof Theme["breakpoints"]["values"], T>,
+  propValue: T | Partial<Record<keyof Theme["breakpoints"]["values"], T>>,
   styleFromPropValue: (propValueFinal?: T) => AllStyle,
 ) {
   const { theme } = props

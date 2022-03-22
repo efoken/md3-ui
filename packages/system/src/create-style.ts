@@ -47,7 +47,7 @@ export function style<PropKey extends string>(options: StyleOptions<PropKey>) {
     const propValue = props[prop]
     const themeMapping = get(theme, themeKey ?? "", {})
 
-    const styleFromPropValue = (propValueFinal: StyleValue) => {
+    const styleFromPropValue = (propValueFinal?: StyleValue) => {
       let value = getValue(themeMapping, transform, propValueFinal)
 
       if (propValueFinal === value && typeof propValueFinal === "string") {
@@ -63,7 +63,7 @@ export function style<PropKey extends string>(options: StyleOptions<PropKey>) {
       }
 
       return styleProp === false
-        ? value
+        ? (value as AllStyle)
         : Array.isArray(styleProp)
         ? Object.fromEntries(styleProp.map((key) => [key, value]))
         : { [styleProp]: value }

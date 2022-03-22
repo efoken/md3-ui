@@ -1,5 +1,6 @@
 import { PropsOf } from "@emotion/react"
 import { Theme } from "@md3-ui/theme"
+import { Media, Pseudo } from "@md3-ui/utils"
 import * as React from "react"
 import {
   ImageStyle as RNImageStyle,
@@ -19,14 +20,8 @@ import {
 
 export type AllStyle = RNViewStyle | RNTextStyle | RNImageStyle
 
-type Media = `@media (${"min-width" | "max-width"}: ${number | ""}${
-  | number
-  | ""}${number}${"px" | "em" | "rem"})`
-
-type Pseudo = ":active" | ":focus" | ":hover"
-
 export type AllStyleWithMediaAndPseudo = AllStyle & {
-  [key in Media | Pseudo]?: AllStyle
+  [K in Media | Pseudo]?: AllStyle
 }
 
 export type NamedStyles<T> = {
@@ -118,9 +113,7 @@ export interface StyledOptions extends CommonStyledOptions {
   target?: string
 }
 
-/**
- * Same as `StyledOptions` but `shouldForwardProp` must be a type guard.
- */
+/** Same as `StyledOptions` but `shouldForwardProp` must be a type guard. */
 export interface FilteringStyledOptions<
   Props,
   ForwardedProps extends keyof Props = keyof Props,
@@ -215,4 +208,8 @@ export interface CreateStyled {
     },
     JSX.IntrinsicElements[Tag]
   >
+}
+
+export interface CreateCSS {
+  (...args: CSSInterpolation[]): Record<string, any>
 }

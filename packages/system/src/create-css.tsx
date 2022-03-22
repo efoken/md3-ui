@@ -1,7 +1,7 @@
 import { createCss as createEmotionCss } from "@emotion/primitives-core"
 import { mapValues } from "@md3-ui/utils"
 import { StyleSheet } from "./style-sheet"
-import { NamedStyles } from "./types"
+import { CreateCSS, NamedStyles } from "./types"
 
 export const css = createEmotionCss(
   class extends StyleSheet {
@@ -11,4 +11,4 @@ export const css = createEmotionCss(
       return mapValues(styles, (style) => this.flatten(style)) as T
     }
   },
-)
+) as CreateCSS

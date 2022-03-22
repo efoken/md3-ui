@@ -37,9 +37,10 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
        * The component used for the root node.
        * Either a string to use a HTML element or a component.
        */
-      as?: C
+      as: C
     } & OverrideProps<M, C>,
   ): JSX.Element
   (props: DefaultComponentProps<M>): JSX.Element
+  displayName?: string
   propTypes?: any
 }
