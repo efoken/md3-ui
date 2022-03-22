@@ -10,7 +10,6 @@ export default {
 
 export const Icons: Story<IconProps> = () => (
   <Box
-    gap={8}
     style={{
       gridTemplateColumns: `repeat(auto-fill, minmax(8rem, 1fr))`,
     }}

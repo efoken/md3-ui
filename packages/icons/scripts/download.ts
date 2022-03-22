@@ -66,6 +66,7 @@ const ignoredIconNames = new Set([
   "horizontal_distribute", // Advanced text editor
   "hotel_class",
   "incomplete_circle",
+  "medication_liquid", // Currently broken
   "motion_photos_on", // Google product
   "motion_photos_pause", // Google product
   "motion_photos_paused", // Google product

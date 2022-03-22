@@ -1,4 +1,4 @@
-import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
+import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
 import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
@@ -21,6 +21,7 @@ export interface StackTypeMap<
       root?: RNViewStyle
       item?: RNViewStyle
     }
+    sx?: SxProps
   }
   defaultAs: C
 }

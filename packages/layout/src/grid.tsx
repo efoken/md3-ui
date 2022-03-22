@@ -4,6 +4,7 @@ import {
   resolveBreakpointValues,
   ResponsiveValue,
   styled,
+  SxProps,
   useThemeProps,
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
@@ -44,6 +45,7 @@ export interface GridTypeMap<
       container?: RNViewStyle
       item?: RNViewStyle
     }
+    sx?: SxProps
     /** @default "wrap" */
     wrap?: RNFlexStyle["flexWrap"]
   }

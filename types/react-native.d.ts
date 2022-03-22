@@ -27,6 +27,8 @@ declare module "react-native" {
     /** @platform web */
     cursor?: React.CSSProperties["cursor"]
     /** @platform web */
+    gridTemplateColumns?: React.CSSProperties["gridTemplateColumns"]
+    /** @platform web */
     outlineWidth?: React.CSSProperties["outlineWidth"]
     /** @platform web */
     pointerEvents?: React.CSSProperties["pointerEvents"]
@@ -34,6 +36,8 @@ declare module "react-native" {
     transition?: React.CSSProperties["transition"]
     /** @platform web */
     userSelect?: React.CSSProperties["userSelect"]
+    /** @platform web */
+    visibility?: React.CSSProperties["visibility"]
   }
 
   export interface FlexStyle {
@@ -43,7 +47,14 @@ declare module "react-native" {
 
   export interface AccessibilityState {}
 
-  export interface AccessibilityProps {}
+  export interface AccessibilityProps {
+    /** @platform web */
+    accessibilityDescribedBy?: string
+    /** @platform web */
+    accessibilityHidden?: boolean
+    /** @platform web */
+    accessibilityLabelledBy?: string
+  }
 
   export interface KeyboardProps {
     /**
