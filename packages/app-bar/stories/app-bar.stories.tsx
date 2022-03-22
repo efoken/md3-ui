@@ -14,8 +14,8 @@ export default {
   subcomponents: { Toolbar },
 } as Meta<AppBarProps>
 
-export const CenterAligned: Story<AppBarProps> = () => (
-  <AppBar>
+export const CenterAligned: Story<AppBarProps> = (args) => (
+  <AppBar {...args}>
     <Toolbar>
       <IconButton
         accessibilityLabel="menu"
@@ -38,8 +38,8 @@ export const CenterAligned: Story<AppBarProps> = () => (
   </AppBar>
 )
 
-export const Small: Story<AppBarProps> = () => (
-  <AppBar>
+export const Small: Story<AppBarProps> = (args) => (
+  <AppBar {...args}>
     <Toolbar>
       <IconButton
         accessibilityLabel="menu"
@@ -64,8 +64,8 @@ export const Small: Story<AppBarProps> = () => (
   </AppBar>
 )
 
-export const Medium: Story<AppBarProps> = () => (
-  <AppBar>
+export const Medium: Story<AppBarProps> = (args) => (
+  <AppBar {...args}>
     <Toolbar
       sx={{
         alignItems: "flex-start",
@@ -96,8 +96,8 @@ export const Medium: Story<AppBarProps> = () => (
   </AppBar>
 )
 
-export const Large: Story<AppBarProps> = () => (
-  <AppBar>
+export const Large: Story<AppBarProps> = (args) => (
+  <AppBar {...args}>
     <Toolbar
       sx={{
         alignItems: "flex-start",
