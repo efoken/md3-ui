@@ -7,6 +7,7 @@
     "@md3-ui/icon": "^1.0.0"
   },
   "devDependencies": {
+    "@svgr/babel-preset": "^6.2.0",
     "@svgr/core": "^6.2.1",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.180",
@@ -20,7 +21,7 @@
     "react-native": "^0.67.4",
     "react-native-svg": "^12.3.0",
     "svgo": "^2.8.0",
-    "yargs": "^17.3.1"
+    "yargs": "^17.4.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.41",
