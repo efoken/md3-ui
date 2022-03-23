@@ -11,7 +11,7 @@
     "@svgr/core": "^6.2.1",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.180",
-    "@types/react": "^17.0.41",
+    "@types/react": "^17.0.42",
     "@types/react-native": "^0.67.3",
     "@types/svgo": "^2.6.2",
     "cross-fetch": "^3.1.5",
@@ -24,7 +24,7 @@
     "yargs": "^17.4.0"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.41",
+    "@types/react": "^17.0.42",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2",
     "react-native": "^0.67.4",
