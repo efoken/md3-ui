@@ -1,5 +1,10 @@
-import { styled, SxProps, useThemeProps } from "@md3-ui/system"
-import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
+import {
+  OverridableComponent,
+  OverrideProps,
+  styled,
+  SxProps,
+  useThemeProps,
+} from "@md3-ui/system"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
@@ -9,9 +14,16 @@ export interface CardContentTypeMap<
 > {
   props: P & {
     children?: React.ReactNode
+    /**
+     * Override or extend the styles applied to the component.
+     */
     styles?: {
       root?: RNViewStyle
     }
+    /**
+     * The system prop that allows defining system overrides as well as
+     * additional styles.
+     */
     sx?: SxProps
   }
   defaultAs: C

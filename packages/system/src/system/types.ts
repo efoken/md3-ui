@@ -2,6 +2,7 @@ import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
   TextStyle as RNTextStyle,
+  TransformsStyle as RNTransformsStyle,
   ViewStyle as RNViewStyle,
 } from "react-native"
 
@@ -96,6 +97,10 @@ export interface SpacingProps {
   marginVertical?: number
   marginX?: number
   marginY?: number
+}
+
+export interface TransformProps {
+  transform?: RNTransformsStyle["transform"]
 }
 
 export interface TypescaleProps {

@@ -1,5 +1,9 @@
-import { createView, SxProps } from "@md3-ui/system"
-import { OverridableComponent, OverrideProps } from "@md3-ui/utils"
+import {
+  createView,
+  OverridableComponent,
+  OverrideProps,
+  SxProps,
+} from "@md3-ui/system"
 import { View as RNView } from "react-native"
 
 export interface BoxTypeMap<
@@ -8,6 +12,10 @@ export interface BoxTypeMap<
 > {
   props: P & {
     children?: React.ReactNode
+    /**
+     * The system prop that allows defining system overrides as well as
+     * additional styles.
+     */
     sx?: SxProps
   }
   defaultAs: C

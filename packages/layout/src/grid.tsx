@@ -1,5 +1,7 @@
 import {
   handleBreakpoints,
+  OverridableComponent,
+  OverrideProps,
   OwnerStateProps,
   resolveBreakpointValues,
   ResponsiveValue,
@@ -8,11 +10,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
-import {
-  OverridableComponent,
-  OverrideProps,
-  resolveProps,
-} from "@md3-ui/utils"
+import { resolveProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
@@ -40,11 +38,18 @@ export interface GridTypeMap<
     spacing?: ResponsiveValue<number>
     /** @default false */
     span?: ResponsiveValue<"auto" | number | boolean>
+    /**
+     * Override or extend the styles applied to the component.
+     */
     styles?: {
       root?: RNViewStyle
       container?: RNViewStyle
       item?: RNViewStyle
     }
+    /**
+     * The system prop that allows defining system overrides as well as
+     * additional styles.
+     */
     sx?: SxProps
     /** @default "wrap" */
     wrap?: RNFlexStyle["flexWrap"]

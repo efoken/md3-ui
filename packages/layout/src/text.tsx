@@ -1,15 +1,13 @@
 import {
+  OverridableComponent,
+  OverrideProps,
   OwnerStateProps,
   styled,
   StyleSheet,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import {
-  objectFilter,
-  OverridableComponent,
-  OverrideProps,
-} from "@md3-ui/utils"
+import { objectFilter } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -81,9 +79,16 @@ export interface TextTypeMap<
       | "on-surface-variant"
       | "inverse-on-surface"
       | "inherit"
+    /**
+     * Override or extend the styles applied to the component.
+     */
     styles?: {
       root?: RNTextStyle
     }
+    /**
+     * The system prop that allows defining system overrides as well as
+     * additional styles.
+     */
     sx?: SxProps
     /** @default "body-medium" */
     variant?:
