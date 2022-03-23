@@ -14,6 +14,9 @@ module.exports = {
   moduleNameMapper: {
     "^react-native$": "react-native-web",
   },
+  transform: {
+    "^.+\\.(ts|tsx|js|jsx)?$": "@swc-node/jest",
+  },
   transformIgnorePatterns: [
     "node_modules/(?!(jest-)?react-native|react-native-web/)",
   ],

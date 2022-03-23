@@ -47,7 +47,8 @@ exports[`<Button /> should render a button with icon 1`] = `
       data-class="Button-icon"
     >
       <span
-        size="18"
+        height="18"
+        width="18"
       >
         icon
       </span>
