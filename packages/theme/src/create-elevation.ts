@@ -21,7 +21,7 @@ export function createElevation(elevation?: Partial<Elevation>): Elevation {
       default: {
         elevation: 1,
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: { width: 2, height: 5 },
         shadowOpacity: 0.18,
         shadowRadius: 1,
       },
@@ -34,9 +34,9 @@ export function createElevation(elevation?: Partial<Elevation>): Elevation {
       default: {
         elevation: 2,
         shadowColor: "#000",
-        shadowOffset: { width: 0, height: 1 },
+        shadowOffset: { width: 3, height: 8 },
         shadowOpacity: 0.2,
-        shadowRadius: 1.41,
+        shadowRadius: 2,
       },
       web: {
         boxShadow:

@@ -53,9 +53,6 @@ import {
 
 export interface Color {
   mode: "dark" | "light"
-  background: string
-  "on-background": string
-  outline: string
   primary: string
   "on-primary": string
   "primary-container": string
@@ -72,10 +69,13 @@ export interface Color {
   "on-error": string
   "error-container": string
   "on-error-container": string
+  background: string
+  "on-background": string
   surface: string
   "on-surface": string
   "surface-variant": string
   "on-surface-variant": string
+  outline: string
   "inverse-surface": string
   "inverse-on-surface": string
 }
@@ -144,6 +144,18 @@ function getDefaultError(mode = "light") {
       }
 }
 
+function getDefaultBackground(mode = "light") {
+  return mode === "dark"
+    ? {
+        background: MdSysColorBackgroundDark,
+        "on-background": MdSysColorOnBackgroundDark,
+      }
+    : {
+        background: MdSysColorBackgroundLight,
+        "on-background": MdSysColorOnBackgroundLight,
+      }
+}
+
 function getDefaultSurface(mode = "light") {
   return mode === "dark"
     ? {
@@ -157,6 +169,16 @@ function getDefaultSurface(mode = "light") {
         "on-surface": MdSysColorOnSurfaceLight,
         "surface-variant": MdSysColorSurfaceVariantLight,
         "on-surface-variant": MdSysColorOnSurfaceVariantLight,
+      }
+}
+
+function getDefaultOutline(mode = "light") {
+  return mode === "dark"
+    ? {
+        outline: MdSysColorOutlineDark,
+      }
+    : {
+        outline: MdSysColorOutlineLight,
       }
 }
 
@@ -175,40 +197,24 @@ function getDefaultInverse(mode = "light") {
 export function createColor(color: Partial<Color> = {}): Color {
   const { mode = "light" } = color
 
-  const background = {
-    background:
-      color.background ?? mode === "dark"
-        ? MdSysColorBackgroundDark
-        : MdSysColorBackgroundLight,
-    "on-background":
-      color["on-background"] ?? mode === "dark"
-        ? MdSysColorOnBackgroundDark
-        : MdSysColorOnBackgroundLight,
-  }
-
-  const outline = {
-    outline:
-      color.outline ?? mode === "dark"
-        ? MdSysColorOutlineDark
-        : MdSysColorOutlineLight,
-  }
-
   const primary = getDefaultPrimary(mode)
   const secondary = getDefaultSecondary(mode)
   const tertiary = getDefaultTertiary(mode)
   const error = getDefaultError(mode)
+  const background = getDefaultBackground(mode)
   const surface = getDefaultSurface(mode)
+  const outline = getDefaultOutline(mode)
   const inverse = getDefaultInverse(mode)
 
   return {
     mode,
-    ...background,
-    ...outline,
     ...primary,
     ...secondary,
     ...tertiary,
     ...error,
+    ...background,
     ...surface,
+    ...outline,
     ...inverse,
     ...color,
   }
