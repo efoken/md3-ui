@@ -5,6 +5,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
@@ -55,3 +56,7 @@ export const CardContent = React.forwardRef<RNView, CardContentProps>(
     )
   },
 ) as OverridableComponent<CardContentTypeMap>
+
+if (__DEV__) {
+  CardContent.displayName = "CardContent"
+}

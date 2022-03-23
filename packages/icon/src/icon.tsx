@@ -1,5 +1,6 @@
 import { useTextContext } from "@md3-ui/layout"
 import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform, ViewStyle as RNViewStyle } from "react-native"
 import Svg, { SvgProps } from "react-native-svg"
@@ -73,3 +74,7 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
     </IconRoot>
   )
 })
+
+if (__DEV__) {
+  Icon.displayName = "Icon"
+}

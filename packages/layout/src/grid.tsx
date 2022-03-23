@@ -10,7 +10,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
-import { resolveProps } from "@md3-ui/utils"
+import { resolveProps, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
@@ -347,3 +347,7 @@ export const Grid = React.forwardRef<RNView, GridProps>((inProps, ref) => {
     </GridContext.Provider>
   )
 }) as OverridableComponent<GridTypeMap>
+
+if (__DEV__) {
+  Grid.displayName = "Grid"
+}

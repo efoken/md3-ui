@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { objectFilter } from "@md3-ui/utils"
+import { objectFilter, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -171,3 +171,7 @@ export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
     </TextRoot>
   )
 }) as OverridableComponent<TextTypeMap>
+
+if (__DEV__) {
+  Text.displayName = "Text"
+}

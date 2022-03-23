@@ -7,6 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -234,3 +235,7 @@ export const Button = React.forwardRef<RNView, ButtonProps>((inProps, ref) => {
     </ButtonRoot>
   )
 })
+
+if (__DEV__) {
+  Button.displayName = "Button"
+}

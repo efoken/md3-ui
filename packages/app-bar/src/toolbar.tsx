@@ -5,6 +5,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
@@ -58,3 +59,7 @@ export const Toolbar = React.forwardRef<RNView, ToolbarProps>(
     return <ToolbarRoot ref={ref} style={[style, styles?.root]} {...props} />
   },
 ) as OverridableComponent<ToolbarTypeMap>
+
+if (__DEV__) {
+  Toolbar.displayName = "Toolbar"
+}

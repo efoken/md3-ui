@@ -1,6 +1,7 @@
 import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
 import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -103,3 +104,7 @@ export const Chip = React.forwardRef<RNView, ChipProps>((inProps, ref) => {
     </ChipRoot>
   )
 })
+
+if (__DEV__) {
+  Chip.displayName = "Chip"
+}

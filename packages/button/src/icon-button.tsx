@@ -1,4 +1,5 @@
 import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
@@ -51,3 +52,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
     )
   },
 )
+
+if (__DEV__) {
+  IconButton.displayName = "IconButton"
+}
