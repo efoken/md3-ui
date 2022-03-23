@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import { isFunction, objectFilter, __DEV__ } from "@md3-ui/utils"
+import { cx, isFunction, objectFilter, __DEV__ } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import * as React from "react"
 import { PressableStateCallbackType, useWindowDimensions } from "react-native"
@@ -47,12 +47,6 @@ export function defaultShouldForwardProp(prop: keyof any) {
 
 function lowerCaseFirst(str: string) {
   return str.charAt(0).toLowerCase() + str.slice(1)
-}
-
-function addClass(classes: string, className?: string) {
-  return Array.from(new Set([...classes.split(" "), className]))
-    .join(" ")
-    .trim()
 }
 
 export const styled: CreateStyled = <
@@ -125,9 +119,9 @@ export const styled: CreateStyled = <
         newProps.ref = ref
         newProps.dataSet = {
           ...dataSet,
-          class: addClass(dataSet?.class ?? "", label),
+          class: cx(dataSet?.class, label),
           ...(styleSheet.id && {
-            media: addClass(dataSet?.media ?? "", styleSheet.id),
+            media: cx(dataSet?.media, styleSheet.id),
           }),
         }
         newProps.style = isFunction(style)

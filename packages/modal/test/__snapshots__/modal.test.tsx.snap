@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Modal /> should render 1`] = `
+<body
+  style="overflow: hidden;"
+>
+  <div
+    aria-hidden="true"
+  />
+  <div
+    class="css-view-1dbjc4n r-bottom-1p0dtai r-left-1d2f490 r-position-1xcajam r-right-zchlnj r-top-ipm5af r-zIndex-u9ug73"
+    data-class="Modal-root"
+    role="presentation"
+  >
+    <div
+      aria-hidden="true"
+      class="css-view-1dbjc4n"
+      data-class="Modal-backdrop"
+      style="background-color: rgba(0, 0, 0, 0.5); height: 100%; opacity: 0; position: absolute; width: 100%; z-index: -1;"
+      tabindex="0"
+    />
+    <div
+      data-testid="sentinel-start"
+      tabindex="0"
+    />
+    <div
+      class="css-view-1dbjc4n"
+      data-focusvisible-polyfill="true"
+      tabindex="-1"
+    />
+    <div
+      data-testid="sentinel-end"
+      tabindex="0"
+    />
+  </div>
+</body>
+`;

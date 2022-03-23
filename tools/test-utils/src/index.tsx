@@ -45,12 +45,18 @@ export interface TestOptions extends Omit<RenderOptions, "wrapper"> {
 export const render = (
   ui: React.ReactElement,
   { wrapper: Wrapper = ChildrenPassthrough, ...options }: TestOptions = {},
-): RenderResult =>
-  rtlRender(
+): RenderResult => {
+  const result = rtlRender(
     <Md3Provider>
       <Wrapper>{ui}</Wrapper>
     </Md3Provider>,
     options,
   )
+  return {
+    ...result,
+    rerender: (newUI) =>
+      render(newUI, { container: result.container, ...options }),
+  }
+}
 
 export { screen } from "@testing-library/react"

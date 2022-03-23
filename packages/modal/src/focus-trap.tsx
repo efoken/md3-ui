@@ -193,7 +193,7 @@ export const FocusTrap: React.VFC<FocusTrapProps> = ({
 
   React.useEffect(() => {
     // We might render an empty child.
-    if (!open || !rootRef.current) {
+    if (!open || rootRef.current == null) {
       return
     }
     activated.current = !disableAutoFocus
@@ -201,7 +201,7 @@ export const FocusTrap: React.VFC<FocusTrapProps> = ({
 
   React.useEffect(() => {
     // We might render an empty child.
-    if (!open || !rootRef.current) {
+    if (!open || rootRef.current == null) {
       return () => {}
     }
 
@@ -242,7 +242,7 @@ export const FocusTrap: React.VFC<FocusTrapProps> = ({
 
   React.useEffect(() => {
     // We might render an empty child.
-    if (!open || !rootRef.current) {
+    if (!open || rootRef.current == null) {
       return () => {}
     }
 

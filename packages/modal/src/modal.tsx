@@ -48,10 +48,24 @@ export interface ModalTypeMap<
        */
       disableEscapeKeyDown?: boolean
       /**
+       * If `true`, the `children` will be under the DOM hierarchy of the parent
+       * component.
+       * @default false
+       */
+      disablePortal?: boolean
+      /**
        * Disable the scroll lock behavior.
        * @default false
        */
       disableScrollLock?: boolean
+      /** @default false */
+      hideBackdrop?: boolean
+      /**
+       * Always keep the children in the DOM. This prop can be useful in SEO
+       * situation or when you want to maximize the responsiveness of the Modal.
+       * @default false
+       */
+      keepMounted?: boolean
       /**
        * Callback fired when the component requests to be closed.
        */
@@ -113,14 +127,6 @@ const ModalBackdrop = styled(Animated.View, {
   zIndex: -1,
 })
 
-const ModalContent = styled(Animated.View, {
-  name: "Modal",
-  slot: "Content",
-})({
-  height: "100%",
-  width: "100%",
-})
-
 export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
   const {
     children,
@@ -128,8 +134,11 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     disableAutoFocus,
     disableEnforceFocus,
     disableEscapeKeyDown = false,
+    disablePortal = false,
     disableRestoreFocus,
     disableScrollLock = false,
+    hideBackdrop = false,
+    keepMounted = false,
     onClose,
     onKeyDown,
     open,
@@ -151,6 +160,7 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
   })
 
   const [exited, setExited] = React.useState(true)
+  const [hidden, setHidden] = React.useState(false)
 
   const [opacity, { start: animate }] = useAnimate({
     duration: 225,
@@ -169,15 +179,28 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     return modalRef.current
   }
 
-  const handlePortalRef = (node: any) => {
-    mountNodeRef.current = node
-  }
+  const isTopModal = () => ModalManager.isTopModal(getModal())
 
   const handleMounted = () => {
     ModalManager.mount(getModal(), { disableScrollLock })
+    setHidden(false)
 
     // Fix a bug on Chrome where the scroll isn't initially 0.
     ;(rootRef.current as unknown as HTMLElement).scrollTop = 0
+  }
+
+  const handlePortalRef = (node: any) => {
+    mountNodeRef.current = node
+
+    if (node == null) {
+      return
+    }
+
+    if (open && isTopModal()) {
+      handleMounted()
+    } else {
+      setHidden(true)
+    }
   }
 
   const handleOpen = useEventCallback(() => {
@@ -186,6 +209,7 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
 
     animate(() => setExited(true))
     ModalManager.add(getModal(), container)
+    setHidden(false)
 
     // The element was already mounted.
     if (rootRef.current != null) {
@@ -194,14 +218,14 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
   })
 
   const handleClose = useEventCallback(() => {
-    animate()
+    animate(() => setExited(true))
     ModalManager.remove(getModal())
+    setHidden(true)
   })
-
-  const isTopModal = () => ModalManager.isTopModal(getModal())
 
   React.useEffect(() => {
     if (open) {
+      setExited(false)
       handleOpen()
     } else {
       handleClose()
@@ -212,6 +236,10 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     onClose?.()
     return true
   })
+
+  if (!keepMounted && !open && exited) {
+    return null
+  }
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     onKeyDown?.(event)
@@ -235,25 +263,36 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     }
   }
 
+  // const hidden = !open || !isTopModal()
+
   const ownerState = {
     exited,
     open,
   }
 
   return (
-    <Portal ref={handlePortalRef} containerRef={containerRef}>
+    <Portal
+      ref={handlePortalRef}
+      containerRef={containerRef}
+      disablePortal={disablePortal}
+    >
       <ModalRoot
         ref={handleRef}
         accessibilityViewIsModal
         accessibilityRole="none"
         ownerState={ownerState}
-        pointerEvents={open ? "auto" : "none"}
+        {...(hidden && {
+          accessibilityElementsHidden: true,
+          accessibilityHidden: true,
+          importantForAccessibility: "no-hide-descendants",
+          pointerEvents: "none",
+        })}
         style={[style, styles?.root]}
         onAccessibilityEscape={onClose}
         onKeyDown={handleKeyDown}
         {...props}
       >
-        <ModalContent>
+        {!hideBackdrop && (
           <TouchableWithoutFeedback
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
@@ -265,19 +304,19 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
               style={{ opacity }}
             />
           </TouchableWithoutFeedback>
-          <FocusTrap
-            disableAutoFocus={disableAutoFocus}
-            disableEnforceFocus={disableEnforceFocus}
-            disableRestoreFocus={disableRestoreFocus}
-            enabled={isTopModal}
-            open={open}
-          >
-            {React.cloneElement(children, {
-              focusable: children.props.focusable ?? true,
-              tabIndex: children.props.tabIndex ?? -1,
-            })}
-          </FocusTrap>
-        </ModalContent>
+        )}
+        <FocusTrap
+          disableAutoFocus={disableAutoFocus}
+          disableEnforceFocus={disableEnforceFocus}
+          disableRestoreFocus={disableRestoreFocus}
+          enabled={isTopModal}
+          open={open}
+        >
+          {React.cloneElement(children, {
+            focusable: children.props.focusable ?? false,
+            tabIndex: children.props.tabIndex ?? -1,
+          })}
+        </FocusTrap>
       </ModalRoot>
     </Portal>
   )
