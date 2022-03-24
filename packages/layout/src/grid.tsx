@@ -23,18 +23,48 @@ export interface GridTypeMap<
   C extends React.ElementType = typeof RNView,
 > {
   props: P & {
+    /**
+     * The content of the component.
+     */
     children?: React.ReactNode
-    /** @default 12 */
+    /**
+     * The number of columns.
+     * @default 12
+     */
     columns?: ResponsiveValue<number>
+    /**
+     * Defines the horizontal space between the type `item` components. It
+     * overrides the value of the `spacing` prop.
+     */
     columnSpacing?: ResponsiveValue<number>
-    /** @default false */
+    /**
+     * If `true`, the component will have the flex _container_ behavior. You
+     * should be wrapping _items_ with a _container_.
+     * @default false
+     */
     container?: boolean
-    /** @default "row" */
+    /**
+     * Defines the `flex-direction` style property. It is applied for all screen
+     * sizes.
+     * @default "row"
+     */
     direction?: ResponsiveValue<RNFlexStyle["flexDirection"]>
-    /** @default false */
+    /**
+     * If `true`, the component will have the flex _item_ behavior. You should
+     * be wrapping _items_ with a _container_.
+     * @default false
+     */
     item?: boolean
+    /**
+     * Defines the vertical space between the type `item` components. It
+     * overrides the value of the `spacing` prop.
+     */
     rowSpacing?: ResponsiveValue<number>
-    /** @default 0 */
+    /**
+     * Defines the space between the type `item` components. It can only be used
+     * on a type `container` component.
+     * @default 0
+     */
     spacing?: ResponsiveValue<number>
     /** @default false */
     span?: ResponsiveValue<"auto" | number | boolean>
@@ -51,7 +81,10 @@ export interface GridTypeMap<
      * additional styles.
      */
     sx?: SxProps
-    /** @default "wrap" */
+    /**
+     * Defines the `flex-wrap` style property. It's applied for all screen sizes.
+     * @default "wrap"
+     */
     wrap?: RNFlexStyle["flexWrap"]
   }
   defaultAs: C

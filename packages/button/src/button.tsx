@@ -17,18 +17,37 @@ import {
 import { ButtonBase, ButtonBaseProps } from "./button-base"
 
 export interface ButtonProps extends ButtonBaseProps {
+  /**
+   * The content of the component.
+   */
   children?: React.ReactNode
-  /** @default false */
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
   disabled?: boolean
+  /**
+   * Element placed before the children.
+   */
   icon?: React.ReactElement
+  /**
+   * Override or extend the styles applied to the component.
+   */
   styles?: {
     root?: RNViewStyle
     content?: RNTextStyle
     icon?: RNViewStyle
     label?: RNTextStyle
   }
+  /**
+   * The system prop that allows defining system overrides as well as
+   * additional styles.
+   */
   sx?: SxProps
-  /** @default "elevated" */
+  /**
+   * The variant to use.
+   * @default "elevated"
+   */
   variant?: "elevated" | "filled" | "tonal" | "outlined" | "text"
 }
 

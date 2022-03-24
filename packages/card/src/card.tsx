@@ -15,6 +15,9 @@ export interface CardTypeMap<
   C extends React.ElementType = typeof RNView,
 > {
   props: P & {
+    /**
+     * The content of the component.
+     */
     children?: React.ReactNode
     /**
      * Override or extend the styles applied to the component.
@@ -27,6 +30,10 @@ export interface CardTypeMap<
      * additional styles.
      */
     sx?: SxProps
+    /**
+     * The variant to use.
+     * @default "elevated"
+     */
     variant?: "elevated" | "filled" | "outlined"
   }
   defaultAs: C

@@ -64,6 +64,9 @@ export interface TextTypeMap<
   C extends React.ElementType = typeof RNText,
 > {
   props: P & {
+    /**
+     * The content of the component.
+     */
     children?: React.ReactNode
     color?:
       | "on-background"

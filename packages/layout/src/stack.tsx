@@ -19,6 +19,9 @@ export interface StackTypeMap<
   C extends React.ElementType = typeof RNView,
 > {
   props: P & {
+    /**
+     * The content of the component.
+     */
     children?: React.ReactNode
     /** @default "column" */
     direction?: FlexStyle["flexDirection"]

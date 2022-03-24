@@ -12,6 +12,9 @@ export interface BoxTypeMap<
   C extends React.ElementType = typeof RNView,
 > {
   props: P & {
+    /**
+     * The content of the component.
+     */
     children?: React.ReactNode
     /**
      * The system prop that allows defining system overrides as well as

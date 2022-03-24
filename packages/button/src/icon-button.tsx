@@ -1,15 +1,31 @@
-import { OwnerStateProps, styled, useThemeProps } from "@md3-ui/system"
+import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
 
 export interface IconButtonProps extends ButtonBaseProps {
+  /**
+   * The icon to display.
+   */
   children: React.ReactElement
-  edge?: "start" | "end"
+  /**
+   * If given, uses a negative margin to counteract the padding on one side
+   * (this is often helpful for aligning the left or right side of the icon with
+   * content above or below, without ruining the border size and shape).
+   */
+  edge?: "start" | "end" | false
+  /**
+   * Override or extend the styles applied to the component.
+   */
   styles?: {
     root?: RNViewStyle
   }
+  /**
+   * The system prop that allows defining system overrides as well as
+   * additional styles.
+   */
+  sx?: SxProps
 }
 
 export type IconButtonStyleKey = keyof NonNullable<IconButtonProps["styles"]>
@@ -28,7 +44,13 @@ const IconButtonRoot = styled(ButtonBase, {
 
 export const IconButton = React.forwardRef<RNView, IconButtonProps>(
   (inProps, ref) => {
-    const { children, edge, style, styles, ...props } = useThemeProps({
+    const {
+      children,
+      edge = false,
+      style,
+      styles,
+      ...props
+    } = useThemeProps({
       name: "IconButton",
       props: inProps,
     })

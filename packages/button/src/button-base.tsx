@@ -22,12 +22,25 @@ export type ButtonBaseProps = Omit<
   RNPressableProps,
   "children" | "disabled" | "style"
 > & {
-  /** @default false */
+  /**
+   * If `true`, the ripples are centered. They won't start at the cursor
+   * interaction position.
+   * @default false
+   */
   centerRipple?: boolean
+  /**
+   * The content of the component.
+   */
   children?: React.ReactNode
-  /** @default false */
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
   disabled?: boolean
-  /** @default false */
+  /**
+   * If `true`, the ripple effect is disabled.
+   * @default false
+   */
   disableRipple?: boolean
   focusColor?: string
   /** @default 0.12 */
@@ -40,10 +53,17 @@ export type ButtonBaseProps = Omit<
   pressedOpacity?: number
   rippleColor?: string
   style?: StyleProp<RNViewStyle>
+  /**
+   * Override or extend the styles applied to the component.
+   */
   styles?: {
     root?: RNViewStyle
     container?: RNViewStyle
   }
+  /**
+   * The system prop that allows defining system overrides as well as
+   * additional styles.
+   */
   sx?: SxProps
 }
 
