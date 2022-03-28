@@ -23,18 +23,28 @@ const IconRoot = styled(Svg, {
   name: "Icon",
   slot: "Root",
 })<OwnerStateProps<Pick<IconProps, "height" | "size" | "width">>>(
-  ({ ownerState }) =>
-    ownerState.size === "small"
-      ? { height: 12, width: 12 }
-      : ownerState.size === "medium"
-      ? { height: 18, width: 18 }
-      : ownerState.size === "large"
-      ? { height: 24, width: 24 }
-      : undefined,
   ({ ownerState }) => ({
     flexShrink: 0,
-    height: ownerState.height,
-    width: ownerState.width,
+
+    ...(ownerState.size === "small" && {
+      height: 12,
+      width: 12,
+    }),
+
+    ...(ownerState.size === "medium" && {
+      height: 18,
+      width: 18,
+    }),
+
+    ...(ownerState.size === "large" && {
+      height: 24,
+      width: 24,
+    }),
+
+    ...((ownerState.height != null || ownerState.width != null) && {
+      height: ownerState.height,
+      width: ownerState.width,
+    }),
   }),
 )
 

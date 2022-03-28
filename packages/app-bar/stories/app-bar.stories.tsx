@@ -20,6 +20,7 @@ export const CenterAligned: Story<AppBarProps> = (args) => (
       <IconButton
         accessibilityLabel="menu"
         edge="start"
+        size="large"
         sx={{ marginEnd: 1.5 }}
       >
         <Menu />
@@ -30,6 +31,7 @@ export const CenterAligned: Story<AppBarProps> = (args) => (
       <IconButton
         accessibilityLabel="profile"
         edge="end"
+        size="large"
         sx={{ marginStart: 1.5 }}
       >
         <Person />
@@ -44,6 +46,7 @@ export const Small: Story<AppBarProps> = (args) => (
       <IconButton
         accessibilityLabel="menu"
         edge="start"
+        size="large"
         sx={{ marginEnd: 0.5 }}
       >
         <Menu />
@@ -51,13 +54,13 @@ export const Small: Story<AppBarProps> = (args) => (
       <Text variant="title-large" sx={{ flexGrow: 1 }}>
         Title Large
       </Text>
-      <IconButton accessibilityLabel="attachment">
+      <IconButton accessibilityLabel="attachment" size="large">
         <Attachment />
       </IconButton>
-      <IconButton accessibilityLabel="calendar">
+      <IconButton accessibilityLabel="calendar" size="large">
         <CalendarToday />
       </IconButton>
-      <IconButton accessibilityLabel="profile" edge="end">
+      <IconButton accessibilityLabel="profile" edge="end" size="large">
         <MoreVert />
       </IconButton>
     </Toolbar>
@@ -74,7 +77,7 @@ export const Medium: Story<AppBarProps> = (args) => (
         minHeight: 112,
       }}
     >
-      <IconButton accessibilityLabel="menu" edge="start">
+      <IconButton accessibilityLabel="menu" edge="start" size="large">
         <Menu />
       </IconButton>
       <Text
@@ -83,13 +86,13 @@ export const Medium: Story<AppBarProps> = (args) => (
       >
         Headline Small
       </Text>
-      <IconButton accessibilityLabel="attachment">
+      <IconButton accessibilityLabel="attachment" size="large">
         <Attachment />
       </IconButton>
-      <IconButton accessibilityLabel="calendar">
+      <IconButton accessibilityLabel="calendar" size="large">
         <CalendarToday />
       </IconButton>
-      <IconButton accessibilityLabel="profile" edge="end">
+      <IconButton accessibilityLabel="profile" edge="end" size="large">
         <MoreVert />
       </IconButton>
     </Toolbar>
@@ -106,7 +109,7 @@ export const Large: Story<AppBarProps> = (args) => (
         minHeight: 152,
       }}
     >
-      <IconButton accessibilityLabel="menu" edge="start">
+      <IconButton accessibilityLabel="menu" edge="start" size="large">
         <Menu />
       </IconButton>
       <Text
@@ -115,13 +118,13 @@ export const Large: Story<AppBarProps> = (args) => (
       >
         Headline Medium
       </Text>
-      <IconButton accessibilityLabel="attachment">
+      <IconButton accessibilityLabel="attachment" size="large">
         <Attachment />
       </IconButton>
-      <IconButton accessibilityLabel="calendar">
+      <IconButton accessibilityLabel="calendar" size="large">
         <CalendarToday />
       </IconButton>
-      <IconButton accessibilityLabel="profile" edge="end">
+      <IconButton accessibilityLabel="profile" edge="end" size="large">
         <MoreVert />
       </IconButton>
     </Toolbar>

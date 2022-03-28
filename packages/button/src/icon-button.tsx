@@ -16,6 +16,12 @@ export interface IconButtonProps extends ButtonBaseProps {
    */
   edge?: "start" | "end" | false
   /**
+   * The size of the component. `small` is equivalent to the dense button
+   * styling.
+   * @default "medium"
+   */
+  size?: "small" | "medium" | "large"
+  /**
    * Override or extend the styles applied to the component.
    */
   styles?: {
@@ -33,20 +39,36 @@ export type IconButtonStyleKey = keyof NonNullable<IconButtonProps["styles"]>
 const IconButtonRoot = styled(ButtonBase, {
   name: "IconButton",
   slot: "Root",
-})<OwnerStateProps<Pick<IconButtonProps, "edge">>>(({ theme, ownerState }) => ({
-  alignItems: "center",
-  height: 48,
-  justifyContent: "center",
-  marginEnd: ownerState.edge === "end" ? -theme.spacing(1.5) : undefined,
-  marginStart: ownerState.edge === "start" ? -theme.spacing(1.5) : undefined,
-  width: 48,
-}))
+})<OwnerStateProps<Pick<IconButtonProps, "edge" | "size">>>(
+  ({ theme, ownerState }) => ({
+    alignItems: "center",
+    justifyContent: "center",
+    marginEnd: ownerState.edge === "end" ? -theme.spacing(1.5) : undefined,
+    marginStart: ownerState.edge === "start" ? -theme.spacing(1.5) : undefined,
+
+    ...(ownerState.size === "small" && {
+      height: 32,
+      width: 32,
+    }),
+
+    ...(ownerState.size === "medium" && {
+      height: 40,
+      width: 40,
+    }),
+
+    ...(ownerState.size === "large" && {
+      height: 48,
+      width: 48,
+    }),
+  }),
+)
 
 export const IconButton = React.forwardRef<RNView, IconButtonProps>(
   (inProps, ref) => {
     const {
       children,
       edge = false,
+      size = "medium",
       style,
       styles,
       ...props
@@ -57,6 +79,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
 
     const ownerState = {
       edge,
+      size,
     }
 
     return (
