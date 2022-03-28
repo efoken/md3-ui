@@ -1,9 +1,10 @@
 {
-  "name": "@md3-ui/app-bar",
+  "name": "@md3-ui/text-field",
   "version": "1.0.0",
-  "main": "dist/md3-ui-app-bar.cjs.js",
+  "main": "dist/md3-ui-text-field.cjs.js",
   "license": "MIT",
   "dependencies": {
+    "@md3-ui/hooks": "^1.0.0",
     "@md3-ui/system": "^1.0.0",
     "@md3-ui/utils": "^1.0.0"
   },
