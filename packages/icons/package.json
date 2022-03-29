@@ -10,7 +10,7 @@
     "@svgr/babel-preset": "^6.2.0",
     "@svgr/core": "^6.2.1",
     "@types/fs-extra": "^9.0.13",
-    "@types/lodash": "^4.14.180",
+    "@types/lodash": "^4.14.181",
     "@types/react": "^17.0.43",
     "@types/react-native": "^0.67.3",
     "@types/svgo": "^2.6.3",
