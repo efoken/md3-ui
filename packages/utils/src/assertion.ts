@@ -27,7 +27,13 @@ export function isMedia(value: string): value is Media {
   return value.startsWith("@media")
 }
 
-export type Pseudo = ":active" | ":focus" | ":hover"
+export type Pseudo =
+  | ":-webkit-autofill"
+  | "::placeholder"
+  | ":active"
+  | ":enabled"
+  | ":focus"
+  | ":hover"
 
 export function isPseudo(value: string): value is Pseudo {
   return value.startsWith(":")

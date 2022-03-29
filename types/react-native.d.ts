@@ -21,6 +21,8 @@ declare module "react-native" {
     /** @platform web */
     animationKeyframes?: Record<string, ViewStyle>
     /** @platform web */
+    animationName?: React.CSSProperties["animationName"]
+    /** @platform web */
     animationTimingFunction?: React.CSSProperties["animationTimingFunction"]
     /** @platform web */
     boxShadow?: React.CSSProperties["boxShadow"]
@@ -28,6 +30,8 @@ declare module "react-native" {
     cursor?: React.CSSProperties["cursor"]
     /** @platform web */
     gridTemplateColumns?: React.CSSProperties["gridTemplateColumns"]
+    /** @platform web */
+    outlineStyle?: React.CSSProperties["outlineStyle"]
     /** @platform web */
     outlineWidth?: React.CSSProperties["outlineWidth"]
     /** @platform web */
@@ -52,6 +56,8 @@ declare module "react-native" {
     accessibilityDescribedBy?: string
     /** @platform web */
     accessibilityHidden?: boolean
+    /** @platform web */
+    accessibilityInvalid?: boolean
     /** @platform web */
     accessibilityLabelledBy?: string
   }
@@ -95,5 +101,9 @@ declare module "react-native" {
     }
     /** @platform web */
     lang?: string
+    /** @platform web */
+    onAnimationEnd?: (event: React.AnimationEvent) => void
+    /** @platform web */
+    onAnimationStart?: (event: React.AnimationEvent) => void
   }
 }

@@ -7,6 +7,23 @@ export function runIfFn<T, U>(
   return isFunction(valueOrFn) ? valueOrFn(...args) : valueOrFn
 }
 
+export function createChainedFunction<T extends (...args: any[]) => void>(
+  ...fns: (T | undefined | null)[]
+): T {
+  return fns.reduce<T>(
+    (acc, fn) => {
+      if (fn == null) {
+        return acc
+      }
+      return function chainedFunction(this: any, ...args) {
+        acc.apply(this, args)
+        fn.apply(this, args)
+      } as T
+    },
+    (() => {}) as T,
+  )
+}
+
 // Inspired by https://github.com/zeit/async-retry
 // Without the retry dependency (1 kB gzipped +)
 export async function retry(

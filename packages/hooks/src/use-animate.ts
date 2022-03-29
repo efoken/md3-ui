@@ -3,28 +3,56 @@ import { useCallback, useEffect } from "react"
 import { Animated, Platform } from "react-native"
 
 export interface UseAnimateProps
-  extends Partial<Omit<Animated.TimingAnimationConfig, "toValue">> {
-  /** @default false */
+  extends Partial<Animated.TimingAnimationConfig> {
+  /**
+   * Set `false` if this animation is being used inside a parallel or sequence
+   * animation.
+   * @default true
+   */
   animate?: boolean
-  /** @default false */
+  /**
+   * If `true` the animation returns to its initial state.
+   * @default false
+   */
   bounce?: boolean
+  /**
+   * Callback triggered after the animation has ended. In case `animate` is
+   * `false` this won't be triggered.
+   */
   callback?: (props: {
     animatedValue: Animated.Value
     animation: Animated.CompositeAnimation
   }) => void
-  /** @default 0 */
+  /**
+   * The value from which the animation will start.
+   * @default 0
+   */
   fromValue?: number
-  /** @default 1 */
+  /**
+   * The amount of times the animation should run, -1 if you want to create an
+   * infinite loop.
+   * @default 1
+   */
   iterations?: number
+  /**
+   * Pass in case you want to reuse an animated value.
+   */
   referenceValue?: Animated.Value
-  /** @default true */
+  /**
+   * If `true` the animation resets when the values change. Useful for
+   * animations that bounce, but are triggered dependent (set to `false`).
+   * @default true
+   */
   shouldReset?: boolean
-  /** @default 1 */
+  /**
+   * The value to which the animation should end.
+   * @default 1
+   */
   toValue?: number
 }
 
 export function useAnimate({
-  animate = false,
+  animate = true,
   bounce = false,
   callback,
   delay = 0,
@@ -116,10 +144,11 @@ export function useAnimate({
   )
 
   useEffect(() => {
-    if (animate) {
+    // eslint-disable-next-line no-underscore-dangle
+    if (animate && (animatedValue as any)._value !== toValue) {
       start()
     }
-  }, [animate, start])
+  }, [animate, animatedValue, start, toValue])
 
   return [animatedValue, { interpolate, reset, start }] as const
 }
