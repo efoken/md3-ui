@@ -171,9 +171,9 @@ interface Container {
  * Modal to ensure proper styling of containers.
  */
 export const ModalManager = new (class ModalManager {
-  private containers: Container[]
+  containers: Container[]
 
-  private modals: Modal[]
+  modals: Modal[]
 
   constructor() {
     this.modals = []
