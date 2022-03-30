@@ -1,11 +1,13 @@
 import { IconButton } from "@md3-ui/button"
+import {
+  Attachment,
+  CalendarToday,
+  Menu,
+  MoreVert,
+  Person,
+} from "@md3-ui/icons"
 import { Text } from "@md3-ui/layout"
 import { Meta, Story } from "@storybook/react"
-import { Attachment } from "../../icons/src/attachment"
-import { CalendarToday } from "../../icons/src/calendar-today"
-import { Menu } from "../../icons/src/menu"
-import { MoreVert } from "../../icons/src/more-vert"
-import { Person } from "../../icons/src/person"
 import { AppBar, AppBarProps, Toolbar } from "../src"
 
 export default {

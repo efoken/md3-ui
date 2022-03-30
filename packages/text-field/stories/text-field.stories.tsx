@@ -1,6 +1,6 @@
 import { IconButton } from "@md3-ui/button"
+import { Cancel } from "@md3-ui/icons"
 import { Meta, Story } from "@storybook/react"
-import { Cancel } from "../../icons/src/cancel"
 import { TextField, TextFieldProps, TextInputIcon } from "../src"
 
 export default {

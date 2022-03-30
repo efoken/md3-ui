@@ -1,6 +1,6 @@
+import { Add } from "@md3-ui/icons"
 import { Stack } from "@md3-ui/layout"
 import { Meta, Story } from "@storybook/react"
-import { Add } from "../../icons/src/add"
 import { Button, ButtonBase, ButtonProps } from "../src"
 
 export default {
