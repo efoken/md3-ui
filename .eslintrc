@@ -55,8 +55,7 @@
       "files": ["*.stories.tsx"],
       "extends": ["plugin:storybook/recommended"],
       "rules": {
-        "import/no-extraneous-dependencies": "off",
-        "import/no-relative-packages": "off"
+        "import/no-extraneous-dependencies": "off"
       }
     },
     {
