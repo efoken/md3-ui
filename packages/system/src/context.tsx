@@ -1,11 +1,9 @@
 import {
-  ThemeProvider as EmotionThemeProvider,
   ThemeContext,
+  ThemeProvider as EmotionThemeProvider,
 } from "@emotion/react"
 import { theme, Theme } from "@md3-ui/theme"
 import * as React from "react"
-
-export { Global } from "@emotion/react"
 
 export interface ThemeProviderProps {
   theme?: Partial<Theme>

@@ -4,6 +4,7 @@ export interface Elevation {
   level0: ViewStyle
   level1: ViewStyle
   level2: ViewStyle
+  level3: ViewStyle
 }
 
 export function createElevation(elevation?: Partial<Elevation>): Elevation {
@@ -41,6 +42,19 @@ export function createElevation(elevation?: Partial<Elevation>): Elevation {
       web: {
         boxShadow:
           "0px 1px 2px 0px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
+      },
+    }),
+    level3: Platform.select({
+      default: {
+        elevation: 3,
+        shadowColor: "#000",
+        shadowOffset: { width: 5, height: 11 },
+        shadowOpacity: 0.22,
+        shadowRadius: 3,
+      },
+      web: {
+        boxShadow:
+          "0px 1px 3px 0px rgba(0, 0, 0, 0.3), 0px 4px 8px 3px rgba(0, 0, 0, 0.15)",
       },
     }),
     ...elevation,

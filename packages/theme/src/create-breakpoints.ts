@@ -14,7 +14,7 @@ const values = {
   expanded: 840,
 }
 
-export function createBreakpoints(): Breakpoints {
+export function createBreakpoints(breakpoints?: any): Breakpoints {
   return {
     // Sorted ASC by size. That's important.
     // It can't be configured as it's used statically for types.

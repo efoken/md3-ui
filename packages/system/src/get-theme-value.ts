@@ -2,20 +2,24 @@ import { Theme } from "@md3-ui/theme"
 import { background } from "./system/background"
 import { border } from "./system/border"
 import { display } from "./system/display"
+import { elevation } from "./system/elevation"
 import { flexbox } from "./system/flexbox"
 import { position } from "./system/position"
 import { sizing } from "./system/sizing"
 import { spacing } from "./system/spacing"
+import { transform } from "./system/transform"
 import { typescale } from "./system/typescale"
 
 const filterPropsMapping = {
   background: background.filterProps,
   border: border.filterProps,
   display: display.filterProps,
+  elevation: elevation.filterProps,
   flexbox: flexbox.filterProps,
   position: position.filterProps,
   sizing: sizing.filterProps,
   spacing: spacing.filterProps,
+  transform: transform.filterProps,
   typescale: typescale.filterProps,
 }
 
@@ -23,10 +27,12 @@ const styleFunctionMapping = {
   background,
   border,
   display,
+  elevation,
   flexbox,
   position,
   sizing,
   spacing,
+  transform,
   typescale,
 }
 

@@ -2,14 +2,18 @@ import { mix, rgba } from "polished"
 import { Breakpoints, createBreakpoints } from "./create-breakpoints"
 import { Color, createColor } from "./create-color"
 import { createElevation, Elevation } from "./create-elevation"
+import { createSpacing, Spacing } from "./create-spacing"
 import { createTypescale, Typescale } from "./create-typescale"
+
+export * from "./create-breakpoints"
+export * from "./create-spacing"
 
 export interface Theme {
   breakpoints: Breakpoints
   color: Color
   elevation: Elevation
   typescale: Typescale
-  spacing: (value: number) => number
+  spacing: Spacing
   zIndex: {
     modal: number
   }
@@ -50,7 +54,7 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
     color: createColor(theme.color),
     elevation: createElevation(theme.elevation),
     typescale: createTypescale(theme.typescale),
-    spacing: (value) => value * 8,
+    spacing: createSpacing(8),
     zIndex: {
       modal: 1300,
     },

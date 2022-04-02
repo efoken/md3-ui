@@ -2,7 +2,8 @@ export * from "./context"
 export * from "./create-css"
 export * from "./create-styled"
 export * from "./create-view"
-export * from "./inject"
+export * from "./global"
+export { flush } from "./inject"
 export * from "./style-sheet"
 export {
   handleBreakpoints,
