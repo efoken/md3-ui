@@ -1,8 +1,7 @@
 import { IconProps } from "@md3-ui/icon"
 import { Box, Stack, Text } from "@md3-ui/layout"
 import { Meta, Story } from "@storybook/react"
-import * as React from "react"
-import { DirectionsRailway } from "../src/directions-railway"
+import { Add } from "../src/add"
 
 export default {
   title: "Components/Icons",
@@ -15,7 +14,7 @@ export const Icons: Story<IconProps> = () => (
     }}
   >
     <Stack direction="column" spacing={3}>
-      <DirectionsRailway height={40} width={40} />
+      <Add height={40} width={40} />
       <Text>DirectionsRailway</Text>
     </Stack>
   </Box>
