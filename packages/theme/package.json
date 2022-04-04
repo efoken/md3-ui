@@ -4,7 +4,7 @@
   "main": "dist/md3-ui-theme.cjs.js",
   "license": "MIT",
   "dependencies": {
-    "polished": "^4.1.4"
+    "polished": "^4.2.1"
   },
   "devDependencies": {
     "@types/react-native": "^0.67.3",
@@ -12,6 +12,6 @@
   },
   "peerDependencies": {
     "@types/react-native": "^0.67.3",
-    "react-native": "^0.67.4"
+    "react-native": ">=0.67.4"
   }
 }
