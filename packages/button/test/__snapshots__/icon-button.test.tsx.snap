@@ -2,7 +2,7 @@
 
 exports[`<IconButton /> should render 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-cursor-1loqt21 r-height-h3s6tt r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr r-width-rwqe4o"
+  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-cursor-1loqt21 r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr r-width-1aockid"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   tabindex="0"
