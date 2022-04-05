@@ -1,4 +1,27 @@
-.expo/
-dist/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
 node_modules/
+
+# testing
+coverage/
+
+# next.js
+.next/
+out/
+
+# Expo
+.expo/
+
+# production
+build/
+dist/
 tsconfig.tsbuildinfo
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Contentlayer
+.contentlayer/
