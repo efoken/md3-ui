@@ -1,4 +1,4 @@
-import Document, {
+import NextDocument, {
   DocumentContext,
   Head,
   Html,
@@ -18,7 +18,7 @@ const normalizeNextElements = `
   }
 `
 
-export default class extends Document {
+export default class Document extends NextDocument {
   static async getInitialProps({ renderPage }: DocumentContext) {
     AppRegistry.registerComponent(config.name, () => Main)
     const { getStyleElement } = AppRegistry.getApplication(config.name)
@@ -26,6 +26,7 @@ export default class extends Document {
     const styles = [
       <style
         key={0}
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: normalizeNextElements }}
       />,
       getStyleElement(),
@@ -36,7 +37,18 @@ export default class extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head />
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link
+            rel="preconnect"
+            href="https://fonts.gstatic.com"
+            crossOrigin=""
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
         <body>
           <Main />
           <NextScript />

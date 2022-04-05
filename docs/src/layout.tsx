@@ -9,6 +9,7 @@ import {
   Toolbar,
 } from "@md3-ui/core"
 import { Nightlight } from "@md3-ui/icons"
+import NextLink from "next/link"
 import * as React from "react"
 
 export const Layout: React.FC = ({ children }) => (
@@ -20,7 +21,9 @@ export const Layout: React.FC = ({ children }) => (
         </Text>
         <Stack direction="row" sx={{ flexGrow: 1 }}>
           <Button variant="text">Getting Started</Button>
-          <Button variant="text">Styles</Button>
+          <NextLink passHref href="/docs/styles/typography">
+            <Button variant="text">Styles</Button>
+          </NextLink>
           <Button variant="text">Components</Button>
         </Stack>
         <IconButton>

@@ -22,6 +22,13 @@
       }
     ],
     "no-nested-ternary": "off",
+    "no-underscore-dangle": [
+      "error",
+      {
+        "allow": ["_raw"]
+      }
+    ],
+    "import/no-anonymous-default-export": "error",
     "import/prefer-default-export": "off",
     "jsdoc/multiline-blocks": [
       "error",
