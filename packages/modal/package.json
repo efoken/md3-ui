@@ -3,6 +3,14 @@
   "version": "0.0.0",
   "main": "dist/md3-ui-modal.cjs.js",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@md3-ui/hooks": "^1.0.0",
     "@md3-ui/portal": "^1.0.0",
