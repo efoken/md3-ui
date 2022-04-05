@@ -40,7 +40,10 @@ export type AppBarProps<
 
 export type AppBarStyleKey = keyof NonNullable<AppBarProps["styles"]>
 
-const AppBarRoot = styled(RNView)(({ theme }) => ({
+const AppBarRoot = styled(RNView, {
+  name: "AppBar",
+  slot: "Root",
+})(({ theme }) => ({
   ...theme.elevation.level0,
   backgroundColor: theme.color.surface,
   borderRadius: 0,
