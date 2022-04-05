@@ -38,5 +38,21 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-engines
 
+      - name: Setup Git user (for changelog step)
+        run: |
+          git config --global user.name "Eike Foken"
+          git config --global user.email "eikefoken@gmail.com"
+
+      - name: Configure npm
+        run: npm set "//registry.npmjs.org/:_authToken=$NPM_TOKEN"
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Build packages
         run: yarn build
+
+      - name: Version and publish
+        run: |
+          git config user.name "${{ github.actor }}"
+
+          yarn lerna version --conventional-commits --conventional-graduate --no-push --yes
