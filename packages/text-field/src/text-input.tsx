@@ -182,14 +182,12 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
 
     return (
       <>
-        {Platform.OS === "web" && (
-          <Global
-            styles={{
-              "@keyframes md3-auto-fill": { from: { display: "flex" } },
-              "@keyframes md3-auto-fill-cancel": { from: { display: "flex" } },
-            }}
-          />
-        )}
+        <Global
+          styles={{
+            "@keyframes md3-auto-fill": { from: { display: "flex" } },
+            "@keyframes md3-auto-fill-cancel": { from: { display: "flex" } },
+          }}
+        />
         <TextInputContainer ownerState={ownerState} style={styles?.container}>
           {startIcon}
           <TextInputRoot
