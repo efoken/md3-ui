@@ -1,0 +1,8 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M39.5 20c0 10.77-8.73 19.5-19.5 19.5S.5 30.77.5 20 9.23.5 20 .5 39.5 9.23 39.5 20Z" stroke="currentColor"/>
+  <path d="M6.5 6.5h27v27h-27v-27Z" stroke="currentColor"/>
+  <mask id="a" fill="#fff">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M33.928 6.07 20 33.928 6.07 6.07"/>
+  </mask>
+  <path d="m20 33.928-.895.447.895 1.788.894-1.788-.894-.447ZM33.034 5.623 19.105 33.48l1.79.895L34.822 6.518l-1.789-.895ZM20.894 33.48 6.966 5.623l-1.79.895 13.93 27.857 1.788-.895Z" fill="currentColor" mask="url(#a)"/>
+</svg>

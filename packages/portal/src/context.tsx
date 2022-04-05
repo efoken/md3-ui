@@ -17,7 +17,7 @@ export const PortalProvider: React.FC<PortalProviderProps> = ({ children }) => {
   const rootRef = React.useRef<RNView>(null)
 
   const [context, setContext] = React.useState<PortalContextType>(
-    Platform.OS === "web"
+    Platform.OS === "web" && typeof document !== "undefined"
       ? { rootRef: { current: document.body } }
       : ({} as any),
   )

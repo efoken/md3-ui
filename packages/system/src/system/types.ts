@@ -72,6 +72,7 @@ export interface SizingProps {
   maxHeight?: RNFlexStyle["maxHeight"]
   minHeight?: RNFlexStyle["minHeight"]
   size?: string | number
+  aspectRatio?: RNFlexStyle["aspectRatio"]
 }
 
 export interface SpacingProps {
@@ -86,17 +87,17 @@ export interface SpacingProps {
   paddingVertical?: number
   paddingX?: number
   paddingY?: number
-  margin?: number
-  marginTop?: number
-  marginRight?: number
-  marginBottom?: number
-  marginLeft?: number
-  marginStart?: number
-  marginEnd?: number
-  marginHorizontal?: number
-  marginVertical?: number
-  marginX?: number
-  marginY?: number
+  margin?: number | "auto"
+  marginTop?: number | "auto"
+  marginRight?: number | "auto"
+  marginBottom?: number | "auto"
+  marginLeft?: number | "auto"
+  marginStart?: number | "auto"
+  marginEnd?: number | "auto"
+  marginHorizontal?: number | "auto"
+  marginVertical?: number | "auto"
+  marginX?: number | "auto"
+  marginY?: number | "auto"
 }
 
 export interface TransformProps {

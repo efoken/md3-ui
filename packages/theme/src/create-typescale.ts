@@ -1,4 +1,4 @@
-import { TextStyle } from "react-native"
+import { TextStyle as RNTextStyle } from "react-native"
 import {
   MdSysTypescaleBodyLargeFamily,
   MdSysTypescaleBodyLargeWeight,
@@ -32,22 +32,34 @@ import {
   MdSysTypescaleTitleSmallWeight,
 } from "./tokens"
 
+type TypescaleStyle = Pick<
+  RNTextStyle,
+  | "fontFamily"
+  | "fontSize"
+  | "fontStyle"
+  | "fontVariant"
+  | "fontWeight"
+  | "includeFontPadding"
+  | "letterSpacing"
+  | "lineHeight"
+>
+
 export interface Typescale {
-  "display-large": TextStyle
-  "display-medium": TextStyle
-  "display-small": TextStyle
-  "headline-large": TextStyle
-  "headline-medium": TextStyle
-  "headline-small": TextStyle
-  "title-large": TextStyle
-  "title-medium": TextStyle
-  "title-small": TextStyle
-  "label-large": TextStyle
-  "label-medium": TextStyle
-  "label-small": TextStyle
-  "body-large": TextStyle
-  "body-medium": TextStyle
-  "body-small": TextStyle
+  "display-large": TypescaleStyle
+  "display-medium": TypescaleStyle
+  "display-small": TypescaleStyle
+  "headline-large": TypescaleStyle
+  "headline-medium": TypescaleStyle
+  "headline-small": TypescaleStyle
+  "title-large": TypescaleStyle
+  "title-medium": TypescaleStyle
+  "title-small": TypescaleStyle
+  "label-large": TypescaleStyle
+  "label-medium": TypescaleStyle
+  "label-small": TypescaleStyle
+  "body-large": TypescaleStyle
+  "body-medium": TypescaleStyle
+  "body-small": TypescaleStyle
 }
 
 export function createTypescale(typescale?: Partial<Typescale>): Typescale {
@@ -145,7 +157,7 @@ export function createTypescale(typescale?: Partial<Typescale>): Typescale {
       fontSize: 11,
       fontWeight: MdSysTypescaleLabelSmallWeight,
       letterSpacing: 0.5,
-      lineHeight: 6,
+      lineHeight: 16,
       ...typescale?.["label-small"],
     },
     "body-large": {

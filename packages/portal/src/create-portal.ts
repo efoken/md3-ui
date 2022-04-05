@@ -1,5 +1,5 @@
-import * as ReactDOM from "react-dom"
 import * as React from "react"
+import * as ReactDOM from "react-dom"
 import { Platform } from "react-native"
 
 let createNativePortal: (

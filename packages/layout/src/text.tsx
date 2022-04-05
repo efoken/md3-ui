@@ -70,6 +70,7 @@ export interface TextTypeMap<
     children?: React.ReactNode
     color?:
       | "on-background"
+      | "primary"
       | "on-primary"
       | "on-primary-container"
       | "on-secondary"

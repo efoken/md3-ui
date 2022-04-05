@@ -6,4 +6,4 @@ export interface GlobalProps
   extends React.ComponentProps<typeof EmotionGlobal> {}
 
 export const Global: React.VFC<GlobalProps> = ({ styles }) =>
-  Platform.OS === "web" ? <Global styles={styles} /> : null
+  Platform.OS === "web" ? <EmotionGlobal styles={styles} /> : null

@@ -176,6 +176,7 @@ export function generateGrid({
       styles = {
         flexBasis: width,
         flexGrow: 0,
+        flexShrink: 1,
         maxWidth: width,
         ...moreStyles,
       }

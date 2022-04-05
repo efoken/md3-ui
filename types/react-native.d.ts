@@ -13,6 +13,23 @@ declare module "react-native" {
     onHoverOut?: (event: MouseEvent) => void
   }
 
+  export interface AppParams {
+    callback?: () => void
+    hydrate?: boolean
+    initialProps?: object
+    rootTag: HTMLElement
+  }
+
+  export namespace AppRegistry {
+    function getApplication(
+      appKey: string,
+      params?: AppParams,
+    ): {
+      element: HTMLElement
+      getStyleElement: () => React.ReactElement
+    }
+  }
+
   export interface TextStyle {}
 
   export interface ViewStyle {
