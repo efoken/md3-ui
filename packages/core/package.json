@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/core",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "main": "dist/md3-ui-core.cjs.js",
   "license": "MIT",
   "dependencies": {

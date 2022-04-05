@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/test-utils",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "private": true,
   "main": "src/index.tsx",
   "dependencies": {
