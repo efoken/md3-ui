@@ -1,7 +1,7 @@
 import { Button } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
 import { Meta, Story } from "@storybook/react"
-import { Card, CardActions, CardContent, CardProps } from "../src"
+import { Card, CardActions, CardContent, CardMedia, CardProps } from "../src"
 
 export default {
   title: "Components/Cards",
@@ -84,4 +84,33 @@ Outlined.args = {
     minWidth: 300,
   },
   variant: "outlined",
+}
+
+export const Media: Story<CardProps> = (args) => (
+  <Card {...args}>
+    <CardMedia
+      source={{
+        uri: "https://images.unsplash.com/photo-1529244927325-b3ef2247b9fb?auto=format&fit=crop&w=2370&q=80",
+      }}
+      sx={{ height: 140 }}
+    />
+    <CardContent>
+      <Text color="on-surface" variant="title-large" sx={{ marginBottom: 1 }}>
+        Glass Souls&apos; World Tour
+      </Text>
+      <Text color="on-surface-variant" variant="body-medium">
+        From your recent favorites
+      </Text>
+    </CardContent>
+    <CardActions sx={{ justifyContent: "flex-start" }}>
+      <Button variant="tonal">Buy tickets</Button>
+    </CardActions>
+  </Card>
+)
+
+Media.args = {
+  sx: {
+    minWidth: 300,
+  },
+  variant: "elevated",
 }

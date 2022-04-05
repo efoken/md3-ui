@@ -43,12 +43,13 @@ export type CardMediaProps<
   P = {},
 > = OverrideProps<CardMediaTypeMap<P, C>, C>
 
-export type CardContentStyleKey = keyof NonNullable<CardMediaProps["styles"]>
+export type CardMediaStyleKey = keyof NonNullable<CardMediaProps["styles"]>
 
 const CardContentRoot = styled(RNImage, {
   name: "CardMedia",
   slot: "Root",
 })(() => ({
+  borderRadius: 12,
   resizeMode: "cover",
   width: "100%",
 }))
