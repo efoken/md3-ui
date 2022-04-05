@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/app-bar",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/md3-ui-app-bar.cjs.js",
   "license": "MIT",
   "files": [

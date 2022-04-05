@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/text-field",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "dist/md3-ui-text-field.cjs.js",
   "license": "MIT",
   "files": [
