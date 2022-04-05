@@ -20,7 +20,13 @@ import { TextInput, TextInputProps } from "./text-input"
 import { TextInputLabel } from "./text-input-label"
 
 export interface TextFieldProps extends TextInputProps {
+  /**
+   * The helper text content.
+   */
   helperText?: string
+  /**
+   * The label content.
+   */
   label?: string
   /**
    * Override or extend the styles applied to the component.

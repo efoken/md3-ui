@@ -19,6 +19,9 @@ import {
 import { isFilled } from "./utils"
 
 export interface TextInputProps extends RNTextInputProps {
+  /**
+   * End `TextInputIcon` for this component.
+   */
   endIcon?: React.ReactElement
   /**
    * If `true`, the input will indicate an error.
@@ -40,6 +43,9 @@ export interface TextInputProps extends RNTextInputProps {
    * The short hint displayed in the `input` before the user enters a value.
    */
   placeholder?: string
+  /**
+   * Start `TextInputIcon` for this component.
+   */
   startIcon?: React.ReactElement
   /**
    * Override or extend the styles applied to the component.
