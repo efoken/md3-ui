@@ -51,8 +51,8 @@ jobs:
       - name: Build packages
         run: yarn build
 
-      - name: Version and publish
-        run: |
-          git config user.name "${{ github.actor }}"
+      # - name: Version and publish
+      #   run: |
+      #     git config user.name "${{ github.actor }}"
 
-          yarn lerna version --conventional-commits --conventional-graduate --no-push --yes
+      #     yarn lerna version --conventional-commits --no-changelog --no-push --yes
