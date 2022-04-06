@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/system",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/md3-ui-system.cjs.js",
   "license": "MIT",
   "files": [
@@ -14,8 +14,8 @@
   "dependencies": {
     "@emotion/primitives-core": "^11.0.0",
     "@emotion/react": "^11.8.2",
-    "@md3-ui/theme": "^0.0.1",
-    "@md3-ui/utils": "^0.0.1",
+    "@md3-ui/theme": "^0.0.2",
+    "@md3-ui/utils": "^0.0.2",
     "@types/css-mediaquery": "^0.1.1",
     "css-mediaquery": "^0.1.2"
   },

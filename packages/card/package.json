@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/card",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "main": "dist/md3-ui-card.cjs.js",
   "license": "MIT",
   "files": [
@@ -12,8 +12,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/system": "^0.0.1",
-    "@md3-ui/utils": "^0.0.1"
+    "@md3-ui/system": "^0.0.2",
+    "@md3-ui/utils": "^0.0.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.43",
