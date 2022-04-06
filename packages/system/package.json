@@ -14,8 +14,8 @@
   "dependencies": {
     "@emotion/primitives-core": "^11.0.0",
     "@emotion/react": "^11.8.2",
-    "@md3-ui/theme": "^1.0.0",
-    "@md3-ui/utils": "^1.0.0",
+    "@md3-ui/theme": "^0.0.1",
+    "@md3-ui/utils": "^0.0.1",
     "@types/css-mediaquery": "^0.1.1",
     "css-mediaquery": "^0.1.2"
   },

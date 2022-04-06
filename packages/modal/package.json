@@ -12,10 +12,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/hooks": "^1.0.0",
-    "@md3-ui/portal": "^1.0.0",
-    "@md3-ui/system": "^1.0.0",
-    "@md3-ui/utils": "^1.0.0"
+    "@md3-ui/hooks": "^0.0.1",
+    "@md3-ui/portal": "^0.0.1",
+    "@md3-ui/system": "^0.0.1",
+    "@md3-ui/utils": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.43",

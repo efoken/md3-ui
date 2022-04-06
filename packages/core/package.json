@@ -12,18 +12,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/app-bar": "^1.0.0",
-    "@md3-ui/button": "^1.0.0",
-    "@md3-ui/card": "^1.0.0",
-    "@md3-ui/chip": "^1.0.0",
-    "@md3-ui/hooks": "^1.0.0",
-    "@md3-ui/icon": "^1.0.0",
-    "@md3-ui/layout": "^1.0.0",
-    "@md3-ui/modal": "^1.0.0",
-    "@md3-ui/portal": "^1.0.0",
-    "@md3-ui/system": "^1.0.0",
-    "@md3-ui/text-field": "^1.0.0",
-    "@md3-ui/theme": "^1.0.0"
+    "@md3-ui/app-bar": "^0.0.1",
+    "@md3-ui/button": "^0.0.1",
+    "@md3-ui/card": "^0.0.1",
+    "@md3-ui/chip": "^0.0.1",
+    "@md3-ui/hooks": "^0.0.1",
+    "@md3-ui/icon": "^0.0.1",
+    "@md3-ui/layout": "^0.0.1",
+    "@md3-ui/modal": "^0.0.1",
+    "@md3-ui/portal": "^0.0.1",
+    "@md3-ui/system": "^0.0.1",
+    "@md3-ui/text-field": "^0.0.1",
+    "@md3-ui/theme": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.43",

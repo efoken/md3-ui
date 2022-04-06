@@ -4,7 +4,7 @@
   "private": true,
   "main": "__generated__/AppEntry.js",
   "dependencies": {
-    "@md3-ui/core": "^1.0.0",
+    "@md3-ui/core": "^0.0.1",
     "expo": "^44.0.6",
     "expo-status-bar": "~1.2.0",
     "react": "^17.0.2",

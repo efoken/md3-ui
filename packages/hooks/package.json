@@ -12,7 +12,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/utils": "^1.0.0"
+    "@md3-ui/utils": "^0.0.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.43",
