@@ -1,13 +1,18 @@
 import {
   OverridableComponent,
   OverrideProps,
+  OwnerStateProps,
   styled,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
-import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
+import {
+  Platform,
+  View as RNView,
+  ViewStyle as RNViewStyle,
+} from "react-native"
 
 export interface AppBarTypeMap<
   P = {},
@@ -18,6 +23,12 @@ export interface AppBarTypeMap<
      * The content of the component.
      */
     children?: React.ReactNode
+    /**
+     * The positioning type. The behavior of the different options is described
+     * in the [MDN web docs](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning).
+     * @default "relative"
+     */
+    position?: "absolute" | "fixed" | "static" | "sticky" | "relative"
     /**
      * Override or extend the styles applied to the component.
      */
@@ -43,22 +54,74 @@ export type AppBarStyleKey = keyof NonNullable<AppBarProps["styles"]>
 const AppBarRoot = styled(RNView, {
   name: "AppBar",
   slot: "Root",
-})(({ theme }) => ({
+})<OwnerStateProps<Pick<AppBarProps, "position">>>(({ theme, ownerState }) => ({
   ...theme.elevation.level0,
   backgroundColor: theme.color.surface,
   borderRadius: 0,
   minHeight: 64,
   justifyContent: "center",
   width: "100%",
+
+  ...(ownerState.position === "absolute" && {
+    left: "auto",
+    position: "absolute",
+    right: 0,
+    top: 0,
+    zIndex: theme.zIndex.appBar,
+  }),
+
+  ...(ownerState.position === "fixed" && {
+    left: "auto",
+    position: Platform.OS === "web" ? ("fixed" as any) : "absolute",
+    right: 0,
+    top: 0,
+    zIndex: theme.zIndex.appBar,
+
+    "@media print": {
+      position: "absolute",
+    },
+  }),
+
+  ...(ownerState.position === "static" && {
+    position: Platform.OS === "web" ? ("static" as any) : "relative",
+  }),
+
+  ...(ownerState.position === "sticky" && {
+    left: "auto",
+    position: "absolute",
+    right: 0,
+    top: 0,
+    zIndex: theme.zIndex.appBar,
+  }),
+
+  ...(ownerState.position === "relative" && {
+    position: "relative",
+  }),
 }))
 
 export const AppBar = React.forwardRef<RNView, AppBarProps>((inProps, ref) => {
-  const { style, styles, ...props } = useThemeProps({
+  const {
+    position = "relative",
+    style,
+    styles,
+    ...props
+  } = useThemeProps({
     name: "AppBar",
     props: inProps,
   })
 
-  return <AppBarRoot ref={ref} style={[style, styles?.root]} {...props} />
+  const ownerState = {
+    position,
+  }
+
+  return (
+    <AppBarRoot
+      ref={ref}
+      ownerState={ownerState}
+      style={[style, styles?.root]}
+      {...props}
+    />
+  )
 }) as OverridableComponent<AppBarTypeMap>
 
 if (__DEV__) {

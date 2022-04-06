@@ -19,24 +19,26 @@ export function isEmptyObject(value: any) {
 }
 
 // String assertions
-export type Media = `@media (${"min-width" | "max-width"}: ${number | ""}${
-  | number
-  | ""}${number}${"px" | "em" | "rem"})`
+export type Media =
+  | `@media (${"min-width" | "max-width"}: ${
+      | `${number | ""}${number | ""}${number}${"px" | "em" | "rem"}`
+      | "0"})`
+  | "@media print"
 
 export function isMedia(value: string): value is Media {
   return value.startsWith("@media")
 }
 
 export type Pseudo =
-  | ":-webkit-autofill"
-  | "::placeholder"
-  | ":active"
-  | ":enabled"
-  | ":focus"
-  | ":hover"
+  | "&:-webkit-autofill"
+  | "&::placeholder"
+  | "&:active"
+  | "&:enabled"
+  | "&:focus"
+  | "&:hover"
 
 export function isPseudo(value: string): value is Pseudo {
-  return value.startsWith(":")
+  return value.startsWith("&:")
 }
 
 export function isMediaOrPseudo(value: string) {

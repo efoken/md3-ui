@@ -61,7 +61,7 @@ const TextFieldRoot = styled(TextInput, {
     padding: theme.spacing(2),
     minHeight: 56,
 
-    ":-webkit-autofill": {
+    "&:-webkit-autofill": {
       borderRadius: 4,
     },
 
@@ -109,7 +109,7 @@ const TextFieldOutline = styled(RNView, {
     top: 0,
     zIndex: 1,
 
-    ":hover": {
+    "&:hover": {
       borderColor: theme.color["on-surface"],
     },
 

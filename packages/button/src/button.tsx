@@ -74,11 +74,11 @@ const ButtonRoot = styled(ButtonBase, {
           backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
         }),
 
-        ":hover": {
+        "&:hover": {
           ...theme.elevation.level2,
         },
 
-        ":focus": {
+        "&:focus": {
           ...theme.elevation.level1,
         },
       }),
@@ -92,11 +92,11 @@ const ButtonRoot = styled(ButtonBase, {
           backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
         }),
 
-        ":hover": {
+        "&:hover": {
           ...theme.elevation.level1,
         },
 
-        ":focus": {
+        "&:focus": {
           ...theme.elevation.level0,
         },
       }),
@@ -109,11 +109,11 @@ const ButtonRoot = styled(ButtonBase, {
           backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
         }),
 
-        ":hover": {
+        "&:hover": {
           ...theme.elevation.level1,
         },
 
-        ":focus": {
+        "&:focus": {
           ...theme.elevation.level0,
         },
       }),
@@ -129,7 +129,7 @@ const ButtonRoot = styled(ButtonBase, {
           borderColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
         }),
 
-        ":focus": {
+        "&:focus": {
           borderColor: theme.color.primary,
         },
       }),

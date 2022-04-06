@@ -48,7 +48,7 @@ const LinkRoot = styled(Text, {
   color: theme.color.primary,
   textDecorationLine: "underline",
 
-  ":hover": {
+  "&:hover": {
     textDecorationLine: "none",
   },
 }))

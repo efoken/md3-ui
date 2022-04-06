@@ -40,18 +40,20 @@ export function createCSSRule(query: string, stringHash: string, css: string) {
   const dataMediaSelector = `[data-media~="${stringHash}"]`
   return isMedia(query)
     ? `${query} {${dataMediaSelector} ${css}}`
-    : `${dataMediaSelector}${query} ${css}`
+    : `${dataMediaSelector}${query.replace(/^&/, "")} ${css}`
 }
 
-const cache: Record<string, string> = {}
+const cache = new Map<string, string>()
 
 function hyphenateStyleName(name: string) {
-  if (Object.prototype.hasOwnProperty.call(cache, name)) {
-    return cache[name]
+  if (cache.has(name)) {
+    return cache.get(name)
   }
-  const newName = name.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
-  // eslint-disable-next-line no-return-assign
-  return (cache[name] = newName.startsWith("ms-") ? `-${newName}` : newName)
+  const newName = name
+    .replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
+    .replace(/^ms-/, "-ms-")
+  cache.set(name, newName)
+  return newName
 }
 
 export function createDeclarationBlock(style: Record<string, any>) {

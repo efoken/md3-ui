@@ -71,20 +71,20 @@ const TextInputRoot = styled(RNTextInput, {
   minWidth: 0,
   width: "100%",
 
-  "::placeholder": {
+  "&::placeholder": {
     transition: "opacity 200ms cubic-bezier(0, 0, 0.2, 1)",
   },
 
-  ":focus": {
+  "&:focus": {
     outlineStyle: "none",
   },
 
-  ":enabled": {
+  "&:enabled": {
     animationDuration: "10ms",
     animationName: "md3-auto-fill-cancel",
   },
 
-  ":-webkit-autofill": {
+  "&:-webkit-autofill": {
     animationDuration: "5000s",
     animationName: "md3-auto-fill",
   },

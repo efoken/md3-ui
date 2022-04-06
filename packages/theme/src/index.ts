@@ -15,6 +15,7 @@ export interface Theme {
   typescale: Typescale
   spacing: Spacing
   zIndex: {
+    appBar: number
     modal: number
   }
   utils: {
@@ -56,6 +57,7 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
     typescale: createTypescale(theme.typescale),
     spacing: createSpacing(8),
     zIndex: {
+      appBar: 1200,
       modal: 1300,
     },
     utils: {
