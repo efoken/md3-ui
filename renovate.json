@@ -2,5 +2,11 @@
   "extends": [
     "config:base"
   ],
+  "packageRules": [
+  {
+      "groupName": "React",
+      "matchPackageNames": ["react", "react-dom"]
+    },
+  ],
   "rangeStrategy": "bump"
 }
