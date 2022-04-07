@@ -8,9 +8,9 @@ import { css } from "./create-css"
 import { styleFunctions } from "./style-functions"
 import { StyleSheet } from "./style-sheet"
 import {
-  AllStyle,
   CreateStyled,
   NamedStyles,
+  RNStyle,
   StyledComponent,
   StyledOptions,
 } from "./types"
@@ -23,7 +23,7 @@ function getDisplayName(Component: React.ElementType) {
 }
 
 function useStyleSheet(
-  styles: AllStyle,
+  styles: RNStyle,
   mediaValues?: Partial<MediaQuery.MediaValues>,
   breakpoint?: string | number,
 ) {
@@ -82,7 +82,7 @@ export const styled: CreateStyled = <
           [props, theme],
         )
 
-        const extendedStyles = React.useMemo<AllStyle>(
+        const extendedStyles = React.useMemo<RNStyle>(
           () =>
             css.apply(mergedProps, [
               ...styles,

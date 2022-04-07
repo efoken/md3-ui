@@ -1,5 +1,18 @@
-import { compose, style } from "../create-style"
+import { compose, style } from "../style"
 import { TypescaleProps } from "./types"
+
+const color = style({
+  prop: "color",
+  themeKey: "color",
+})
+
+const fontSize = style({
+  prop: "fontSize",
+})
+
+const lineHeight = style({
+  prop: "lineHeight",
+})
 
 const textAlign = style({
   prop: "textAlign",
@@ -36,6 +49,9 @@ const textTransform = style({
 })
 
 export const typescale = compose<keyof TypescaleProps>(
+  color,
+  fontSize,
+  lineHeight,
   textAlign,
   textDecorationLine,
   textDecorationStyle,

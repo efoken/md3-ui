@@ -68,7 +68,7 @@ export class StyleSheet {
             const stringHash = `md3-${hash(`${key}${query}${css}`)}`
             const rule = createCSSRule(query, stringHash, css)
 
-            addCSS(`${stringHash}`, rule)
+            addCSS(stringHash, rule)
             delete cleanStyles[key][query]
 
             ids = {

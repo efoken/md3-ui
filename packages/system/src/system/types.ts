@@ -105,6 +105,9 @@ export interface TransformProps {
 }
 
 export interface TypescaleProps {
+  color?: RNTextStyle["color"]
+  fontSize?: RNTextStyle["fontSize"]
+  lineHeight?: RNTextStyle["lineHeight"]
   textAlign?: RNTextStyle["textAlign"]
   textDecorationLine?: RNTextStyle["textDecorationLine"]
   textDecorationStyle?: RNTextStyle["textDecorationStyle"]

@@ -3,61 +3,17 @@ import {
   OverrideProps,
   OwnerStateProps,
   styled,
-  StyleSheet,
   SxProps,
+  useTextStyle,
   useThemeProps,
 } from "@md3-ui/system"
-import { objectFilter, __DEV__ } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
-  StyleProp,
   Text as RNText,
   TextStyle as RNTextStyle,
 } from "react-native"
-
-interface TextContextType {
-  style: RNTextStyle
-}
-
-const TextContext = React.createContext<TextContextType>(undefined as any)
-
-export interface TextProviderProps {
-  style?: StyleProp<RNTextStyle>
-}
-
-export const TextProvider: React.FC<TextProviderProps> = ({
-  children,
-  style: styleProp = {},
-}) => {
-  const style = StyleSheet.flatten(styleProp)
-
-  const context = React.useMemo(() => ({ style }), [style])
-
-  return (
-    <TextContext.Provider value={context}>
-      {Platform.OS === "web" ? (
-        <div
-          style={{
-            ...objectFilter(
-              style,
-              (v, k) => k === "color" || k === "fontFamily",
-            ),
-            display: "contents",
-          }}
-        >
-          {children}
-        </div>
-      ) : (
-        children
-      )}
-    </TextContext.Provider>
-  )
-}
-
-export function useTextContext() {
-  return React.useContext(TextContext) ?? {}
-}
 
 export interface TextTypeMap<
   P = {},
@@ -157,7 +113,7 @@ export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
     ...props
   } = useThemeProps({ name: "Text", props: inProps })
 
-  const { style: parentStyle } = useTextContext()
+  const textStyle = useTextStyle()
 
   const ownerState = {
     color,
@@ -167,7 +123,7 @@ export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
   return (
     <TextRoot
       ref={ref}
-      style={[parentStyle, style, styles?.root]}
+      style={[textStyle, style, styles?.root]}
       ownerState={ownerState}
       {...props}
     >

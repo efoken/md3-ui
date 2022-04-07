@@ -1,4 +1,4 @@
-import { compose, style } from "../create-style"
+import { compose, style } from "../style"
 import { BackgroundProps } from "./types"
 
 const backgroundColor = style({

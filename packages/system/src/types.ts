@@ -20,14 +20,14 @@ import {
   TypescaleProps,
 } from "./system/types"
 
-export type AllStyle = RNViewStyle | RNTextStyle | RNImageStyle
+export type RNStyle = RNViewStyle | RNTextStyle | RNImageStyle
 
-export type AllStyleWithMediaAndPseudo = AllStyle & {
-  [K in Media | Pseudo]?: AllStyle
+export type RNStyleWithMediaAndPseudo = RNStyle & {
+  [K in Media | Pseudo]?: RNStyle
 }
 
 export type NamedStyles<T> = {
-  [P in keyof T]: AllStyle
+  [P in keyof T]: RNStyle
 }
 
 export type ResponsiveValue<T> =
@@ -61,20 +61,24 @@ export interface OwnerStateProps<T> {
   ownerState: T
 }
 
-type InterpolationPrimitive = null | undefined | boolean | number | string
+type InterpolationPrimitive<S extends RNStyle = RNStyle> =
+  | null
+  | undefined
+  | boolean
+  | number
+  | string
+  | S
 
 type Interpolation<
   P = unknown,
-  S extends AllStyle = AllStyleWithMediaAndPseudo,
+  S extends RNStyle = RNStyleWithMediaAndPseudo,
 > =
-  | InterpolationPrimitive
-  | S
+  | InterpolationPrimitive<S>
   | Interpolation<P, S>[]
   | ((props: P) => Interpolation<P, S>)
 
-type CSSInterpolation<S extends AllStyle = AllStyle> =
-  | InterpolationPrimitive
-  | S
+type CSSInterpolation<S extends RNStyle = RNStyle> =
+  | InterpolationPrimitive<S>
   | CSSInterpolation<S>[]
 
 export interface StyledComponent<InnerProps, OwnerState, P>

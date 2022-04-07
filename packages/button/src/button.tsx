@@ -1,9 +1,10 @@
 import { useBoolean } from "@md3-ui/hooks"
-import { Text, TextProvider } from "@md3-ui/layout"
+import { Text } from "@md3-ui/layout"
 import {
   OwnerStateProps,
   styled,
   SxProps,
+  TextStyleProvider,
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
@@ -144,7 +145,7 @@ const ButtonRoot = styled(ButtonBase, {
   ],
 )
 
-const ButtonContent = styled(TextProvider, {
+const ButtonContent = styled(TextStyleProvider, {
   name: "Button",
   slot: "Content",
 })<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(

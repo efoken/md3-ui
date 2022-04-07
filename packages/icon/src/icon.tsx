@@ -1,5 +1,10 @@
-import { useTextContext } from "@md3-ui/layout"
-import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
+import {
+  OwnerStateProps,
+  styled,
+  SxProps,
+  useTextStyle,
+  useThemeProps,
+} from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform, ViewStyle as RNViewStyle } from "react-native"
@@ -63,7 +68,7 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
     props: inProps,
   })
 
-  const { style: textStyle } = useTextContext()
+  const textStyle = useTextStyle()
 
   const ownerState = {
     height,

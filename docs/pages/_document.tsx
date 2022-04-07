@@ -1,3 +1,4 @@
+import { flush } from "@md3-ui/core"
 import NextDocument, {
   DocumentContext,
   Head,
@@ -30,6 +31,7 @@ export default class Document extends NextDocument {
         dangerouslySetInnerHTML={{ __html: normalizeNextElements }}
       />,
       getStyleElement(),
+      flush(),
     ]
     return { ...page, styles: React.Children.toArray(styles) }
   }

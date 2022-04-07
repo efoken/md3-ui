@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import { AllStyle, ResponsiveValue } from "../types"
+import { ResponsiveValue, RNStyle } from "../types"
 
 const values = {
   compact: 0,
@@ -23,7 +23,7 @@ const defaultBreakpoints = {
 export function handleBreakpoints<P extends { theme?: Theme }, T>(
   props: P,
   propValue: T | Partial<Record<keyof Theme["breakpoints"]["values"], T>>,
-  styleFromPropValue: (propValueFinal?: T) => AllStyle,
+  styleFromPropValue: (propValueFinal?: T) => RNStyle,
 ) {
   const { theme } = props
 

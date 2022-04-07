@@ -1,4 +1,4 @@
-import { compose, style } from "../create-style"
+import { compose, style } from "../style"
 import { ElevationProps } from "./types"
 
 const elevationRaw = style({

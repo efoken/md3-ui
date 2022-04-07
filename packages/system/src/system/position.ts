@@ -1,4 +1,4 @@
-import { compose, style } from "../create-style"
+import { compose, style } from "../style"
 import { PositionProops } from "./types"
 
 export const position = style({

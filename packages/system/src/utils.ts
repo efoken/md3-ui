@@ -1,7 +1,7 @@
 import { isMedia, mergeDeep } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import { PixelRatio } from "react-native"
-import { AllStyle } from "./types"
+import { RNStyle } from "./types"
 
 const createReactDOMStyle =
   // eslint-disable-next-line global-require, import/no-extraneous-dependencies
@@ -12,7 +12,7 @@ const createReactDOMStyle =
 const prefixStyles = require("react-native-web/dist/modules/prefixStyles")
   .default as typeof import("react-native-web/dist/modules/prefixStyles").default
 
-export function findBreakpoints(emotionStyles: AllStyle) {
+export function findBreakpoints(emotionStyles: RNStyle) {
   const allMedia = Object.keys(emotionStyles).filter(
     (item) => isMedia(item) && item.includes("width"),
   )

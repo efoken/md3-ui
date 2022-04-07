@@ -1,10 +1,10 @@
 import { Theme } from "@md3-ui/theme"
 import { capitalize, get } from "@md3-ui/utils"
 import { handleBreakpoints } from "./system/breakpoints"
-import { AllStyle } from "./types"
+import { RNStyle } from "./types"
 import { merge } from "./utils"
 
-type StyleValue = number | string | AllStyle
+type StyleValue = number | string | RNStyle
 
 function getValue(
   themeMapping: any,
@@ -30,7 +30,7 @@ function getValue(
 }
 
 export interface StyleOptions<PropKey> {
-  styleProp?: PropKey | keyof AllStyle | (PropKey | keyof AllStyle)[] | false
+  styleProp?: PropKey | keyof RNStyle | (PropKey | keyof RNStyle)[] | false
   prop: PropKey
   themeKey?: keyof Theme
   transform?: (cssValue: any) => StyleValue
@@ -63,7 +63,7 @@ export function style<PropKey extends string>(options: StyleOptions<PropKey>) {
       }
 
       return styleProp === false
-        ? (value as AllStyle)
+        ? (value as RNStyle)
         : Array.isArray(styleProp)
         ? Object.fromEntries(styleProp.map((key) => [key, value]))
         : { [styleProp]: value }

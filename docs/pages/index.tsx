@@ -32,13 +32,7 @@ export const IntroductionCard: React.VFC<IntroductionCardProps> = ({
           <Link
             href={link.href}
             hrefAttrs={{ target: "blank" }}
-            sx={{
-              alignSelf: "flex-start",
-            }}
-            style={{
-              fontSize: 24,
-              lineHeight: 28,
-            }}
+            sx={{ alignSelf: "flex-start", fontSize: 24, lineHeight: 28 }}
           >
             {link.label}
           </Link>
