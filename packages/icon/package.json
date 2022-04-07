@@ -12,7 +12,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/layout": "^0.0.2",
     "@md3-ui/system": "^0.0.2",
     "@md3-ui/utils": "^0.0.2"
   },

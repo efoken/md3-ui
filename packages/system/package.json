@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@emotion/primitives-core": "^11.0.0",
-    "@emotion/react": "^11.8.2",
+    "@emotion/react": "^11.9.0",
     "@md3-ui/theme": "^0.0.2",
     "@md3-ui/utils": "^0.0.2",
     "@types/css-mediaquery": "^0.1.1",
