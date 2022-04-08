@@ -48,6 +48,7 @@
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
+    "react/sort-prop-types": "error",
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "unicorn/no-array-for-each": "off",
     "unicorn/no-array-reduce": "off",
