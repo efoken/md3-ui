@@ -20,22 +20,23 @@
     "@md3-ui/icon": "^0.0.2",
     "@md3-ui/layout": "^0.0.2",
     "@md3-ui/modal": "^0.0.2",
+    "@md3-ui/navigation-bar": "^0.0.2",
     "@md3-ui/portal": "^0.0.2",
     "@md3-ui/system": "^0.0.2",
     "@md3-ui/text-field": "^0.0.2",
     "@md3-ui/theme": "^0.0.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.14",
+    "@types/react": "^17.0.44",
+    "@types/react-dom": "^17.0.15",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-native": "^0.68.0"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.14",
+    "@types/react": "^17.0.44 || ^18.0.0",
+    "@types/react-dom": "^17.0.15 || ^18.0.0",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2 || ^18.0.0",
     "react-dom": "^17.0.2 || ^18.0.0",

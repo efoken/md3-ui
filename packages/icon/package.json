@@ -16,14 +16,14 @@
     "@md3-ui/utils": "^0.0.2"
   },
   "devDependencies": {
-    "@types/react": "^17.0.43",
+    "@types/react": "^17.0.44",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2",
     "react-native": "^0.68.0",
     "react-native-svg": "^12.3.0"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.43",
+    "@types/react": "^17.0.44 || ^18.0.0",
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4",
