@@ -21,6 +21,8 @@ export const parameters: Parameters = {
       cellSize: 8,
     },
     values: [
+      { name: "white", value: "#fff" },
+      { name: "black", value: "#000" },
       { name: "light", value: "#fffbfe" },
       { name: "dark", value: "#1c1b1f" },
     ],
@@ -41,8 +43,10 @@ export const decorators: DecoratorFn[] = [
       <SafeAreaProvider style={{ height: "100%" }}>
         <Md3Provider theme={createTheme()}>
           <Box
-            dir={dir}
-            nativeID="story-wrapper"
+            {...({
+              dir,
+              nativeID: "story-wrapper",
+            } as any)}
             sx={{ alignItems: "flex-start" }}
           >
             <StoryFn />
