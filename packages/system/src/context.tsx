@@ -27,9 +27,7 @@ export function useTheme(defaultTheme: Theme = theme) {
   return useThemeWithoutDefault(defaultTheme)
 }
 
-const TextStyleContext = React.createContext<StyleProp<RNTextStyle>>(
-  undefined as any,
-)
+const TextStyleContext = React.createContext<RNTextStyle>(undefined as any)
 
 export interface TextStyleProviderProps {
   style?: StyleProp<RNTextStyle>
@@ -51,7 +49,7 @@ export const TextStyleProvider: React.FC<TextStyleProviderProps> = ({
           style={{
             ...objectFilter(
               style,
-              (v, k) => k === "color" || k === "fontFamily",
+              (v, k) => k === "color" || k === "fontFamily" || k === "fontSize",
             ),
             display: "contents",
           }}

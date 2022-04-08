@@ -71,9 +71,9 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
   const textStyle = useTextStyle()
 
   const ownerState = {
-    height,
+    height: height ?? textStyle.fontSize,
     size,
-    width,
+    width: width ?? textStyle.fontSize,
   }
 
   return (
