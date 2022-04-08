@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/hooks",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/md3-ui-hooks.cjs.js",
   "license": "MIT",
   "files": [
@@ -12,7 +12,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/utils": "^0.0.2"
+    "@md3-ui/utils": "^0.0.3"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",

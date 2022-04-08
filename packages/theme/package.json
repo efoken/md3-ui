@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/theme",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/md3-ui-theme.cjs.js",
   "license": "MIT",
   "files": [
@@ -12,7 +12,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/hooks": "^0.0.2",
+    "@md3-ui/hooks": "^0.0.3",
     "polished": "^4.2.2"
   },
   "devDependencies": {

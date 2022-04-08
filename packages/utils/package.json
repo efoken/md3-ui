@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/utils",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "dist/md3-ui-utils.cjs.js",
   "license": "MIT",
   "files": [
