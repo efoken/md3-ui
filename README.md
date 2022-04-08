@@ -27,11 +27,11 @@ MD3-UI is available as an
 [npm package](https://www.npmjs.com/package/@md3-ui/core).
 
 ```sh
-// with npm
-npm install @md3-ui/core
-
 // with yarn
 yarn add @md3-ui/core
+
+// with npm
+npm i @md3-ui/core
 ```
 
 ## Usage
