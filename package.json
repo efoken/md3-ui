@@ -60,7 +60,7 @@
   },
   "scripts": {
     "build": "preconstruct build",
-    "deploy": "yarn storybook:build && gh-pages -d storybook-static",
+    "deploy": "yarn storybook:build && gh-pages -d storybook-static && rimraf storybook-static",
     "lint": "eslint .",
     "postinstall": "manypkg check && preconstruct dev",
     "prepare": "husky install",
