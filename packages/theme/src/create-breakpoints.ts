@@ -14,6 +14,7 @@ const values = {
   expanded: 840,
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function createBreakpoints(breakpoints?: any): Breakpoints {
   return {
     // Sorted ASC by size. That's important.

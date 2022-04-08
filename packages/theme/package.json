@@ -12,6 +12,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@md3-ui/hooks": "^0.0.2",
     "polished": "^4.2.2"
   },
   "devDependencies": {
