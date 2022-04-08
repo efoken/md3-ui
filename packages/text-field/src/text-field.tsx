@@ -78,6 +78,7 @@ const TextFieldRoot = styled(TextInput, {
 const TextFieldContainer = styled(RNView, {
   name: "TextField",
   slot: "Container",
+  skipSx: true,
 })<
   OwnerStateProps<Pick<TextFieldProps, "endIcon" | "fullWidth" | "startIcon">>
 >(({ theme, ownerState }) => ({
@@ -97,6 +98,7 @@ const TextFieldContainer = styled(RNView, {
 const TextFieldOutline = styled(RNView, {
   name: "TextField",
   slot: "Outline",
+  skipSx: true,
 })<OwnerStateProps<Pick<TextFieldProps, "error"> & { focused: boolean }>>(
   ({ theme, ownerState }) => ({
     borderColor: theme.color.outline,
@@ -127,6 +129,7 @@ const TextFieldOutline = styled(RNView, {
 const TextFieldLabel = styled(TextInputLabel, {
   name: "TextField",
   slot: "Label",
+  skipSx: true,
 })(({ theme }) => ({
   ...theme.typescale["body-large"],
   backgroundColor: theme.color.surface,
@@ -141,6 +144,7 @@ const TextFieldLabel = styled(TextInputLabel, {
 const TextFieldHelperText = styled(RNText, {
   name: "TextField",
   slot: "HelperText",
+  skipSx: true,
 })(({ theme }) => ({
   ...theme.typescale["body-large"],
   color: theme.color["on-surface"],

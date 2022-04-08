@@ -93,6 +93,7 @@ const TextInputRoot = styled(RNTextInput, {
 const TextInputContainer = styled(RNView, {
   name: "TextInput",
   slot: "Container",
+  skipSx: true,
 })<OwnerStateProps<Pick<TextInputProps, "fullWidth">>>(({ ownerState }) => ({
   alignItems: "center",
   flexDirection: "row",

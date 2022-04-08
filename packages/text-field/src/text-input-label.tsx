@@ -50,6 +50,7 @@ const TextInputLabelRoot = styled(Animated.Text, {
 const TextInputLabelContainer = styled(RNView, {
   name: "TextInputLabel",
   slot: "Container",
+  skipSx: true,
 })({
   bottom: 0,
   left: 0,

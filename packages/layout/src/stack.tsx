@@ -64,6 +64,7 @@ const StackRoot = styled(RNView, {
 const StackItem = styled(RNView, {
   name: "Stack",
   slot: "Item",
+  skipSx: true,
 })<OwnerStateProps<Pick<StackProps, "direction" | "spacing">>>(
   ({ theme, ownerState }) => ({
     marginStart: theme.spacing(ownerState.spacing ?? 0),

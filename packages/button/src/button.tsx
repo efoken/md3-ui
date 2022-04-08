@@ -148,6 +148,7 @@ const ButtonRoot = styled(ButtonBase, {
 const ButtonContent = styled(TextStyleProvider, {
   name: "Button",
   slot: "Content",
+  skipSx: true,
 })<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(
   ({ theme, ownerState }) => ({
     ...(ownerState.variant === "elevated" && {
@@ -179,6 +180,7 @@ const ButtonContent = styled(TextStyleProvider, {
 const ButtonIcon = styled(RNView, {
   name: "Button",
   slot: "Icon",
+  skipSx: true,
 })<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ theme, ownerState }) => ({
   marginEnd: theme.spacing(1),
   marginStart: ownerState.variant === "text" ? 0 : -theme.spacing(1),
@@ -187,6 +189,7 @@ const ButtonIcon = styled(RNView, {
 const ButtonLabel = styled(Text, {
   name: "Button",
   slot: "Label",
+  skipSx: true,
 })(({ theme }) => ({
   ...theme.typescale["label-large"],
   textAlign: "center",

@@ -41,6 +41,7 @@ const ChipRoot = styled(ButtonBase, {
 const ChipIcon = styled(RNView, {
   name: "Chip",
   slot: "Icon",
+  skipSx: true,
 })<OwnerStateProps<Pick<ChipProps, "variant">>>(({ theme }) => ({
   marginEnd: theme.spacing(1),
   marginStart: -theme.spacing(1),
@@ -49,6 +50,7 @@ const ChipIcon = styled(RNView, {
 const ChipLabel = styled(Text, {
   name: "Chip",
   slot: "Label",
+  skipSx: true,
 })<OwnerStateProps<Pick<ChipProps, "variant">>>(({ theme, ownerState }) => ({
   ...theme.typescale["label-large"],
   color:

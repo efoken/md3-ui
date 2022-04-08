@@ -121,6 +121,7 @@ const ModalRoot = styled(RNView, {
 const ModalBackdrop = styled(Animated.View, {
   name: "Modal",
   slot: "Backdrop",
+  skipSx: true,
 })({
   backgroundColor: "rgba(0, 0, 0, 0.5)",
   height: "100%",

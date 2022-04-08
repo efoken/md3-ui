@@ -114,6 +114,7 @@ const ButtonBaseRoot = styled(RNPressable, {
 const ButtonBaseContainer = styled(RNView, {
   name: "ButtonBase",
   slot: "Container",
+  skipSx: true,
 })({
   backgroundColor: "rgba(255, 255, 255, 0)",
   overflow: "hidden",
@@ -122,6 +123,7 @@ const ButtonBaseContainer = styled(RNView, {
 const ButtonBaseHover = styled("span", {
   name: "ButtonBase",
   slot: "Hover",
+  skipSx: true,
 })({
   bottom: 0,
   left: 0,
@@ -135,11 +137,13 @@ const ButtonBaseHover = styled("span", {
 const ButtonBaseRippleContainer = styled("span", {
   name: "ButtonBase",
   slot: "RippleContainer",
+  skipSx: true,
 })()
 
 const ButtonBaseRipple = styled("span", {
   name: "ButtonBase",
   slot: "Ripple",
+  skipSx: true,
 })<
   OwnerStateProps<
     Required<
