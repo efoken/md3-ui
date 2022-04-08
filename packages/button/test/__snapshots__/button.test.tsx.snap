@@ -4,7 +4,7 @@ exports[`<Button /> should render 1`] = `
 <div
   class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-a95ihm md3-nhshwt"
+  data-media="md3-17h1dt4 md3-249f"
   role="button"
   tabindex="0"
 >
@@ -35,7 +35,7 @@ exports[`<Button /> should render a button with icon 1`] = `
 <div
   class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-a95ihm md3-nhshwt"
+  data-media="md3-17h1dt4 md3-249f"
   role="button"
   tabindex="0"
 >
@@ -77,7 +77,7 @@ exports[`<Button /> should render a filled button 1`] = `
 <div
   class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-15l9ap5 r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-1uu7n76 md3-1h0vom5"
+  data-media="md3-iwmwhq md3-11mp2qk"
   role="button"
   tabindex="0"
 >
@@ -138,7 +138,7 @@ exports[`<Button /> should render a tonal button 1`] = `
 <div
   class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-1uu7n76 md3-1h0vom5"
+  data-media="md3-iwmwhq md3-11mp2qk"
   role="button"
   tabindex="0"
 >
@@ -169,7 +169,7 @@ exports[`<Button /> should render an elevated button 1`] = `
 <div
   class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-a95ihm md3-nhshwt"
+  data-media="md3-17h1dt4 md3-249f"
   role="button"
   tabindex="0"
 >
@@ -200,7 +200,7 @@ exports[`<Button /> should render an outlined button 1`] = `
 <div
   class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1stjixc r-borderColor-1t01w60 r-borderRadius-y47klf r-borderWidth-rs99b7 r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-ju726h r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-1ly7fol"
+  data-media="md3-18rahmg"
   role="button"
   tabindex="0"
 >

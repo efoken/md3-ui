@@ -10,10 +10,12 @@ import {
 import { splitProps, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
+  NativeSyntheticEvent,
   Platform,
   Pressable as RNPressable,
   PressableProps as RNPressableProps,
   StyleProp,
+  TargetedEvent,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
@@ -42,16 +44,42 @@ export type ButtonBaseProps = Omit<
    * @default false
    */
   disableRipple?: boolean
+  /**
+   * @ignore
+   */
   focusColor?: string
-  /** @default 0.12 */
+  /**
+   * @ignore
+   */
   focusOpacity?: string
+  /**
+   * @ignore
+   */
   hoverColor?: string
-  /** @default 0.08 */
+  /**
+   * @ignore
+   */
   hoverOpacity?: number
+  /**
+   * Callback fired when the component is focused with a keyboard. We also
+   * trigger an `onFocus` callback.
+   */
+  onFocusVisible?: (event: NativeSyntheticEvent<TargetedEvent>) => void
+  /**
+   * @ignore
+   */
   pressedColor?: string
-  /** @default 0.12 */
+  /**
+   * @ignore
+   */
   pressedOpacity?: number
+  /**
+   * @ignore
+   */
   rippleColor?: string
+  /**
+   * @ignore
+   */
   style?: StyleProp<RNViewStyle>
   /**
    * Override or extend the styles applied to the component.
@@ -153,6 +181,9 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       hoverColor: hoverColorProp,
       hoverOpacity = 0.08,
       href,
+      onBlur,
+      onFocus,
+      onFocusVisible,
       onKeyDown,
       onKeyUp,
       onPress,
@@ -168,6 +199,12 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
 
     const rootRef = React.useRef<RNView>(null)
     const handleRef = useForkRef(rootRef, ref)
+
+    const [focusVisible, setFocusVisible] = React.useState(false)
+
+    if (disabled && focusVisible) {
+      setFocusVisible(false)
+    }
 
     const [ripples, setRipples] = React.useState<
       { id: number; ripple: React.ReactElement }[]
@@ -293,6 +330,32 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       ],
     )
 
+    const handleBlur = useEventCallback(
+      (event: NativeSyntheticEvent<TargetedEvent>) => {
+        setFocusVisible(false)
+        onBlur?.(event)
+      },
+    )
+
+    const handleFocus = useEventCallback(
+      (event: NativeSyntheticEvent<TargetedEvent>) => {
+        if (rootRef.current == null) {
+          // @ts-expect-error: fix for https://github.com/facebook/react/issues/7769
+          rootRef.current = event.currentTarget
+        }
+
+        if (
+          Platform.OS !== "web" ||
+          (event.target as unknown as Element).matches(":focus-visible")
+        ) {
+          setFocusVisible(true)
+          onFocusVisible?.(event)
+        }
+
+        onFocus?.(event)
+      },
+    )
+
     const isNonNativeButton = () => {
       const buttonEl = rootRef.current as HTMLElement | null
       return (
@@ -412,6 +475,8 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
             pressed && !disableRipple && { backgroundColor: underlayColor },
           ],
         })}
+        onBlur={handleBlur}
+        onFocus={handleFocus}
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         onPress={onPress}
@@ -423,8 +488,14 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
             {Platform.OS === "web" && (
               <ButtonBaseHover
                 style={{
-                  backgroundColor: focused ? focusColor : hoverColor,
-                  opacity: focused ? focusOpacity : hovered ? hoverOpacity : 0,
+                  backgroundColor:
+                    focused && focusVisible ? focusColor : hoverColor,
+                  opacity:
+                    focused && focusVisible
+                      ? focusOpacity
+                      : hovered
+                      ? hoverOpacity
+                      : 0,
                 }}
               />
             )}
