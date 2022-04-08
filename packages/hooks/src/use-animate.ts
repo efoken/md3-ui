@@ -1,5 +1,4 @@
 import * as React from "react"
-import { useCallback, useEffect } from "react"
 import { Animated, Platform } from "react-native"
 
 export interface UseAnimateProps
@@ -95,7 +94,7 @@ export function useAnimate({
   }
   const sequenceAnimation = Animated.sequence(sequence)
 
-  const interpolate = useCallback(
+  const interpolate = React.useCallback(
     ({
       inputRange,
       outputRange,
@@ -117,11 +116,11 @@ export function useAnimate({
       ? sequenceAnimation
       : Animated.loop(sequenceAnimation, { iterations })
 
-  const reset = useCallback(() => {
+  const reset = React.useCallback(() => {
     animation.reset()
   }, [animation])
 
-  const start = useCallback(
+  const start = React.useCallback(
     (next?: () => void) => {
       if (shouldReset) {
         animation.reset()
@@ -143,7 +142,7 @@ export function useAnimate({
     [animatedValue, animation, callback, delay, shouldReset],
   )
 
-  useEffect(() => {
+  React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
     if (animate && (animatedValue as any)._value !== toValue) {
       start()

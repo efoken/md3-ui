@@ -1,6 +1,5 @@
 import { Meta, Story } from "@storybook/react"
-import { TextProps } from "react-native"
-import { Stack, Text } from "../src"
+import { Stack, Text, TextProps } from "../src"
 
 export default {
   title: "Layout/Text",
