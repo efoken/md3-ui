@@ -24,8 +24,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/hooks": "^0.0.4",
-    "polished": "^4.2.2"
+    "@ctrl/tinycolor": "^3.4.0",
+    "@md3-ui/hooks": "^0.0.4"
   },
   "devDependencies": {
     "@types/react-native": "^0.67.3",
