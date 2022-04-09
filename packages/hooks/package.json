@@ -3,6 +3,18 @@
   "version": "0.0.3",
   "main": "dist/md3-ui-hooks.cjs.js",
   "license": "MIT",
+  "homepage": "https://eikefoken.com/md3-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/efoken/md3-ui",
+    "directory": "packages/hooks"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material you"
+  ],
   "files": [
     "dist",
     "src"
