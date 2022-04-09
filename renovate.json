@@ -5,8 +5,12 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
+      "matchDepTypes": ["peerDependencies"],
+      "rangeStrategy": "widen"
+    },
+    {
       "groupName": "React",
-      "matchPackageNames": ["react", "react-dom"]
+      "matchPackageNames": ["react", "react-dom", "react-is"]
     }
   ],
   "rangeStrategy": "bump"
