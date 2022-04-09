@@ -4,6 +4,7 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/efoken/md3-ui/blob/HEAD/LICENSE)
 [![npm latest package](https://img.shields.io/npm/v/@md3-ui/core/latest.svg)](https://www.npmjs.com/package/@md3-ui/core)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@md3-ui/core.svg)](https://bundlephobia.com/package/@md3-ui/core)
 
 </div>
 
