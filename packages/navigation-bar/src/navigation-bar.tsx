@@ -7,6 +7,7 @@ import {
 } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
+import { isFragment } from "react-is"
 import {
   GestureResponderEvent,
   View as RNView,
@@ -103,17 +104,33 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
       <NavigationBarContext.Provider value={context}>
         <NavigationBarRoot
           ref={ref}
-          style={[style, styles?.root, { paddingBottom: insets.bottom }]}
+          style={[
+            {
+              paddingBottom: insets.bottom,
+              paddingHorizontal: Math.max(insets.left, insets.right),
+            },
+            style,
+            styles?.root,
+          ]}
           {...props}
         >
-          {React.Children.map(children, (child, childIndex) => {
+          {React.Children.map(children, (child, index) => {
             if (!React.isValidElement(child)) {
               return null
             }
 
+            if (__DEV__ && isFragment(child)) {
+              console.error(
+                [
+                  "MD3-UI: The `NavigationBar` component doesn't accept a Fragment as a child.",
+                  "Consider providing an array instead.",
+                ].join("\n"),
+              )
+            }
+
             return React.cloneElement(child, {
               hideLabel: child.props.hideLabel ?? hideLabels,
-              value: child.props.value ?? childIndex,
+              value: child.props.value ?? index,
             })
           })}
         </NavigationBarRoot>

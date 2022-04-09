@@ -27,7 +27,8 @@
     "@md3-ui/button": "^0.0.3",
     "@md3-ui/layout": "^0.0.3",
     "@md3-ui/system": "^0.0.3",
-    "@md3-ui/utils": "^0.0.3"
+    "@md3-ui/utils": "^0.0.3",
+    "react-is": "^17.0.2"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",
@@ -41,6 +42,6 @@
     "@types/react-native": "^0.67.3",
     "react": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4",
-    "react-native-safe-area-context": "~3.3.2"
+    "react-native-safe-area-context": "^3.3.2 || ^4.2.4"
   }
 }
