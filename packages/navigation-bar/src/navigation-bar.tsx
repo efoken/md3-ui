@@ -12,6 +12,7 @@ import {
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { NavigationBarContext } from "./context"
 
 export interface NavigationBarTypeMap<
@@ -71,8 +72,8 @@ const NavigationBarRoot = styled(RNView, {
   backgroundColor: theme.color.surface,
   borderRadius: 0,
   flexDirection: "row",
-  height: 80,
   justifyContent: "center",
+  minHeight: 80,
   width: "100%",
 }))
 
@@ -91,6 +92,8 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
       props: inProps,
     })
 
+    const insets = useSafeAreaInsets()
+
     const context = React.useMemo(
       () => ({ onChange, value }),
       [onChange, value],
@@ -98,7 +101,11 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
 
     return (
       <NavigationBarContext.Provider value={context}>
-        <NavigationBarRoot ref={ref} style={[style, styles?.root]} {...props}>
+        <NavigationBarRoot
+          ref={ref}
+          style={[style, styles?.root, { paddingBottom: insets.bottom }]}
+          {...props}
+        >
           {React.Children.map(children, (child, childIndex) => {
             if (!React.isValidElement(child)) {
               return null

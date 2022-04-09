@@ -11,6 +11,7 @@ import { Platform, ViewStyle as RNViewStyle } from "react-native"
 import Svg, { SvgProps } from "react-native-svg"
 
 export interface IconProps extends SvgProps {
+  as?: React.ElementType
   children?: React.ReactElement
   /** @default "currentColor" */
   color?: string

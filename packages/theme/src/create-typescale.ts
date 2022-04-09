@@ -1,4 +1,4 @@
-import { TextStyle as RNTextStyle } from "react-native"
+import { Platform, TextStyle as RNTextStyle } from "react-native"
 import {
   MdSysTypescaleBodyLargeFamily,
   MdSysTypescaleBodyLargeWeight,
@@ -62,126 +62,282 @@ export interface Typescale {
   "body-small": TypescaleStyle
 }
 
+function getNativeFontName(fontFamily: string, fontWeight: string) {
+  return `${fontFamily}_${fontWeight}${
+    { "400": "Regular", "500": "Medium", "700": "Bold" }[fontWeight]
+  }`
+}
+
 export function createTypescale(typescale?: Partial<Typescale>): Typescale {
   return {
     "display-large": {
-      fontFamily: MdSysTypescaleDisplayLargeFamily,
       fontSize: 57,
-      fontWeight: MdSysTypescaleDisplayLargeWeight,
       letterSpacing: 0,
       lineHeight: 64,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleDisplayLargeFamily,
+            MdSysTypescaleDisplayLargeWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleDisplayLargeFamily,
+          fontWeight: MdSysTypescaleDisplayLargeWeight,
+        },
+      }),
       ...typescale?.["display-large"],
     },
     "display-medium": {
-      fontFamily: MdSysTypescaleDisplayMediumFamily,
       fontSize: 45,
-      fontWeight: MdSysTypescaleDisplayMediumWeight,
       letterSpacing: 0,
       lineHeight: 52,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleDisplayMediumFamily,
+            MdSysTypescaleDisplayMediumWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleDisplayMediumFamily,
+          fontWeight: MdSysTypescaleDisplayMediumWeight,
+        },
+      }),
       ...typescale?.["display-medium"],
     },
     "display-small": {
-      fontFamily: MdSysTypescaleDisplaySmallFamily,
       fontSize: 36,
-      fontWeight: MdSysTypescaleDisplaySmallWeight,
       letterSpacing: 0,
       lineHeight: 44,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleDisplaySmallFamily,
+            MdSysTypescaleDisplaySmallWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleDisplaySmallFamily,
+          fontWeight: MdSysTypescaleDisplaySmallWeight,
+        },
+      }),
       ...typescale?.["display-small"],
     },
     "headline-large": {
-      fontFamily: MdSysTypescaleHeadlineLargeFamily,
       fontSize: 32,
-      fontWeight: MdSysTypescaleHeadlineLargeWeight,
       letterSpacing: 0,
       lineHeight: 40,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleHeadlineLargeFamily,
+            MdSysTypescaleHeadlineLargeWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleHeadlineLargeFamily,
+          fontWeight: MdSysTypescaleHeadlineLargeWeight,
+        },
+      }),
       ...typescale?.["headline-large"],
     },
     "headline-medium": {
-      fontFamily: MdSysTypescaleHeadlineMediumFamily,
       fontSize: 28,
-      fontWeight: MdSysTypescaleHeadlineMediumWeight,
       letterSpacing: 0,
       lineHeight: 36,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleHeadlineMediumFamily,
+            MdSysTypescaleHeadlineMediumWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleHeadlineMediumFamily,
+          fontWeight: MdSysTypescaleHeadlineMediumWeight,
+        },
+      }),
       ...typescale?.["headline-medium"],
     },
     "headline-small": {
-      fontFamily: MdSysTypescaleHeadlineSmallFamily,
       fontSize: 24,
-      fontWeight: MdSysTypescaleHeadlineSmallWeight,
       letterSpacing: 0,
       lineHeight: 32,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleHeadlineSmallFamily,
+            MdSysTypescaleHeadlineSmallWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleHeadlineSmallFamily,
+          fontWeight: MdSysTypescaleHeadlineSmallWeight,
+        },
+      }),
       ...typescale?.["headline-small"],
     },
     "title-large": {
-      fontFamily: MdSysTypescaleTitleLargeFamily,
       fontSize: 22,
-      fontWeight: MdSysTypescaleTitleLargeWeight,
       letterSpacing: 0,
       lineHeight: 28,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleTitleLargeFamily,
+            MdSysTypescaleTitleLargeWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleTitleLargeFamily,
+          fontWeight: MdSysTypescaleTitleLargeWeight,
+        },
+      }),
       ...typescale?.["title-large"],
     },
     "title-medium": {
-      fontFamily: MdSysTypescaleTitleMediumFamily,
       fontSize: 16,
-      fontWeight: MdSysTypescaleTitleMediumWeight,
       letterSpacing: 0.15,
       lineHeight: 24,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleTitleMediumFamily,
+            MdSysTypescaleTitleMediumWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleTitleMediumFamily,
+          fontWeight: MdSysTypescaleTitleMediumWeight,
+        },
+      }),
       ...typescale?.["title-medium"],
     },
     "title-small": {
-      fontFamily: MdSysTypescaleTitleSmallFamily,
       fontSize: 14,
-      fontWeight: MdSysTypescaleTitleSmallWeight,
       letterSpacing: 0.1,
       lineHeight: 20,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleTitleSmallFamily,
+            MdSysTypescaleTitleSmallWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleTitleSmallFamily,
+          fontWeight: MdSysTypescaleTitleSmallWeight,
+        },
+      }),
       ...typescale?.["title-small"],
     },
     "label-large": {
-      fontFamily: MdSysTypescaleLabelLargeFamily,
       fontSize: 14,
-      fontWeight: MdSysTypescaleLabelLargeWeight,
       letterSpacing: 0.1,
       lineHeight: 20,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleLabelLargeFamily,
+            MdSysTypescaleLabelLargeWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleLabelLargeFamily,
+          fontWeight: MdSysTypescaleLabelLargeWeight,
+        },
+      }),
       ...typescale?.["label-large"],
     },
     "label-medium": {
-      fontFamily: MdSysTypescaleLabelMediumFamily,
       fontSize: 12,
-      fontWeight: MdSysTypescaleLabelMediumWeight,
       letterSpacing: 0.5,
       lineHeight: 16,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleLabelMediumFamily,
+            MdSysTypescaleLabelMediumWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleLabelMediumFamily,
+          fontWeight: MdSysTypescaleLabelMediumWeight,
+        },
+      }),
       ...typescale?.["label-medium"],
     },
     "label-small": {
-      fontFamily: MdSysTypescaleLabelSmallFamily,
       fontSize: 11,
-      fontWeight: MdSysTypescaleLabelSmallWeight,
       letterSpacing: 0.5,
       lineHeight: 16,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleLabelSmallFamily,
+            MdSysTypescaleLabelSmallWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleLabelSmallFamily,
+          fontWeight: MdSysTypescaleLabelSmallWeight,
+        },
+      }),
       ...typescale?.["label-small"],
     },
     "body-large": {
-      fontFamily: MdSysTypescaleBodyLargeFamily,
       fontSize: 16,
-      fontWeight: MdSysTypescaleBodyLargeWeight,
       letterSpacing: 0.25,
       lineHeight: 24,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleBodyLargeFamily,
+            MdSysTypescaleBodyLargeWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleBodyLargeFamily,
+          fontWeight: MdSysTypescaleBodyLargeWeight,
+        },
+      }),
       ...typescale?.["body-large"],
     },
     "body-medium": {
-      fontFamily: MdSysTypescaleBodyMediumFamily,
       fontSize: 14,
-      fontWeight: MdSysTypescaleBodyMediumWeight,
       letterSpacing: 0.25,
       lineHeight: 20,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleBodyMediumFamily,
+            MdSysTypescaleBodyMediumWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleBodyMediumFamily,
+          fontWeight: MdSysTypescaleBodyMediumWeight,
+        },
+      }),
       ...typescale?.["body-medium"],
     },
     "body-small": {
-      fontFamily: MdSysTypescaleBodySmallFamily,
       fontSize: 12,
-      fontWeight: MdSysTypescaleBodySmallWeight,
       letterSpacing: 0.4,
       lineHeight: 16,
+      ...Platform.select({
+        default: {
+          fontFamily: getNativeFontName(
+            MdSysTypescaleBodySmallFamily,
+            MdSysTypescaleBodySmallWeight,
+          ),
+        },
+        web: {
+          fontFamily: MdSysTypescaleBodySmallFamily,
+          fontWeight: MdSysTypescaleBodySmallWeight,
+        },
+      }),
       ...typescale?.["body-small"],
     },
   }

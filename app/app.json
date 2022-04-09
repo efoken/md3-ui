@@ -2,7 +2,7 @@
   "expo": {
     "name": "md3-ui-app",
     "slug": "md3-ui-app",
-    "version": "0.1.2",
+    "version": "0.0.3",
     "owner": "efoken",
     "assetBundlePatterns": ["**/*"]
   }
