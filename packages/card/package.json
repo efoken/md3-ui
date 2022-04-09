@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/card",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/md3-ui-card.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
@@ -24,8 +24,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/system": "^0.0.4",
-    "@md3-ui/utils": "^0.0.4"
+    "@md3-ui/system": "^0.0.5",
+    "@md3-ui/utils": "^0.0.5"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",

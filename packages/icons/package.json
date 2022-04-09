@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/icons",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "dist/md3-ui-icons.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
@@ -25,7 +25,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/icon": "^0.0.4"
+    "@md3-ui/icon": "^0.0.5"
   },
   "devDependencies": {
     "@svgr/babel-preset": "^6.2.0",
