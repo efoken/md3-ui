@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/theme",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "dist/md3-ui-theme.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
@@ -24,7 +24,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/hooks": "^0.0.3",
+    "@md3-ui/hooks": "^0.0.4",
     "polished": "^4.2.2"
   },
   "devDependencies": {

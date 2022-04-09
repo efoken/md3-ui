@@ -1,10 +1,10 @@
 {
   "name": "@md3-ui/test-utils",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "main": "src/index.tsx",
   "dependencies": {
-    "@md3-ui/core": "^0.0.3",
+    "@md3-ui/core": "^0.0.4",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.4"
   },
