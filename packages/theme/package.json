@@ -24,15 +24,15 @@
     "access": "public"
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^3.4.0",
+    "@ctrl/tinycolor": "^3.4.1",
     "@md3-ui/hooks": "^0.0.5"
   },
   "devDependencies": {
-    "@types/react-native": "^0.67.3",
+    "@types/react-native": "^0.67.4",
     "react-native": "^0.68.0"
   },
   "peerDependencies": {
-    "@types/react-native": "^0.67.3",
+    "@types/react-native": "^0.67.4",
     "react-native": ">=0.67.4"
   }
 }
