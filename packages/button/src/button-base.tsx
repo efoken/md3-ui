@@ -220,6 +220,9 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         "backgroundColor",
         "borderRadius",
         "bottom",
+        "flexBasis",
+        "flexGrow",
+        "flexShrink",
         "height",
         "left",
         "margin",
@@ -409,6 +412,10 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       }
     })
 
+    const handlePressOut = () => {
+      setFocusVisible(false)
+    }
+
     React.useEffect(() => {
       const currentRef = rootRef.current as HTMLDivElement | null
 
@@ -439,7 +446,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
             ? {}
             : {
                 borderless: true,
-                color: pressedColor,
+                color: theme.utils.rgba(pressedColor, pressedOpacity),
               }
         }
         disabled={disabled}
@@ -484,6 +491,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         onKeyDown={handleKeyDown}
         onKeyUp={handleKeyUp}
         onPress={onPress}
+        onPressOut={handlePressOut}
         {...props}
       >
         {({ hovered, focused }) => (
