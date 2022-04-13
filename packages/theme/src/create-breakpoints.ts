@@ -24,7 +24,7 @@ export function createBreakpoints(breakpoints?: any): Breakpoints {
       key === "medium"
         ? // Phones in landscape mode still use `compact`
           // See: https://m3.material.io/foundations/adaptive-design/large-screens/overview
-          `@media (min-width: ${values[key]}px) and (orientation: portrait)`
+          `@media (min-width: ${values[key]}px)`
         : `@media (min-width: ${values[key]}px)`,
     values,
   }

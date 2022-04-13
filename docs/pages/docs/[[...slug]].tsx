@@ -1,10 +1,28 @@
-import { Box, Text } from "@md3-ui/core"
 import { allDocs, Doc } from "contentlayer/generated"
 import { GetStaticPaths, GetStaticProps, NextPage } from "next"
 import { useMDXComponent } from "next-contentlayer/hooks"
 import Head from "next/head"
-import { Layout } from "../../src/layout"
+import componentsSidebar from "../../configs/components-sidebar.json"
+import { PageContainer } from "../../src/components/page-container"
+import { Sidebar } from "../../src/components/sidebar"
+import { Layout } from "../../src/layouts/layout"
 import { MDXComponents } from "../../src/mdx-components"
+
+function getRoutes(slug: string) {
+  if (slug === "/") {
+    return componentsSidebar.routes
+  }
+
+  const configMap = {
+    "/docs/components": componentsSidebar,
+    "/docs/styles": { routes: [] },
+  }
+
+  const [, sidebar] =
+    Object.entries(configMap).find(([path]) => slug.startsWith(path)) ?? []
+
+  return sidebar?.routes ?? []
+}
 
 const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
   const MDXComponent = useMDXComponent(doc.body.code)
@@ -14,10 +32,15 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
       <Head>
         <title>{doc.title}</title>
       </Head>
-      <Box sx={{ width: "100%", maxWidth: 1488, padding: 9, marginX: "auto" }}>
-        <Text variant="display-large">{doc.title}</Text>
+      <PageContainer
+        frontMatter={{
+          description: doc.description,
+          title: doc.title,
+        }}
+        sidebar={<Sidebar routes={getRoutes("/docs/components")} />}
+      >
         <MDXComponent components={MDXComponents} />
-      </Box>
+      </PageContainer>
     </Layout>
   )
 }

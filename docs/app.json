@@ -1,3 +1,7 @@
 {
-  "name": "md3-ui"
+  "name": "md3-ui",
+  "seo": {
+    "title": "MD3-UI",
+    "titleTemplate": "%s - MD3-UI"
+  }
 }

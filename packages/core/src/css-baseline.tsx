@@ -29,6 +29,9 @@ export const CSSBaseline: React.VFC = () => (
         lineHeight: `${theme.typescale["body-medium"].lineHeight}px`,
         margin: 0, // Remove the margin in all browsers.
       },
+      "h1, h2, h3, h4, h5, h6": {
+        margin: 0,
+      },
     })}
   />
 )

@@ -2,7 +2,7 @@ import { Box, Grid, Link, Text } from "@md3-ui/core"
 import { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
-import { Layout } from "../src/layout"
+import { Layout } from "../src/layouts/layout"
 
 interface IntroductionCardProps {
   copy: string
@@ -24,7 +24,7 @@ export const IntroductionCard: React.VFC<IntroductionCardProps> = ({
         <Text
           color="on-surface-variant"
           variant="headline-small"
-          style={{ marginBottom: 14, marginTop: 24 }}
+          sx={{ mb: 1.75, mt: 3 }}
         >
           {copy}
         </Text>
@@ -72,7 +72,7 @@ const Home: NextPage = () => (
     </Head>
 
     <Box sx={{ bgColor: "primary" }}>
-      <Box sx={{ maxWidth: 1488, padding: 9 }}>
+      <Box sx={{ maxWidth: 1488, mx: "auto", p: 9 }}>
         <svg
           width="40"
           height="40"
@@ -108,10 +108,7 @@ const Home: NextPage = () => (
       </Box>
     </Box>
 
-    <Box
-      sx={{ maxWidth: 1488, padding: 9 }}
-      style={{ marginHorizontal: "auto" }}
-    >
+    <Box sx={{ maxWidth: 1488, mx: "auto", p: 9 }}>
       <IntroductionCard
         headline="Guidance"
         copy={`Material.io supports this design kit with documentation and guidance for how to use the components and styles.

@@ -1,0 +1,83 @@
+{
+  "routes": [
+    {
+      "title": "Getting started",
+      "heading": true
+    },
+    {
+      "title": "Styles",
+      "heading": true,
+      "routes": [
+        {
+          "title": "Colors",
+          "path": "/docs/styles/colors"
+        },
+        {
+          "title": "Elevation",
+          "path": "/docs/styles/elevation"
+        },
+        {
+          "title": "Typography",
+          "path": "/docs/styles/typography"
+        }
+      ]
+    },
+    {
+      "title": "Components",
+      "heading": true,
+      "routes": [
+        {
+          "title": "Buttons",
+          "path": "/docs/components/buttons",
+          "open": false,
+          "routes": [
+            {
+              "title": "Common buttons",
+              "path": "/docs/components/buttons"
+            },
+            {
+              "title": "FAB",
+              "path": "/docs/components/fab"
+            },
+            {
+              "title": "Extended FAB",
+              "path": "/docs/components/extended-fab"
+            }
+          ]
+        },
+        {
+          "title": "Cards",
+          "path": "/docs/components/cards"
+        },
+        {
+          "title": "Chips",
+          "path": "/docs/components/chips"
+        },
+        {
+          "title": "Dialogs",
+          "path": "/docs/components/dialogs"
+        },
+        {
+          "title": "Menus",
+          "path": "/docs/components/menus"
+        },
+        {
+          "title": "Navigation bar",
+          "path": "/docs/components/navigation-bar"
+        },
+        {
+          "title": "Navigation drawer",
+          "path": "/docs/components/navigation-drawer"
+        },
+        {
+          "title": "Navigation rail",
+          "path": "/docs/components/navigation-rail"
+        },
+        {
+          "title": "Top app bar",
+          "path": "/docs/components/top-app-bar"
+        }
+      ]
+    }
+  ]
+}

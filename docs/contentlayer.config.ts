@@ -13,6 +13,11 @@ export const Doc = defineDocumentType(() => ({
       description: "The title of the doc",
       required: true,
     },
+    description: {
+      type: "string",
+      description: "A short description of the doc",
+      required: true,
+    },
   },
   computedFields: {
     url: {
