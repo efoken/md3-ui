@@ -3,6 +3,7 @@ import { ElevationProps } from "./types"
 
 const elevationRaw = style({
   prop: "elevation",
+  styleProp: false,
   themeKey: "elevation",
 })
 

@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import { capitalize, get } from "@md3-ui/utils"
+import { get } from "@md3-ui/utils"
 import { handleBreakpoints } from "./system/breakpoints"
 import { RNStyle } from "./types"
 import { merge } from "./utils"
@@ -36,9 +36,12 @@ export interface StyleOptions<PropKey> {
   transform?: (cssValue: any) => StyleValue
 }
 
-export function style<PropKey extends string>(options: StyleOptions<PropKey>) {
-  const { prop, styleProp = prop, themeKey, transform } = options
-
+export function style<PropKey extends string>({
+  prop,
+  styleProp = prop,
+  themeKey,
+  transform,
+}: StyleOptions<PropKey>) {
   const fn = ({ theme, ...props }: any) => {
     if (props[prop] == null) {
       return null
@@ -48,19 +51,19 @@ export function style<PropKey extends string>(options: StyleOptions<PropKey>) {
     const themeMapping = get(theme, themeKey ?? "", {})
 
     const styleFromPropValue = (propValueFinal?: StyleValue) => {
-      let value = getValue(themeMapping, transform, propValueFinal)
+      const value = getValue(themeMapping, transform, propValueFinal)
 
-      if (propValueFinal === value && typeof propValueFinal === "string") {
-        // Haven't found value
-        value = getValue(
-          themeMapping,
-          transform,
-          `${prop}${
-            propValueFinal === "default" ? "" : capitalize(propValueFinal)
-          }`,
-          propValueFinal,
-        )
-      }
+      // if (propValueFinal === value && typeof propValueFinal === "string") {
+      //   // Haven't found value
+      //   value = getValue(
+      //     themeMapping,
+      //     transform,
+      //     `${prop}${
+      //       propValueFinal === "default" ? "" : capitalize(propValueFinal)
+      //     }`,
+      //     propValueFinal,
+      //   )
+      // }
 
       return styleProp === false
         ? (value as RNStyle)

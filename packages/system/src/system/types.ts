@@ -13,21 +13,35 @@ export interface BackgroundProps {
 
 export interface BorderProps {
   borderStyle?: RNViewStyle["borderStyle"]
-  borderWidth?: RNViewStyle["borderWidth"]
-  borderRadius?: number
-  borderTopColor?: string
-  borderTopRadius?: number
-  borderTopWidth?: number
-  borderRightColor?: string
-  borderRightRadius?: number
-  borderRightWidth?: number
-  borderBottomColor?: string
-  borderBottomRadius?: number
-  borderBottomWidth?: number
   borderColor?: string
+  borderTopColor?: string
+  borderRightColor?: string
+  borderBottomColor?: string
   borderLeftColor?: string
+  borderStartColor?: string
+  borderEndColor?: string
+  borderRadius?: number
+  borderTopRadius?: number
+  borderRightRadius?: number
+  borderBottomRadius?: number
   borderLeftRadius?: number
+  borderStartRadius?: number
+  borderEndRadius?: number
+  borderTopLeftRadius?: number
+  borderTopRightRadius?: number
+  borderTopStartRadius?: number
+  borderTopEndRadius?: number
+  borderBottomLeftRadius?: number
+  borderBottomRightRadius?: number
+  borderBottomStartRadius?: number
+  borderBottomEndRadius?: number
+  borderWidth?: RNViewStyle["borderWidth"]
+  borderTopWidth?: number
+  borderRightWidth?: number
+  borderBottomWidth?: number
   borderLeftWidth?: number
+  borderStartWidth?: number
+  borderEndWidth?: number
 }
 
 export interface DisplayProps {
@@ -87,6 +101,15 @@ export interface SpacingProps {
   paddingVertical?: number
   paddingX?: number
   paddingY?: number
+  p?: number
+  pt?: number
+  pr?: number
+  pb?: number
+  pl?: number
+  ps?: number
+  pe?: number
+  px?: number
+  py?: number
   margin?: number | "auto"
   marginTop?: number | "auto"
   marginRight?: number | "auto"
@@ -98,6 +121,15 @@ export interface SpacingProps {
   marginVertical?: number | "auto"
   marginX?: number | "auto"
   marginY?: number | "auto"
+  m?: number | "auto"
+  mt?: number | "auto"
+  mr?: number | "auto"
+  mb?: number | "auto"
+  ml?: number | "auto"
+  ms?: number | "auto"
+  me?: number | "auto"
+  mx?: number | "auto"
+  my?: number | "auto"
 }
 
 export interface TransformProps {

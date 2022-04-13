@@ -8,12 +8,34 @@ import * as React from "react"
 import { Platform, StyleProp, TextStyle as RNTextStyle } from "react-native"
 import { StyleSheet } from "./style-sheet"
 
+const TEXT_STYLE_KEYS = new Set([
+  "color",
+  "fontFamily",
+  "fontSize",
+  "fontStyle",
+  "fontVariant",
+  "fontWeight",
+  "includeFontPadding",
+  "letterSpacing",
+  "lineHeight",
+  "textAlign",
+  "textAlignVertical",
+  "textDecorationColor",
+  "textDecorationLine",
+  "textDecorationStyle",
+  "textShadowColor",
+  "textShadowOffset",
+  "textShadowRadius",
+  "textTransform",
+  "writingDirection",
+])
+
 export interface ThemeProviderProps {
   theme?: Partial<Theme>
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => (
-  <EmotionThemeProvider {...props} theme={theme} />
+  <EmotionThemeProvider theme={theme} {...props} />
 )
 
 function useThemeWithoutDefault(defaultTheme?: Theme) {
@@ -27,7 +49,7 @@ export function useTheme(defaultTheme: Theme = theme) {
   return useThemeWithoutDefault(defaultTheme)
 }
 
-const TextStyleContext = React.createContext<RNTextStyle>(undefined as any)
+const TextStyleContext = React.createContext<RNTextStyle>({})
 
 export interface TextStyleProviderProps {
   style?: StyleProp<RNTextStyle>
@@ -47,10 +69,7 @@ export const TextStyleProvider: React.FC<TextStyleProviderProps> = ({
       {Platform.OS === "web" ? (
         <div
           style={{
-            ...objectFilter(
-              style,
-              (v, k) => k === "color" || k === "fontFamily" || k === "fontSize",
-            ),
+            ...objectFilter(style, (value, key) => TEXT_STYLE_KEYS.has(key)),
             display: "contents",
           }}
         >

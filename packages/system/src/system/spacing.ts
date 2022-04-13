@@ -61,6 +61,60 @@ const paddingY = style({
   themeKey: "spacing",
 })
 
+const p = style({
+  prop: "p",
+  styleProp: ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft"],
+  themeKey: "spacing",
+})
+
+const pt = style({
+  prop: "pt",
+  styleProp: "paddingTop",
+  themeKey: "spacing",
+})
+
+const pr = style({
+  prop: "pr",
+  styleProp: "paddingRight",
+  themeKey: "spacing",
+})
+
+const pb = style({
+  prop: "pb",
+  styleProp: "paddingBottom",
+  themeKey: "spacing",
+})
+
+const pl = style({
+  prop: "pl",
+  styleProp: "paddingLeft",
+  themeKey: "spacing",
+})
+
+const ps = style({
+  prop: "ps",
+  styleProp: "paddingStart",
+  themeKey: "spacing",
+})
+
+const pe = style({
+  prop: "pe",
+  styleProp: "paddingEnd",
+  themeKey: "spacing",
+})
+
+const px = style({
+  prop: "px",
+  styleProp: ["paddingLeft", "paddingRight"],
+  themeKey: "spacing",
+})
+
+const py = style({
+  prop: "py",
+  styleProp: ["paddingTop", "paddingBottom"],
+  themeKey: "spacing",
+})
+
 const margin = style({
   prop: "margin",
   styleProp: ["marginTop", "marginRight", "marginBottom", "marginLeft"],
@@ -121,6 +175,60 @@ const marginY = style({
   themeKey: "spacing",
 })
 
+const m = style({
+  prop: "m",
+  styleProp: ["marginTop", "marginRight", "marginBottom", "marginLeft"],
+  themeKey: "spacing",
+})
+
+const mt = style({
+  prop: "mt",
+  styleProp: "marginTop",
+  themeKey: "spacing",
+})
+
+const mr = style({
+  prop: "mr",
+  styleProp: "marginRight",
+  themeKey: "spacing",
+})
+
+const mb = style({
+  prop: "mb",
+  styleProp: "marginBottom",
+  themeKey: "spacing",
+})
+
+const ml = style({
+  prop: "ml",
+  styleProp: "marginLeft",
+  themeKey: "spacing",
+})
+
+const ms = style({
+  prop: "ms",
+  styleProp: "marginStart",
+  themeKey: "spacing",
+})
+
+const me = style({
+  prop: "me",
+  styleProp: "marginEnd",
+  themeKey: "spacing",
+})
+
+const mx = style({
+  prop: "mx",
+  styleProp: ["marginLeft", "marginRight"],
+  themeKey: "spacing",
+})
+
+const my = style({
+  prop: "my",
+  styleProp: ["marginTop", "marginBottom"],
+  themeKey: "spacing",
+})
+
 export const spacing = compose<keyof SpacingProps>(
   padding,
   paddingTop,
@@ -133,6 +241,15 @@ export const spacing = compose<keyof SpacingProps>(
   paddingVertical,
   paddingX,
   paddingY,
+  p,
+  pt,
+  pr,
+  pb,
+  pl,
+  ps,
+  pe,
+  px,
+  py,
   margin,
   marginTop,
   marginRight,
@@ -144,4 +261,13 @@ export const spacing = compose<keyof SpacingProps>(
   marginVertical,
   marginX,
   marginY,
+  m,
+  mt,
+  mr,
+  mb,
+  ml,
+  ms,
+  me,
+  mx,
+  my,
 )
