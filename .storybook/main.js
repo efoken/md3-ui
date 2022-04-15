@@ -2,7 +2,13 @@ module.exports = {
   stories: ["../packages/**/*.stories.tsx"],
   addons: ["@storybook/addon-a11y", "@storybook/addon-essentials"],
   core: {
-    builder: "webpack5",
+    builder: {
+      name: "webpack5",
+      options: {
+        lazyCompilation: true,
+        fsCache: true,
+      },
+    },
   },
   features: {
     babelModeV7: true,
