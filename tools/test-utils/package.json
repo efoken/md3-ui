@@ -6,13 +6,13 @@
   "dependencies": {
     "@md3-ui/core": "^0.0.5",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.4"
+    "@testing-library/react": "^12.1.5"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",
     "@types/react-native": "^0.67.4",
     "react": "^17.0.2",
-    "react-native": "^0.68.0"
+    "react-native": "^0.68.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.44",

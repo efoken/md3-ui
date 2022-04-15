@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@types/react-native": "^0.67.4",
-    "react-native": "^0.68.0"
+    "react-native": "^0.68.1"
   },
   "peerDependencies": {
     "@types/react-native": "^0.67.4",
