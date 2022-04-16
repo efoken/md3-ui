@@ -35,7 +35,7 @@ export interface ThemeProviderProps {
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => (
-  <EmotionThemeProvider theme={theme} {...props} />
+  <EmotionThemeProvider {...props} theme={theme} />
 )
 
 function useThemeWithoutDefault(defaultTheme?: Theme) {

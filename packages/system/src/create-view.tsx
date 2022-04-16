@@ -9,8 +9,14 @@ export interface ViewProps extends RNViewProps {
   as?: React.ElementType
 }
 
-export function createView({ defaultTheme }: { defaultTheme?: Theme } = {}) {
-  const ViewRoot = styled(RNView)(styleFunctionSx)
+export function createView({
+  defaultTheme,
+  name,
+}: {
+  defaultTheme?: Theme
+  name?: string
+} = {}) {
+  const ViewRoot = styled(RNView, { name, slot: "Root" })(styleFunctionSx)
 
   const View = React.forwardRef<RNView, ViewProps>((inProps, ref) => {
     const { as = RNView, ...props } = extendSxProp(inProps)

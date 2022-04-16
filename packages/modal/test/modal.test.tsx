@@ -1,7 +1,7 @@
 import { render, screen } from "@md3-ui/test-utils"
 import * as React from "react"
 import { Text, View } from "react-native"
-import { Modal } from "../src"
+import { Modal } from "../src/modal"
 
 describe("<Modal />", () => {
   let container: HTMLDivElement

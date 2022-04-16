@@ -1,9 +1,20 @@
 import { Icon } from "@md3-ui/icon"
-import { render, screen } from "@md3-ui/test-utils"
+import { describeConformance, render, screen } from "@md3-ui/test-utils"
 import * as React from "react"
-import { IconButton } from "../src"
+import { IconButton } from "../src/icon-button"
 
 describe("<IconButton />", () => {
+  describeConformance(
+    <IconButton>
+      <Icon testID="icon" />
+    </IconButton>,
+    () => ({
+      inheritComponent: "div",
+      refInstanceof: window.HTMLDivElement,
+      skip: ["asProp"],
+    }),
+  )
+
   it("should render", () => {
     render(
       <IconButton>
@@ -41,6 +52,32 @@ describe("<IconButton />", () => {
     expect(
       button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
     ).toBeNull()
+  })
+
+  describe("prop: edge", () => {
+    it("should render the correct size", () => {
+      const { rerender } = render(
+        <IconButton size="small">
+          <Icon />
+        </IconButton>,
+      )
+      const button = screen.getByRole("button")
+      expect(button).toMatchSnapshot()
+
+      rerender(
+        <IconButton size="medium">
+          <Icon />
+        </IconButton>,
+      )
+      expect(button).toMatchSnapshot()
+
+      rerender(
+        <IconButton size="large">
+          <Icon />
+        </IconButton>,
+      )
+      expect(button).toMatchSnapshot()
+    })
   })
 
   describe("prop: edge", () => {

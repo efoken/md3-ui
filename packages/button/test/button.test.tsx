@@ -1,8 +1,14 @@
-import { render, screen } from "@md3-ui/test-utils"
+import { describeConformance, render, screen } from "@md3-ui/test-utils"
 import * as React from "react"
-import { Button } from "../src"
+import { Button } from "../src/button"
 
 describe("<Button />", () => {
+  describeConformance(<Button>Conformance</Button>, () => ({
+    inheritComponent: "div",
+    refInstanceof: window.HTMLDivElement,
+    skip: ["asProp"],
+  }))
+
   it("should render", () => {
     render(<Button>Hello World</Button>)
     const button = screen.getByRole("button")

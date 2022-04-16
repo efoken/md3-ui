@@ -30,7 +30,9 @@ export type BoxProps<
   P = {},
 > = OverrideProps<BoxTypeMap<P, C>, C>
 
-export const Box = createView() as OverridableComponent<BoxTypeMap>
+export const Box = createView({
+  name: "Box",
+}) as OverridableComponent<BoxTypeMap>
 
 if (__DEV__) {
   Box.displayName = "Box"

@@ -12,7 +12,7 @@ exports[`<Button /> should render 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -54,7 +54,7 @@ exports[`<Button /> should render a button with icon 1`] = `
       </span>
     </div>
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -85,7 +85,7 @@ exports[`<Button /> should render a filled button 1`] = `
     style="color: rgb(255, 255, 255); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(255, 255, 255);"
@@ -115,7 +115,7 @@ exports[`<Button /> should render a text button 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -146,7 +146,7 @@ exports[`<Button /> should render a tonal button 1`] = `
     style="color: rgb(29, 25, 43); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(29, 25, 43);"
@@ -177,7 +177,7 @@ exports[`<Button /> should render an elevated button 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -208,7 +208,7 @@ exports[`<Button /> should render an outlined button 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-vnw8o6 r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
