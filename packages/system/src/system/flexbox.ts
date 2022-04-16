@@ -41,7 +41,7 @@ const justifyContent = style({
   prop: "justifyContent",
 })
 
-export const flexbox = compose<keyof FlexboxProps>(
+export const flexbox = compose<FlexboxProps>(
   alignContent,
   alignItems,
   alignSelf,

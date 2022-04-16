@@ -8,7 +8,8 @@ import { position } from "./system/position"
 import { sizing } from "./system/sizing"
 import { spacing } from "./system/spacing"
 import { transform } from "./system/transform"
-import { typescale } from "./system/typescale"
+import { transition } from "./system/transition"
+import { typography } from "./system/typography"
 
 const filterPropsMapping = {
   background: background.filterProps,
@@ -20,7 +21,8 @@ const filterPropsMapping = {
   sizing: sizing.filterProps,
   spacing: spacing.filterProps,
   transform: transform.filterProps,
-  typescale: typescale.filterProps,
+  transition: transition.filterProps,
+  typography: typography.filterProps,
 }
 
 const styleFunctionMapping = {
@@ -33,7 +35,8 @@ const styleFunctionMapping = {
   sizing,
   spacing,
   transform,
-  typescale,
+  transition,
+  typography,
 }
 
 export const propToStyleFunction = Object.keys(filterPropsMapping).reduce(

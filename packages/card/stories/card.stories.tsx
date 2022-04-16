@@ -12,7 +12,7 @@ export default {
 export const Elevated: Story<CardProps> = (args) => (
   <Card {...args}>
     <CardContent>
-      <Text color="on-surface" variant="title-large" sx={{ marginBottom: 1 }}>
+      <Text color="on-surface" variant="title-large" sx={{ mb: 1 }}>
         Play
         <br />
         relaxing songs
@@ -37,7 +37,7 @@ Elevated.args = {
 export const Filled: Story<CardProps> = (args) => (
   <Card {...args}>
     <CardContent>
-      <Text color="on-surface" variant="title-large" sx={{ marginBottom: 1 }}>
+      <Text color="on-surface" variant="title-large" sx={{ mb: 1 }}>
         Play
         <br />
         relaxing songs
@@ -64,7 +64,7 @@ Filled.args = {
 export const Outlined: Story<CardProps> = (args) => (
   <Card {...args}>
     <CardContent>
-      <Text color="on-surface" variant="title-large" sx={{ marginBottom: 1 }}>
+      <Text color="on-surface" variant="title-large" sx={{ mb: 1 }}>
         Play
         <br />
         relaxing songs
@@ -95,7 +95,7 @@ export const Media: Story<CardProps> = (args) => (
       sx={{ height: 140 }}
     />
     <CardContent>
-      <Text color="on-surface" variant="title-large" sx={{ marginBottom: 1 }}>
+      <Text color="on-surface" variant="title-large" sx={{ mb: 1 }}>
         Glass Souls&apos; World Tour
       </Text>
       <Text color="on-surface-variant" variant="body-medium">

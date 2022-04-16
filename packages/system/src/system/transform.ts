@@ -5,4 +5,4 @@ const transformRaw = style({
   prop: "transform",
 })
 
-export const transform = compose<keyof TransformProps>(transformRaw)
+export const transform = compose<TransformProps>(transformRaw)

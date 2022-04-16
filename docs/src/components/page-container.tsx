@@ -36,7 +36,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
       <SEO description={frontMatter.description} title={frontMatter.title} />
       <Box sx={{ flexDirection: "row" }}>
         {sidebar}
-        <Box style={{ marginRight: -268, width: "calc(100% - 268px)" }}>
+        <Box sx={{ mr: "-268px", width: "calc(100% - 268px)" }}>
           <Box sx={{ maxWidth: 1280, mx: "auto", my: 3, width: "100%" }}>
             <Box as="main" aria-label="Main content">
               <Box

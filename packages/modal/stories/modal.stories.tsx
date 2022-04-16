@@ -10,21 +10,17 @@ export default {
 } as Meta<ModalProps>
 
 const style = {
-  position: "absolute" as const,
-  top: "50%",
-  left: "50%",
-  // transform: [
-  //   { translateX: "-50%" as any },
-  //   { translateY: "-50%" as any },
-  // ],
-  width: 400,
-  bgColor: "background",
-  borderWidth: 2,
+  bgColor: "background" as const,
   borderColor: "#000",
-  elevation: 24,
+  borderWidth: 2,
+  elevation: "level5" as const,
+  left: "50%",
+  paddingBottom: 4,
   paddingTop: 2,
   paddingX: 4,
-  paddingBottom: 4,
+  position: "absolute" as const,
+  top: "50%",
+  width: 400,
 }
 
 export const Basic: Story<ModalProps> = ({ open: openArg, ...args }) => {
@@ -97,7 +93,7 @@ export const NestedModal: Story<ModalProps> = ({ open: openArg, ...args }) => {
           <Text
             nativeID="parent-modal-description"
             variant="body-medium"
-            sx={{ marginBottom: 2 }}
+            sx={{ mb: 2 }}
           >
             Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
           </Text>
@@ -124,7 +120,7 @@ export const NestedModal: Story<ModalProps> = ({ open: openArg, ...args }) => {
               <Text
                 nativeID="child-modal-description"
                 variant="body-medium"
-                sx={{ marginBottom: 2 }}
+                sx={{ mb: 2 }}
               >
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               </Text>

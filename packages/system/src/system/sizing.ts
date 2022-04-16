@@ -49,7 +49,7 @@ export const aspectRatio = style({
   prop: "aspectRatio",
 })
 
-export const sizing = compose<keyof SizingProps>(
+export const sizing = compose<SizingProps>(
   width,
   maxWidth,
   minWidth,

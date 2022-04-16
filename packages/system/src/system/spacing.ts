@@ -229,7 +229,7 @@ const my = style({
   themeKey: "spacing",
 })
 
-export const spacing = compose<keyof SpacingProps>(
+export const spacing = compose<SpacingProps>(
   padding,
   paddingTop,
   paddingRight,

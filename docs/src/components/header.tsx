@@ -14,7 +14,7 @@ import * as React from "react"
 export const Header: React.VFC = () => (
   <AppBar>
     <Toolbar>
-      <Text variant="title-large" sx={{ marginRight: 2 }}>
+      <Text variant="title-large" sx={{ mr: 2 }}>
         MD3-UI
       </Text>
       <Stack direction="row" sx={{ flexGrow: 1 }}>

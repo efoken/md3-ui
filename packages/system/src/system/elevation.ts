@@ -7,4 +7,4 @@ const elevationRaw = style({
   themeKey: "elevation",
 })
 
-export const elevation = compose<keyof ElevationProps>(elevationRaw)
+export const elevation = compose<ElevationProps>(elevationRaw)

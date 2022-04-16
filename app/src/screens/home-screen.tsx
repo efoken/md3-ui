@@ -4,11 +4,11 @@ import { ScrollView } from "react-native"
 
 export const HomeScreen: React.FC = () => (
   <ScrollView style={{ flexGrow: 1 }}>
-    <Box sx={{ padding: 2 }}>
-      <Button variant="filled" sx={{ marginBottom: 2 }}>
+    <Box sx={{ p: 2 }}>
+      <Button variant="filled" sx={{ mb: 2 }}>
         Buttons
       </Button>
-      <Button variant="filled" sx={{ marginBottom: 2 }}>
+      <Button variant="filled" sx={{ mb: 2 }}>
         Chips
       </Button>
     </Box>

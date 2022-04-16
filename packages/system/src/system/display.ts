@@ -13,8 +13,4 @@ const visibility = style({
   prop: "visibility",
 })
 
-export const display = compose<keyof DisplayProps>(
-  displayRaw,
-  overflow,
-  visibility,
-)
+export const display = compose<DisplayProps>(displayRaw, overflow, visibility)

@@ -33,7 +33,7 @@ export const end = style({
   prop: "end",
 })
 
-export const display = compose<keyof PositionProops>(
+export const display = compose<PositionProops>(
   position,
   zIndex,
   top,

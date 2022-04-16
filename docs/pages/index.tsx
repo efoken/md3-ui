@@ -17,7 +17,7 @@ export const IntroductionCard: React.VFC<IntroductionCardProps> = ({
   image,
   link,
 }) => (
-  <Grid container spacing={3} sx={{ marginBottom: 9 }}>
+  <Grid container spacing={3} sx={{ mb: 9 }}>
     <Grid item span={{ compact: 12, expanded: 6 }}>
       <Box sx={{ flexShrink: 1 }}>
         <Text variant="headline-large">{headline}</Text>

@@ -23,7 +23,7 @@ export const CenterAligned: Story<AppBarProps> = (args) => (
         accessibilityLabel="menu"
         edge="start"
         size="large"
-        sx={{ marginEnd: 1.5 }}
+        sx={{ me: 1.5 }}
       >
         <Menu />
       </IconButton>
@@ -34,7 +34,7 @@ export const CenterAligned: Story<AppBarProps> = (args) => (
         accessibilityLabel="profile"
         edge="end"
         size="large"
-        sx={{ marginStart: 1.5 }}
+        sx={{ me: 1.5 }}
       >
         <Person />
       </IconButton>
@@ -49,7 +49,7 @@ export const Small: Story<AppBarProps> = (args) => (
         accessibilityLabel="menu"
         edge="start"
         size="large"
-        sx={{ marginEnd: 0.5 }}
+        sx={{ me: 0.5 }}
       >
         <Menu />
       </IconButton>
@@ -84,7 +84,7 @@ export const Medium: Story<AppBarProps> = (args) => (
       </IconButton>
       <Text
         variant="headline-small"
-        sx={{ alignSelf: "flex-end", marginStart: -4.5, flexGrow: 1 }}
+        sx={{ alignSelf: "flex-end", ms: -4.5, flexGrow: 1 }}
       >
         Headline Small
       </Text>
@@ -116,7 +116,7 @@ export const Large: Story<AppBarProps> = (args) => (
       </IconButton>
       <Text
         variant="headline-medium"
-        sx={{ alignSelf: "flex-end", marginStart: -4.5, flexGrow: 1 }}
+        sx={{ alignSelf: "flex-end", ms: -4.5, flexGrow: 1 }}
       >
         Headline Medium
       </Text>

@@ -80,8 +80,8 @@ export function style<PropKey extends string>({
   return fn
 }
 
-export function compose<PropKey extends string>(
-  ...styles: { (props: any): any; filterProps: PropKey[] }[]
+export function compose<Props extends Record<string, any>>(
+  ...styles: { (props: any): any; filterProps: (keyof Props)[] }[]
 ) {
   // eslint-disable-next-line @typescript-eslint/no-shadow
   const handlers = styles.reduce((acc, style) => {
@@ -100,7 +100,7 @@ export function compose<PropKey extends string>(
       return acc
     }, {})
 
-  fn.filterProps = styles.reduce<PropKey[]>(
+  fn.filterProps = styles.reduce<(keyof Props)[]>(
     // eslint-disable-next-line @typescript-eslint/no-shadow
     (acc, style) => acc.concat(style.filterProps),
     [],

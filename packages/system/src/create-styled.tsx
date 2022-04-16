@@ -5,7 +5,7 @@ import * as React from "react"
 import { PressableStateCallbackType, useWindowDimensions } from "react-native"
 import { useTheme } from "./context"
 import { css } from "./create-css"
-import { styleFunctions } from "./style-functions"
+import { styleFunctionSx } from "./style-function-sx"
 import { StyleSheet } from "./style-sheet"
 import {
   CreateStyled,
@@ -86,7 +86,7 @@ export const styled: CreateStyled = <
           () =>
             css.apply(mergedProps, [
               ...styles,
-              skipSx ? {} : styleFunctions(mergedProps),
+              skipSx ? {} : styleFunctionSx(mergedProps),
             ]) || {},
           [mergedProps],
         )

@@ -9,7 +9,7 @@ export default {
 export const Basic: Story = () => (
   <Box>
     <Box sx={{ bgColor: "error" }}>
-      <Text style={{ color: "white" }}>Welcome to Box</Text>
+      <Text sx={{ color: "white" }}>Welcome to Box</Text>
     </Box>
     <Box
       sx={{
@@ -27,11 +27,11 @@ export const Spacer: Story = () => (
     }}
   >
     <Box sx={{ bgColor: "secondary", size: 100 }}>
-      <Text style={{ color: "white" }}>Box 1</Text>
+      <Text sx={{ color: "white" }}>Box 1</Text>
     </Box>
     <Box sx={{ size: 8 }} />
     <Box sx={{ bgColor: "tertiary", size: 100 }}>
-      <Text style={{ color: "white" }}>Box 2</Text>
+      <Text sx={{ color: "white" }}>Box 2</Text>
     </Box>
   </Box>
 )
@@ -44,7 +44,7 @@ export const Square: Story = () => (
     }}
   >
     <Box sx={{ size: 60, bgColor: "error" }}>
-      <Text style={{ color: "white" }}>Bee</Text>
+      <Text sx={{ color: "white" }}>Bee</Text>
     </Box>
   </Box>
 )

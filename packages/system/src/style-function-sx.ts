@@ -16,16 +16,16 @@ function objectsHaveSameKeys(...objects: any[]) {
   return objects.every((object) => union.size === Object.keys(object).length)
 }
 
-export function styleFunctions(props: any = {}) {
+export function styleFunctionSx(props: any = {}) {
   const { sx, theme = {} } = props
   if (!sx) {
     return null // Emotion will neglect null
   }
 
   /*
-   * Receive `sxInput` as object or callback
-   * and then recursively check keys & values to create media query object styles.
-   * (the result will be used in `styled`)
+   * Receive `sxInput` as object or callback and then recursively check keys &
+   * values to create media query object styles (the result will be used in
+   * `styled`).
    */
   function traverse(sxInput: any) {
     let sxObject = sxInput
@@ -34,6 +34,9 @@ export function styleFunctions(props: any = {}) {
     } else if (typeof sxInput !== "object") {
       return sxInput
     }
+    if (!sxObject) {
+      return null
+    }
     const emptyBreakpoints = createEmptyBreakpointObject(theme.breakpoints)
     const breakpointsKeys = Object.keys(emptyBreakpoints)
 
@@ -41,7 +44,7 @@ export function styleFunctions(props: any = {}) {
 
     Object.keys(sxObject).forEach((styleKey) => {
       const value = runIfFn(sxObject[styleKey], theme)
-      if (value !== null && value !== undefined) {
+      if (value != null) {
         if (typeof value === "object") {
           if (propToStyleFunction[styleKey]) {
             css = merge(css, getThemeValue(styleKey, value, theme))
@@ -49,13 +52,11 @@ export function styleFunctions(props: any = {}) {
             const breakpointsValues = handleBreakpoints(
               { theme },
               value,
-              (x) => ({
-                [styleKey]: x,
-              }),
+              (x) => ({ [styleKey]: x }),
             )
 
             if (objectsHaveSameKeys(breakpointsValues, value)) {
-              css[styleKey] = styleFunctions({ sx: value, theme })
+              css[styleKey] = styleFunctionSx({ sx: value, theme })
             } else {
               css = merge(css, breakpointsValues)
             }
@@ -74,7 +75,7 @@ export function styleFunctions(props: any = {}) {
     : traverse(sx)
 }
 
-styleFunctions.filterProps = ["sx"]
+styleFunctionSx.filterProps = ["sx"]
 
 export function extendSxProp<T extends object>({
   sx: inSx,

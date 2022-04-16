@@ -49,9 +49,6 @@ export const SidebarContent: React.VFC<SidebarContentProps> = ({ routes }) => {
                       disabled
                       accessibilityRole="none"
                       variant="text"
-                      style={{
-                        transition: "background-color 200ms linear",
-                      }}
                       styles={{
                         label: {
                           ...theme.typescale["body-large"],
@@ -64,6 +61,7 @@ export const SidebarContent: React.VFC<SidebarContentProps> = ({ routes }) => {
                         height: 44,
                         pe: 2,
                         ps: 2,
+                        transition: "background-color 200ms linear",
                       }}
                     >
                       {level2.title}

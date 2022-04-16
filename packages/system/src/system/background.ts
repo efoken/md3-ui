@@ -12,7 +12,4 @@ const bgColor = style({
   themeKey: "color",
 })
 
-export const background = compose<keyof BackgroundProps>(
-  backgroundColor,
-  bgColor,
-)
+export const background = compose<BackgroundProps>(backgroundColor, bgColor)

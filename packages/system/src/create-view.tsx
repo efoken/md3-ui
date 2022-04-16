@@ -3,14 +3,14 @@ import * as React from "react"
 import { View as RNView, ViewProps as RNViewProps } from "react-native"
 import { useTheme } from "./context"
 import { styled } from "./create-styled"
-import { extendSxProp, styleFunctions } from "./style-functions"
+import { extendSxProp, styleFunctionSx } from "./style-function-sx"
 
 export interface ViewProps extends RNViewProps {
   as?: React.ElementType
 }
 
 export function createView({ defaultTheme }: { defaultTheme?: Theme } = {}) {
-  const ViewRoot = styled(RNView)(styleFunctions)
+  const ViewRoot = styled(RNView)(styleFunctionSx)
 
   const View = React.forwardRef<RNView, ViewProps>((inProps, ref) => {
     const { as = RNView, ...props } = extendSxProp(inProps)

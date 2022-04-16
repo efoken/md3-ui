@@ -1,3 +1,4 @@
+import { Theme } from "@md3-ui/theme"
 import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
@@ -7,51 +8,52 @@ import {
 } from "react-native"
 
 export interface BackgroundProps {
-  backgroundColor?: string
-  bgColor?: string
+  backgroundColor?: keyof Theme["color"] | (string & {})
+  bgColor?: keyof Theme["color"] | (string & {})
 }
 
 export interface BorderProps {
   borderStyle?: RNViewStyle["borderStyle"]
-  borderColor?: string
-  borderTopColor?: string
-  borderRightColor?: string
-  borderBottomColor?: string
-  borderLeftColor?: string
-  borderStartColor?: string
-  borderEndColor?: string
-  borderRadius?: number
+  borderColor?: keyof Theme["color"] | (string & {})
+  borderTopColor?: keyof Theme["color"] | (string & {})
+  borderRightColor?: keyof Theme["color"] | (string & {})
+  borderBottomColor?: keyof Theme["color"] | (string & {})
+  borderLeftColor?: keyof Theme["color"] | (string & {})
+  borderStartColor?: keyof Theme["color"] | (string & {})
+  borderEndColor?: keyof Theme["color"] | (string & {})
+  borderRadius?: RNViewStyle["borderRadius"]
   borderTopRadius?: number
   borderRightRadius?: number
   borderBottomRadius?: number
   borderLeftRadius?: number
   borderStartRadius?: number
   borderEndRadius?: number
-  borderTopLeftRadius?: number
-  borderTopRightRadius?: number
-  borderTopStartRadius?: number
-  borderTopEndRadius?: number
-  borderBottomLeftRadius?: number
-  borderBottomRightRadius?: number
-  borderBottomStartRadius?: number
-  borderBottomEndRadius?: number
+  borderTopLeftRadius?: RNViewStyle["borderTopLeftRadius"]
+  borderTopRightRadius?: RNViewStyle["borderTopRightRadius"]
+  borderTopStartRadius?: RNViewStyle["borderTopStartRadius"]
+  borderTopEndRadius?: RNViewStyle["borderTopEndRadius"]
+  borderBottomLeftRadius?: RNViewStyle["borderBottomLeftRadius"]
+  borderBottomRightRadius?: RNViewStyle["borderBottomRightRadius"]
+  borderBottomStartRadius?: RNViewStyle["borderBottomStartRadius"]
+  borderBottomEndRadius?: RNViewStyle["borderBottomEndRadius"]
   borderWidth?: RNViewStyle["borderWidth"]
-  borderTopWidth?: number
-  borderRightWidth?: number
-  borderBottomWidth?: number
-  borderLeftWidth?: number
-  borderStartWidth?: number
-  borderEndWidth?: number
+  borderTopWidth?: RNViewStyle["borderTopWidth"]
+  borderRightWidth?: RNViewStyle["borderRightWidth"]
+  borderBottomWidth?: RNViewStyle["borderBottomWidth"]
+  borderLeftWidth?: RNViewStyle["borderLeftWidth"]
+  borderStartWidth?: RNFlexStyle["borderStartWidth"]
+  borderEndWidth?: RNFlexStyle["borderEndWidth"]
 }
 
 export interface DisplayProps {
   display?: RNFlexStyle["display"]
   overflow?: RNFlexStyle["overflow"]
+  /** @platform web */
   visibility?: React.CSSProperties["visibility"]
 }
 
 export interface ElevationProps {
-  elevation?: number
+  elevation?: keyof Theme["elevation"]
 }
 
 export interface FlexboxProps {
@@ -110,41 +112,62 @@ export interface SpacingProps {
   pe?: number
   px?: number
   py?: number
-  margin?: number | "auto"
-  marginTop?: number | "auto"
-  marginRight?: number | "auto"
-  marginBottom?: number | "auto"
-  marginLeft?: number | "auto"
-  marginStart?: number | "auto"
-  marginEnd?: number | "auto"
-  marginHorizontal?: number | "auto"
-  marginVertical?: number | "auto"
-  marginX?: number | "auto"
-  marginY?: number | "auto"
-  m?: number | "auto"
-  mt?: number | "auto"
-  mr?: number | "auto"
-  mb?: number | "auto"
-  ml?: number | "auto"
-  ms?: number | "auto"
-  me?: number | "auto"
-  mx?: number | "auto"
-  my?: number | "auto"
+  margin?: number | "auto" | (string & {})
+  marginTop?: number | "auto" | (string & {})
+  marginRight?: number | "auto" | (string & {})
+  marginBottom?: number | "auto" | (string & {})
+  marginLeft?: number | "auto" | (string & {})
+  marginStart?: number | "auto" | (string & {})
+  marginEnd?: number | "auto" | (string & {})
+  marginHorizontal?: number | "auto" | (string & {})
+  marginVertical?: number | "auto" | (string & {})
+  marginX?: number | "auto" | (string & {})
+  marginY?: number | "auto" | (string & {})
+  m?: number | "auto" | (string & {})
+  mt?: number | "auto" | (string & {})
+  mr?: number | "auto" | (string & {})
+  mb?: number | "auto" | (string & {})
+  ml?: number | "auto" | (string & {})
+  ms?: number | "auto" | (string & {})
+  me?: number | "auto" | (string & {})
+  mx?: number | "auto" | (string & {})
+  my?: number | "auto" | (string & {})
 }
 
 export interface TransformProps {
   transform?: RNTransformsStyle["transform"]
 }
 
-export interface TypescaleProps {
-  color?: RNTextStyle["color"]
+export interface TransitionProps {
+  /** @platform web */
+  transition?: React.CSSProperties["transition"]
+  /** @platform web */
+  transitionDelay?: React.CSSProperties["transitionDelay"]
+  /** @platform web */
+  transitionDuration?: React.CSSProperties["transitionDuration"]
+  /** @platform web */
+  transitionProperty?: React.CSSProperties["transitionProperty"]
+  /** @platform web */
+  transitionTimingFunction?: React.CSSProperties["transitionTimingFunction"]
+  /** @platform web */
+  willChange?: React.CSSProperties["willChange"]
+  /** @platform web */
+  animation?: React.CSSProperties["animation"]
+}
+
+export interface TypographyProps {
+  color?: keyof Theme["color"] | (string & {})
   fontSize?: RNTextStyle["fontSize"]
+  fontStyle?: RNTextStyle["fontStyle"]
+  fontVariant?: RNTextStyle["fontVariant"]
+  fontWeight?: keyof Theme["typeface"]["weight"] | RNTextStyle["fontWeight"]
   lineHeight?: RNTextStyle["lineHeight"]
   textAlign?: RNTextStyle["textAlign"]
+  textAlignVertical?: RNTextStyle["textAlignVertical"]
   textDecorationLine?: RNTextStyle["textDecorationLine"]
   textDecorationStyle?: RNTextStyle["textDecorationStyle"]
-  textDecorationColor?: RNTextStyle["textDecorationColor"]
-  textShadowColor?: RNTextStyle["textShadowColor"]
+  textDecorationColor?: keyof Theme["color"] | (string & {})
+  textShadowColor?: keyof Theme["color"] | (string & {})
   textShadowOffset?: RNTextStyle["textShadowOffset"]
   textShadowRadius?: RNTextStyle["textShadowRadius"]
   textTransform?: RNTextStyle["textTransform"]

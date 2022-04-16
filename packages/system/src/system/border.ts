@@ -134,7 +134,7 @@ const borderEndWidth = style({
   prop: "borderEndWidth",
 })
 
-export const border = compose<keyof BorderProps>(
+export const border = compose<BorderProps>(
   borderStyle,
   borderColor,
   borderTopColor,
