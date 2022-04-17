@@ -45,7 +45,7 @@ export function mergeDeep<T>(
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
       // Avoid prototype pollution
-      if (key === "__proto__") {
+      if (key === "__proto__" || key === "constructor") {
         return
       }
 

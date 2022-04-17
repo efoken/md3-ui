@@ -40,13 +40,13 @@ export async function retry(
     exitErr = error
   }
 
-  for (let tries = 1; tries < retries; tries += 1) {
+  for (let tries = 1; tries <= retries; tries += 1) {
     try {
       // eslint-disable-next-line no-await-in-loop
       output = await tryFn({ tries, bail })
       break
     } catch (error) {
-      if (tries >= retries) {
+      if (tries === retries) {
         throw error
       }
     }
