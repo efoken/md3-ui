@@ -12,9 +12,9 @@ export function useEventCallback<Args extends unknown[], Return>(
     ref.current = fn
   })
   return React.useCallback(
-    (...args: Args) =>
-      // @ts-expect-error: hide `this`
-      (0, ref.current!)(...args),
+    // Eval the callback in global scope
+    // See: https://stackoverflow.com/questions/40967162/what-is-the-meaning-of-this-code-0-function-in-javascript
+    (...args: Args) => (() => ref.current!)()(...args),
     [],
   )
 }
