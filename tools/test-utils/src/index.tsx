@@ -5,35 +5,12 @@ import {
   RenderOptions,
   RenderResult,
 } from "@testing-library/react"
+import { axe, JestAxeConfigureOptions, toHaveNoViolations } from "jest-axe"
 import * as React from "react"
 
-const ChildrenPassthrough: React.VFC<{ children: React.ReactElement }> = ({
-  children,
-}) => children
+expect.extend(toHaveNoViolations)
 
-export interface TestOptions extends Omit<RenderOptions, "wrapper"> {
-  /**
-   * Optional additional wrapper, e.g. context
-   *
-   * @example
-   * ```ts
-   * // single wrapper
-   * render(<MyConponent />, {
-   *   wrapper: MyContext
-   * });
-   *
-   * // multiple wrapper
-   * render(<MyConponent />, {
-   *   wrapper: ({ children }) => (
-   *     <ContextA>
-   *       <ContextB>{children}<ContextB />
-   *     <ContextA />
-   *   )
-   * });
-   * ```
-   */
-  wrapper?: typeof ChildrenPassthrough
-}
+export interface TestOptions extends RenderOptions {}
 
 /**
  * Custom render for @testing-library/react
@@ -44,7 +21,7 @@ export interface TestOptions extends Omit<RenderOptions, "wrapper"> {
  */
 export const render = (
   ui: React.ReactElement,
-  { wrapper: Wrapper = ChildrenPassthrough, ...options }: TestOptions = {},
+  { wrapper: Wrapper = React.Fragment, ...options }: TestOptions = {},
 ): RenderResult => {
   const result = rtlRender(
     <Md3Provider>
@@ -57,6 +34,19 @@ export const render = (
     rerender: (newUI) =>
       render(newUI, { container: result.container, ...options }),
   }
+}
+
+export async function testA11y(
+  ui: React.ReactElement | HTMLElement,
+  {
+    axeOptions,
+    ...options
+  }: TestOptions & { axeOptions?: JestAxeConfigureOptions } = {},
+) {
+  const container = React.isValidElement(ui)
+    ? render(ui, options).container
+    : ui
+  expect(await axe(container, axeOptions)).toHaveNoViolations()
 }
 
 function testAsProp(
