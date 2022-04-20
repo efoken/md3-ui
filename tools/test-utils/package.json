@@ -6,7 +6,9 @@
   "dependencies": {
     "@md3-ui/core": "^0.0.5",
     "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^12.1.5"
+    "@testing-library/react": "^12.1.5",
+    "@types/jest-axe": "^3.5.3",
+    "jest-axe": "^6.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",

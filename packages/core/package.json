@@ -33,6 +33,7 @@
     "@md3-ui/layout": "^0.0.5",
     "@md3-ui/modal": "^0.0.5",
     "@md3-ui/navigation-bar": "^0.0.5",
+    "@md3-ui/navigation-drawer": "^0.0.5",
     "@md3-ui/portal": "^0.0.5",
     "@md3-ui/system": "^0.0.5",
     "@md3-ui/text-field": "^0.0.5",

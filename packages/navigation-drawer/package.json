@@ -1,13 +1,13 @@
 {
-  "name": "@md3-ui/navigation-bar",
+  "name": "@md3-ui/navigation-drawer",
   "version": "0.0.5",
-  "main": "dist/md3-ui-navigation-bar.cjs.js",
+  "main": "dist/md3-ui-navigation-drawer.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {
     "type": "git",
     "url": "https://github.com/efoken/md3-ui",
-    "directory": "packages/navigation-bar"
+    "directory": "packages/navigation-drawer"
   },
   "keywords": [
     "react",
@@ -24,24 +24,20 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/button": "^0.0.5",
-    "@md3-ui/layout": "^0.0.5",
+    "@md3-ui/modal": "^0.0.5",
     "@md3-ui/system": "^0.0.5",
-    "@md3-ui/utils": "^0.0.5",
-    "react-is": "^17.0.2"
+    "@md3-ui/utils": "^0.0.5"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",
     "@types/react-native": "^0.67.4",
     "react": "^17.0.2",
-    "react-native": "^0.68.1",
-    "react-native-safe-area-context": "~4.2.4"
+    "react-native": "^0.68.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.44 || ^18.0.0",
     "@types/react-native": "^0.67.4",
     "react": "^17.0.2 || ^18.0.0",
-    "react-native": ">=0.67.4",
-    "react-native-safe-area-context": "^4.2.4"
+    "react-native": ">=0.67.4"
   }
 }
