@@ -24,19 +24,22 @@
     "access": "public"
   },
   "dependencies": {
+    "@md3-ui/button": "^0.0.5",
+    "@md3-ui/hooks": "^0.0.5",
+    "@md3-ui/layout": "^0.0.5",
     "@md3-ui/modal": "^0.0.5",
     "@md3-ui/system": "^0.0.5",
     "@md3-ui/utils": "^0.0.5"
   },
   "devDependencies": {
     "@types/react": "^17.0.44",
-    "@types/react-native": "^0.67.4",
+    "@types/react-native": "^0.67.5",
     "react": "^17.0.2",
     "react-native": "^0.68.1"
   },
   "peerDependencies": {
     "@types/react": "^17.0.44 || ^18.0.0",
-    "@types/react-native": "^0.67.4",
+    "@types/react-native": "^0.67.5",
     "react": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4"
   }
