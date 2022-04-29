@@ -20,6 +20,7 @@ export interface Theme {
   spacing: Spacing
   zIndex: {
     appBar: number
+    drawer: number
     modal: number
   }
   utils: {
@@ -49,7 +50,8 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
     spacing: createSpacing(8),
     zIndex: {
       appBar: 1200,
-      modal: 1300,
+      drawer: 1300,
+      modal: 1400,
     },
     utils: {
       mix,

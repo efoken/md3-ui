@@ -74,8 +74,8 @@ export const Medium: Story<AppBarProps> = (args) => (
     <Toolbar
       sx={{
         alignItems: "flex-start",
-        paddingTop: 1,
-        paddingBottom: 2,
+        pt: 1,
+        pb: 2,
         minHeight: 112,
       }}
     >
@@ -106,8 +106,8 @@ export const Large: Story<AppBarProps> = (args) => (
     <Toolbar
       sx={{
         alignItems: "flex-start",
-        paddingTop: 1,
-        paddingBottom: 2,
+        pt: 1,
+        pb: 2,
         minHeight: 152,
       }}
     >

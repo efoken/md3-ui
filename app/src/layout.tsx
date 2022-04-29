@@ -18,7 +18,7 @@ export const Layout: React.FC = () => {
 
   return (
     <Box sx={{ height: "100%" }}>
-      <AppBar sx={{ mt: getStatusBarHeight() }}>
+      <AppBar style={{ marginTop: getStatusBarHeight() }}>
         <Toolbar>
           <Text variant="title-large" sx={{ flexGrow: 1, textAlign: "center" }}>
             Title Large
