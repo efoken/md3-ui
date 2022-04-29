@@ -39,7 +39,9 @@ const DocLayout: NextPage<{ doc: Doc }> = ({ doc }) => {
         }}
         sidebar={<Sidebar routes={getRoutes("/docs/components")} />}
       >
-        <MDXComponent components={MDXComponents} />
+        <div>
+          <MDXComponent components={MDXComponents} />
+        </div>
       </PageContainer>
     </Layout>
   )

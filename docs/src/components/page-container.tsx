@@ -2,6 +2,7 @@ import { Box, Text } from "@md3-ui/core"
 import { Doc } from "contentlayer/generated"
 import { useRouter } from "next/router"
 import * as React from "react"
+import { Header } from "./header"
 import { SEO } from "./seo"
 
 interface PageContainerProps {
@@ -17,6 +18,8 @@ export const PageContainer: React.FC<PageContainerProps> = ({
 }) => {
   const router = useRouter()
 
+  const [menuOpen, setMenuOpen] = React.useState(true)
+
   React.useEffect(() => {
     const handleRouteChange = () => {
       document.querySelector("h1")?.focus()
@@ -27,6 +30,14 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     }
   }, [router.events])
 
+  const handleMenuToggle = () => {
+    setMenuOpen((prevMenuOpen) => !prevMenuOpen)
+  }
+
+  const handleMenuClose = () => {
+    setMenuOpen(false)
+  }
+
   if (frontMatter == null) {
     return null
   }
@@ -34,9 +45,20 @@ export const PageContainer: React.FC<PageContainerProps> = ({
   return (
     <>
       <SEO description={frontMatter.description} title={frontMatter.title} />
-      <Box sx={{ flexDirection: "row" }}>
-        {sidebar}
-        <Box sx={{ mr: "-268px", width: "calc(100% - 268px)" }}>
+      <Header menuOpen={menuOpen} onMenuToggle={handleMenuToggle} />
+      <Box sx={{ flexDirection: "row", pt: 8 }}>
+        {sidebar &&
+          React.cloneElement(sidebar, {
+            open: menuOpen,
+            onMenuClose: handleMenuClose,
+          })}
+        <Box
+          sx={{
+            ml: { compact: 0, expanded: menuOpen ? "280px" : 0 },
+            transition: "margin cubic-bezier(0, 0, 0.2, 1) 252ms",
+            width: { compact: "100%", expanded: "calc(100% - 280px)" },
+          }}
+        >
           <Box sx={{ maxWidth: 1280, mx: "auto", my: 3, width: "100%" }}>
             <Box as="main" aria-label="Main content">
               <Box

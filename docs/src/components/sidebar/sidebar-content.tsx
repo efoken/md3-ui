@@ -1,4 +1,4 @@
-import { Box, Button, Text, useTheme } from "@md3-ui/core"
+import { Box, NavigationDrawerItem, Text, useTheme } from "@md3-ui/core"
 import NextLink from "next/link"
 import * as React from "react"
 import { Pressable } from "react-native"
@@ -45,10 +45,10 @@ export const SidebarContent: React.VFC<SidebarContentProps> = ({ routes }) => {
               <NextLink passHref href={level2.path ?? "/"}>
                 <Pressable>
                   {({ hovered }) => (
-                    <Button
-                      disabled
+                    <NavigationDrawerItem
                       accessibilityRole="none"
-                      variant="text"
+                      label={level2.title}
+                      pointerEvents="none"
                       styles={{
                         label: {
                           ...theme.typescale["body-large"],
@@ -59,13 +59,9 @@ export const SidebarContent: React.VFC<SidebarContentProps> = ({ routes }) => {
                         backgroundColor: hovered ? "#e6e1e5" : undefined,
                         borderRadius: 14,
                         height: 44,
-                        pe: 2,
-                        ps: 2,
                         transition: "background-color 200ms linear",
                       }}
-                    >
-                      {level2.title}
-                    </Button>
+                    />
                   )}
                 </Pressable>
               </NextLink>

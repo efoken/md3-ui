@@ -10,7 +10,9 @@ const App: React.VFC<AppProps> = ({ Component, pageProps }) => (
     </Head>
     <Md3Provider
       theme={createTheme({
-        // typescale: { "display-large": { fontFamily: "Open Sans" } },
+        // typeface: {
+        //   brand: "Open Sans",
+        // },
       })}
     >
       <Component {...pageProps} />

@@ -123,4 +123,9 @@ declare module "react-native" {
     /** @platform web */
     onAnimationStart?: (event: React.AnimationEvent) => void
   }
+
+  export interface TouchableWithoutFeedbackProps extends KeyboardProps {
+    /** @platform web */
+    focusable?: boolean
+  }
 }

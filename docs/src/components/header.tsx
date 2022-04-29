@@ -1,12 +1,20 @@
 import { AppBar, Button, IconButton, Stack, Text, Toolbar } from "@md3-ui/core"
-import { Github, Nightlight } from "@md3-ui/icons"
+import { Github, Menu, MenuOpen, Nightlight } from "@md3-ui/icons"
 import NextLink from "next/link"
 import * as React from "react"
 
-export const Header: React.VFC = () => (
-  <AppBar>
+interface HeaderProps {
+  menuOpen: boolean
+  onMenuToggle?: () => void
+}
+
+export const Header: React.VFC<HeaderProps> = ({ menuOpen, onMenuToggle }) => (
+  <AppBar position="fixed" sx={{ zIndex: 1500 }}>
     <Toolbar>
-      <Text variant="title-large" sx={{ mr: 2 }}>
+      <IconButton onPress={onMenuToggle}>
+        {menuOpen ? <MenuOpen /> : <Menu />}
+      </IconButton>
+      <Text variant="title-large" sx={{ mr: 2, ml: 0.5 }}>
         MD3-UI
       </Text>
       <Stack direction="row" sx={{ flexGrow: 1 }}>

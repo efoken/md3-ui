@@ -1,0 +1,86 @@
+---
+title: Buttons
+description:
+  Buttons help people initiate actions, from sending an email, to sharing a
+  document, to liking a post.
+---
+
+## Elevated button
+
+Elevated buttons are essentially filled tonal buttons with a shadow. To prevent
+shadow creep, only use them when absolutely necessary, such as when the button
+requires visual separation from a patterned background.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <Button variant="elevated">Elevated button</Button>
+  <Button variant="elevated" icon={<Add />}>
+    Elevated button
+  </Button>
+</Stack>
+```
+
+## Filled button
+
+Filled buttons have the most visual impact after the FAB, and should be used for
+important, final actions that complete a flow, like **Save**, **Join now**, or
+**Confirm**.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <Button variant="filled">Filled button</Button>
+  <Button variant="filled" icon={<Add />}>
+    Filled button
+  </Button>
+</Stack>
+```
+
+## Filled tonal button
+
+A filled tonal button is an alternative middle ground between filled and
+outlined buttons. They're useful in contexts where a lower-priority button
+requires slightly more emphasis than an outline would give, such as "Next" in an
+onboarding flow. Tonal buttons use the secondary color mapping.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <Button variant="tonal">Tonal button</Button>
+  <Button variant="tonal" icon={<Add />}>
+    Tonal button
+  </Button>
+</Stack>
+```
+
+## Outlined button
+
+Outlined buttons are medium-emphasis buttons. They contain actions that are
+important, but aren't the primary action in an app.
+
+Outlined buttons pair well with filled buttons to indicate an alternative,
+secondary action.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <Button variant="outlined">Outlined button</Button>
+  <Button variant="outlined" icon={<Add />}>
+    Outlined button
+  </Button>
+</Stack>
+```
+
+## Text button
+
+Text buttons are used for the lowest priority actions, especially when
+presenting multiple options.
+
+Text buttons can be placed on a variety of backgrounds. Until the button is
+interacted with, its container isn't visible.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <Button variant="text">Text button</Button>
+  <Button variant="text" icon={<Add />}>
+    Text button
+  </Button>
+</Stack>
+```

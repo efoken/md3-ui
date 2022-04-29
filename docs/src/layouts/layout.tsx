@@ -1,9 +1,4 @@
 import * as React from "react"
-import { Header } from "../components/header"
 
-export const Layout: React.FC = ({ children }) => (
-  <>
-    <Header />
-    {children}
-  </>
-)
+// eslint-disable-next-line react/jsx-no-useless-fragment
+export const Layout: React.FC = ({ children }) => <>{children}</>
