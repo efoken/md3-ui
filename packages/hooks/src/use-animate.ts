@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Animated, Platform } from "react-native"
+import { useEventCallback } from "./use-event-callback"
 
 export interface UseAnimateProps
   extends Partial<Animated.TimingAnimationConfig> {
@@ -116,31 +117,28 @@ export function useAnimate({
       ? sequenceAnimation
       : Animated.loop(sequenceAnimation, { iterations })
 
-  const reset = React.useCallback(() => {
+  const reset = () => {
     animation.reset()
-  }, [animation])
+  }
 
-  const start = React.useCallback(
-    (next?: () => void) => {
-      if (shouldReset) {
-        animation.reset()
-      }
+  const start = useEventCallback((next?: (finished: boolean) => void) => {
+    if (shouldReset) {
+      animation.reset()
+    }
 
-      const callbackAnimation = () => {
-        callback?.({ animatedValue, animation })
-        next?.()
-      }
+    const callbackAnimation: Animated.EndCallback = ({ finished }) => {
+      callback?.({ animatedValue, animation })
+      next?.(finished)
+    }
 
-      if (delay) {
-        Animated.sequence([Animated.delay(delay), animation]).start(
-          callbackAnimation,
-        )
-      } else {
-        animation.start(callbackAnimation)
-      }
-    },
-    [animatedValue, animation, callback, delay, shouldReset],
-  )
+    if (delay) {
+      Animated.sequence([Animated.delay(delay), animation]).start(
+        callbackAnimation,
+      )
+    } else {
+      animation.start(callbackAnimation)
+    }
+  })
 
   React.useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle

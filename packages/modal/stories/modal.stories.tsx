@@ -15,9 +15,9 @@ const style = {
   borderWidth: 2,
   elevation: "level5" as const,
   left: "50%",
-  paddingBottom: 4,
-  paddingTop: 2,
-  paddingX: 4,
+  pb: 4,
+  pt: 2,
+  px: 4,
   position: "absolute" as const,
   top: "50%",
   width: 400,
@@ -99,7 +99,7 @@ export const NestedModal: Story<ModalProps> = ({ open: openArg, ...args }) => {
           </Text>
           <Button onPress={handleOpenChild}>Open child modal</Button>
           <Modal
-            hideBackdrop
+            hideScrim
             open={open[1]}
             accessibilityLabelledBy="child-modal-title"
             accessibilityDescribedBy="child-modal-description"

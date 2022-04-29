@@ -60,8 +60,11 @@ export interface ModalTypeMap<
        * @default false
        */
       disableScrollLock?: boolean
-      /** @default false */
-      hideBackdrop?: boolean
+      /**
+       * If `true`, the scrim is not rendered.
+       * @default false
+       */
+      hideScrim?: boolean
       /**
        * Always keep the children in the DOM. This prop can be useful in SEO
        * situation or when you want to maximize the responsiveness of the Modal.
@@ -82,6 +85,10 @@ export interface ModalTypeMap<
       styles?: {
         root?: RNViewStyle
       }
+      /**
+       * The system prop that allows defining system overrides as well as
+       * additional styles.
+       */
       sx?: SxProps
     }
   defaultAs: C
@@ -118,17 +125,17 @@ const ModalRoot = styled(RNView, {
   }),
 )
 
-const ModalBackdrop = styled(Animated.View, {
+const ModalScrim = styled(Animated.View, {
   name: "Modal",
-  slot: "Backdrop",
+  slot: "Scrim",
   skipSx: true,
-})({
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
+})(({ theme }) => ({
+  backgroundColor: theme.utils.rgba("#322f37", 0.4),
   height: "100%",
   position: "absolute",
   width: "100%",
   zIndex: -1,
-})
+}))
 
 export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
   const {
@@ -140,7 +147,7 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     disablePortal = false,
     disableRestoreFocus,
     disableScrollLock = false,
-    hideBackdrop = false,
+    hideScrim = false,
     keepMounted = false,
     onClose,
     onKeyDown,
@@ -210,7 +217,11 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     const container =
       (containerRef?.current as HTMLElement | null) ?? getDocument().body
 
-    animate(() => setExited(true))
+    animate((finished) => {
+      if (finished) {
+        setExited(false)
+      }
+    })
     ModalManager.add(getModal(), container)
     setHidden(false)
 
@@ -221,7 +232,11 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
   })
 
   const handleClose = useEventCallback(() => {
-    animate(() => setExited(true))
+    animate((finished) => {
+      if (finished) {
+        setExited(true)
+      }
+    })
     ModalManager.remove(getModal())
     setHidden(true)
   })
@@ -234,6 +249,9 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
       handleClose()
     }
   }, [handleClose, handleOpen, open])
+
+  // Close the modal on unmount
+  React.useEffect(() => handleClose, [handleClose])
 
   useBackHandler(() => {
     onClose?.()
@@ -266,8 +284,6 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     }
   }
 
-  // const hidden = !open || !isTopModal()
-
   const ownerState = {
     exited,
     open,
@@ -295,13 +311,13 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
         onKeyDown={handleKeyDown}
         {...props}
       >
-        {!hideBackdrop && (
+        {!hideScrim && (
           <TouchableWithoutFeedback
             accessibilityElementsHidden
             importantForAccessibility="no-hide-descendants"
             onPress={onClose}
           >
-            <ModalBackdrop
+            <ModalScrim
               accessibilityHidden
               focusable={false}
               style={{ opacity }}

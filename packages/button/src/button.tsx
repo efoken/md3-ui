@@ -64,6 +64,7 @@ const ButtonRoot = styled(ButtonBase, {
       borderRadius: 20,
       flexDirection: "row",
       height: 40,
+      justifyContent: "center",
       paddingHorizontal: theme.spacing(3),
 
       ...(ownerState.variant === "elevated" && {
