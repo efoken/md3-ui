@@ -28,14 +28,12 @@ export const Layout: React.FC = () => {
       <Outlet />
       <NavigationBar value={location.pathname}>
         <NavigationBarItem
-          // @ts-ignore: handle polymorphic props
           icon={<Icon as={MaterialIcons} name="circle" />}
           label="Components"
           value="/"
           onPress={() => navigate("/")}
         />
         <NavigationBarItem
-          // @ts-ignore: handle polymorphic props
           icon={<Icon as={MaterialIcons} name="change-history" />}
           label="Themes"
           value="/themes"
