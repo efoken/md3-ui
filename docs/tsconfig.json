@@ -1,4 +1,5 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
@@ -22,7 +23,7 @@
   "exclude": ["node_modules"],
   "include": [
     "next-env.d.ts",
-    "../types/react-native.d.ts",
+    "../types/**/*",
     "**/*.ts",
     "**/*.tsx",
     ".contentlayer/generated"
