@@ -32,7 +32,7 @@
     "@svgr/core": "^6.2.1",
     "@types/fs-extra": "^9.0.13",
     "@types/lodash": "^4.14.182",
-    "@types/react": "^17.0.44",
+    "@types/react": "^17.0.45",
     "@types/react-native": "^0.67.6",
     "@types/svgo": "^2.6.3",
     "cross-fetch": "^3.1.5",

@@ -30,7 +30,7 @@
     "@md3-ui/utils": "^0.0.5"
   },
   "devDependencies": {
-    "@types/react": "^17.0.44",
+    "@types/react": "^17.0.45",
     "@types/react-native": "^0.67.6",
     "react": "^17.0.2",
     "react-native": "^0.68.1"

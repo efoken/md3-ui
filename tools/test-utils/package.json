@@ -11,13 +11,13 @@
     "jest-axe": "^6.0.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.44",
+    "@types/react": "^17.0.45",
     "@types/react-native": "^0.67.6",
     "react": "^17.0.2",
     "react-native": "^0.68.1"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.44",
+    "@types/react": "^17.0.45",
     "@types/react-native": "^0.67.6",
     "react": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4"
