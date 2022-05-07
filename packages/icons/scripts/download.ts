@@ -144,7 +144,7 @@ async function run() {
     const icons = data.icons
       .filter((icon) => !ignoredIconNames.has(icon.name))
       .map((icon, index) => ({ index, ...icon }))
-      .splice((argv.startAfter as number) ?? 0)
+      .splice(((argv as any).startAfter as number) ?? 0)
     console.log(`${icons.length} icons to download`)
 
     const queue = new Queue<typeof icons[0]>(

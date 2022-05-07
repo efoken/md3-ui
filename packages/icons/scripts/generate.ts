@@ -58,8 +58,6 @@ function createComponentName(str: string) {
 }
 
 async function createComponent(icon: { data: string; name: string }) {
-  // console.log(`createComponent ${icon.name}`)
-
   return new Promise<string>((resolve) => {
     transform(icon.data, svgrConfig, { componentName: icon.name })
       .then((jsCode) =>
@@ -92,20 +90,17 @@ async function run() {
       .sort((a, b) => a.name.localeCompare(b.name))
 
     const queue = new Queue<{ data: string; name: string }>(
-      (icon) =>
-        new Promise<void>((resolve) => {
-          createComponent(icon).then(async (jsCode) => {
-            await fse.writeFile(
-              path.join(__dirname, `../src/${kebabCase(icon.name)}.tsx`),
-              jsCode,
-            )
-            await fse.appendFile(
-              path.join(__dirname, "../src/index.ts"),
-              `export * from "./${kebabCase(icon.name)}"\n`,
-            )
-            resolve()
-          })
-        }),
+      async (icon) => {
+        const jsCode = createComponent(icon)
+        await fse.writeFile(
+          path.join(__dirname, `../src/${kebabCase(icon.name)}.tsx`),
+          jsCode,
+        )
+        await fse.appendFile(
+          path.join(__dirname, "../src/index.ts"),
+          `export * from "./${kebabCase(icon.name)}"\n`,
+        )
+      },
       { concurrency: 5 },
     )
     queue.push(icons)
