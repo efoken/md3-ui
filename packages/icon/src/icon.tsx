@@ -1,4 +1,6 @@
 import {
+  OverridableComponent,
+  OverrideProps,
   OwnerStateProps,
   styled,
   SxProps,
@@ -8,20 +10,41 @@ import {
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform, ViewStyle as RNViewStyle } from "react-native"
-import Svg, { SvgProps } from "react-native-svg"
+import Svg from "react-native-svg"
 
-export interface IconProps extends SvgProps {
-  as?: React.ElementType
-  children?: React.ReactElement
-  /** @default "currentColor" */
-  color?: string
-  /** @default "medium" */
-  size?: "inherit" | "small" | "medium" | "large"
-  styles?: {
-    root?: RNViewStyle
+export interface IconTypeMap<P = {}, C extends React.ElementType = typeof Svg> {
+  props: P & {
+    /**
+     * The node passed into the SVG element.
+     */
+    children?: React.ReactNode
+    /**
+     * The color of the component. You can use the `htmlColor` prop to apply a
+     * color attribute to the SVG element.
+     * @default "currentColor"
+     */
+    color?: string
+    /** @default "medium" */
+    size?: "inherit" | "small" | "medium" | "large"
+    /**
+     * Override or extend the styles applied to the component.
+     */
+    styles?: {
+      root?: RNViewStyle
+    }
+    /**
+     * The system prop that allows defining system overrides as well as
+     * additional styles.
+     */
+    sx?: SxProps
   }
-  sx?: SxProps
+  defaultAs: C
 }
+
+export type IconProps<
+  C extends React.ElementType = IconTypeMap["defaultAs"],
+  P = {},
+> = OverrideProps<IconTypeMap<P, C>, C>
 
 export type IconStyleKey = keyof NonNullable<IconProps["styles"]>
 
@@ -89,7 +112,7 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
       {children}
     </IconRoot>
   )
-})
+}) as OverridableComponent<IconTypeMap>
 
 if (__DEV__) {
   Icon.displayName = "Icon"
