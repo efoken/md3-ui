@@ -80,7 +80,7 @@ const ButtonRoot = styled(ButtonBase, {
           ...theme.elevation.level2,
         },
 
-        "&:focus": {
+        "&:focus-visible": {
           ...theme.elevation.level1,
         },
       }),
@@ -98,7 +98,7 @@ const ButtonRoot = styled(ButtonBase, {
           ...theme.elevation.level1,
         },
 
-        "&:focus": {
+        "&:focus-visible": {
           ...theme.elevation.level0,
         },
       }),
@@ -115,7 +115,7 @@ const ButtonRoot = styled(ButtonBase, {
           ...theme.elevation.level1,
         },
 
-        "&:focus": {
+        "&:focus-visible": {
           ...theme.elevation.level0,
         },
       }),
@@ -131,7 +131,7 @@ const ButtonRoot = styled(ButtonBase, {
           borderColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
         }),
 
-        "&:focus": {
+        "&:focus-visible": {
           borderColor: theme.color.primary,
         },
       }),

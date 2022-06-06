@@ -75,7 +75,7 @@ const TextInputRoot = styled(RNTextInput, {
     transition: "opacity 200ms cubic-bezier(0, 0, 0.2, 1)",
   },
 
-  "&:focus": {
+  "&:focus-visible": {
     outlineStyle: "none",
   },
 

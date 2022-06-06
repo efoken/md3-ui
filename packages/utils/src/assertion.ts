@@ -35,6 +35,7 @@ export type Pseudo =
   | "&:active"
   | "&:enabled"
   | "&:focus"
+  | "&:focus-visible"
   | "&:hover"
 
 export function isPseudo(value: string): value is Pseudo {
