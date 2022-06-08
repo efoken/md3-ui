@@ -25,7 +25,7 @@
     "no-underscore-dangle": [
       "error",
       {
-        "allow": ["_raw"]
+        "allow": ["__DEV__", "_raw", "_value"]
       }
     ],
     "import/no-anonymous-default-export": "error",
@@ -54,7 +54,6 @@
     "unicorn/no-array-reduce": "off",
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
-    "unicorn/prefer-object-from-entries": "off",
     "unicorn/prefer-spread": "off",
     "unicorn/prevent-abbreviations": "off"
   },

@@ -141,7 +141,6 @@ export function useAnimate({
   })
 
   React.useEffect(() => {
-    // eslint-disable-next-line no-underscore-dangle
     if (animate && (animatedValue as any)._value !== toValue) {
       start()
     }

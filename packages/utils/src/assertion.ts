@@ -59,5 +59,5 @@ export const isBrowser = canUseDOM()
 export const isNative =
   typeof navigator !== "undefined" && navigator.product === "ReactNative"
 
-// eslint-disable-next-line no-underscore-dangle, @typescript-eslint/naming-convention
+// eslint-disable-next-line @typescript-eslint/naming-convention
 export const __DEV__ = process.env.NODE_ENV !== "production"
