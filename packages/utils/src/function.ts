@@ -24,6 +24,8 @@ export function createChainedFunction<T extends (...args: any[]) => void>(
   )
 }
 
+export const noop = () => {}
+
 // Inspired by https://github.com/zeit/async-retry
 // Without the retry dependency (1 kB gzipped +)
 export async function retry(

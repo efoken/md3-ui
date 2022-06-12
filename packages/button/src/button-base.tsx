@@ -20,10 +20,8 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 
-export type ButtonBaseProps = Omit<
-  RNPressableProps,
-  "children" | "disabled" | "style"
-> & {
+export interface ButtonBaseProps
+  extends Omit<RNPressableProps, "children" | "disabled" | "style"> {
   /**
    * If `true`, the ripples are centered. They won't start at the cursor
    * interaction position.
@@ -105,7 +103,6 @@ const ButtonBaseRoot = styled(RNPressable, {
     Platform.OS === "web" && {
       cursor: ownerState.disabled ? "default" : "pointer",
       outlineWidth: 0,
-      overflow: "hidden",
       transition: "box-shadow 200ms linear",
       userSelect: "none",
     },
@@ -124,21 +121,34 @@ const ButtonBaseHover = styled("span", {
   name: "ButtonBase",
   slot: "Hover",
   skipSx: true,
-})({
+})(({ theme }) => ({
+  borderRadius: "inherit" as any,
   bottom: 0,
   left: 0,
   position: "absolute",
   right: 0,
   top: 0,
-  transition: "opacity 200ms linear",
+  transition: theme.utils.transition(
+    ["background-color", "opacity"],
+    "200ms linear",
+  ),
   zIndex: -1,
-})
+}))
 
 const ButtonBaseRippleContainer = styled("span", {
   name: "ButtonBase",
   slot: "RippleContainer",
   skipSx: true,
-})()
+})({
+  borderRadius: "inherit" as any,
+  bottom: 0,
+  left: 0,
+  overflow: "hidden",
+  position: "absolute",
+  right: 0,
+  top: 0,
+  zIndex: 0,
+})
 
 const ButtonBaseRipple = styled("span", {
   name: "ButtonBase",

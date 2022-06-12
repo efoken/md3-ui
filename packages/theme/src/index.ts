@@ -1,6 +1,7 @@
 import { Breakpoints, createBreakpoints } from "./create-breakpoints"
 import { Color, createColor } from "./create-color"
 import { createElevation, Elevation } from "./create-elevation"
+import { createShape, Shape } from "./create-shape"
 import { createSpacing, Spacing } from "./create-spacing"
 import { createTypography, Typeface, Typescale } from "./create-typorgaphy"
 import { mix, rgba, transition } from "./utils"
@@ -17,6 +18,7 @@ export interface Theme {
   elevation: Elevation
   typeface: Typeface
   typescale: Typescale
+  shape: Shape
   spacing: Spacing
   zIndex: {
     appBar: number
@@ -47,6 +49,7 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
       typeface: theme.typeface,
       typescale: theme.typescale,
     }),
+    shape: createShape(theme.shape),
     spacing: createSpacing(8),
     zIndex: {
       appBar: 1200,

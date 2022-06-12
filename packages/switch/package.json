@@ -1,0 +1,44 @@
+{
+  "name": "@md3-ui/switch",
+  "version": "0.0.5",
+  "main": "dist/md3-ui-switch.cjs.js",
+  "license": "MIT",
+  "homepage": "https://eikefoken.com/md3-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/efoken/md3-ui",
+    "directory": "packages/switch"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material you"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@md3-ui/button": "^0.0.5",
+    "@md3-ui/hooks": "^0.0.5",
+    "@md3-ui/system": "^0.0.5",
+    "@md3-ui/utils": "^0.0.5"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.45",
+    "@types/react-native": "^0.67.8",
+    "react": "^17.0.2",
+    "react-native": "^0.68.2"
+  },
+  "peerDependencies": {
+    "@types/react": "^17.0.45 || ^18.0.0",
+    "@types/react-native": "^0.67.8",
+    "react": "^17.0.2 || ^18.0.0",
+    "react-native": ">=0.67.4"
+  }
+}

@@ -100,9 +100,10 @@ export function useAnimate({
       inputRange,
       outputRange,
       ...config
-    }: Animated.InterpolationConfigType) =>
+    }: Omit<Animated.InterpolationConfigType, "inputRange"> &
+      Partial<Pick<Animated.InterpolationConfigType, "inputRange">>) =>
       animatedValue.interpolate({
-        inputRange: inputRange || [
+        inputRange: inputRange ?? [
           Math.min(fromValue, toValue),
           Math.max(fromValue, toValue),
         ],
