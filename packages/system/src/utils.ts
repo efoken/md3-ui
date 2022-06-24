@@ -5,8 +5,8 @@ import { RNStyle } from "./types"
 
 const createReactDOMStyle =
   // eslint-disable-next-line global-require, import/no-extraneous-dependencies
-  require("react-native-web/dist/exports/StyleSheet/createReactDOMStyle")
-    .default as typeof import("react-native-web/dist/exports/StyleSheet/createReactDOMStyle").default
+  require("react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle")
+    .default as typeof import("react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle").default
 
 // eslint-disable-next-line global-require,import/no-extraneous-dependencies
 const prefixStyles = require("react-native-web/dist/modules/prefixStyles")

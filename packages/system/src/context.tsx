@@ -31,6 +31,7 @@ const TEXT_STYLE_KEYS = new Set([
 ])
 
 export interface ThemeProviderProps {
+  children: React.ReactNode
   theme?: Partial<Theme>
 }
 
