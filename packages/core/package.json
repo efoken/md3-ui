@@ -40,9 +40,9 @@
     "@md3-ui/theme": "^0.0.5"
   },
   "devDependencies": {
-    "@types/react": "^17.0.45",
+    "@types/react": "^17.0.47",
     "@types/react-dom": "^17.0.17",
-    "@types/react-native": "^0.67.8",
+    "@types/react-native": "^0.68.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-native": "^0.68.2"
@@ -50,7 +50,7 @@
   "peerDependencies": {
     "@types/react": "^17.0.45 || ^18.0.0",
     "@types/react-dom": "^17.0.17 || ^18.0.0",
-    "@types/react-native": "^0.67.8",
+    "@types/react-native": "^0.68.1",
     "react": "^17.0.2 || ^18.0.0",
     "react-dom": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4"

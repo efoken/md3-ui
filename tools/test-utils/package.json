@@ -7,18 +7,18 @@
     "@md3-ui/core": "^0.0.5",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^12.1.5",
-    "@types/jest-axe": "^3.5.3",
+    "@types/jest-axe": "^3.5.4",
     "jest-axe": "^6.0.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.45",
-    "@types/react-native": "^0.67.8",
+    "@types/react": "^17.0.47",
+    "@types/react-native": "^0.68.1",
     "react": "^17.0.2",
     "react-native": "^0.68.2"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.45",
-    "@types/react-native": "^0.67.8",
+    "@types/react": "^17.0.47",
+    "@types/react-native": "^0.68.1",
     "react": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4"
   }
