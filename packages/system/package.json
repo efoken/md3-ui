@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/system",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "main": "dist/md3-ui-system.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
@@ -26,9 +26,9 @@
   "dependencies": {
     "@emotion/primitives-core": "^11.0.0",
     "@emotion/react": "^11.9.3",
-    "@md3-ui/hooks": "^0.0.5",
-    "@md3-ui/theme": "^0.0.5",
-    "@md3-ui/utils": "^0.0.5",
+    "@md3-ui/hooks": "^0.1.0",
+    "@md3-ui/theme": "^0.1.0",
+    "@md3-ui/utils": "^0.1.0",
     "@types/css-mediaquery": "^0.1.1",
     "css-mediaquery": "^0.1.2"
   },
