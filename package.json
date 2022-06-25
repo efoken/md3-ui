@@ -46,7 +46,7 @@
     "jest": "^28.1.1",
     "jest-environment-jsdom": "^28.1.1",
     "lerna": "^5.1.6",
-    "lint-staged": "^13.0.2",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "prettier-plugin-organize-imports": "^3.0.0",
     "react": "^17.0.2",
