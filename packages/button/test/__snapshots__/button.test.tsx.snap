@@ -2,9 +2,8 @@
 
 exports[`<Button /> should render 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingHorizontal-1guathk md3-media-17h1dt4 md3-media-1ev2qvy"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-17h1dt4 md3-249f"
   role="button"
   tabindex="0"
 >
@@ -12,7 +11,7 @@ exports[`<Button /> should render 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -21,11 +20,12 @@ exports[`<Button /> should render 1`] = `
     </div>
   </div>
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(103, 80, 164); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -33,9 +33,8 @@ exports[`<Button /> should render 1`] = `
 
 exports[`<Button /> should render a button with icon 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingHorizontal-1guathk md3-media-17h1dt4 md3-media-1ev2qvy"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-17h1dt4 md3-249f"
   role="button"
   tabindex="0"
 >
@@ -43,7 +42,7 @@ exports[`<Button /> should render a button with icon 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-view-1dbjc4n r-marginLeft-htfu76 r-marginRight-1kb76zh"
+      class="css-view-175oi2r r-marginRight-1kb76zh r-marginLeft-htfu76"
       data-class="Button-icon"
     >
       <span
@@ -54,7 +53,7 @@ exports[`<Button /> should render a button with icon 1`] = `
       </span>
     </div>
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -63,11 +62,12 @@ exports[`<Button /> should render a button with icon 1`] = `
     </div>
   </div>
   <span
-    class="r-backgroundColor-15l9ap5 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
-    style="opacity: 0;"
+    style="background-color: rgb(103, 80, 164); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -75,9 +75,8 @@ exports[`<Button /> should render a button with icon 1`] = `
 
 exports[`<Button /> should render a filled button 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-15l9ap5 r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-15l9ap5 r-borderRadius-y47klf r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingHorizontal-1guathk md3-media-iwmwhq md3-media-1ld86pe"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-iwmwhq md3-11mp2qk"
   role="button"
   tabindex="0"
 >
@@ -85,7 +84,7 @@ exports[`<Button /> should render a filled button 1`] = `
     style="color: rgb(255, 255, 255); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(255, 255, 255);"
@@ -94,11 +93,12 @@ exports[`<Button /> should render a filled button 1`] = `
     </div>
   </div>
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(255, 255, 255); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -106,7 +106,7 @@ exports[`<Button /> should render a filled button 1`] = `
 
 exports[`<Button /> should render a text button 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-paddingLeft-f727ji r-paddingRight-j2kj52 r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-y47klf r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-paddingRight-j2kj52 r-paddingHorizontal-1guathk r-paddingLeft-f727ji"
   data-class="Button-root ButtonBase-root"
   role="button"
   tabindex="0"
@@ -115,7 +115,7 @@ exports[`<Button /> should render a text button 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -124,11 +124,12 @@ exports[`<Button /> should render a text button 1`] = `
     </div>
   </div>
   <span
-    class="r-backgroundColor-15l9ap5 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
-    style="opacity: 0;"
+    style="background-color: rgb(103, 80, 164); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -136,9 +137,8 @@ exports[`<Button /> should render a text button 1`] = `
 
 exports[`<Button /> should render a tonal button 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-y47klf r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-y47klf r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingHorizontal-1guathk md3-media-iwmwhq md3-media-1ld86pe"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-iwmwhq md3-11mp2qk"
   role="button"
   tabindex="0"
 >
@@ -146,7 +146,7 @@ exports[`<Button /> should render a tonal button 1`] = `
     style="color: rgb(29, 25, 43); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(29, 25, 43);"
@@ -155,11 +155,12 @@ exports[`<Button /> should render a tonal button 1`] = `
     </div>
   </div>
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(29, 25, 43); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -167,9 +168,8 @@ exports[`<Button /> should render a tonal button 1`] = `
 
 exports[`<Button /> should render an elevated button 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-1guathk r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-y47klf r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingHorizontal-1guathk md3-media-17h1dt4 md3-media-1ev2qvy"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-17h1dt4 md3-249f"
   role="button"
   tabindex="0"
 >
@@ -177,7 +177,7 @@ exports[`<Button /> should render an elevated button 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -186,11 +186,12 @@ exports[`<Button /> should render an elevated button 1`] = `
     </div>
   </div>
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(103, 80, 164); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -198,9 +199,8 @@ exports[`<Button /> should render an elevated button 1`] = `
 
 exports[`<Button /> should render an outlined button 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-backgroundColor-1stjixc r-borderColor-1t01w60 r-borderRadius-y47klf r-borderWidth-rs99b7 r-boxShadow-cnhr7f r-cursor-1loqt21 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-paddingHorizontal-ju726h r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1stjixc r-borderColor-1t01w60 r-borderRadius-y47klf r-borderWidth-rs99b7 r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingHorizontal-ju726h md3-media-12nxpqr"
   data-class="Button-root ButtonBase-root"
-  data-media="md3-18rahmg"
   role="button"
   tabindex="0"
 >
@@ -208,7 +208,7 @@ exports[`<Button /> should render an outlined button 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-901oao r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
+      class="css-text-1rynq56 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       data-class="Button-label Text-root"
       dir="auto"
       style="color: rgb(103, 80, 164);"
@@ -217,11 +217,12 @@ exports[`<Button /> should render an outlined button 1`] = `
     </div>
   </div>
   <span
-    class="r-backgroundColor-15l9ap5 r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
-    style="opacity: 0;"
+    style="background-color: rgb(103, 80, 164); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>

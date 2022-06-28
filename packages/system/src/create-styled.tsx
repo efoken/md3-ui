@@ -27,7 +27,7 @@ function useStyleSheet(
   mediaValues?: Partial<MediaQuery.MediaValues>,
   breakpoint?: string | number,
 ) {
-  const { ids, styles: createdStyles } = React.useMemo(
+  const { styles: createdStyles } = React.useMemo(
     () =>
       StyleSheet.createWithMedia(
         { styles: objectFilter(styles, (style) => style != null) },
@@ -36,7 +36,7 @@ function useStyleSheet(
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [breakpoint, mediaValues, styles],
   )
-  return { id: ids.styles, style: createdStyles.styles }
+  return { style: createdStyles.styles }
 }
 
 export function defaultShouldForwardProp(prop: keyof any) {
@@ -120,9 +120,6 @@ export const styled: CreateStyled = <
         newProps.dataSet = {
           ...dataSet,
           class: cx(dataSet?.class, label),
-          ...(styleSheet.id && {
-            media: cx(dataSet?.media, styleSheet.id),
-          }),
         }
         newProps.style = isFunction(style)
           ? (state: PressableStateCallbackType) => [
@@ -132,7 +129,7 @@ export const styled: CreateStyled = <
           : [styleSheet.style, style]
 
         return typeof FinalTag === "string" ? (
-          // eslint-disable-next-line global-require, import/no-extraneous-dependencies
+          // eslint-disable-next-line global-require
           require("react-native-web").unstable_createElement(FinalTag, newProps)
         ) : (
           <FinalTag {...newProps} />

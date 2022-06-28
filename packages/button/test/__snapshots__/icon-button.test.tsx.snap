@@ -2,7 +2,7 @@
 
 exports[`<IconButton /> prop: edge should render the correct size 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-cursor-1loqt21 r-height-mabqd8 r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr r-width-1yvhtrz"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-height-mabqd8 r-justifyContent-1777fci r-width-1yvhtrz"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   tabindex="0"
@@ -14,11 +14,12 @@ exports[`<IconButton /> prop: edge should render the correct size 1`] = `
     fill="currentColor"
   />
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(255, 251, 254); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -26,7 +27,7 @@ exports[`<IconButton /> prop: edge should render the correct size 1`] = `
 
 exports[`<IconButton /> prop: edge should render the correct size 2`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-cursor-1loqt21 r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr r-width-1aockid"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   tabindex="0"
@@ -38,11 +39,12 @@ exports[`<IconButton /> prop: edge should render the correct size 2`] = `
     fill="currentColor"
   />
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(255, 251, 254); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -50,7 +52,7 @@ exports[`<IconButton /> prop: edge should render the correct size 2`] = `
 
 exports[`<IconButton /> prop: edge should render the correct size 3`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-cursor-1loqt21 r-height-h3s6tt r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr r-width-rwqe4o"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-height-h3s6tt r-justifyContent-1777fci r-width-rwqe4o"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   tabindex="0"
@@ -62,11 +64,12 @@ exports[`<IconButton /> prop: edge should render the correct size 3`] = `
     fill="currentColor"
   />
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(255, 251, 254); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>
@@ -74,7 +77,7 @@ exports[`<IconButton /> prop: edge should render the correct size 3`] = `
 
 exports[`<IconButton /> should render 1`] = `
 <div
-  class="css-cursor-18t94o4 css-view-1dbjc4n r-alignItems-1awozwy r-cursor-1loqt21 r-height-eu3ka r-justifyContent-1777fci r-outlineWidth-10paoce r-overflow-1udh08x r-touchAction-1otgn73 r-transition-imt7jj r-userSelect-lrvibr r-width-1aockid"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-imt7jj r-userSelect-lrvibr r-alignItems-1awozwy r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   tabindex="0"
@@ -87,11 +90,12 @@ exports[`<IconButton /> should render 1`] = `
     fill="currentColor"
   />
   <span
-    class="r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-hddpjs r-zIndex-1wyyakw"
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-llhokh r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
     style="background-color: rgb(255, 251, 254); opacity: 0;"
   />
   <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
 </div>

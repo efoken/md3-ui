@@ -1,16 +1,9 @@
 import { isMedia, mergeDeep } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery"
 import { PixelRatio } from "react-native"
+import createReactDOMStyle from "react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle"
+import prefixStyles from "react-native-web/dist/modules/prefixStyles"
 import { RNStyle } from "./types"
-
-const createReactDOMStyle =
-  // eslint-disable-next-line global-require, import/no-extraneous-dependencies
-  require("react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle")
-    .default as typeof import("react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle").default
-
-// eslint-disable-next-line global-require,import/no-extraneous-dependencies
-const prefixStyles = require("react-native-web/dist/modules/prefixStyles")
-  .default as typeof import("react-native-web/dist/modules/prefixStyles").default
 
 export function findBreakpoints(emotionStyles: RNStyle) {
   const allMedia = Object.keys(emotionStyles).filter(
@@ -37,7 +30,7 @@ export function findBreakpoints(emotionStyles: RNStyle) {
 }
 
 export function createCSSRule(query: string, stringHash: string, css: string) {
-  const dataMediaSelector = `[data-media~="${stringHash}"]`
+  const dataMediaSelector = `.${stringHash}`
   return isMedia(query)
     ? `${query} {${dataMediaSelector} ${css}}`
     : `${dataMediaSelector}${query.replace(/^&/, "")} ${css}`

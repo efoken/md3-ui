@@ -7,13 +7,10 @@ import {
   StyleProp,
   StyleSheet as RNStyleSheet,
 } from "react-native"
+import hash from "react-native-web/dist/vendor/hash"
 import { addCSS } from "./inject"
 import { NamedStyles } from "./types"
 import { createCSSRule, createDeclarationBlock } from "./utils"
-
-// eslint-disable-next-line global-require, import/no-extraneous-dependencies
-const hash = require("react-native-web/dist/vendor/hash")
-  .default as typeof import("react-native-web/dist/vendor/hash").default
 
 function getDefaultMediaValues(): Partial<MediaQuery.MediaValues> {
   const { width, height } = Dimensions.get("window")
@@ -43,17 +40,15 @@ export class StyleSheet {
     stylesWithQuery: T | NamedStyles<T>,
     mediaValues: Partial<MediaQuery.MediaValues> = {},
   ): {
-    styles: T
     fullStyles: T
-    ids: Record<keyof T, string>
+    styles: T
   } {
-    let ids: Record<keyof T, string> = {} as any
-
     if (!stylesWithQuery) {
-      return { ids, styles: {} as T, fullStyles: {} as T }
+      return { fullStyles: {} as T, styles: {} as T }
     }
 
     let cleanStyles = { ...stylesWithQuery }
+    const mediaStyles: Record<keyof T, any> = {} as any
 
     Object.entries(stylesWithQuery).forEach(([key, styleWithQuery]) => {
       if (!styleWithQuery) {
@@ -65,15 +60,16 @@ export class StyleSheet {
         .forEach((query) => {
           if (Platform.OS === "web") {
             const css = createDeclarationBlock(styleWithQuery[query])
-            const stringHash = `md3-${hash(`${key}${query}${css}`)}`
+            const stringHash = `md3-media-${hash(`${key}${query}${css}`)}`
             const rule = createCSSRule(query, stringHash, css)
 
             addCSS(stringHash, rule)
             delete cleanStyles[key][query]
 
-            ids = {
-              ...ids,
-              [key]: `${ids[key] ? `${ids[key]} ` : ""}${stringHash}`,
+            mediaStyles[key] = {
+              ...mediaStyles[key],
+              $$css: true,
+              [query]: stringHash,
             }
           } else {
             if (isMedia(query)) {
@@ -94,10 +90,18 @@ export class StyleSheet {
           }
         })
     })
+
+    const styles: T = Object.fromEntries(
+      Object.entries(this.create(cleanStyles)).map(([key, style]) =>
+        mediaStyles[key] == null
+          ? [key, style]
+          : [key, [style, mediaStyles[key]]],
+      ),
+    )
+
     return {
-      ids,
-      styles: this.create(cleanStyles) as T,
       fullStyles: stylesWithQuery as T,
+      styles,
     }
   }
 
