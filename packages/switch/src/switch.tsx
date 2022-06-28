@@ -28,11 +28,6 @@ export interface SwitchProps extends SwitchBaseProps {
   icon?: React.ReactElement
   /**
    * Override or extend the styles applied to the component.
-   *
-   * @param event The event source of the callback.
-   * You can pull out the new value by accessing `event.target.value` (string).
-   * You can pull out the new checked state by accessing `event.target.checked`
-   * (boolean).
    */
   styles?: {
     root?: RNViewStyle

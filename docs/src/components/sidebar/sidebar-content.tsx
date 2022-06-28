@@ -5,7 +5,9 @@ import { Pressable } from "react-native"
 import { Route } from "./types"
 
 interface SidebarContentProps {
+  // eslint-disable-next-line react/no-unused-prop-types
   contentRef: React.RefObject<HTMLElement>
+  // eslint-disable-next-line react/no-unused-prop-types
   pathname: string
   routes: Route[]
 }
