@@ -1,0 +1,32 @@
+{
+  "name": "@md3-ui/props-docs",
+  "version": "0.1.0",
+  "main": "dist/md3-ui-props-docs.cjs.js",
+  "license": "MIT",
+  "homepage": "https://eikefoken.com/md3-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/efoken/md3-ui",
+    "directory": "packages/system"
+  },
+  "keywords": [
+    "docs",
+    "props"
+  ],
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/mkdirp": "^1.0.2",
+    "glob": "^8.0.3",
+    "mkdirp": "^1.0.4",
+    "react-docgen-typescript": "^2.2.2"
+  },
+  "scripts": {
+    "build": "ts-node scripts/build.ts"
+  }
+}
