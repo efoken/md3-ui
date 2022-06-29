@@ -3,7 +3,7 @@ import {
   ThemeProvider as EmotionThemeProvider,
 } from "@emotion/react"
 import { theme, Theme } from "@md3-ui/theme"
-import { objectFilter } from "@md3-ui/utils"
+import { isEmptyObject, objectFilter } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform, StyleProp, TextStyle as RNTextStyle } from "react-native"
 import { StyleSheet } from "./style-sheet"
@@ -41,7 +41,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => (
 
 function useThemeWithoutDefault(defaultTheme?: Theme) {
   const contextTheme = React.useContext(ThemeContext) as Theme | undefined
-  return contextTheme == null || Object.keys(contextTheme).length === 0
+  return contextTheme == null || isEmptyObject(contextTheme)
     ? (defaultTheme as Theme)
     : contextTheme
 }

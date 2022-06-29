@@ -1,4 +1,5 @@
 import { Theme } from "@md3-ui/theme"
+import { isEmptyObject } from "@md3-ui/utils"
 import { ResponsiveValue, RNStyle } from "../types"
 
 const values = {
@@ -77,7 +78,7 @@ export function removeUnusedBreakpoints(
   return breakpointKeys.reduce((acc, key) => {
     const breakpointOutput = acc[key]
     const isBreakpointUnused =
-      !breakpointOutput || Object.keys(breakpointOutput).length === 0
+      !breakpointOutput || isEmptyObject(breakpointOutput)
     if (isBreakpointUnused) {
       delete acc[key]
     }

@@ -76,4 +76,4 @@ export function objectFilter<T extends object>(
 }
 
 export const objectKeys = <T extends object>(obj: T) =>
-  Object.keys(obj) as unknown as (keyof T)[]
+  Object.keys(obj) as (keyof T)[]
