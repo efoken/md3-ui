@@ -35,6 +35,7 @@
     "@md3-ui/navigation-bar": "^0.2.0",
     "@md3-ui/navigation-drawer": "^0.2.0",
     "@md3-ui/portal": "^0.2.0",
+    "@md3-ui/switch": "^0.2.0",
     "@md3-ui/system": "^0.2.0",
     "@md3-ui/text-field": "^0.2.0",
     "@md3-ui/theme": "^0.2.0"
