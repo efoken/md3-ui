@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/docs",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -9,8 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@md3-ui/core": "^0.1.0",
-    "@md3-ui/icons": "^0.1.0",
+    "@md3-ui/core": "^0.2.0",
+    "@md3-ui/icons": "^0.2.0",
     "@preconstruct/next": "^4.0.0",
     "contentlayer": "^0.2.5",
     "copy-to-clipboard": "^3.3.1",

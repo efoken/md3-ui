@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/theme",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist/md3-ui-theme.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^3.4.1",
-    "@md3-ui/hooks": "^0.1.0"
+    "@md3-ui/hooks": "^0.2.0"
   },
   "devDependencies": {
     "@types/react-native": "^0.68.1",

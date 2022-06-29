@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/button",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "dist/md3-ui-button.cjs.js",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
@@ -24,10 +24,10 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/hooks": "^0.1.0",
-    "@md3-ui/layout": "^0.1.0",
-    "@md3-ui/system": "^0.1.0",
-    "@md3-ui/utils": "^0.1.0"
+    "@md3-ui/hooks": "^0.2.0",
+    "@md3-ui/layout": "^0.2.0",
+    "@md3-ui/system": "^0.2.0",
+    "@md3-ui/utils": "^0.2.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.47",
