@@ -2,6 +2,8 @@
   "name": "@md3-ui/theme",
   "version": "0.2.0",
   "main": "dist/md3-ui-theme.cjs.js",
+  "module": "dist/md3-ui-theme.esm.js",
+  "types": "dist/md3-ui-theme.cjs.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {

@@ -2,6 +2,8 @@
   "name": "@md3-ui/icon",
   "version": "0.2.0",
   "main": "dist/md3-ui-icon.cjs.js",
+  "module": "dist/md3-ui-icon.esm.js",
+  "types": "dist/md3-ui-icon.cjs.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {

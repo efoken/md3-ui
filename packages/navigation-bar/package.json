@@ -2,6 +2,8 @@
   "name": "@md3-ui/navigation-bar",
   "version": "0.2.0",
   "main": "dist/md3-ui-navigation-bar.cjs.js",
+  "modules": "dist/md3-ui-navigation-bar.esm.js",
+  "types": "dist/md3-ui-navigation-bar.cjs.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {

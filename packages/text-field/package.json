@@ -2,6 +2,8 @@
   "name": "@md3-ui/text-field",
   "version": "0.2.0",
   "main": "dist/md3-ui-text-field.cjs.js",
+  "module": "dist/md3-ui-text-field.esm.js",
+  "types": "dist/md3-ui-text-field.cjs.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {
