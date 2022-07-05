@@ -3577,10 +3577,10 @@
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-"@preconstruct/cli@^2.1.5":
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.1.5.tgz#f7f6d06809f382521589af15f67b87009b240c58"
-  integrity sha512-bMnGTkaotxq+xoOkXoUOfTFvxBX/ZUxukcacf3mx3G7Iz5m/T4ZGzSOU12pxl64e+rVWGTKlUsgaDSgyFkup0A==
+"@preconstruct/cli@^2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@preconstruct/cli/-/cli-2.1.7.tgz#ac03f7396ab1e61f159858993009e6603c474ff1"
+  integrity sha512-5T8e5BX+TrT4/+1guWNVBccP+yxFERhVqpHLHO48SmB7IKqxeNt0ddcyLrH4WSzlV4tJ45Lk3OuELlKikso5bQ==
   dependencies:
     "@babel/code-frame" "^7.5.5"
     "@babel/core" "^7.7.7"
