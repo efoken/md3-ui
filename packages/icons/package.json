@@ -41,7 +41,7 @@
     "fs-extra": "^10.1.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
-    "react-native": "^0.68.2",
+    "react-native": "^0.70.6",
     "react-native-svg": "^12.3.0",
     "svgo": "^2.8.0",
     "yargs": "^17.5.1"
