@@ -30,11 +30,11 @@
     "@md3-ui/hooks": "^0.2.0"
   },
   "devDependencies": {
-    "@types/react-native": "^0.68.1",
-    "react-native": "^0.68.2"
+    "@types/react-native": "^0.68.9",
+    "react-native": "^0.68.5"
   },
   "peerDependencies": {
-    "@types/react-native": "^0.68.1",
+    "@types/react-native": "^0.68.9",
     "react-native": ">=0.67.4"
   }
 }

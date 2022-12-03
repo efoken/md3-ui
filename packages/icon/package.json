@@ -30,17 +30,17 @@
     "@md3-ui/utils": "^0.2.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.47",
-    "@types/react-native": "^0.68.1",
+    "@types/react": "^17.0.52",
+    "@types/react-native": "^0.68.9",
     "react": "^17.0.2",
-    "react-native": "^0.68.2",
-    "react-native-svg": "^12.3.0"
+    "react-native": "^0.68.5",
+    "react-native-svg": "^12.5.0"
   },
   "peerDependencies": {
     "@types/react": "^17.0.45 || ^18.0.0",
-    "@types/react-native": "^0.68.1",
+    "@types/react-native": "^0.68.9",
     "react": "^17.0.2 || ^18.0.0",
     "react-native": ">=0.67.4",
-    "react-native-svg": "^12.3.0"
+    "react-native-svg": "^12.5.0"
   }
 }
