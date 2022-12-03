@@ -22,6 +22,24 @@
       }
     ],
     "no-nested-ternary": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": [
+          "acc", // for reduce accumulators
+          "accumulator", // for reduce accumulators
+          "e", // for e.nativeEvent
+          "event", // for event.nativeEvent
+          "ctx", // for Next.js
+          "context", // for Next.js
+          "req", // for Express requests
+          "request", // for Express requests
+          "res", // for Express responses
+          "response" // for Express responses
+        ]
+      }
+    ],
     "no-underscore-dangle": [
       "error",
       {
