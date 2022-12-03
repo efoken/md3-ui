@@ -84,7 +84,7 @@ const TextRoot = styled(RNText, {
   slot: "Root",
 })<OwnerStateProps<Pick<TextProps, "color" | "variant">>>(
   ({ theme, ownerState }) => ({
-    textAlign: "left",
+    textAlign: Platform.OS === "web" ? "start" : "left",
 
     ...(ownerState.variant != null && theme.typescale[ownerState.variant]),
 

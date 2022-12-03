@@ -160,7 +160,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     animateSwitch(newChecked, () => {
       setPrevChecked(newChecked)
       setAlignItems(newChecked ? "flex-end" : "flex-start")
-      switchAnimation.setValue(newChecked ? -1 : 1)
+      // switchAnimation.setValue(newChecked ? -1 : 1)
     })
     animateThumb(0)
   })

@@ -134,9 +134,9 @@ const TextFieldLabel = styled(TextInputLabel, {
   ...theme.typescale["body-large"],
   backgroundColor: theme.color.surface,
   color: theme.color["on-surface"],
-  left: 0,
   paddingHorizontal: theme.spacing(0.5) / 0.75,
   position: "absolute",
+  start: 0,
   top: 0,
   zIndex: 2,
 }))
