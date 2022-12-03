@@ -168,7 +168,7 @@ function defaultGetTabbable(root: HTMLElement) {
 /**
  * Utility component that locks focus inside the component.
  */
-export const FocusTrap: React.VFC<FocusTrapProps> = ({
+export const FocusTrap: React.FC<FocusTrapProps> = ({
   children,
   disableAutoFocus = false,
   disableEnforceFocus = false,

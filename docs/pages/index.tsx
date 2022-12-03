@@ -11,7 +11,7 @@ interface IntroductionCardProps {
   link?: { href: string; label: string }
 }
 
-export const IntroductionCard: React.VFC<IntroductionCardProps> = ({
+export const IntroductionCard: React.FC<IntroductionCardProps> = ({
   copy,
   headline,
   image,

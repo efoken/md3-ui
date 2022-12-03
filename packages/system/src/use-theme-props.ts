@@ -15,7 +15,7 @@ type ThemedProps<Theme, Name extends keyof any> = Theme extends {
 
 function getThemeProps<
   Theme extends ThemeWithProps<any>,
-  Props,
+  Props extends Partial<any>,
   Name extends keyof any,
 >({
   props,
@@ -38,7 +38,7 @@ function getThemeProps<
 
 export function useThemeProps<
   Theme extends ThemeWithProps<any>,
-  Props,
+  Props extends Partial<any>,
   Name extends keyof any,
 >({
   name,

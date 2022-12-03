@@ -162,6 +162,7 @@ const ButtonBaseRipple = styled("span", {
   >
 >(({ ownerState, theme }) => ({
   animationDuration: "550ms",
+  animationFillMode: "forwards",
   animationKeyframes: {
     "0%": {
       opacity: 1,

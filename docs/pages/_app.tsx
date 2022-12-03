@@ -3,7 +3,7 @@ import { AppProps } from "next/app"
 import Head from "next/head"
 import * as React from "react"
 
-const App: React.VFC<AppProps> = ({ Component, pageProps }) => (
+const App: React.FC<AppProps> = ({ Component, pageProps }) => (
   <>
     <Head>
       <meta name="viewport" content="initial-scale=1, width=device-width" />

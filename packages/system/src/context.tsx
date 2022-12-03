@@ -53,6 +53,7 @@ export function useTheme(defaultTheme: Theme = theme) {
 const TextStyleContext = React.createContext<RNTextStyle>({})
 
 export interface TextStyleProviderProps {
+  children?: React.ReactNode
   style?: StyleProp<RNTextStyle>
 }
 

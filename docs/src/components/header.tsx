@@ -8,7 +8,7 @@ interface HeaderProps {
   onMenuToggle?: () => void
 }
 
-export const Header: React.VFC<HeaderProps> = ({ menuOpen, onMenuToggle }) => (
+export const Header: React.FC<HeaderProps> = ({ menuOpen, onMenuToggle }) => (
   <AppBar position="fixed" sx={{ zIndex: 1500 }}>
     <Toolbar>
       <IconButton onPress={onMenuToggle}>

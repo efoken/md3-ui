@@ -6,7 +6,7 @@ interface CopyButtonProps extends ButtonProps {
   code: string
 }
 
-export const CopyButton: React.VFC<CopyButtonProps> = ({
+export const CopyButton: React.FC<CopyButtonProps> = ({
   code,
   sx,
   ...props

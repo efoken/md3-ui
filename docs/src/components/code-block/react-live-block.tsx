@@ -5,7 +5,7 @@ import { CodeContainer } from "./code-container"
 import { CopyButton } from "./copy-button"
 import scope from "./react-live-scope"
 
-const EditableNotice: React.VFC<BoxProps> = ({ sx, ...props }) => (
+const EditableNotice: React.FC<BoxProps> = ({ sx, ...props }) => (
   <Box
     pointerEvents="none"
     sx={{
@@ -37,7 +37,7 @@ interface ReactLiveBlockProps {
   rawCode: string
 }
 
-const ReactLiveBlock: React.VFC<ReactLiveBlockProps> = ({
+const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
   editable,
   rawCode,
   ...props

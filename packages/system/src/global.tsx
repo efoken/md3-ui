@@ -7,5 +7,5 @@ import { Platform } from "react-native"
 
 export interface GlobalProps extends EmotionGlobalProps {}
 
-export const Global: React.VFC<GlobalProps> = ({ styles }) =>
+export const Global: React.FC<GlobalProps> = ({ styles }) =>
   Platform.OS === "web" ? <EmotionGlobal styles={styles} /> : null

@@ -1,7 +1,7 @@
 import { Global } from "@md3-ui/system"
 import * as React from "react"
 
-export const CSSBaseline: React.VFC = () => (
+export const CSSBaseline: React.FC = () => (
   <Global
     styles={(theme) => ({
       html: {

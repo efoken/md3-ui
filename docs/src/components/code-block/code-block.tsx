@@ -11,7 +11,7 @@ interface CodeBlockProps {
   children: React.ReactElement
 }
 
-export const CodeBlock: React.VFC<CodeBlockProps> = ({
+export const CodeBlock: React.FC<CodeBlockProps> = ({
   children: childrenProp,
 }) => {
   const [mounted, { on }] = useBoolean()

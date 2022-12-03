@@ -6,13 +6,6 @@ declare module "react-native" {
     readonly hovered: boolean
   }
 
-  export interface PressableProps {
-    /** @platform web */
-    onHoverIn?: (event: MouseEvent) => void
-    /** @platform web */
-    onHoverOut?: (event: MouseEvent) => void
-  }
-
   export interface AppParams {
     callback?: () => void
     hydrate?: boolean
@@ -37,6 +30,8 @@ declare module "react-native" {
     animationDuration?: React.CSSProperties["animationDuration"]
     /** @platform web */
     animationKeyframes?: Record<string, ViewStyle>
+    /** @platform web */
+    animationFillMode?: React.CSSProperties["animationFillMode"]
     /** @platform web */
     animationName?: React.CSSProperties["animationName"]
     /** @platform web */

@@ -5,12 +5,14 @@ import { createChainedFunction, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   GestureResponderEvent,
+  NativeSyntheticEvent,
+  NativeTouchEvent,
   Platform,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
 
-export interface SwitchChangeEvent extends GestureResponderEvent {
+export interface SwitchChangeEventData extends NativeTouchEvent {
   checked: boolean
   value?: string
 }
@@ -40,9 +42,7 @@ export interface SwitchBaseProps extends ButtonBaseProps {
    * You can pull out the new checked state by accessing `event.target.checked`
    * (boolean).
    */
-  onChange?: (
-    event: SwitchChangeEvent | React.ChangeEvent<HTMLInputElement>,
-  ) => void
+  onChange?: (event: NativeSyntheticEvent<SwitchChangeEventData>) => void
   /**
    * If `true`, the `input` element is required.
    * @default false
@@ -132,19 +132,15 @@ export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(
       event: GestureResponderEvent | React.ChangeEvent<HTMLInputElement>,
     ) => {
       const newChecked =
-        typeof event.target === "object" ? event.target.checked : !checked
+        typeof event.target === "object" && "checked" in event.target
+          ? event.target.checked
+          : !checked
 
       setChecked(newChecked)
+      ;(event.nativeEvent as any).checked = newChecked
+      ;(event.nativeEvent as any).value = value ?? "on"
 
-      onChange?.(
-        typeof event.target === "object"
-          ? (event as React.ChangeEvent<HTMLInputElement>)
-          : ({
-              ...event,
-              checked: newChecked,
-              value: value ?? "on",
-            } as SwitchChangeEvent),
-      )
+      onChange?.(event as NativeSyntheticEvent<SwitchChangeEventData>)
     }
 
     return (

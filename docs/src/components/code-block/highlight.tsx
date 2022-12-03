@@ -32,7 +32,7 @@ interface HighlightProps {
   theme: PrismTheme
 }
 
-export const Highlight: React.VFC<HighlightProps> = ({
+export const Highlight: React.FC<HighlightProps> = ({
   codeString,
   language,
   metastring,

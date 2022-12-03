@@ -12,7 +12,7 @@ interface SidebarContentProps {
   routes: Route[]
 }
 
-export const SidebarContent: React.VFC<SidebarContentProps> = ({ routes }) => {
+export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
   const theme = useTheme()
 
   return (

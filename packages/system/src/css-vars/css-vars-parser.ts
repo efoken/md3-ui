@@ -2,11 +2,10 @@ interface NestedRecord<V = any> {
   [k: string | number]: NestedRecord<V> | V
 }
 
-export function assignNestedKeys<Object = NestedRecord, Value = any>(
-  obj: Object,
-  keys: string[],
-  value: Value,
-) {
+export function assignNestedKeys<
+  Object extends Record<string, any> = NestedRecord,
+  Value = any,
+>(obj: Object, keys: string[], value: Value) {
   let temp: Record<string, any> = obj
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {

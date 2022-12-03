@@ -38,7 +38,7 @@ export function handleBreakpoints<P extends { theme?: Theme }, T>(
     }, {})
   }
 
-  if (typeof propValue === "object") {
+  if (propValue != null && typeof propValue === "object") {
     const themeBreakpoints = theme?.breakpoints || defaultBreakpoints
 
     return Object.keys(propValue).reduce((acc, breakpoint) => {

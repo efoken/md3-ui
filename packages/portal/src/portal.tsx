@@ -53,7 +53,7 @@ export const Portal = React.forwardRef<any, PortalProps>(
     }, [ref, mountNode, disablePortal])
 
     if (disablePortal) {
-      if (React.isValidElement(children)) {
+      if (React.isValidElement<any>(children)) {
         return React.cloneElement(children, {
           ref: handleRef,
         })

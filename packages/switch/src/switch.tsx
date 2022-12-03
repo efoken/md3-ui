@@ -6,11 +6,16 @@ import {
   Animated,
   Easing,
   FlexAlignType as RNFlexAlignType,
+  NativeSyntheticEvent,
   Platform,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
-import { SwitchBase, SwitchBaseProps, SwitchChangeEvent } from "./switch-base"
+import {
+  SwitchBase,
+  SwitchBaseProps,
+  SwitchChangeEventData,
+} from "./switch-base"
 
 export interface SwitchProps extends SwitchBaseProps {
   /**
@@ -170,13 +175,8 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     animateThumb(pressed ? 1 : 0)
   }, [animateThumb, pressed])
 
-  const handleChange = (
-    event: SwitchChangeEvent | React.ChangeEvent<HTMLInputElement>,
-  ) => {
-    const newChecked =
-      typeof event.target === "object"
-        ? event.target.checked
-        : (event as SwitchChangeEvent).checked
+  const handleChange = (event: NativeSyntheticEvent<SwitchChangeEventData>) => {
+    const newChecked = event.nativeEvent.checked
 
     setChecked(newChecked)
     onChange?.(event)

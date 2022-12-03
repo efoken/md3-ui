@@ -1,4 +1,6 @@
 import * as React from "react"
 
-// eslint-disable-next-line react/jsx-no-useless-fragment
-export const Layout: React.FC = ({ children }) => <>{children}</>
+export const Layout: React.FC<{ children: React.ReactNode }> = ({
+  children,
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+}) => <>{children}</>

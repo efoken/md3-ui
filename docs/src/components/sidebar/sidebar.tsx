@@ -11,7 +11,7 @@ interface SidebarProps {
   routes: Route[]
 }
 
-export const Sidebar: React.VFC<SidebarProps> = ({
+export const Sidebar: React.FC<SidebarProps> = ({
   onMenuClose,
   open = false,
   routes,

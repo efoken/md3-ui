@@ -3,10 +3,10 @@ import { Queue, retry, sleep } from "@md3-ui/utils"
 import fetch from "cross-fetch"
 import * as fse from "fs-extra"
 import * as path from "node:path"
-import { optimize, OptimizeOptions } from "svgo"
+import { Config, optimize } from "svgo"
 import * as yargs from "yargs"
 
-const svgoConfig: OptimizeOptions = {
+const svgoConfig: Config = {
   multipass: true,
   js2svg: {
     indent: 2,
@@ -113,18 +113,15 @@ function downloadIcon(icon: { index: number; name: string; version: string }) {
         throw new Error(`status ${response.status}`)
       }
       const svg = await response.text()
+      const dataPath = path.join(
+        __dirname,
+        `../assets/${icon.name.replace(/_/g, "-")}${themeFileMap[theme]}.svg`,
+      )
       const data = optimize(svg, {
-        path: path.join(
-          __dirname,
-          `../assets/${icon.name.replace(/_/g, "-")}${themeFileMap[theme]}.svg`,
-        ),
+        path: dataPath,
         ...svgoConfig,
       })
-      if ("data" in data && data.path != null) {
-        await fse.writeFile(data.path, data.data)
-      } else {
-        throw new Error(data.error)
-      }
+      await fse.writeFile(dataPath, data.data)
     }),
   )
 }
