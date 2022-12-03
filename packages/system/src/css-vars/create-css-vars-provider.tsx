@@ -236,7 +236,8 @@ export function createCssVarsProvider<
 
     React.useEffect(() => {
       if (colorScheme) {
-        // attaches attribute to <html> because the css variables are attached to :root (html)
+        // attaches attribute to <html> because the css variables are attached
+        // to :root (html)
         document.documentElement.setAttribute(attribute, colorScheme)
       }
     }, [colorScheme, attribute])
@@ -247,7 +248,8 @@ export function createCssVarsProvider<
       }
       const priorColorScheme =
         document.documentElement.style.getPropertyValue("color-scheme")
-      // `color-scheme` tells browser to render built-in elements according to its value: `light` or `dark`
+      // `color-scheme` tells browser to render built-in elements according to
+      // its value: `light` or `dark`
       if (mode === "system") {
         document.documentElement.style.setProperty(
           "color-scheme",

@@ -35,7 +35,7 @@ const svgoConfig: Config = {
 
 // Icons we don't publish.
 // This is just a list of new icons.
-// In the future we might change what icons we want to exclude (e.g. by popularity)
+// We might change what icons we want to exclude (e.g. by popularity)
 const ignoredIconNames = new Set([
   "123",
   "6_ft_apart",

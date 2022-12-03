@@ -24,7 +24,8 @@ export default function createGetCssVar<T extends string = string>(
     return `, ${value}`
   }
 
-  // AdditionalVars makes `getCssVar` less strict, so it can be use like this `getCssVar('non-mui-variable')` without type error.
+  // AdditionalVars makes `getCssVar` less strict, so it can be use like this
+  // `getCssVar('non-mui-variable')` without type error.
   const getCssVar = <AdditionalVars extends string = never>(
     field: T | AdditionalVars,
     ...vars: (T | AdditionalVars)[]

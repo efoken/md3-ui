@@ -267,7 +267,7 @@ export const ModalManager = new (class ModalManager {
     } else {
       // Otherwise make sure the next top modal is visible to a screen reader.
       const nextTop = containerInfo.modals[containerInfo.modals.length - 1]
-      // as soon as a modal is adding its modalRef is undefined. it can't set
+      // As soon as a modal is adding its modalRef is undefined. it can't set
       // aria-hidden because the dom element doesn't exist either
       // when modal was unmounted before modalRef gets null
       if (nextTop.modalRef) {

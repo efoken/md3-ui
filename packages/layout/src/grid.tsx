@@ -82,7 +82,8 @@ export interface GridTypeMap<
      */
     sx?: SxProps
     /**
-     * Defines the `flex-wrap` style property. It's applied for all screen sizes.
+     * Defines the `flex-wrap` style property. It's applied for all screen
+     * sizes.
      * @default "wrap"
      */
     wrap?: RNFlexStyle["flexWrap"]

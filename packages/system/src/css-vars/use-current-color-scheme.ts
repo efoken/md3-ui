@@ -31,17 +31,18 @@ export interface State<SupportedColorScheme extends string> {
 export interface Result<SupportedColorScheme extends string>
   extends State<SupportedColorScheme> {
   /**
-   * The current application color scheme. It is always `undefined` on the server.
+   * The current application color scheme. It is always `undefined` on the
+   * server.
    */
   colorScheme?: SupportedColorScheme
   /**
-   * `mode` is saved to internal state and localStorage
-   * If `mode` is null, it will be reset to the defaultMode
+   * `mode` is saved to internal state and localStorage. If `mode` is null, it
+   * will be reset to the defaultMode
    */
   setMode: (mode: Mode | null) => void
   /**
-   * `colorScheme` is saved to internal state and localStorage
-   * If `colorScheme` is null, it will be reset to the defaultColorScheme (light | dark)
+   * `colorScheme` is saved to internal state and localStorage. If `colorScheme`
+   * is null, it will be reset to the defaultColorScheme (light | dark).
    */
   setColorScheme: (
     colorScheme:
@@ -286,7 +287,8 @@ export function useCurrentColorScheme<
         // eslint-disable-next-line unicorn/prefer-regexp-test
         (!value || joinedColorSchemes.match(value))
       ) {
-        // If the key is deleted, value will be null then reset color scheme to the default one.
+        // If the key is deleted, value will be null then reset color scheme to
+        // the default one.
         if (event.key.endsWith("light")) {
           setColorScheme({ light: value as SupportedColorScheme | null })
         }

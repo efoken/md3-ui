@@ -90,7 +90,7 @@ export function cssVarsParser<T extends Record<string, any>>(
     (keys, value: string | number | object) => {
       if (typeof value === "string" || typeof value === "number") {
         if (typeof value === "string" && /var\(\s*--/.test(value)) {
-          // for CSS variable, apply prefix or remove basePrefix from the variable
+          // for CSS var, apply prefix or remove basePrefix from the variable
           if (!basePrefix && prefix) {
             // eslint-disable-next-line no-param-reassign
             value = value.replace(/var\(\s*--/g, `var(--${prefix}-`)
