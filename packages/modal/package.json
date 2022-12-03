@@ -35,8 +35,8 @@
     "@types/react": "^17.0.52",
     "@types/react-dom": "^17.0.18",
     "@types/react-native": "^0.68.9",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-native": "^0.68.5"
   },
   "peerDependencies": {
