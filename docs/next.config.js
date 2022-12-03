@@ -18,6 +18,10 @@ module.exports = withTM(
           extensions: [".web.js", ".web.jsx", ".web.ts", ".web.tsx"].concat(
             config.resolve.extensions,
           ),
+          fallback: {
+            ...config.resolve.fallback,
+            "react-native/Libraries/Renderer/shims/ReactNative": false,
+          },
         },
       }),
     }),
