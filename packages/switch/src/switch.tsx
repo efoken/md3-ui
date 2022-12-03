@@ -7,7 +7,6 @@ import {
   Easing,
   FlexAlignType as RNFlexAlignType,
   NativeSyntheticEvent,
-  Platform,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
@@ -59,13 +58,10 @@ const SwitchRoot = styled(Animated.View, {
   borderColor: theme.color.outline,
   borderRadius: theme.shape.corner.full,
   borderWidth: 2,
+  cursor: "pointer",
   height: 32,
   justifyContent: "center",
   width: 52,
-
-  ...(Platform.OS === "web" && {
-    cursor: "pointer",
-  }),
 }))
 
 const SwitchSwitchBase = styled(SwitchBase, {
@@ -88,7 +84,9 @@ const SwitchThumb = styled(Animated.View, {
   alignItems: "center",
   backgroundColor: theme.color.outline,
   borderRadius: theme.shape.corner.full,
+  height: 16,
   justifyContent: "center",
+  width: 16,
 }))
 
 export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
@@ -136,7 +134,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     (newChecked: boolean, callback?: Animated.EndCallback) => {
       Animated.timing(switchAnimation, {
         toValue: newChecked ? offset : -offset,
-        duration: 200,
+        duration: 150,
         easing: Easing.linear,
         useNativeDriver: false,
       }).start(callback)
@@ -149,7 +147,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     (toValue: number, callback?: Animated.EndCallback) => {
       Animated.timing(thumbAnimation, {
         toValue,
-        duration: 200,
+        duration: 150,
         easing: Easing.linear,
         useNativeDriver: false,
       }).start(callback)
@@ -157,10 +155,14 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
   )
 
   const animate = useEventCallback((newChecked: boolean) => {
-    animateSwitch(newChecked, () => {
-      setPrevChecked(newChecked)
-      setAlignItems(newChecked ? "flex-end" : "flex-start")
-      // switchAnimation.setValue(newChecked ? -1 : 1)
+    animateSwitch(newChecked, ({ finished }) => {
+      if (finished) {
+        setPrevChecked(newChecked)
+        setAlignItems(newChecked ? "flex-end" : "flex-start")
+        setTimeout(() => {
+          switchAnimation.setValue(newChecked ? -1 : 1)
+        })
+      }
     })
     animateThumb(0)
   })
