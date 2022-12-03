@@ -12,10 +12,9 @@ module.exports = {
   },
   features: {
     babelModeV7: true,
-    emotionAlias: false,
     postcss: false,
-    storyStoreV7: true,
   },
+  framework: "@storybook/react-webpack5",
   typescript: {
     reactDocgen: "react-docgen-typescript",
   },
