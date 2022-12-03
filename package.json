@@ -22,7 +22,7 @@
     "@swc-node/jest": "^1.5.5",
     "@types/jest": "^28.1.8",
     "@types/node": "^16.18.4",
-    "@types/react": "^17.0.52",
+    "@types/react": "^18.0.26",
     "@types/react-dom": "^17.0.18",
     "@types/react-is": "^17.0.3",
     "@types/react-native": "^0.68.9",
@@ -62,7 +62,7 @@
     "yarn-deduplicate": "^6.0.0"
   },
   "resolutions": {
-    "@types/react": "^17.0.52",
+    "@types/react": "^18.0.26",
     "@types/react-dom": "^17.0.18"
   },
   "scripts": {
