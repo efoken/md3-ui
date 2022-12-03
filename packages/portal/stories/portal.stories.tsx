@@ -1,4 +1,4 @@
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 import { Portal, PortalProps } from "../src"
 
@@ -7,25 +7,29 @@ export default {
   component: Portal,
 } as Meta<PortalProps>
 
-export const Basic: Story = () => (
-  <>
-    <p>Welcome</p>
-    <Portal>This text has been portaled</Portal>
-  </>
-)
-
-export const WithMountRef: Story = () => {
-  const ref = React.useRef<HTMLDivElement>(null)
-
-  return (
+export const Basic: StoryObj = {
+  render: () => (
     <>
       <p>Welcome</p>
-      <Portal containerRef={ref}>
-        <span>This text has been portaled</span>
-      </Portal>
-      <div id="iframe" ref={ref}>
-        Portal Div
-      </div>
+      <Portal>This text has been portaled</Portal>
     </>
-  )
+  ),
+}
+
+export const WithMountRef: StoryObj = {
+  render: () => {
+    const ref = React.useRef<HTMLDivElement>(null)
+
+    return (
+      <>
+        <p>Welcome</p>
+        <Portal containerRef={ref}>
+          <span>This text has been portaled</span>
+        </Portal>
+        <div id="iframe" ref={ref}>
+          Portal Div
+        </div>
+      </>
+    )
+  },
 }

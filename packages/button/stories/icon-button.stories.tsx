@@ -1,5 +1,5 @@
 import { Menu } from "@md3-ui/icons"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryObj } from "@storybook/react"
 import { ButtonBase, IconButton, IconButtonProps } from "../src"
 
 export default {
@@ -8,8 +8,10 @@ export default {
   subcomponents: { ButtonBase },
 } as Meta<IconButtonProps>
 
-export const Basic: Story<IconButtonProps> = (args) => (
-  <IconButton {...args}>
-    <Menu />
-  </IconButton>
-)
+export const Basic: StoryObj<IconButtonProps> = {
+  render: (args) => (
+    <IconButton {...args}>
+      <Menu />
+    </IconButton>
+  ),
+}

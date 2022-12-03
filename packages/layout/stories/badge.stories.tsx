@@ -1,5 +1,5 @@
 import { Mail } from "@md3-ui/icons"
-import { Meta, Story } from "@storybook/react"
+import { Meta, StoryObj } from "@storybook/react"
 import { Badge, BadgeProps } from "../src"
 
 export default {
@@ -7,12 +7,13 @@ export default {
   component: Badge,
 } as Meta<BadgeProps>
 
-export const Basic: Story<BadgeProps> = (args) => (
-  <Badge {...args}>
-    <Mail />
-  </Badge>
-)
-
-Basic.args = {
-  badgeContent: 4,
+export const Basic: StoryObj<BadgeProps> = {
+  render: (args) => (
+    <Badge {...args}>
+      <Mail />
+    </Badge>
+  ),
+  args: {
+    badgeContent: 4,
+  },
 }
