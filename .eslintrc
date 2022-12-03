@@ -52,9 +52,11 @@
     "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
     "unicorn/no-array-for-each": "off",
     "unicorn/no-array-reduce": "off",
+    "unicorn/no-negated-condition": "off",
     "unicorn/no-null": "off",
     "unicorn/prefer-module": "off",
     "unicorn/prefer-spread": "off",
+    "unicorn/prefer-top-level-await": "off",
     "unicorn/prevent-abbreviations": "off"
   },
   "overrides": [

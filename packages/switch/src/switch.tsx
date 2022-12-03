@@ -114,7 +114,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
 
   const [prevChecked, setPrevChecked] = React.useState(checked)
 
-  const [hovered, handleHover] = useBoolean()
+  const [, handleHover] = useBoolean()
   const [pressed, handlePress] = useBoolean()
 
   const [alignItems, setAlignItems] = React.useState<RNFlexAlignType>(
