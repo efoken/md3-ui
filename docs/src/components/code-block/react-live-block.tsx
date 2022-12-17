@@ -22,7 +22,7 @@ const EditableNotice: React.FC<BoxProps> = ({ sx, ...props }) => (
   >
     <Text
       variant="body-small"
-      color="inverse-on-surface"
+      color="inverseOnSurface"
       sx={{
         textAlign: "center",
       }}
@@ -61,7 +61,7 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
         style={{
           borderRadius: 12,
           borderWidth: 1,
-          fontFamily: theme.typeface.plain,
+          fontFamily: theme.ref.typeface.plain,
           marginTop: theme.spacing(2.5),
           overflowX: "auto",
           padding: theme.spacing(1.5),

@@ -252,10 +252,11 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       ],
     )
 
-    const hoverColor = rippleColor ?? hoverColorProp ?? theme.color.background
+    const hoverColor =
+      rippleColor ?? hoverColorProp ?? theme.sys.color.background
     const focusColor = rippleColor ?? focusColorProp ?? hoverColor
     const pressedColor =
-      rippleColor ?? pressedColorProp ?? theme.color.background
+      rippleColor ?? pressedColorProp ?? theme.sys.color.background
 
     const underlayColor =
       // When button has no background color, simply use `rippleColor` as is

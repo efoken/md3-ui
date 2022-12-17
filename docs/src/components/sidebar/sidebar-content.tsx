@@ -20,7 +20,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
       {routes.map((level1, i) => (
         <Box
           sx={{
-            borderBottomColor: "surface-variant",
+            borderBottomColor: "surfaceVariant",
             borderBottomWidth: 1,
             mt: 2,
             pb: 2,
@@ -32,7 +32,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
               key={i}
               as="h4"
               variant="label-large"
-              sx={{ color: "on-surface-variant", mb: 1, ml: 3 }}
+              sx={{ color: "onSurfaceVariant", mb: 1, ml: 3 }}
             >
               {level1.title}
             </Text>
@@ -53,8 +53,8 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
                       pointerEvents="none"
                       styles={{
                         label: {
-                          ...theme.typescale["body-large"],
-                          color: theme.color["on-background"],
+                          ...theme.sys.typescale["body-large"],
+                          color: theme.sys.color.onBackground,
                         },
                       }}
                       sx={{

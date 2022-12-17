@@ -63,7 +63,7 @@ const NavigationDrawerItemContent = styled(TextStyleProvider, {
   slot: "Content",
   skipSx: true,
 })(({ theme }) => ({
-  color: theme.color["on-surface-variant"],
+  color: theme.sys.color.onSurfaceVariant,
   fontSize: 24,
 }))
 
@@ -80,7 +80,7 @@ const NavigationDrawerItemLabel = styled(Text, {
   slot: "Label",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.typescale["label-large"],
+  ...theme.sys.typescale["label-large"],
 }))
 
 export const NavigationDrawerItem = React.forwardRef<
@@ -97,7 +97,7 @@ export const NavigationDrawerItem = React.forwardRef<
   return (
     <NavigationDrawerItemRoot
       ref={ref}
-      rippleColor={theme.color["on-surface"]}
+      rippleColor={theme.sys.color.onSurface}
       style={[style, styles?.root]}
       {...props}
     >

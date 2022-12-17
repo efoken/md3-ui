@@ -44,7 +44,7 @@ const DividerRoot = styled(RNView, {
   name: "Divider",
   slot: "Root",
 })(({ theme }) => ({
-  backgroundColor: theme.color.outline,
+  backgroundColor: theme.sys.color.outline,
   height: 1,
 }))
 

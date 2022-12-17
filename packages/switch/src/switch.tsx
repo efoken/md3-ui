@@ -54,9 +54,9 @@ const SwitchRoot = styled(Animated.View, {
   name: "Switch",
   slot: "Root",
 })(({ theme }) => ({
-  backgroundColor: theme.color["surface-variant"],
-  borderColor: theme.color.outline,
-  borderRadius: theme.shape.corner.full,
+  backgroundColor: theme.sys.color.surfaceVariant,
+  borderColor: theme.sys.color.outline,
+  borderRadius: theme.sys.shape.corner.full,
   borderWidth: 2,
   cursor: "pointer",
   height: 32,
@@ -82,8 +82,8 @@ const SwitchThumb = styled(Animated.View, {
   skipSx: true,
 })(({ theme }) => ({
   alignItems: "center",
-  backgroundColor: theme.color.outline,
-  borderRadius: theme.shape.corner.full,
+  backgroundColor: theme.sys.color.outline,
+  borderRadius: theme.sys.shape.corner.full,
   height: 16,
   justifyContent: "center",
   width: 16,
@@ -199,12 +199,15 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
           alignItems,
           backgroundColor: switchAnimation.interpolate({
             inputRange: switchAnimationInputRange,
-            outputRange: [theme.color["surface-variant"], theme.color.primary],
+            outputRange: [
+              theme.sys.color.surfaceVariant,
+              theme.sys.color.primary,
+            ],
             extrapolate: "clamp",
           }),
           borderColor: switchAnimation.interpolate({
             inputRange: switchAnimationInputRange,
-            outputRange: [theme.color.outline, theme.color.primary],
+            outputRange: [theme.sys.color.outline, theme.sys.color.primary],
             extrapolate: "clamp",
           }),
         },
@@ -230,7 +233,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
           disabled={disabled}
           required={required}
           rippleColor={
-            prevChecked ? theme.color.primary : theme.color["on-surface"]
+            prevChecked ? theme.sys.color.primary : theme.sys.color.onSurface
           }
           style={styles?.switchBase}
           styles={{
@@ -256,16 +259,16 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
                     ? thumbAnimation.interpolate({
                         inputRange: [0, 1],
                         outputRange: [
-                          theme.color.outline,
-                          theme.color["on-surface-variant"],
+                          theme.sys.color.outline,
+                          theme.sys.color.onSurfaceVariant,
                         ],
                         extrapolate: "clamp",
                       })
                     : switchAnimation.interpolate({
                         inputRange: switchAnimationInputRange,
                         outputRange: [
-                          theme.color.outline,
-                          theme.color["on-primary"],
+                          theme.sys.color.outline,
+                          theme.sys.color.onPrimary,
                         ],
                         extrapolate: "clamp",
                       }),

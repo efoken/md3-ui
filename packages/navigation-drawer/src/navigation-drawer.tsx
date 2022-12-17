@@ -74,7 +74,7 @@ const NavigationDrawerSurface = styled(Animated.View, {
   slot: "Surface",
 })<OwnerStateProps<Pick<NavigationDrawerProps, "anchor" | "variant">>>(
   ({ theme, ownerState }) => ({
-    backgroundColor: theme.color.surface,
+    backgroundColor: theme.sys.color.surface,
     flexGrow: 1,
     height: "100%",
     maxWidth: "100%",
@@ -102,11 +102,11 @@ const NavigationDrawerSurface = styled(Animated.View, {
     }),
 
     ...(ownerState.variant === "standard" && {
-      ...theme.elevation.level0,
+      ...theme.sys.elevation.level0,
     }),
 
     ...(ownerState.variant === "modal" && {
-      ...theme.elevation.level1,
+      ...theme.sys.elevation.level1,
     }),
   }),
 )

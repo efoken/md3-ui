@@ -79,10 +79,10 @@ const BadgeLabel = styled(Animated.Text, {
   slot: "Label",
   skipSx: true,
 })<OwnerStateProps<Pick<BadgeProps, "variant">>>(({ theme, ownerState }) => ({
-  ...theme.typescale["label-small"],
-  backgroundColor: theme.color.error,
+  ...theme.sys.typescale["label-small"],
+  backgroundColor: theme.sys.color.error,
   borderRadius: 8,
-  color: theme.color["on-error"],
+  color: theme.sys.color.onError,
   height: 16,
   minWidth: 16,
   paddingHorizontal: theme.spacing(0.5),

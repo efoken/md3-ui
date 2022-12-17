@@ -10,22 +10,22 @@ export const Basic: StoryObj = {
   render: () => (
     <Grid container spacing={2}>
       <Grid item span={8}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=8</Text>
         </Box>
       </Grid>
       <Grid item span={4}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=4</Text>
         </Box>
       </Grid>
       <Grid item span={4}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=4</Text>
         </Box>
       </Grid>
       <Grid item span={8}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=8</Text>
         </Box>
       </Grid>
@@ -37,22 +37,22 @@ export const MultipleBreakpoints: StoryObj = {
   render: () => (
     <Grid container spacing={2}>
       <Grid item span={{ compact: 6, medium: 8 }}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>compact=6 medium=8</Text>
         </Box>
       </Grid>
       <Grid item span={{ compact: 6, medium: 4 }}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>compact=6 medium=4</Text>
         </Box>
       </Grid>
       <Grid item span={{ compact: 6, medium: 4 }}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>compact=6 medium=4</Text>
         </Box>
       </Grid>
       <Grid item span={{ compact: 6, medium: 8 }}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>compact=6 medium=8</Text>
         </Box>
       </Grid>
@@ -68,7 +68,7 @@ export const Spacing: StoryObj<GridProps> = {
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
               <Box
-                sx={{ bgColor: "primary-container", height: 140, width: 100 }}
+                sx={{ bgColor: "primaryContainer", height: 140, width: 100 }}
               />
             </Grid>
           ))}
@@ -89,22 +89,22 @@ export const RowColumnSpacing: StoryObj = {
       rowSpacing={1}
     >
       <Grid item span={6}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=6</Text>
         </Box>
       </Grid>
       <Grid item span={6}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=6</Text>
         </Box>
       </Grid>
       <Grid item span={6}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=6</Text>
         </Box>
       </Grid>
       <Grid item span={6}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=6</Text>
         </Box>
       </Grid>
@@ -121,7 +121,7 @@ export const ResponsiveValues: StoryObj = {
     >
       {[0, 1, 2, 3, 4, 5].map((index) => (
         <Grid key={index} item span={{ compact: 2, medium: 4 }}>
-          <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+          <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
             <Text>compact=2 medium=4</Text>
           </Box>
         </Grid>
@@ -134,17 +134,17 @@ export const AutoLayout: StoryObj = {
   render: () => (
     <Grid container spacing={3}>
       <Grid item span>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span</Text>
         </Box>
       </Grid>
       <Grid item span={6}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=6</Text>
         </Box>
       </Grid>
       <Grid item span>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span</Text>
         </Box>
       </Grid>
@@ -156,17 +156,17 @@ export const VariableWidthContent: StoryObj = {
   render: () => (
     <Grid container spacing={3}>
       <Grid item span="auto">
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>Variable width content</Text>
         </Box>
       </Grid>
       <Grid item span={6}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=6</Text>
         </Box>
       </Grid>
       <Grid item span>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span</Text>
         </Box>
       </Grid>
@@ -179,17 +179,17 @@ export const NestedGrid: StoryObj = {
     const row = (
       <>
         <Grid item span={4}>
-          <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+          <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
             <Text>Item</Text>
           </Box>
         </Grid>
         <Grid item span={4}>
-          <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+          <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
             <Text>Item</Text>
           </Box>
         </Grid>
         <Grid item span={4}>
-          <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+          <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
             <Text>Item</Text>
           </Box>
         </Grid>
@@ -216,12 +216,12 @@ export const Columns: StoryObj = {
   render: () => (
     <Grid container spacing={2} columns={16}>
       <Grid item span={8}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=8</Text>
         </Box>
       </Grid>
       <Grid item span={8}>
-        <Box sx={{ bgColor: "primary-container", width: "100%" }}>
+        <Box sx={{ bgColor: "primaryContainer", width: "100%" }}>
           <Text>span=8</Text>
         </Box>
       </Grid>

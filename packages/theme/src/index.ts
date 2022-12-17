@@ -1,29 +1,39 @@
 import { Breakpoints, createBreakpoints } from "./create-breakpoints"
 import { Color, createColor } from "./create-color"
 import { createElevation, Elevation } from "./create-elevation"
+import { createMotion, Motion } from "./create-motion"
 import { createShape, Shape } from "./create-shape"
 import { createSpacing, Spacing } from "./create-spacing"
-import { createTypography, Typeface, Typescale } from "./create-typorgaphy"
+import { createTypeface, Typeface } from "./create-typeface"
+import { createTypescale, Typescale } from "./create-typescale"
 import { mix, rgba, transition } from "./utils"
 
 export * from "./create-breakpoints"
 export * from "./create-color"
 export * from "./create-elevation"
+export * from "./create-motion"
+export * from "./create-shape"
 export * from "./create-spacing"
-export * from "./create-typorgaphy"
+export * from "./create-typeface"
+export * from "./create-typescale"
 
 export interface Theme {
   breakpoints: Breakpoints
-  color: Color
-  elevation: Elevation
-  typeface: Typeface
-  typescale: Typescale
-  shape: Shape
   spacing: Spacing
   zIndex: {
     appBar: number
     drawer: number
     modal: number
+  }
+  ref: {
+    typeface: Typeface
+  }
+  sys: {
+    color: Color
+    elevation: Elevation
+    motion: Motion
+    shape: Shape
+    typescale: Typescale
   }
   utils: {
     mix: typeof mix
@@ -41,20 +51,25 @@ declare module "@emotion/react" {
 }
 
 export function createTheme(theme: Partial<Theme> = {}): Theme {
+  const typeface = createTypeface(theme.ref?.typeface)
+
   return {
     breakpoints: createBreakpoints(),
-    color: createColor(theme.color),
-    elevation: createElevation(theme.elevation),
-    ...createTypography({
-      typeface: theme.typeface,
-      typescale: theme.typescale,
-    }),
-    shape: createShape(theme.shape),
     spacing: createSpacing(8),
     zIndex: {
       appBar: 1200,
       drawer: 1300,
       modal: 1400,
+    },
+    ref: {
+      typeface,
+    },
+    sys: {
+      color: createColor(theme.sys?.color),
+      elevation: createElevation(theme.sys?.elevation),
+      motion: createMotion(theme.sys?.motion),
+      shape: createShape(theme.sys?.shape),
+      typescale: createTypescale(typeface, theme.sys?.typescale),
     },
     utils: {
       mix,

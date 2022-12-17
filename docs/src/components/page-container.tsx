@@ -64,7 +64,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
               <Box
                 as="header"
                 sx={{
-                  bgColor: "secondary-container",
+                  bgColor: "secondaryContainer",
                   borderRadius: 60,
                   mx: 5,
                   px: 5,

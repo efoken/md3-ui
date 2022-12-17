@@ -54,45 +54,45 @@ import {
 export interface Color {
   mode: "dark" | "light"
   primary: string
-  "on-primary": string
-  "primary-container": string
-  "on-primary-container": string
+  onPrimary: string
+  primaryContainer: string
+  onPrimaryContainer: string
   secondary: string
-  "on-secondary": string
-  "secondary-container": string
-  "on-secondary-container": string
+  onSecondary: string
+  secondaryContainer: string
+  onSecondaryContainer: string
   tertiary: string
-  "on-tertiary": string
-  "tertiary-container": string
-  "on-tertiary-container": string
+  onTertiary: string
+  tertiaryContainer: string
+  onTertiaryContainer: string
   error: string
-  "on-error": string
-  "error-container": string
-  "on-error-container": string
+  onError: string
+  errorContainer: string
+  onErrorContainer: string
   background: string
-  "on-background": string
+  onBackground: string
   surface: string
-  "on-surface": string
-  "surface-variant": string
-  "on-surface-variant": string
+  onSurface: string
+  surfaceVariant: string
+  onSurfaceVariant: string
   outline: string
-  "inverse-surface": string
-  "inverse-on-surface": string
+  inverseSurface: string
+  inverseOnSurface: string
 }
 
 function getDefaultPrimary(mode = "light") {
   return mode === "dark"
     ? {
         primary: MdSysColorPrimaryDark,
-        "on-primary": MdSysColorOnPrimaryDark,
-        "primary-container": MdSysColorPrimaryContainerDark,
-        "on-primary-container": MdSysColorOnPrimaryContainerDark,
+        onPrimary: MdSysColorOnPrimaryDark,
+        primaryContainer: MdSysColorPrimaryContainerDark,
+        onPrimaryContainer: MdSysColorOnPrimaryContainerDark,
       }
     : {
         primary: MdSysColorPrimaryLight,
-        "on-primary": MdSysColorOnPrimaryLight,
-        "primary-container": MdSysColorPrimaryContainerLight,
-        "on-primary-container": MdSysColorOnPrimaryContainerLight,
+        onPrimary: MdSysColorOnPrimaryLight,
+        primaryContainer: MdSysColorPrimaryContainerLight,
+        onPrimaryContainer: MdSysColorOnPrimaryContainerLight,
       }
 }
 
@@ -100,15 +100,15 @@ function getDefaultSecondary(mode = "light") {
   return mode === "dark"
     ? {
         secondary: MdSysColorSecondaryDark,
-        "on-secondary": MdSysColorOnSecondaryDark,
-        "secondary-container": MdSysColorSecondaryContainerDark,
-        "on-secondary-container": MdSysColorOnSecondaryContainerDark,
+        onSecondary: MdSysColorOnSecondaryDark,
+        secondaryContainer: MdSysColorSecondaryContainerDark,
+        onSecondaryContainer: MdSysColorOnSecondaryContainerDark,
       }
     : {
         secondary: MdSysColorSecondaryLight,
-        "on-secondary": MdSysColorOnSecondaryLight,
-        "secondary-container": MdSysColorSecondaryContainerLight,
-        "on-secondary-container": MdSysColorOnSecondaryContainerLight,
+        onSecondary: MdSysColorOnSecondaryLight,
+        secondaryContainer: MdSysColorSecondaryContainerLight,
+        onSecondaryContainer: MdSysColorOnSecondaryContainerLight,
       }
 }
 
@@ -116,15 +116,15 @@ function getDefaultTertiary(mode = "light") {
   return mode === "dark"
     ? {
         tertiary: MdSysColorTertiaryDark,
-        "on-tertiary": MdSysColorOnTertiaryDark,
-        "tertiary-container": MdSysColorTertiaryContainerDark,
-        "on-tertiary-container": MdSysColorOnTertiaryContainerDark,
+        onTertiary: MdSysColorOnTertiaryDark,
+        tertiaryContainer: MdSysColorTertiaryContainerDark,
+        onTertiaryContainer: MdSysColorOnTertiaryContainerDark,
       }
     : {
         tertiary: MdSysColorTertiaryLight,
-        "on-tertiary": MdSysColorOnTertiaryLight,
-        "tertiary-container": MdSysColorTertiaryContainerLight,
-        "on-tertiary-container": MdSysColorOnTertiaryContainerLight,
+        onTertiary: MdSysColorOnTertiaryLight,
+        tertiaryContainer: MdSysColorTertiaryContainerLight,
+        onTertiaryContainer: MdSysColorOnTertiaryContainerLight,
       }
 }
 
@@ -132,15 +132,15 @@ function getDefaultError(mode = "light") {
   return mode === "dark"
     ? {
         error: MdSysColorErrorDark,
-        "on-error": MdSysColorOnErrorDark,
-        "error-container": MdSysColorErrorContainerDark,
-        "on-error-container": MdSysColorOnErrorContainerDark,
+        onError: MdSysColorOnErrorDark,
+        errorContainer: MdSysColorErrorContainerDark,
+        onErrorContainer: MdSysColorOnErrorContainerDark,
       }
     : {
         error: MdSysColorErrorLight,
-        "on-error": MdSysColorOnErrorLight,
-        "error-container": MdSysColorErrorContainerLight,
-        "on-error-container": MdSysColorOnErrorContainerLight,
+        onError: MdSysColorOnErrorLight,
+        errorContainer: MdSysColorErrorContainerLight,
+        onErrorContainer: MdSysColorOnErrorContainerLight,
       }
 }
 
@@ -148,11 +148,11 @@ function getDefaultBackground(mode = "light") {
   return mode === "dark"
     ? {
         background: MdSysColorBackgroundDark,
-        "on-background": MdSysColorOnBackgroundDark,
+        onBackground: MdSysColorOnBackgroundDark,
       }
     : {
         background: MdSysColorBackgroundLight,
-        "on-background": MdSysColorOnBackgroundLight,
+        onBackground: MdSysColorOnBackgroundLight,
       }
 }
 
@@ -160,15 +160,15 @@ function getDefaultSurface(mode = "light") {
   return mode === "dark"
     ? {
         surface: MdSysColorSurfaceDark,
-        "on-surface": MdSysColorOnSurfaceDark,
-        "surface-variant": MdSysColorSurfaceVariantDark,
-        "on-surface-variant": MdSysColorOnSurfaceVariantDark,
+        onSurface: MdSysColorOnSurfaceDark,
+        surfaceVariant: MdSysColorSurfaceVariantDark,
+        onSurfaceVariant: MdSysColorOnSurfaceVariantDark,
       }
     : {
         surface: MdSysColorSurfaceLight,
-        "on-surface": MdSysColorOnSurfaceLight,
-        "surface-variant": MdSysColorSurfaceVariantLight,
-        "on-surface-variant": MdSysColorOnSurfaceVariantLight,
+        onSurface: MdSysColorOnSurfaceLight,
+        surfaceVariant: MdSysColorSurfaceVariantLight,
+        onSurfaceVariant: MdSysColorOnSurfaceVariantLight,
       }
 }
 
@@ -185,12 +185,12 @@ function getDefaultOutline(mode = "light") {
 function getDefaultInverse(mode = "light") {
   return mode === "dark"
     ? {
-        "inverse-surface": MdSysColorInverseSurfaceDark,
-        "inverse-on-surface": MdSysColorInverseOnSurfaceDark,
+        inverseSurface: MdSysColorInverseSurfaceDark,
+        inverseOnSurface: MdSysColorInverseOnSurfaceDark,
       }
     : {
-        "inverse-surface": MdSysColorInverseSurfaceLight,
-        "inverse-on-surface": MdSysColorInverseOnSurfaceLight,
+        inverseSurface: MdSysColorInverseSurfaceLight,
+        inverseOnSurface: MdSysColorInverseOnSurfaceLight,
       }
 }
 

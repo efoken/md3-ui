@@ -32,7 +32,7 @@ function getValue(
 export interface StyleOptions<PropKey> {
   styleProp?: PropKey | keyof RNStyle | (PropKey | keyof RNStyle)[] | false
   prop: PropKey
-  themeKey?: keyof Theme
+  themeKey?: keyof Theme["sys"] | "spacing"
   transform?: (cssValue: any) => StyleValue
 }
 
@@ -48,7 +48,10 @@ export function style<PropKey extends string>({
     }
 
     const propValue = props[prop]
-    const themeMapping = get(theme, themeKey ?? "", {})
+    const themeMapping =
+      themeKey === "spacing"
+        ? theme.spacing
+        : get(theme.sys, themeKey ?? "", {})
 
     const styleFromPropValue = (propValueFinal?: StyleValue) => {
       const value = getValue(themeMapping, transform, propValueFinal)

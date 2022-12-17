@@ -75,7 +75,7 @@ const SwitchBaseRoot = styled(ButtonBase, {
   name: "SwitchBase",
   slot: "Root",
 })(({ theme }) => ({
-  borderRadius: theme.shape.corner.full,
+  borderRadius: theme.sys.shape.corner.full,
 }))
 
 const SwitchBaseInput = styled("input", {

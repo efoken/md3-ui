@@ -54,19 +54,19 @@ const CardRoot = styled(RNView, {
   overflow: "hidden",
 
   ...(ownerState.variant === "elevated" && {
-    ...theme.elevation.level1,
-    backgroundColor: theme.color.surface,
+    ...theme.sys.elevation.level1,
+    backgroundColor: theme.sys.color.surface,
   }),
 
   ...(ownerState.variant === "filled" && {
-    ...theme.elevation.level0,
-    backgroundColor: theme.color["surface-variant"],
+    ...theme.sys.elevation.level0,
+    backgroundColor: theme.sys.color.surfaceVariant,
   }),
 
   ...(ownerState.variant === "outlined" && {
-    ...theme.elevation.level0,
-    backgroundColor: theme.color.surface,
-    borderColor: theme.color.outline,
+    ...theme.sys.elevation.level0,
+    backgroundColor: theme.sys.color.surface,
+    borderColor: theme.sys.color.outline,
     borderWidth: 1,
   }),
 }))

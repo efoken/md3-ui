@@ -45,7 +45,7 @@ const LinkRoot = styled(Text, {
   name: "Link",
   slot: "Root",
 })(({ theme }) => ({
-  color: theme.color.primary,
+  color: theme.sys.color.primary,
   textDecorationLine: "underline",
 
   "&:hover": {

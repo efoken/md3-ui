@@ -72,8 +72,8 @@ const NavigationBarItemContent = styled(TextStyleProvider, {
   skipSx: true,
 })<OwnerStateProps<{ selected: boolean }>>(({ theme, ownerState }) => ({
   color: ownerState.selected
-    ? theme.color["on-secondary-container"]
-    : theme.color["on-surface-variant"],
+    ? theme.sys.color.onSecondaryContainer
+    : theme.sys.color.onSurfaceVariant,
   fontSize: 24,
 }))
 
@@ -84,7 +84,7 @@ const NavigationBarItemIcon = styled(RNView, {
 })<OwnerStateProps<{ selected: boolean }>>(({ theme, ownerState }) => ({
   alignItems: "center",
   backgroundColor: ownerState.selected
-    ? theme.color["secondary-container"]
+    ? theme.sys.color.secondaryContainer
     : "transparent",
   borderRadius: 16,
   height: 32,
@@ -97,10 +97,10 @@ const NavigationBarItemLabel = styled(Text, {
   slot: "Label",
   skipSx: true,
 })<OwnerStateProps<{ selected: boolean }>>(({ theme, ownerState }) => ({
-  ...theme.typescale["label-medium"],
+  ...theme.sys.typescale["label-medium"],
   color: ownerState.selected
-    ? theme.color["on-surface"]
-    : theme.color["on-surface-variant"],
+    ? theme.sys.color.onSurface
+    : theme.sys.color.onSurfaceVariant,
   marginTop: theme.spacing(0.5),
 }))
 
@@ -140,7 +140,7 @@ export const NavigationBarItem = React.forwardRef<
   return (
     <NavigationBarItemRoot
       ref={ref}
-      rippleColor={theme.color["on-surface"]}
+      rippleColor={theme.sys.color.onSurface}
       style={[style, styles?.root]}
       onPress={handlePress}
       {...props}

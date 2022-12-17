@@ -55,8 +55,8 @@ const AppBarRoot = styled(RNView, {
   name: "AppBar",
   slot: "Root",
 })<OwnerStateProps<Pick<AppBarProps, "position">>>(({ theme, ownerState }) => ({
-  ...theme.elevation.level0,
-  backgroundColor: theme.color.surface,
+  ...theme.sys.elevation.level0,
+  backgroundColor: theme.sys.color.surface,
   borderRadius: 0,
   minHeight: 64,
   justifyContent: "center",

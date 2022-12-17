@@ -16,17 +16,17 @@ export const CSSBaseline: React.FC = () => (
         textSizeAdjust: "100%",
       },
       "*, *::before, *::after": {
-        borderColor: theme.color.outline,
+        borderColor: theme.sys.color.outline,
         borderStyle: "solid",
         borderWidth: 0,
         boxSizing: "inherit",
         wordWrap: "break-word",
       },
       body: {
-        ...theme.typescale["body-medium"],
-        backgroundColor: theme.color.background,
-        color: theme.color["on-background"],
-        lineHeight: `${theme.typescale["body-medium"].lineHeight}px`,
+        ...theme.sys.typescale["body-medium"],
+        backgroundColor: theme.sys.color.background,
+        color: theme.sys.color.onBackground,
+        lineHeight: `${theme.sys.typescale["body-medium"].lineHeight}px`,
         margin: 0, // Remove the margin in all browsers.
       },
       "h1, h2, h3, h4, h5, h6": {

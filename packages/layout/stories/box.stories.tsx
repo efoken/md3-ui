@@ -15,7 +15,7 @@ export const Basic: StoryObj = {
       <Box
         sx={{
           position: "absolute",
-          bgColor: "error-container",
+          bgColor: "errorContainer",
         }}
       />
     </Box>
@@ -44,7 +44,7 @@ export const Square: StoryObj = {
   render: () => (
     <Box
       sx={{
-        bgColor: "error-container",
+        bgColor: "errorContainer",
         size: { compact: 40, medium: 60, expanded: 100 },
       }}
     >

@@ -56,8 +56,8 @@ const TextFieldRoot = styled(TextInput, {
   slot: "Root",
 })<OwnerStateProps<Pick<TextFieldProps, "endIcon" | "startIcon">>>(
   ({ theme, ownerState }) => ({
-    ...theme.typescale["body-large"],
-    color: theme.color["on-surface"],
+    ...theme.sys.typescale["body-large"],
+    color: theme.sys.color.onSurface,
     padding: theme.spacing(2),
     minHeight: 56,
 
@@ -101,7 +101,7 @@ const TextFieldOutline = styled(RNView, {
   skipSx: true,
 })<OwnerStateProps<Pick<TextFieldProps, "error"> & { focused: boolean }>>(
   ({ theme, ownerState }) => ({
-    borderColor: theme.color.outline,
+    borderColor: theme.sys.color.outline,
     borderRadius: 4,
     borderWidth: 1,
     bottom: 0,
@@ -112,16 +112,16 @@ const TextFieldOutline = styled(RNView, {
     zIndex: 1,
 
     "&:hover": {
-      borderColor: theme.color["on-surface"],
+      borderColor: theme.sys.color.onSurface,
     },
 
     ...(ownerState.focused && {
-      borderColor: theme.color.primary,
+      borderColor: theme.sys.color.primary,
       borderWidth: 2,
     }),
 
     ...(ownerState.error && {
-      borderColor: theme.color.error,
+      borderColor: theme.sys.color.error,
     }),
   }),
 )
@@ -131,9 +131,9 @@ const TextFieldLabel = styled(TextInputLabel, {
   slot: "Label",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.typescale["body-large"],
-  backgroundColor: theme.color.surface,
-  color: theme.color["on-surface"],
+  ...theme.sys.typescale["body-large"],
+  backgroundColor: theme.sys.color.surface,
+  color: theme.sys.color.onSurface,
   paddingHorizontal: theme.spacing(0.5) / 0.75,
   position: "absolute",
   start: 0,
@@ -146,8 +146,8 @@ const TextFieldHelperText = styled(RNText, {
   slot: "HelperText",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.typescale["body-large"],
-  color: theme.color["on-surface"],
+  ...theme.sys.typescale["body-large"],
+  color: theme.sys.color.onSurface,
 }))
 
 export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
@@ -218,12 +218,12 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
             style={[
               {
                 color: error
-                  ? theme.color.error
+                  ? theme.sys.color.error
                   : transform.interpolate({
                       inputRange: [0, 1],
                       outputRange: [
-                        theme.color["on-surface"],
-                        theme.color.primary,
+                        theme.sys.color.onSurface,
+                        theme.sys.color.primary,
                       ],
                     }),
                 transform: [
@@ -269,7 +269,7 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
           fullWidth={fullWidth}
           nativeID={nativeID}
           ownerState={ownerState}
-          placeholderTextColor={theme.color["on-surface-variant"]}
+          placeholderTextColor={theme.sys.color.onSurfaceVariant}
           startIcon={startIcon}
           style={[style, styles?.root]}
           onBlur={createChainedFunction(onBlur, handleFocus.off)}

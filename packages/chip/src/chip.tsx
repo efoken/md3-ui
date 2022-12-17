@@ -84,57 +84,57 @@ const ChipRoot = styled(ButtonBase, {
     paddingHorizontal: theme.spacing(2) - 1,
 
     ...(ownerState.variant === "assist" && {
-      ...theme.elevation.level0,
-      backgroundColor: theme.color.surface,
-      borderColor: theme.color.outline,
+      ...theme.sys.elevation.level0,
+      backgroundColor: theme.sys.color.surface,
+      borderColor: theme.sys.color.outline,
 
       ...(ownerState.elevated && {
-        ...theme.elevation.level1,
+        ...theme.sys.elevation.level1,
         borderColor: "transparent",
       }),
     }),
 
     ...(ownerState.variant === "filter" && {
-      ...theme.elevation.level0,
-      backgroundColor: theme.color.surface,
-      borderColor: theme.color.outline,
+      ...theme.sys.elevation.level0,
+      backgroundColor: theme.sys.color.surface,
+      borderColor: theme.sys.color.outline,
 
       ...(ownerState.elevated && {
-        ...theme.elevation.level1,
+        ...theme.sys.elevation.level1,
         borderColor: "transparent",
       }),
 
       ...(ownerState.selected && {
-        backgroundColor: theme.color["secondary-container"],
+        backgroundColor: theme.sys.color.secondaryContainer,
         borderWidth: 0,
         paddingHorizontal: theme.spacing(2),
       }),
     }),
 
     ...(ownerState.variant === "input" && {
-      ...theme.elevation.level0,
-      backgroundColor: theme.color.surface,
-      borderColor: theme.color.outline,
+      ...theme.sys.elevation.level0,
+      backgroundColor: theme.sys.color.surface,
+      borderColor: theme.sys.color.outline,
 
       ...(ownerState.selected && {
-        backgroundColor: theme.color["secondary-container"],
+        backgroundColor: theme.sys.color.secondaryContainer,
         borderWidth: 0,
         paddingHorizontal: theme.spacing(2),
       }),
     }),
 
     ...(ownerState.variant === "suggestion" && {
-      ...theme.elevation.level0,
-      backgroundColor: theme.color.surface,
-      borderColor: theme.color.outline,
+      ...theme.sys.elevation.level0,
+      backgroundColor: theme.sys.color.surface,
+      borderColor: theme.sys.color.outline,
 
       ...(ownerState.elevated && {
-        ...theme.elevation.level1,
+        ...theme.sys.elevation.level1,
         borderColor: "transparent",
       }),
 
       ...(ownerState.selected && {
-        backgroundColor: theme.color["secondary-container"],
+        backgroundColor: theme.sys.color.secondaryContainer,
         borderWidth: 0,
         paddingHorizontal: theme.spacing(2),
       }),
@@ -147,7 +147,7 @@ const ChipContent = styled(TextStyleProvider, {
   slot: "Content",
   skipSx: true,
 })(({ theme }) => ({
-  color: theme.color.primary,
+  color: theme.sys.color.primary,
 }))
 
 const ChipIcon = styled(RNView, {
@@ -165,28 +165,28 @@ const ChipLabel = styled(Text, {
   skipSx: true,
 })<OwnerStateProps<Pick<ChipProps, "selected" | "variant">>>(
   ({ theme, ownerState }) => ({
-    ...theme.typescale["label-large"],
+    ...theme.sys.typescale["label-large"],
 
     ...(ownerState.variant === "assist" && {
-      color: theme.color["on-surface"],
+      color: theme.sys.color.onSurface,
     }),
 
     ...(ownerState.variant === "filter" && {
       color: ownerState.selected
-        ? theme.color["on-secondary-container"]
-        : theme.color["on-surface-variant"],
+        ? theme.sys.color.onSecondaryContainer
+        : theme.sys.color.onSurfaceVariant,
     }),
 
     ...(ownerState.variant === "input" && {
       color: ownerState.selected
-        ? theme.color["on-secondary-container"]
-        : theme.color["on-surface-variant"],
+        ? theme.sys.color.onSecondaryContainer
+        : theme.sys.color.onSurfaceVariant,
     }),
 
     ...(ownerState.variant === "suggestion" && {
       color: ownerState.selected
-        ? theme.color["on-secondary-container"]
-        : theme.color["on-surface-variant"],
+        ? theme.sys.color.onSecondaryContainer
+        : theme.sys.color.onSurfaceVariant,
     }),
   }),
 )

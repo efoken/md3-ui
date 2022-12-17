@@ -25,19 +25,19 @@ export interface TextTypeMap<
      */
     children?: React.ReactNode
     color?:
-      | "on-background"
+      | "onBackground"
       | "primary"
-      | "on-primary"
-      | "on-primary-container"
-      | "on-secondary"
-      | "on-secondary-container"
-      | "on-tertiary"
-      | "on-tertiary-container"
-      | "on-error"
-      | "on-error-container"
-      | "on-surface"
-      | "on-surface-variant"
-      | "inverse-on-surface"
+      | "onPrimary"
+      | "onPrimaryContainer"
+      | "onSecondary"
+      | "onSecondaryContainer"
+      | "onTertiary"
+      | "onTertiaryContainer"
+      | "onError"
+      | "onErrorContainer"
+      | "onSurface"
+      | "onSurfaceVariant"
+      | "inverseOnSurface"
       | "inherit"
     /**
      * Override or extend the styles applied to the component.
@@ -86,7 +86,7 @@ const TextRoot = styled(RNText, {
   ({ theme, ownerState }) => ({
     textAlign: Platform.OS === "web" ? "start" : "left",
 
-    ...(ownerState.variant != null && theme.typescale[ownerState.variant]),
+    ...(ownerState.variant != null && theme.sys.typescale[ownerState.variant]),
 
     ...(Platform.OS === "web" &&
       ownerState.variant === "inherit" && {
@@ -98,7 +98,7 @@ const TextRoot = styled(RNText, {
       }),
 
     ...(ownerState.color != null && {
-      color: theme.color[ownerState.color],
+      color: theme.sys.color[ownerState.color],
     }),
   }),
 )

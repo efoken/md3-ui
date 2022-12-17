@@ -69,8 +69,8 @@ const NavigationBarRoot = styled(RNView, {
   name: "NavigationBar",
   slot: "Root",
 })(({ theme }) => ({
-  ...theme.elevation.level2,
-  backgroundColor: theme.color.surface,
+  ...theme.sys.elevation.level2,
+  backgroundColor: theme.sys.color.surface,
   borderRadius: 0,
   flexDirection: "row",
   justifyContent: "center",

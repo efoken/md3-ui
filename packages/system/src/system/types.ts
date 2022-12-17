@@ -8,19 +8,19 @@ import {
 } from "react-native"
 
 export interface BackgroundProps {
-  backgroundColor?: keyof Theme["color"] | (string & {})
-  bgColor?: keyof Theme["color"] | (string & {})
+  backgroundColor?: keyof Theme["sys"]["color"] | (string & {})
+  bgColor?: keyof Theme["sys"]["color"] | (string & {})
 }
 
 export interface BorderProps {
   borderStyle?: RNViewStyle["borderStyle"]
-  borderColor?: keyof Theme["color"] | (string & {})
-  borderTopColor?: keyof Theme["color"] | (string & {})
-  borderRightColor?: keyof Theme["color"] | (string & {})
-  borderBottomColor?: keyof Theme["color"] | (string & {})
-  borderLeftColor?: keyof Theme["color"] | (string & {})
-  borderStartColor?: keyof Theme["color"] | (string & {})
-  borderEndColor?: keyof Theme["color"] | (string & {})
+  borderColor?: keyof Theme["sys"]["color"] | (string & {})
+  borderTopColor?: keyof Theme["sys"]["color"] | (string & {})
+  borderRightColor?: keyof Theme["sys"]["color"] | (string & {})
+  borderBottomColor?: keyof Theme["sys"]["color"] | (string & {})
+  borderLeftColor?: keyof Theme["sys"]["color"] | (string & {})
+  borderStartColor?: keyof Theme["sys"]["color"] | (string & {})
+  borderEndColor?: keyof Theme["sys"]["color"] | (string & {})
   borderRadius?: RNViewStyle["borderRadius"]
   borderTopRadius?: number
   borderRightRadius?: number
@@ -53,7 +53,7 @@ export interface DisplayProps {
 }
 
 export interface ElevationProps {
-  elevation?: keyof Theme["elevation"]
+  elevation?: keyof Theme["sys"]["elevation"]
 }
 
 export interface FlexboxProps {
@@ -156,18 +156,20 @@ export interface TransitionProps {
 }
 
 export interface TypographyProps {
-  color?: keyof Theme["color"] | (string & {})
+  color?: keyof Theme["sys"]["color"] | (string & {})
   fontSize?: RNTextStyle["fontSize"]
   fontStyle?: RNTextStyle["fontStyle"]
   fontVariant?: RNTextStyle["fontVariant"]
-  fontWeight?: keyof Theme["typeface"]["weight"] | RNTextStyle["fontWeight"]
+  fontWeight?:
+    | keyof Theme["ref"]["typeface"]["weight"]
+    | RNTextStyle["fontWeight"]
   lineHeight?: RNTextStyle["lineHeight"]
   textAlign?: RNTextStyle["textAlign"]
   textAlignVertical?: RNTextStyle["textAlignVertical"]
   textDecorationLine?: RNTextStyle["textDecorationLine"]
   textDecorationStyle?: RNTextStyle["textDecorationStyle"]
-  textDecorationColor?: keyof Theme["color"] | (string & {})
-  textShadowColor?: keyof Theme["color"] | (string & {})
+  textDecorationColor?: keyof Theme["sys"]["color"] | (string & {})
+  textShadowColor?: keyof Theme["sys"]["color"] | (string & {})
   textShadowOffset?: RNTextStyle["textShadowOffset"]
   textShadowRadius?: RNTextStyle["textShadowRadius"]
   textTransform?: RNTextStyle["textTransform"]

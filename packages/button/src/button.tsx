@@ -68,76 +68,76 @@ const ButtonRoot = styled(ButtonBase, {
       paddingHorizontal: theme.spacing(3),
 
       ...(ownerState.variant === "elevated" && {
-        ...theme.elevation.level1,
-        backgroundColor: theme.color.surface,
+        ...theme.sys.elevation.level1,
+        backgroundColor: theme.sys.color.surface,
 
         ...(ownerState.disabled && {
-          ...theme.elevation.level0,
-          backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+          ...theme.sys.elevation.level0,
+          backgroundColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
         }),
 
         "&:hover": {
-          ...theme.elevation.level2,
+          ...theme.sys.elevation.level2,
         },
 
         "&:focus-visible": {
-          ...theme.elevation.level1,
+          ...theme.sys.elevation.level1,
         },
       }),
 
       ...(ownerState.variant === "filled" && {
-        ...theme.elevation.level0,
-        backgroundColor: theme.color.primary,
+        ...theme.sys.elevation.level0,
+        backgroundColor: theme.sys.color.primary,
 
         ...(ownerState.disabled && {
-          ...theme.elevation.level0,
-          backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+          ...theme.sys.elevation.level0,
+          backgroundColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
         }),
 
         "&:hover": {
-          ...theme.elevation.level1,
+          ...theme.sys.elevation.level1,
         },
 
         "&:focus-visible": {
-          ...theme.elevation.level0,
+          ...theme.sys.elevation.level0,
         },
       }),
 
       ...(ownerState.variant === "tonal" && {
-        ...theme.elevation.level0,
-        backgroundColor: theme.color["secondary-container"],
+        ...theme.sys.elevation.level0,
+        backgroundColor: theme.sys.color.secondaryContainer,
 
         ...(ownerState.disabled && {
-          backgroundColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+          backgroundColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
         }),
 
         "&:hover": {
-          ...theme.elevation.level1,
+          ...theme.sys.elevation.level1,
         },
 
         "&:focus-visible": {
-          ...theme.elevation.level0,
+          ...theme.sys.elevation.level0,
         },
       }),
 
       ...(ownerState.variant === "outlined" && {
-        ...theme.elevation.level0,
+        ...theme.sys.elevation.level0,
         backgroundColor: "rgba(255, 255, 255, 0)",
-        borderColor: theme.color.outline,
+        borderColor: theme.sys.color.outline,
         borderWidth: 1,
         paddingHorizontal: theme.spacing(3) - 1,
 
         ...(ownerState.disabled && {
-          borderColor: theme.utils.rgba(theme.color["on-surface"], 0.12),
+          borderColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
         }),
 
         "&:focus-visible": {
-          borderColor: theme.color.primary,
+          borderColor: theme.sys.color.primary,
         },
       }),
 
       ...(ownerState.variant === "text" && {
-        ...theme.elevation.level0,
+        ...theme.sys.elevation.level0,
         minWidth: 48,
         paddingEnd: ownerState.icon ? theme.spacing(2) : theme.spacing(1.5),
         paddingStart: theme.spacing(1.5),
@@ -153,27 +153,27 @@ const ButtonContent = styled(TextStyleProvider, {
 })<OwnerStateProps<Pick<ButtonProps, "disabled" | "variant">>>(
   ({ theme, ownerState }) => ({
     ...(ownerState.variant === "elevated" && {
-      color: theme.color.primary,
+      color: theme.sys.color.primary,
     }),
 
     ...(ownerState.variant === "filled" && {
-      color: theme.color["on-primary"],
+      color: theme.sys.color.onPrimary,
     }),
 
     ...(ownerState.variant === "tonal" && {
-      color: theme.color["on-secondary-container"],
+      color: theme.sys.color.onSecondaryContainer,
     }),
 
     ...(ownerState.variant === "outlined" && {
-      color: theme.color.primary,
+      color: theme.sys.color.primary,
     }),
 
     ...(ownerState.variant === "text" && {
-      color: theme.color.primary,
+      color: theme.sys.color.primary,
     }),
 
     ...(ownerState.disabled && {
-      color: theme.utils.rgba(theme.color["on-surface"], 0.38),
+      color: theme.utils.rgba(theme.sys.color.onSurface, 0.38),
     }),
   }),
 )
@@ -192,7 +192,7 @@ const ButtonLabel = styled(Text, {
   slot: "Label",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.typescale["label-large"],
+  ...theme.sys.typescale["label-large"],
   textAlign: "center",
 }))
 
@@ -227,15 +227,15 @@ export const Button = React.forwardRef<RNView, ButtonProps>((inProps, ref) => {
       ownerState={ownerState}
       rippleColor={
         variant === "elevated"
-          ? theme.color.primary
+          ? theme.sys.color.primary
           : variant === "filled"
-          ? theme.color["on-primary"]
+          ? theme.sys.color.onPrimary
           : variant === "tonal"
-          ? theme.color["on-secondary-container"]
+          ? theme.sys.color.onSecondaryContainer
           : variant === "outlined"
-          ? theme.color.primary
+          ? theme.sys.color.primary
           : variant === "text"
-          ? theme.color.primary
+          ? theme.sys.color.primary
           : undefined
       }
       style={[styles?.root, style]}
