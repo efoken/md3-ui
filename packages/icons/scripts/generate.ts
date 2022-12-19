@@ -91,7 +91,7 @@ async function run() {
 
     const queue = new Queue<{ data: string; name: string }>(
       async (icon) => {
-        const jsCode = createComponent(icon)
+        const jsCode = await createComponent(icon)
         await fse.writeFile(
           path.join(__dirname, `../src/${kebabCase(icon.name)}.tsx`),
           jsCode,
