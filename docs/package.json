@@ -15,7 +15,7 @@
     "contentlayer": "^0.2.9",
     "copy-to-clipboard": "^3.3.3",
     "date-fns": "^2.29.3",
-    "next": "~12.1.6",
+    "next": "~12.3.4",
     "next-contentlayer": "^0.2.9",
     "next-seo": "^5.15.0",
     "next-transpile-modules": "^9.1.0",
@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "eslint": "^8.30.0",
-    "eslint-config-next": "~12.1.6"
+    "eslint-config-next": "~12.3.4"
   }
 }
