@@ -1,26 +1,31 @@
 export interface Shape {
   corner: {
     none: number
-    "extra-small": number
+    extraSmall: number
     small: number
     medium: number
     large: number
-    "extra-large": number
+    extraLarge: number
     full: number
   }
 }
 
-export function createShape(shape?: Partial<Shape>): Shape {
+interface CreateShapeOptions {
+  corner?: Partial<Shape["corner"]>
+}
+
+export function createShape(shape: CreateShapeOptions = {}): Shape {
   return {
+    ...shape,
     corner: {
       none: 0,
-      "extra-small": 4,
+      extraSmall: 4,
       small: 8,
       medium: 12,
       large: 16,
-      "extra-large": 28,
+      extraLarge: 28,
       full: 9999,
-      ...shape?.corner,
+      ...shape.corner,
     },
   }
 }
