@@ -122,7 +122,7 @@ const ButtonRoot = styled(ButtonBase, {
 
       ...(ownerState.variant === "outlined" && {
         ...theme.sys.elevation.level0,
-        backgroundColor: "rgba(255, 255, 255, 0)",
+        backgroundColor: "transparent",
         borderColor: theme.sys.color.outline,
         borderWidth: 1,
         paddingHorizontal: theme.spacing(3) - 1,

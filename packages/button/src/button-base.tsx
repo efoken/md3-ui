@@ -113,7 +113,7 @@ const ButtonBaseContainer = styled(RNView, {
   slot: "Container",
   skipSx: true,
 })({
-  backgroundColor: "rgba(255, 255, 255, 0)",
+  backgroundColor: "transparent",
   overflow: "hidden",
 })
 
