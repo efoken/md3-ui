@@ -25,6 +25,10 @@ declare module "react-native" {
 
   export interface TextStyle {}
 
+  export interface ImageStyle {
+    objectFit?: React.CSSProperties["objectFit"]
+  }
+
   export interface ViewStyle {
     /** @platform web */
     animationDuration?: React.CSSProperties["animationDuration"]
@@ -43,35 +47,26 @@ declare module "react-native" {
     /** @platform web */
     gridTemplateColumns?: React.CSSProperties["gridTemplateColumns"]
     /** @platform web */
+    outlineColor?: React.CSSProperties["outlineColor"]
+    /** @platform web */
+    outlineOffset?: React.CSSProperties["outlineOffset"]
+    /** @platform web */
     outlineStyle?: React.CSSProperties["outlineStyle"]
     /** @platform web */
     outlineWidth?: React.CSSProperties["outlineWidth"]
-    /** @platform web */
     pointerEvents?: React.CSSProperties["pointerEvents"]
     /** @platform web */
     transition?: React.CSSProperties["transition"]
-    /** @platform web */
     userSelect?: React.CSSProperties["userSelect"]
     /** @platform web */
     visibility?: React.CSSProperties["visibility"]
   }
 
-  export interface FlexStyle {
-    /** @platform web */
-    gap?: number | string
-  }
-
-  export interface AccessibilityState {}
-
   export interface AccessibilityProps {
     /** @platform web */
-    accessibilityDescribedBy?: string
+    "aria-describedby"?: string
     /** @platform web */
-    accessibilityHidden?: boolean
-    /** @platform web */
-    accessibilityInvalid?: boolean
-    /** @platform web */
-    accessibilityLabelledBy?: string
+    "aria-invalid"?: boolean
   }
 
   export interface KeyboardProps {
@@ -117,10 +112,10 @@ declare module "react-native" {
     onAnimationEnd?: (event: React.AnimationEvent) => void
     /** @platform web */
     onAnimationStart?: (event: React.AnimationEvent) => void
+    tabIndex?: 0 | -1
   }
 
   export interface TouchableWithoutFeedbackProps extends KeyboardProps {
-    /** @platform web */
-    focusable?: boolean
+    tabIndex?: 0 | -1
   }
 }

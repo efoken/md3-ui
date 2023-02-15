@@ -1,12 +1,12 @@
 import { Add } from "@md3-ui/icons"
 import { Stack } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
-import { Button, ButtonBase, ButtonProps } from "../src"
+import { Button, ButtonProps } from "../src"
 
 export default {
   title: "Components/Buttons/Common buttons",
   component: Button,
-  subcomponents: { ButtonBase },
+  // subcomponents: { ButtonBase },
   render: (args) => (
     <Stack direction="row" spacing={2}>
       <Button {...args} />

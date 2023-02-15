@@ -10,9 +10,9 @@ export default {
 
 export const Basic: StoryObj<TextFieldProps> = {
   args: {
+    id: "outlined-basic",
     label: "Label",
     name: "name",
-    nativeID: "outlined-basic",
     placeholder: "Placeholder",
     variant: "outlined",
   },

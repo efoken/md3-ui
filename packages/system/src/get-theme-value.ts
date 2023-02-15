@@ -4,6 +4,7 @@ import { border } from "./system/border"
 import { display } from "./system/display"
 import { elevation } from "./system/elevation"
 import { flexbox } from "./system/flexbox"
+import { interactivity } from "./system/interactivity"
 import { position } from "./system/position"
 import { sizing } from "./system/sizing"
 import { spacing } from "./system/spacing"
@@ -17,6 +18,7 @@ const filterPropsMapping = {
   display: display.filterProps,
   elevation: elevation.filterProps,
   flexbox: flexbox.filterProps,
+  interactivity: interactivity.filterProps,
   position: position.filterProps,
   sizing: sizing.filterProps,
   spacing: spacing.filterProps,
@@ -31,6 +33,7 @@ const styleFunctionMapping = {
   display,
   elevation,
   flexbox,
+  interactivity,
   position,
   sizing,
   spacing,

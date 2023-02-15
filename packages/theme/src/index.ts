@@ -1,12 +1,14 @@
 import { Breakpoints, createBreakpoints } from "./create-breakpoints"
 import { Color, createColor } from "./create-color"
+import { Components, createComponents } from "./create-components"
 import { createElevation, Elevation } from "./create-elevation"
 import { createMotion, Motion } from "./create-motion"
 import { createShape, Shape } from "./create-shape"
 import { createSpacing, Spacing } from "./create-spacing"
 import { createTypeface, Typeface } from "./create-typeface"
 import { createTypescale, Typescale } from "./create-typescale"
-import { mix, rgba, transition } from "./utils"
+import { palette, Palette } from "./palette"
+import { mix, rgba } from "./utils"
 
 export * from "./create-breakpoints"
 export * from "./create-color"
@@ -20,12 +22,8 @@ export * from "./create-typescale"
 export interface Theme {
   breakpoints: Breakpoints
   spacing: Spacing
-  zIndex: {
-    appBar: number
-    drawer: number
-    modal: number
-  }
   ref: {
+    palette: Palette
     typeface: Typeface
   }
   sys: {
@@ -38,9 +36,8 @@ export interface Theme {
   utils: {
     mix: typeof mix
     rgba: typeof rgba
-    transition: typeof transition
   }
-  components: {}
+  comp: Components
 }
 
 interface DefaultTheme extends Theme {}
@@ -53,15 +50,11 @@ declare module "@emotion/react" {
 export function createTheme(theme: Partial<Theme> = {}): Theme {
   const typeface = createTypeface(theme.ref?.typeface)
 
-  return {
+  const mergedTheme = {
     breakpoints: createBreakpoints(),
     spacing: createSpacing(8),
-    zIndex: {
-      appBar: 1200,
-      drawer: 1300,
-      modal: 1400,
-    },
     ref: {
+      palette,
       typeface,
     },
     sys: {
@@ -74,9 +67,14 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
     utils: {
       mix,
       rgba,
-      transition,
     },
-    components: {},
+  }
+
+  const comp = createComponents(mergedTheme)
+
+  return {
+    ...mergedTheme,
+    comp,
   }
 }
 

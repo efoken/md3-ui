@@ -34,6 +34,10 @@ export function mapValues<T extends object, TResult>(
   )
 }
 
+export function cloneDeep<T>(obj: T): T {
+  return structuredClone(obj)
+}
+
 export function mergeDeep<T>(
   target: T,
   source: unknown,

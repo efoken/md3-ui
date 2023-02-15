@@ -3,7 +3,6 @@ import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
   TextStyle as RNTextStyle,
-  TransformsStyle as RNTransformsStyle,
   ViewStyle as RNViewStyle,
 } from "react-native"
 
@@ -67,6 +66,21 @@ export interface FlexboxProps {
   flexShrink?: RNFlexStyle["flexShrink"]
   flexWrap?: RNFlexStyle["flexWrap"]
   justifyContent?: RNFlexStyle["justifyContent"]
+}
+
+export interface InteractivityProps {
+  /** @platform web */
+  cursor?: RNViewStyle["cursor"]
+  pointerEvents?: RNViewStyle["pointerEvents"]
+  userSelect?: RNViewStyle["userSelect"]
+  /** @platform web */
+  outlineStyle?: RNViewStyle["outlineStyle"]
+  /** @platform web */
+  outlineColor?: RNViewStyle["outlineColor"]
+  /** @platform web */
+  outlineOffset?: RNViewStyle["outlineOffset"]
+  /** @platform web */
+  outlineWidth?: RNViewStyle["outlineWidth"]
 }
 
 export interface PositionProops {
@@ -135,7 +149,7 @@ export interface SpacingProps {
 }
 
 export interface TransformProps {
-  transform?: RNTransformsStyle["transform"]
+  transform?: string
 }
 
 export interface TransitionProps {
@@ -151,8 +165,6 @@ export interface TransitionProps {
   transitionTimingFunction?: React.CSSProperties["transitionTimingFunction"]
   /** @platform web */
   willChange?: React.CSSProperties["willChange"]
-  /** @platform web */
-  animation?: React.CSSProperties["animation"]
 }
 
 export interface TypographyProps {

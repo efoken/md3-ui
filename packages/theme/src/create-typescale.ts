@@ -1,17 +1,13 @@
 import { Platform, TextStyle as RNTextStyle } from "react-native"
 import { Typeface } from "./create-typeface"
 
-export type TypescaleStyle = Pick<
-  RNTextStyle,
-  | "fontFamily"
-  | "fontSize"
-  | "fontStyle"
-  | "fontVariant"
-  | "fontWeight"
-  | "includeFontPadding"
-  | "letterSpacing"
-  | "lineHeight"
->
+export type TypescaleStyle = Required<
+  Pick<
+    RNTextStyle,
+    "fontFamily" | "fontSize" | "fontWeight" | "letterSpacing" | "lineHeight"
+  >
+> &
+  Pick<RNTextStyle, "fontStyle" | "fontVariant" | "includeFontPadding">
 
 export interface Typescale {
   "display-large": TypescaleStyle
@@ -33,7 +29,7 @@ export interface Typescale {
 
 function getFontStyle(
   fontFamily: string,
-  fontWeight: RNTextStyle["fontWeight"],
+  fontWeight: NonNullable<RNTextStyle["fontWeight"]>,
 ) {
   return Platform.select({
     ios: {

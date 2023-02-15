@@ -2,13 +2,13 @@ import { resolveProps } from "@md3-ui/utils"
 import { useTheme } from "./context"
 
 interface ThemeWithProps<Components> {
-  components: {
+  comp: {
     [K in keyof Components]: { defaultProps?: Partial<Components[K]> }
   }
 }
 
 type ThemedProps<Theme, Name extends keyof any> = Theme extends {
-  components: Record<Name, { defaultProps?: infer Props }>
+  comp: Record<Name, { defaultProps?: infer Props }>
 }
   ? Props
   : {}
@@ -26,14 +26,12 @@ function getThemeProps<
   name: Name
   theme: Theme
 }): Props & ThemedProps<Theme, Name> {
-  if (theme.components?.[name]?.defaultProps == null) {
+  if (theme.comp?.[name]?.defaultProps == null) {
     return props as any
   }
 
-  return resolveProps(
-    theme.components[name].defaultProps ?? {},
-    props,
-  ) as Props & ThemedProps<Theme, Name>
+  return resolveProps(theme.comp[name].defaultProps ?? {}, props) as Props &
+    ThemedProps<Theme, Name>
 }
 
 export function useThemeProps<

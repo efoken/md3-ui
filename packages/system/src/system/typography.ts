@@ -1,9 +1,9 @@
+import { createPaletteStyle } from "../create-palette-style"
 import { compose, style } from "../style"
 import { TypographyProps } from "./types"
 
-const color = style({
+const color = createPaletteStyle({
   prop: "color",
-  themeKey: "color",
 })
 
 const fontSize = style({
@@ -43,14 +43,12 @@ const textDecorationStyle = style({
   prop: "textDecorationStyle",
 })
 
-const textDecorationColor = style({
+const textDecorationColor = createPaletteStyle({
   prop: "textDecorationColor",
-  themeKey: "color",
 })
 
-const textShadowColor = style({
+const textShadowColor = createPaletteStyle({
   prop: "textShadowColor",
-  themeKey: "color",
 })
 
 const textShadowOffset = style({

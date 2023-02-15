@@ -26,15 +26,21 @@
     "access": "public"
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^3.5.0",
-    "@md3-ui/hooks": "^0.2.0"
+    "@ctrl/tinycolor": "^3.6.0",
+    "@md3-ui/utils": "^0.2.0"
   },
   "devDependencies": {
-    "@types/react-native": "^0.70.8",
-    "react-native": "0.70.6"
+    "@types/adm-zip": "^0.5.0",
+    "@types/react-native": "^0.71.3",
+    "adm-zip": "^0.5.10",
+    "react-native": "0.71.3",
+    "style-dictionary": "^3.7.2"
   },
   "peerDependencies": {
-    "@types/react-native": "^0.70.8",
-    "react-native": ">=0.70.6"
+    "@types/react-native": "^0.71.3",
+    "react-native": ">=0.71.3"
+  },
+  "scripts": {
+    "tokens": "ts-node scripts/tokens.ts"
   }
 }

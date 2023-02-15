@@ -32,25 +32,25 @@
   "devDependencies": {
     "@svgr/babel-preset": "^6.5.1",
     "@svgr/core": "^6.5.1",
-    "@types/fs-extra": "^9.0.13",
+    "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.191",
-    "@types/react": "^18.0.26",
-    "@types/react-native": "^0.70.8",
+    "@types/react": "^18.0.28",
+    "@types/react-native": "^0.71.3",
     "@types/svgo": "^3.0.0",
     "cross-fetch": "^3.1.5",
     "fs-extra": "^11.1.0",
     "lodash": "^4.17.21",
-    "react": "18.1.0",
-    "react-native": "0.70.6",
+    "react": "18.2.0",
+    "react-native": "0.71.3",
     "react-native-svg": "13.4.0",
     "svgo": "^3.0.2",
     "yargs": "^17.6.2"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0",
-    "@types/react-native": "^0.70.8",
-    "react": "^18.1.0",
-    "react-native": ">=0.70.6",
+    "@types/react-native": "^0.71.3",
+    "react": "^18.2.0",
+    "react-native": ">=0.71.3",
     "react-native-svg": "^13.4.0"
   },
   "scripts": {

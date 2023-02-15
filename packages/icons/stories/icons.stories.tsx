@@ -21,7 +21,7 @@ export const Icons: StoryObj<IconProps> = {
       {Object.values(Md3Icons)
         .filter((Component) => !!Component.displayName)
         .map((Component) => (
-          <Component height={40} width={40} />
+          <Component key={Component.displayName} height={40} width={40} />
         ))}
     </Box>
   ),

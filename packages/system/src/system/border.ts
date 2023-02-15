@@ -1,3 +1,4 @@
+import { createPaletteStyle } from "../create-palette-style"
 import { compose, style } from "../style"
 import { BorderProps } from "./types"
 
@@ -5,39 +6,32 @@ const borderStyle = style({
   prop: "borderStyle",
 })
 
-const borderColor = style({
+const borderColor = createPaletteStyle({
   prop: "borderColor",
-  themeKey: "color",
 })
 
-const borderTopColor = style({
+const borderTopColor = createPaletteStyle({
   prop: "borderTopColor",
-  themeKey: "color",
 })
 
-const borderRightColor = style({
+const borderRightColor = createPaletteStyle({
   prop: "borderRightColor",
-  themeKey: "color",
 })
 
-const borderBottomColor = style({
+const borderBottomColor = createPaletteStyle({
   prop: "borderBottomColor",
-  themeKey: "color",
 })
 
-const borderLeftColor = style({
+const borderLeftColor = createPaletteStyle({
   prop: "borderLeftColor",
-  themeKey: "color",
 })
 
-const borderStartColor = style({
+const borderStartColor = createPaletteStyle({
   prop: "borderStartColor",
-  themeKey: "color",
 })
 
-const borderEndColor = style({
+const borderEndColor = createPaletteStyle({
   prop: "borderEndColor",
-  themeKey: "color",
 })
 
 const borderRadius = style({

@@ -26,6 +26,8 @@ import {
 import { FocusTrap, FocusTrapProps } from "./focus-trap"
 import { ModalManager } from "./modal-manager"
 
+const Z_INDEX = 1400
+
 export interface ModalTypeMap<
   P = {},
   C extends React.ElementType = typeof RNView,
@@ -104,26 +106,29 @@ export type ModalStyleKey = keyof NonNullable<ModalProps["styles"]>
 const ModalRoot = styled(RNView, {
   name: "Modal",
   slot: "Root",
-})<OwnerStateProps<Pick<ModalProps, "open"> & { exited: boolean }>>(
-  ({ theme, ownerState }) => ({
-    bottom: 0,
-    left: 0,
-    position: Platform.OS === "web" ? ("fixed" as any) : "absolute",
-    right: 0,
-    top: 0,
-    zIndex: theme.zIndex.modal,
-    ...(!ownerState.open &&
-      ownerState.exited &&
-      Platform.select({
-        web: {
-          visibility: "hidden",
-        },
-        default: {
-          display: "none",
-        },
-      })),
-  }),
-)
+})<
+  OwnerStateProps<
+    Pick<ModalProps, "open"> & { exited: boolean; hidden: boolean }
+  >
+>(({ ownerState }) => ({
+  bottom: 0,
+  left: 0,
+  pointerEvents: ownerState.hidden ? "none" : undefined,
+  position: Platform.OS === "web" ? ("fixed" as any) : "absolute",
+  right: 0,
+  top: 0,
+  zIndex: Z_INDEX,
+  ...(!ownerState.open &&
+    ownerState.exited &&
+    Platform.select({
+      web: {
+        visibility: "hidden",
+      },
+      default: {
+        display: "none",
+      },
+    })),
+}))
 
 const ModalScrim = styled(Animated.View, {
   name: "Modal",
@@ -286,6 +291,7 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
 
   const ownerState = {
     exited,
+    hidden,
     open,
   }
 
@@ -298,30 +304,17 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
       <ModalRoot
         ref={handleRef}
         accessibilityViewIsModal
-        accessibilityRole="none"
+        aria-hidden={hidden}
         ownerState={ownerState}
-        {...(hidden && {
-          accessibilityElementsHidden: true,
-          accessibilityHidden: true,
-          importantForAccessibility: "no-hide-descendants",
-          pointerEvents: "none",
-        })}
+        role="presentation"
         style={[style, styles?.root]}
         onAccessibilityEscape={onClose}
         onKeyDown={handleKeyDown}
         {...props}
       >
         {!hideScrim && (
-          <TouchableWithoutFeedback
-            accessibilityElementsHidden
-            importantForAccessibility="no-hide-descendants"
-            onPress={onClose}
-          >
-            <ModalScrim
-              accessibilityHidden
-              focusable={false}
-              style={{ opacity }}
-            />
+          <TouchableWithoutFeedback aria-hidden onPress={onClose}>
+            <ModalScrim aria-hidden style={{ opacity }} tabIndex={-1} />
           </TouchableWithoutFeedback>
         )}
         <FocusTrap
@@ -332,7 +325,6 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
           open={open}
         >
           {React.cloneElement(children, {
-            focusable: children.props.focusable ?? false,
             tabIndex: children.props.tabIndex ?? -1,
           })}
         </FocusTrap>

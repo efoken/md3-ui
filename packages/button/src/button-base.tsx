@@ -7,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { splitProps, __DEV__ } from "@md3-ui/utils"
+import { isHTMLElement, splitProps, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   NativeSyntheticEvent,
@@ -99,13 +99,19 @@ const ButtonBaseRoot = styled(RNPressable, {
   name: "ButtonBase",
   slot: "Root",
 })<OwnerStateProps<Pick<ButtonBaseProps, "disabled">>>(
-  ({ ownerState }) =>
-    Platform.OS === "web" && {
+  ({ theme, ownerState }) => ({
+    outlineWidth: 0,
+    pointerEvents: ownerState.disabled ? "none" : undefined,
+    userSelect: "none",
+
+    ...(Platform.OS === "web" && {
       cursor: ownerState.disabled ? "default" : "pointer",
-      outlineWidth: 0,
-      transition: "box-shadow 200ms linear",
-      userSelect: "none",
-    },
+      transition: theme.sys.motion.create("box-shadow", {
+        duration: 200,
+        easing: "linear",
+      }),
+    }),
+  }),
 )
 
 const ButtonBaseContainer = styled(RNView, {
@@ -128,10 +134,10 @@ const ButtonBaseHover = styled("span", {
   position: "absolute",
   right: 0,
   top: 0,
-  transition: theme.utils.transition(
-    ["background-color", "opacity"],
-    "200ms linear",
-  ),
+  transition: theme.sys.motion.create(["background-color", "opacity"], {
+    duration: 200,
+    easing: "linear",
+  }),
   zIndex: -1,
 }))
 
@@ -166,11 +172,11 @@ const ButtonBaseRipple = styled("span", {
   animationKeyframes: {
     "0%": {
       opacity: 1,
-      transform: [{ scale: 0 }],
+      transform: "scale(0)",
     },
     "100%": {
       opacity: 0,
-      transform: [{ scale: 1 }],
+      transform: "scale(1)",
     },
   },
   animationTimingFunction: "ease-in",
@@ -429,9 +435,9 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
     }
 
     React.useEffect(() => {
-      const currentRef = rootRef.current as HTMLDivElement | null
+      const currentRef = rootRef.current
 
-      if (Platform.OS === "web" && currentRef != null) {
+      if (isHTMLElement<HTMLDivElement>(currentRef)) {
         currentRef.addEventListener("mousedown", appendRipple)
         currentRef.addEventListener("touchstart", appendRipple)
 
@@ -451,8 +457,6 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
     const button = (
       <ButtonBaseRoot
         ref={handleRef}
-        accessibilityRole={href ? undefined : "button"}
-        accessibilityState={{ disabled: disabled || undefined }}
         android_ripple={
           disableRipple
             ? {}
@@ -461,10 +465,11 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
                 color: theme.utils.rgba(pressedColor, pressedOpacity),
               }
         }
+        aria-disabled={disabled}
         disabled={disabled}
         href={href}
         ownerState={ownerState}
-        pointerEvents={disabled ? "none" : undefined}
+        role={href ? undefined : "button"}
         {...(Platform.OS === "web" && {
           style: [style, styles?.root],
         })}

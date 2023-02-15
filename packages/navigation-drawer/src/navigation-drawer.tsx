@@ -12,6 +12,8 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 
+const Z_INDEX = 1300
+
 export interface NavigationDrawerProps
   extends Omit<ModalProps, "as" | "children" | "open"> {
   /**
@@ -56,9 +58,9 @@ export type NavigationDrawerStyleKey = keyof NonNullable<
 const NavigationDrawerRoot = styled(Modal, {
   name: "NavigationDrawer",
   slot: "Root",
-})(({ theme }) => ({
-  zIndex: theme.zIndex.drawer,
-}))
+})({
+  zIndex: Z_INDEX,
+})
 
 const NavigationDrawerDockRoot = styled(RNView, {
   name: "NavigationDrawer",
@@ -81,7 +83,7 @@ const NavigationDrawerSurface = styled(Animated.View, {
     padding: theme.spacing(1.5),
     position: "absolute",
     width: 360,
-    zIndex: theme.zIndex.drawer,
+    zIndex: Z_INDEX,
 
     ...(Platform.OS === "web" && {
       // We disable the focus ring for mouse, touch and keyboard users.

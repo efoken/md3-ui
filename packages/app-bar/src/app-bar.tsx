@@ -14,6 +14,8 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 
+const Z_INDEX = 1200
+
 export interface AppBarTypeMap<
   P = {},
   C extends React.ElementType = typeof RNView,
@@ -67,7 +69,7 @@ const AppBarRoot = styled(RNView, {
     position: "absolute",
     right: 0,
     top: 0,
-    zIndex: theme.zIndex.appBar,
+    zIndex: Z_INDEX,
   }),
 
   ...(ownerState.position === "fixed" && {
@@ -75,7 +77,7 @@ const AppBarRoot = styled(RNView, {
     position: Platform.OS === "web" ? ("fixed" as any) : "absolute",
     right: 0,
     top: 0,
-    zIndex: theme.zIndex.appBar,
+    zIndex: Z_INDEX,
 
     "@media print": {
       position: "absolute",
@@ -91,7 +93,7 @@ const AppBarRoot = styled(RNView, {
     position: "absolute",
     right: 0,
     top: 0,
-    zIndex: theme.zIndex.appBar,
+    zIndex: Z_INDEX,
   }),
 
   ...(ownerState.position === "relative" && {

@@ -24,10 +24,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   return (
     <NavigationDrawer
       ref={contentRef as any}
-      accessibilityLabel="Main navigation"
-      accessibilityRole={"navigation" as any}
+      aria-label="Main navigation"
       hideScrim={expanded}
       open={open}
+      role="navigation"
       variant={expanded ? "dismissible" : "modal"}
       styles={{
         surface: expanded

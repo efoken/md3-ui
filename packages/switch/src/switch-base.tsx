@@ -27,10 +27,6 @@ export interface SwitchBaseProps extends ButtonBaseProps {
    */
   defaultChecked?: boolean
   /**
-   * @ignore
-   */
-  editable?: boolean
-  /**
    * Name attribute of the `input` element.
    */
   name?: string
@@ -43,6 +39,10 @@ export interface SwitchBaseProps extends ButtonBaseProps {
    * (boolean).
    */
   onChange?: (event: NativeSyntheticEvent<SwitchChangeEventData>) => void
+  /**
+   * @ignore
+   */
+  readOnly?: boolean
   /**
    * If `true`, the `input` element is required.
    * @default false
@@ -105,11 +105,11 @@ export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(
       children,
       defaultChecked,
       disabled,
-      editable = true,
+      id,
       name,
-      nativeID,
       onChange,
       onPress,
+      readOnly = false,
       required = false,
       style,
       styles,
@@ -147,16 +147,16 @@ export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(
       <SwitchBaseRoot
         ref={ref}
         centerRipple
-        accessibilityRole="none"
         disabled={disabled}
+        role="presentation"
         style={[style, styles?.root]}
         {...(Platform.OS === "web"
           ? {
-              focusable: false,
+              tabIndex: -1,
               onPress,
             }
           : {
-              nativeID,
+              id,
               onPress: createChainedFunction(onPress, handleChange),
             })}
         {...props}
@@ -167,9 +167,9 @@ export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(
               checked={checked}
               defaultChecked={defaultChecked}
               disabled={disabled}
-              id={nativeID}
+              id={id}
               name={name}
-              readOnly={!editable}
+              readOnly={readOnly}
               required={required}
               style={styles?.input}
               type={type}

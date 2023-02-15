@@ -1,15 +1,14 @@
-import { compose, style } from "../style"
+import { createPaletteStyle } from "../create-palette-style"
+import { compose } from "../style"
 import { BackgroundProps } from "./types"
 
-const backgroundColor = style({
+const backgroundColor = createPaletteStyle({
   prop: "backgroundColor",
-  themeKey: "color",
 })
 
-const bgColor = style({
+const bgColor = createPaletteStyle({
   prop: "bgColor",
   styleProp: "backgroundColor",
-  themeKey: "color",
 })
 
 export const background = compose<BackgroundProps>(backgroundColor, bgColor)

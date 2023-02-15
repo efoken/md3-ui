@@ -1,5 +1,5 @@
 import { useForkRef } from "@md3-ui/hooks"
-import { styled, SxProps, useThemeProps } from "@md3-ui/system"
+import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
@@ -51,13 +51,14 @@ const TextInputLabelContainer = styled(RNView, {
   name: "TextInputLabel",
   slot: "Container",
   skipSx: true,
-})({
+})<OwnerStateProps<Pick<TextInputLabelProps, "shrink">>>(({ ownerState }) => ({
   bottom: 0,
   left: 0,
+  pointerEvents: ownerState.shrink ? "auto" : "none",
   position: "absolute",
   right: 0,
   top: 0,
-})
+}))
 
 export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
   (inProps, ref) => {
@@ -81,11 +82,15 @@ export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
       }
     }, [htmlFor])
 
+    const ownerState = {
+      shrink,
+    }
+
     const children = (
       <TextInputLabelRoot
         ref={handleRef}
-        accessibilityRole={Platform.OS === "web" ? ("label" as any) : "none"}
         numberOfLines={1}
+        role={Platform.OS === "web" ? ("label" as any) : "presentation"}
         style={[style, styles?.root]}
         {...props}
       />
@@ -94,7 +99,7 @@ export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
     return Platform.OS === "web" ? (
       children
     ) : (
-      <TextInputLabelContainer pointerEvents={shrink ? "auto" : "none"}>
+      <TextInputLabelContainer ownerState={ownerState}>
         {children}
       </TextInputLabelContainer>
     )

@@ -1,3 +1,5 @@
+import { __DEV__ } from "@md3-ui/utils"
+
 export interface Md3Duration {
   short1: number
   short2: number
@@ -33,6 +35,14 @@ export interface Md3Easing {
 export interface Motion {
   duration: Md3Duration
   easing: Md3Easing
+  create: (
+    props?: string | string[],
+    options?: {
+      delay?: number
+      duration?: number
+      easing?: string | [number, number, number, number]
+    },
+  ) => string
 }
 
 // Follows https://m3.material.io/styles/motion/easing-and-duration/tokens-specs
@@ -68,6 +78,10 @@ export const easing: Md3Easing = {
   legacyAccelerate: [0.4, 0, 1, 1],
 }
 
+function formatMs(milliseconds: number) {
+  return `${Math.round(milliseconds)}ms`
+}
+
 interface CreateMotionOptions {
   duration?: Partial<Md3Duration>
   easing?: Partial<Md3Easing>
@@ -84,7 +98,52 @@ export function createMotion(motion: CreateMotionOptions = {}): Motion {
     ...motion.easing,
   }
 
+  const create = (
+    props: string | string[] = ["all"],
+    {
+      delay = 0,
+      duration: durationOption = mergedDuration.medium1,
+      easing: easingOption = mergedEasing.standard,
+    }: {
+      delay?: number
+      duration?: number
+      easing?: string | [number, number, number, number]
+    } = {},
+  ) => {
+    if (__DEV__) {
+      if (typeof props !== "string" && !Array.isArray(props)) {
+        console.error("MD3-UI: Argument `props` must be a string or Array.")
+      }
+
+      if (Number.isNaN(durationOption)) {
+        console.error(
+          `MD3-UI: Argument "duration" must be a number but found ${durationOption}.`,
+        )
+      }
+
+      if (typeof easingOption !== "string" && !Array.isArray(easingOption)) {
+        console.error('MD3-UI: Argument "easing" must be a string or Array.')
+      }
+
+      if (Number.isNaN(delay)) {
+        console.error('MD3-UI: Argument "delay" must be a number.')
+      }
+    }
+
+    return (Array.isArray(props) ? props : [props])
+      .map(
+        (prop) =>
+          `${prop} ${formatMs(durationOption)} ${
+            Array.isArray(easingOption)
+              ? `cubic-bezier(${easingOption.join(", ")})`
+              : easingOption
+          } ${formatMs(delay)}`,
+      )
+      .join(",")
+  }
+
   return {
+    create,
     ...motion,
     duration: mergedDuration,
     easing: mergedEasing,

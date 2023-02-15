@@ -38,11 +38,11 @@ export const Modal: StoryObj = {
 
     const list = (anchor: "start" | "end") => (
       <TouchableWithoutFeedback
-        focusable={false}
+        tabIndex={-1}
         onKeyDown={toggleDrawer(anchor, false)}
         onPress={toggleDrawer(anchor, false)}
       >
-        <Box accessibilityRole="none">
+        <Box role="presentation">
           {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
             <NavigationDrawerItem
               key={text}

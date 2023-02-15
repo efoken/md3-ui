@@ -1,0 +1,46 @@
+{
+  "name": "@md3-ui/list",
+  "version": "0.2.0",
+  "main": "dist/md3-ui-list.cjs.js",
+  "module": "dist/md3-ui-list.esm.js",
+  "types": "dist/md3-ui-list.cjs.d.ts",
+  "license": "MIT",
+  "homepage": "https://eikefoken.com/md3-ui/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/efoken/md3-ui",
+    "directory": "packages/list"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "material design",
+    "material you"
+  ],
+  "files": [
+    "dist",
+    "src"
+  ],
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@md3-ui/hooks": "^0.2.0",
+    "@md3-ui/layout": "^0.2.0",
+    "@md3-ui/system": "^0.2.0",
+    "@md3-ui/utils": "^0.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-native": "^0.71.3",
+    "react": "18.2.0",
+    "react-native": "0.71.3"
+  },
+  "peerDependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-native": "^0.71.3",
+    "react": "^18.2.0",
+    "react-native": ">=0.71.3"
+  }
+}

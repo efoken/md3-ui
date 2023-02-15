@@ -50,7 +50,7 @@ const CardContentRoot = styled(RNImage, {
   slot: "Root",
 })(() => ({
   borderRadius: 12,
-  resizeMode: "cover",
+  objectFit: "cover",
   width: "100%",
 }))
 

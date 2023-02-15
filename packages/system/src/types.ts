@@ -13,6 +13,7 @@ import {
   DisplayProps,
   ElevationProps,
   FlexboxProps,
+  InteractivityProps,
   PositionProops,
   SizingProps,
   SpacingProps,
@@ -41,6 +42,7 @@ export type AllSystemProps = BackgroundProps &
   DisplayProps &
   ElevationProps &
   FlexboxProps &
+  InteractivityProps &
   PositionProops &
   SizingProps &
   SpacingProps &

@@ -25,10 +25,6 @@ const willChange = style({
   prop: "willChange",
 })
 
-const animation = style({
-  prop: "animation",
-})
-
 export const transition = compose<TransitionProps>(
   transitionRaw,
   transitionDelay,
@@ -36,5 +32,4 @@ export const transition = compose<TransitionProps>(
   transitionProperty,
   transitionTimingFunction,
   willChange,
-  animation,
 )

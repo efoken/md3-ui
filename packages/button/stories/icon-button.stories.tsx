@@ -1,11 +1,11 @@
 import { SettingsOutlined } from "@md3-ui/icons"
 import { Meta, StoryObj } from "@storybook/react"
-import { ButtonBase, IconButton, IconButtonProps } from "../src"
+import { IconButton, IconButtonProps } from "../src"
 
 export default {
   title: "Components/Buttons/Icon buttons",
   component: IconButton,
-  subcomponents: { ButtonBase },
+  // subcomponents: { ButtonBase },
   render: (args) => (
     <IconButton {...args}>
       <SettingsOutlined />

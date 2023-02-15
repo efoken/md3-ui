@@ -6,7 +6,7 @@ import { merge } from "./utils"
 
 type StyleValue = number | string | RNStyle
 
-function getValue(
+function getStyleValue(
   themeMapping: any,
   transform: ((cssValue: any) => StyleValue) | undefined,
   propValueFinal: any,
@@ -42,19 +42,21 @@ export function style<PropKey extends string>({
   themeKey,
   transform,
 }: StyleOptions<PropKey>) {
-  const fn = ({ theme, ...props }: any) => {
+  const fn = (props: Record<string, any>) => {
     if (props[prop] == null) {
       return null
     }
 
     const propValue = props[prop]
+    const { theme } = props
+
     const themeMapping =
       themeKey === "spacing"
         ? theme.spacing
         : get(theme.sys, themeKey ?? "", {})
 
     const styleFromPropValue = (propValueFinal?: StyleValue) => {
-      const value = getValue(themeMapping, transform, propValueFinal)
+      const value = getStyleValue(themeMapping, transform, propValueFinal)
 
       // if (propValueFinal === value && typeof propValueFinal === "string") {
       //   // Haven't found value

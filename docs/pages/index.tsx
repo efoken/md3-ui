@@ -52,10 +52,10 @@ export const IntroductionCard: React.FC<IntroductionCardProps> = ({
         }}
       >
         <Image
+          priority
           src={image.src}
           width={712}
           height={511}
-          layout="fill"
           alt={image.alt}
         />
       </Box>

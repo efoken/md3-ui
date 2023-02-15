@@ -199,7 +199,7 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
           {startIcon}
           <TextInputRoot
             ref={handleRef}
-            accessibilityInvalid={error}
+            aria-invalid={error}
             multiline={multiline}
             style={[style, styles?.root]}
             value={value}

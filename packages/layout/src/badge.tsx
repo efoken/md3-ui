@@ -79,12 +79,11 @@ const BadgeLabel = styled(Animated.Text, {
   slot: "Label",
   skipSx: true,
 })<OwnerStateProps<Pick<BadgeProps, "variant">>>(({ theme, ownerState }) => ({
-  ...theme.sys.typescale["label-small"],
-  backgroundColor: theme.sys.color.error,
-  borderRadius: 8,
-  color: theme.sys.color.onError,
-  height: 16,
-  minWidth: 16,
+  ...theme.comp.badge.large.labelText,
+  backgroundColor: theme.comp.badge.large.color,
+  borderRadius: theme.comp.badge.large.shape,
+  height: theme.comp.badge.large.size,
+  minWidth: theme.comp.badge.large.size,
   paddingHorizontal: theme.spacing(0.5),
   position: "absolute",
   right: 0,
@@ -92,9 +91,10 @@ const BadgeLabel = styled(Animated.Text, {
   top: 0,
 
   ...(ownerState.variant === "dot" && {
-    borderRadius: 3,
-    height: 6,
-    minWidth: 6,
+    backgroundColor: theme.comp.badge.color,
+    borderRadius: theme.comp.badge.shape,
+    height: theme.comp.badge.size,
+    minWidth: theme.comp.badge.size,
     paddingHorizontal: 0,
   }),
 }))

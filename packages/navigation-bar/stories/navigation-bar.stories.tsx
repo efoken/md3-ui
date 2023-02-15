@@ -7,7 +7,7 @@ import { NavigationBar, NavigationBarItem, NavigationBarProps } from "../src"
 export default {
   title: "Components/Navigation bar",
   component: NavigationBar,
-  subcomponents: { NavigationBarItem },
+  // subcomponents: { NavigationBarItem },
 } as Meta<NavigationBarProps>
 
 export const Basic: StoryObj<NavigationBarProps> = {

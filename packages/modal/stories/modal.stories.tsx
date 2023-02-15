@@ -16,10 +16,11 @@ const style = {
   elevation: "level5" as const,
   left: "50%",
   pb: 4,
+  position: "absolute" as const,
   pt: 2,
   px: 4,
-  position: "absolute" as const,
   top: "50%",
+  transform: "translateX(-50%) translateY(-50%)",
   width: 400,
 }
 
@@ -35,24 +36,16 @@ export const Basic: StoryObj<ModalProps> = {
         <Button onPress={handleOpen}>Open modal</Button>
         <Modal
           open={open}
-          accessibilityLabelledBy="modal-modal-title"
-          accessibilityDescribedBy="modal-modal-description"
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
           onClose={handleClose}
           {...args}
         >
-          <Box
-            style={{
-              transform: [
-                { translateX: "-50%" as any },
-                { translateY: "-50%" as any },
-              ],
-            }}
-            sx={style}
-          >
+          <Box sx={style}>
             <Text as="h2" id="modal-modal-title" variant="headline-small">
               Text in a modal
             </Text>
-            <Text nativeID="modal-modal-description" variant="body-medium">
+            <Text id="modal-modal-description" variant="body-medium">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Text>
           </Box>
@@ -76,25 +69,17 @@ export const NestedModal: StoryObj<ModalProps> = {
         <Button onPress={handleOpenParent}>Open modal</Button>
         <Modal
           open={open[0]}
-          accessibilityLabelledBy="parent-modal-title"
-          accessibilityDescribedBy="parent-modal-description"
+          aria-labelledby="parent-modal-title"
+          aria-describedby="parent-modal-description"
           onClose={handleCloseParent}
           {...args}
         >
-          <Box
-            style={{
-              transform: [
-                { translateX: "-50%" as any },
-                { translateY: "-50%" as any },
-              ],
-            }}
-            sx={{ ...style, width: 400 }}
-          >
+          <Box sx={{ ...style, width: 400 }}>
             <Text as="h2" id="parent-modal-title" variant="headline-small">
               Text in a modal
             </Text>
             <Text
-              nativeID="parent-modal-description"
+              id="parent-modal-description"
               variant="body-medium"
               sx={{ mb: 2 }}
             >
@@ -104,24 +89,16 @@ export const NestedModal: StoryObj<ModalProps> = {
             <Modal
               hideScrim
               open={open[1]}
-              accessibilityLabelledBy="child-modal-title"
-              accessibilityDescribedBy="child-modal-description"
+              aria-labelledby="child-modal-title"
+              aria-describedby="child-modal-description"
               onClose={handleCloseChild}
             >
-              <Box
-                style={{
-                  transform: [
-                    { translateX: "-50%" as any },
-                    { translateY: "-50%" as any },
-                  ],
-                }}
-                sx={{ ...style, width: 240 }}
-              >
+              <Box sx={{ ...style, width: 240 }}>
                 <Text as="h2" id="child-modal-title" variant="headline-small">
                   Text in a child modal
                 </Text>
                 <Text
-                  nativeID="child-modal-description"
+                  id="child-modal-description"
                   variant="body-medium"
                   sx={{ mb: 2 }}
                 >

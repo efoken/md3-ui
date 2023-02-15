@@ -1,10 +1,28 @@
+export function isElement(el: any): el is Element {
+  return (
+    el != null &&
+    typeof el === "object" &&
+    "nodeType" in el &&
+    el.nodeType === Node.ELEMENT_NODE
+  )
+}
+
+export function isHTMLElement<T extends HTMLElement = HTMLElement>(
+  el: any,
+): el is T {
+  if (!isElement(el)) {
+    return false
+  }
+  return el instanceof (el.ownerDocument.defaultView ?? window).HTMLElement
+}
+
 export function getOwnerDocument(node?: Element | null): Document {
-  return node != null ? node.ownerDocument ?? document : document
+  return isElement(node) ? node.ownerDocument : document
 }
 
 export function getOwnerWindow(node?: Element | null): Window {
-  return node != null ? getOwnerDocument(node)?.defaultView ?? window : window
+  return getOwnerDocument(node)?.defaultView ?? window
 }
 
 export const cx = (...classNames: any[]) =>
-  Array.from(new Set(classNames.flat().filter(Boolean))).join(" ")
+  [...new Set(classNames.flat().filter(Boolean))].join(" ")

@@ -16,6 +16,8 @@ import {
   SwitchChangeEventData,
 } from "./switch-base"
 
+const ANIMATION_DURATION = 75
+
 export interface SwitchProps extends SwitchBaseProps {
   /**
    * The icon to display when the component is checked.
@@ -134,8 +136,8 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     (newChecked: boolean, callback?: Animated.EndCallback) => {
       Animated.timing(switchAnimation, {
         toValue: newChecked ? offset : -offset,
-        duration: 150,
-        easing: Easing.linear,
+        duration: ANIMATION_DURATION,
+        easing: Easing.bezier(...theme.sys.motion.easing.standard),
         useNativeDriver: false,
       }).start(callback)
     },
@@ -147,8 +149,8 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     (toValue: number, callback?: Animated.EndCallback) => {
       Animated.timing(thumbAnimation, {
         toValue,
-        duration: 150,
-        easing: Easing.linear,
+        duration: ANIMATION_DURATION,
+        easing: Easing.bezier(...theme.sys.motion.easing.standard),
         useNativeDriver: false,
       }).start(callback)
     },

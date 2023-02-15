@@ -41,16 +41,15 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
             <Box
               // eslint-disable-next-line react/no-array-index-key
               key={j}
-              accessibilityRole={"group" as any}
+              role="group"
               sx={{ mb: 0.25, mx: 0.75, px: 0.25 }}
             >
               <NextLink passHref href={level2.path ?? "/"}>
                 <Pressable>
                   {({ hovered }) => (
                     <NavigationDrawerItem
-                      accessibilityRole="none"
                       label={level2.title}
-                      pointerEvents="none"
+                      role="presentation"
                       styles={{
                         label: {
                           ...theme.sys.typescale["body-large"],
@@ -61,6 +60,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
                         backgroundColor: hovered ? "#e6e1e5" : undefined,
                         borderRadius: 14,
                         height: 44,
+                        pointerEvents: "none",
                         transition: "background-color 200ms linear",
                       }}
                     />

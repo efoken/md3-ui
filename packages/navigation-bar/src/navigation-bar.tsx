@@ -15,6 +15,7 @@ import {
 } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { NavigationBarContext } from "./context"
+import { NavigationBarItemProps } from "./navigation-bar-item"
 
 export interface NavigationBarTypeMap<
   P = {},
@@ -115,7 +116,7 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
           {...props}
         >
           {React.Children.map(children, (child, index) => {
-            if (!React.isValidElement(child)) {
+            if (!React.isValidElement<NavigationBarItemProps>(child)) {
               return null
             }
 

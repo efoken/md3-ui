@@ -106,6 +106,7 @@ const TextFieldOutline = styled(RNView, {
     borderWidth: 1,
     bottom: 0,
     left: 0,
+    pointerEvents: "none",
     position: "absolute",
     right: 0,
     top: 0,
@@ -158,8 +159,8 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
       error = false,
       fullWidth = false,
       helperText,
+      id,
       label,
-      nativeID,
       onBlur,
       onEmpty,
       onFilled,
@@ -201,19 +202,16 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
       variant,
     }
 
-    const helperTextID =
-      helperText != null && nativeID != null
-        ? `${nativeID}-helper-text`
-        : undefined
-    const labelID =
-      label != null && nativeID != null ? `${nativeID}-label` : undefined
+    const helperTextId =
+      helperText != null && id != null ? `${id}-helper-text` : undefined
+    const labelId = label != null && id != null ? `${id}-label` : undefined
 
     return (
       <TextFieldContainer ownerState={ownerState} style={styles?.container}>
         {label != null && label !== "" && (
           <TextFieldLabel
-            htmlFor={nativeID}
-            nativeID={labelID}
+            htmlFor={id}
+            id={labelId}
             shrink={shrink}
             style={[
               {
@@ -256,18 +254,14 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
             {label}
           </TextFieldLabel>
         )}
-        <TextFieldOutline
-          ownerState={ownerState}
-          pointerEvents="none"
-          style={styles?.outline}
-        />
+        <TextFieldOutline ownerState={ownerState} style={styles?.outline} />
         <TextFieldRoot
           ref={handleRef}
-          accessibilityDescribedBy={helperTextID}
+          aria-describedby={helperTextId}
           endIcon={endIcon}
           error={error}
           fullWidth={fullWidth}
-          nativeID={nativeID}
+          id={id}
           ownerState={ownerState}
           placeholderTextColor={theme.sys.color.onSurfaceVariant}
           startIcon={startIcon}
@@ -279,7 +273,7 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
           {...props}
         />
         {helperText && (
-          <TextFieldHelperText nativeID={helperTextID}>
+          <TextFieldHelperText id={helperTextId}>
             {helperText}
           </TextFieldHelperText>
         )}

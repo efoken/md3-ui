@@ -7,10 +7,10 @@ import scope from "./react-live-scope"
 
 const EditableNotice: React.FC<BoxProps> = ({ sx, ...props }) => (
   <Box
-    pointerEvents="none"
     sx={{
       bgColor: "#011627",
       borderTopRadius: 8,
+      pointerEvents: "none",
       position: "absolute",
       py: 1,
       top: -16,
