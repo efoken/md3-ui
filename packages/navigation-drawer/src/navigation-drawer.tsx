@@ -174,8 +174,10 @@ export const NavigationDrawer = React.forwardRef<RNView, NavigationDrawerProps>(
     return variant === "modal" ? (
       <NavigationDrawerRoot
         ref={ref}
+        aria-modal
         hideScrim={hideScrim}
         open={open}
+        role="dialog"
         style={[style, styles?.root, styles?.modal]}
         onClose={onClose}
         {...props}

@@ -303,7 +303,6 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     >
       <ModalRoot
         ref={handleRef}
-        accessibilityViewIsModal
         aria-hidden={hidden}
         ownerState={ownerState}
         role="presentation"
