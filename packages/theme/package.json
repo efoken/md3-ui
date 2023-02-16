@@ -31,13 +31,11 @@
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.0",
-    "@types/react-native": "^0.71.3",
     "adm-zip": "^0.5.10",
     "react-native": "0.71.3",
     "style-dictionary": "^3.7.2"
   },
   "peerDependencies": {
-    "@types/react-native": "^0.71.3",
     "react-native": ">=0.71.3"
   },
   "scripts": {

@@ -36,14 +36,12 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
-    "@types/react-native": "^0.71.3",
     "react": "18.2.0",
     "react-native": "0.71.3",
     "react-native-web": "0.0.0-c26cb9b08"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0",
-    "@types/react-native": "^0.71.3",
     "react": "^18.2.0",
     "react-native": ">=0.71.3",
     "react-native-web": ">=0.18.2 || 0.0.0-c26cb9b08"
