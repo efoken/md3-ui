@@ -136,8 +136,8 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
     })
 
     React.useEffect(() => {
-      if (Platform.OS === "web" && name != null) {
-        rootRef.current?.setNativeProps({ name })
+      if (Platform.OS === "web" && rootRef.current != null && name != null) {
+        ;(rootRef.current as unknown as HTMLInputElement).name = name
       }
     }, [name])
 

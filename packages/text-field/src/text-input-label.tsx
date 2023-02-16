@@ -77,8 +77,8 @@ export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
     const handleRef = useForkRef(rootRef, ref)
 
     React.useEffect(() => {
-      if (Platform.OS === "web" && htmlFor != null) {
-        rootRef.current?.setNativeProps({ for: htmlFor })
+      if (Platform.OS === "web" && rootRef.current != null && htmlFor != null) {
+        ;(rootRef.current as unknown as HTMLLabelElement).htmlFor = htmlFor
       }
     }, [htmlFor])
 
@@ -89,8 +89,8 @@ export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
     const children = (
       <TextInputLabelRoot
         ref={handleRef}
+        accessibilityRole={Platform.OS === "web" ? ("label" as any) : undefined}
         numberOfLines={1}
-        role={Platform.OS === "web" ? ("label" as any) : "presentation"}
         style={[style, styles?.root]}
         {...props}
       />
