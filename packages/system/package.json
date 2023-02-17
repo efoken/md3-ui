@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@emotion/primitives-core": "^11.10.0",
-    "@emotion/react": "^11.10.5",
+    "@emotion/react": "^11.10.6",
     "@md3-ui/hooks": "^0.2.0",
     "@md3-ui/theme": "^0.2.0",
     "@md3-ui/utils": "^0.2.0",
