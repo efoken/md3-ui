@@ -25,4 +25,4 @@ export function getOwnerWindow(node?: Element | null): Window {
 }
 
 export const cx = (...classNames: any[]) =>
-  [...new Set(classNames.flat().filter(Boolean))].join(" ")
+  Array.from(new Set(classNames.flat().filter(Boolean))).join(" ")

@@ -1,10 +1,9 @@
 import { describeConformance, render, screen } from "@md3-ui/test-utils"
-import * as React from "react"
 import { Button } from "../src/button"
 
 describe("<Button />", () => {
   describeConformance(<Button>Conformance</Button>, () => ({
-    inheritComponent: "div",
+    inheritComponent: "button",
     refInstanceof: window.HTMLDivElement,
     skip: ["asProp"],
   }))

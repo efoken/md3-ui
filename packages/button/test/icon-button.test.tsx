@@ -1,6 +1,5 @@
 import { Icon } from "@md3-ui/icon"
 import { describeConformance, render, screen } from "@md3-ui/test-utils"
-import * as React from "react"
 import { IconButton } from "../src/icon-button"
 
 describe("<IconButton />", () => {
@@ -9,7 +8,7 @@ describe("<IconButton />", () => {
       <Icon testID="icon" />
     </IconButton>,
     () => ({
-      inheritComponent: "div",
+      inheritComponent: "button",
       refInstanceof: window.HTMLDivElement,
       skip: ["asProp"],
     }),

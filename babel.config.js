@@ -12,7 +12,6 @@ module.exports = {
       {
         bugfixes: true,
         loose: true,
-        modules: false,
       },
     ],
   ],

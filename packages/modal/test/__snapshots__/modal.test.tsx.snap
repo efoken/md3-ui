@@ -14,10 +14,10 @@ exports[`<Modal /> should render 1`] = `
   >
     <div
       aria-hidden="true"
-      class="css-view-175oi2r"
+      class="css-view-175oi2r r-backgroundColor-lseifr r-height-1pi2tsx r-position-u8s1d r-width-13qz1uu r-zIndex-1wyyakw"
       data-class="Modal-scrim"
-      style="background-color: rgba(50, 47, 55, 0.4); height: 100%; position: absolute; width: 100%; z-index: -1; opacity: 0;"
-      tabindex="0"
+      style="opacity: 1;"
+      tabindex="-1"
     />
     <div
       data-testid="sentinel-start"
