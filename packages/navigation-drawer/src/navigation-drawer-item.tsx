@@ -48,15 +48,15 @@ export type NavigationDrawerItemStyleKey = keyof NonNullable<
 const NavigationDrawerItemRoot = styled(ButtonBase, {
   name: "NavigationDrawerItem",
   slot: "Root",
-})(({ theme }) => ({
+})({
   alignItems: "center",
   borderRadius: 28,
   flexDirection: "row",
   flexGrow: 1,
   height: 56,
-  paddingEnd: theme.spacing(3),
-  paddingStart: theme.spacing(2),
-}))
+  paddingEnd: 24,
+  paddingStart: 16,
+})
 
 const NavigationDrawerItemContent = styled(TextStyleProvider, {
   name: "NavigationDrawerItem",
@@ -71,9 +71,9 @@ const NavigationDrawerItemIcon = styled(RNView, {
   name: "NavigationDrawerItem",
   slot: "Icon",
   skipSx: true,
-})(({ theme }) => ({
-  marginEnd: theme.spacing(1.5),
-}))
+})({
+  marginEnd: 12,
+})
 
 const NavigationDrawerItemLabel = styled(Text, {
   name: "NavigationDrawerItem",

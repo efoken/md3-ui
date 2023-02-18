@@ -57,14 +57,14 @@ export type NavigationBarItemStyleKey = keyof NonNullable<
 const NavigationBarItemRoot = styled(ButtonBase, {
   name: "NavigationBarItem",
   slot: "Root",
-})(({ theme }) => ({
+})({
   alignItems: "center",
   flexGrow: 1,
   flexShrink: 1,
   justifyContent: "center",
-  paddingBottom: theme.spacing(2),
-  paddingTop: theme.spacing(1.5),
-}))
+  paddingBottom: 16,
+  paddingTop: 12,
+})
 
 const NavigationBarItemContent = styled(TextStyleProvider, {
   name: "NavigationBarItem",
@@ -101,7 +101,7 @@ const NavigationBarItemLabel = styled(Text, {
   color: ownerState.selected
     ? theme.sys.color.onSurface
     : theme.sys.color.onSurfaceVariant,
-  marginTop: theme.spacing(0.5),
+  marginTop: 4,
 }))
 
 export const NavigationBarItem = React.forwardRef<

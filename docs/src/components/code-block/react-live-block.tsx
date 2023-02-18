@@ -12,7 +12,7 @@ const EditableNotice: React.FC<BoxProps> = ({ sx, ...props }) => (
       borderTopRadius: 8,
       pointerEvents: "none",
       position: "absolute",
-      py: 1,
+      py: 2,
       top: -16,
       width: "100%",
       zIndex: 0,
@@ -62,9 +62,9 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
           borderRadius: 12,
           borderWidth: 1,
           fontFamily: theme.ref.typeface.plain,
-          marginTop: theme.spacing(2.5),
+          marginTop: 20,
           overflowX: "auto",
-          padding: theme.spacing(1.5),
+          padding: 12,
           zIndex: 1,
         }}
       />
@@ -84,7 +84,7 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
         <CopyButton code={editorCode} />
         {editable && <EditableNotice />}
       </Box>
-      {editable && <LiveError style={{}} />}
+      {editable && <LiveError />}
     </LiveProvider>
   )
 }

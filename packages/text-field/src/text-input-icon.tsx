@@ -54,17 +54,15 @@ export type TextInputIconStyleKey = keyof NonNullable<
 const TextInputIconRoot = styled(RNView, {
   name: "TextInputIcon",
   slot: "Root",
-})<OwnerStateProps<Pick<TextInputIconProps, "position">>>(
-  ({ theme, ownerState }) => ({
-    ...(ownerState.position === "start" && {
-      marginEnd: theme.spacing(1),
-    }),
-
-    ...(ownerState.position === "end" && {
-      marginStart: theme.spacing(1),
-    }),
+})<OwnerStateProps<Pick<TextInputIconProps, "position">>>(({ ownerState }) => ({
+  ...(ownerState.position === "start" && {
+    marginEnd: 8,
   }),
-)
+
+  ...(ownerState.position === "end" && {
+    marginStart: 8,
+  }),
+}))
 
 export const TextInputIcon = React.forwardRef<RNView, TextInputIconProps>(
   (inProps, ref) => {

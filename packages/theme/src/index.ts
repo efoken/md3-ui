@@ -52,7 +52,7 @@ export function createTheme(theme: Partial<Theme> = {}): Theme {
 
   const mergedTheme = {
     breakpoints: createBreakpoints(),
-    spacing: createSpacing(8),
+    spacing: createSpacing(4),
     ref: {
       palette,
       typeface,

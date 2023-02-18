@@ -68,8 +68,8 @@ const IconButtonRoot = styled(ButtonBase, {
   alignItems: "center",
   borderRadius: theme.sys.shape.corner.full,
   justifyContent: "center",
-  marginEnd: ownerState.edge === "end" ? -theme.spacing(1.5) : undefined,
-  marginStart: ownerState.edge === "start" ? -theme.spacing(1.5) : undefined,
+  marginEnd: ownerState.edge === "end" ? -12 : undefined,
+  marginStart: ownerState.edge === "start" ? -12 : undefined,
 
   ...(ownerState.size === "small" && {
     height: 32,
@@ -194,6 +194,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
     return (
       <IconButtonRoot
         ref={ref}
+        disabled={disabled}
         hitSlop={4}
         rippleColor={
           variant === "filled"

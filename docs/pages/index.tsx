@@ -2,6 +2,7 @@ import { Box, Grid, Link, Text } from "@md3-ui/core"
 import { NextPage } from "next"
 import Head from "next/head"
 import Image from "next/image"
+import * as React from "react"
 import { Layout } from "../src/layouts/layout"
 
 interface IntroductionCardProps {
@@ -17,14 +18,14 @@ export const IntroductionCard: React.FC<IntroductionCardProps> = ({
   image,
   link,
 }) => (
-  <Grid container spacing={3} sx={{ mb: 9 }}>
+  <Grid container spacing={6} sx={{ mb: 18 }}>
     <Grid item span={{ compact: 12, expanded: 6 }}>
       <Box sx={{ flexShrink: 1 }}>
         <Text variant="headline-large">{headline}</Text>
         <Text
           color="onSurfaceVariant"
           variant="headline-small"
-          sx={{ mb: 1.75, mt: 3 }}
+          sx={{ mb: 3.5, mt: 6 }}
         >
           {copy}
         </Text>
@@ -72,7 +73,7 @@ const Home: NextPage = () => (
     </Head>
 
     <Box sx={{ bgColor: "primary" }}>
-      <Box sx={{ maxWidth: 1488, mx: "auto", p: 9 }}>
+      <Box sx={{ maxWidth: 1488, mx: "auto", p: 18 }}>
         <svg
           width="40"
           height="40"
@@ -108,7 +109,7 @@ const Home: NextPage = () => (
       </Box>
     </Box>
 
-    <Box sx={{ maxWidth: 1488, mx: "auto", p: 9 }}>
+    <Box sx={{ maxWidth: 1488, mx: "auto", p: 18 }}>
       <IntroductionCard
         headline="Guidance"
         copy={`Material.io supports this design kit with documentation and guidance for how to use the components and styles.

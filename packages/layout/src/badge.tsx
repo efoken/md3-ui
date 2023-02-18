@@ -84,7 +84,7 @@ const BadgeLabel = styled(Animated.Text, {
   borderRadius: theme.comp.badge.large.shape,
   height: theme.comp.badge.large.size,
   minWidth: theme.comp.badge.large.size,
-  paddingHorizontal: theme.spacing(0.5),
+  paddingHorizontal: 4,
   position: "absolute",
   right: 0,
   textAlign: "center",

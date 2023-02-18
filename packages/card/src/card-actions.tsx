@@ -43,12 +43,12 @@ export type CardActionsStyleKey = keyof NonNullable<CardActionsProps["styles"]>
 const CardActionsRoot = styled(RNView, {
   name: "CardActions",
   slot: "Root",
-})(({ theme }) => ({
+})({
   flexDirection: "row",
   justifyContent: "flex-end",
-  paddingBottom: theme.spacing(2),
-  paddingHorizontal: theme.spacing(2),
-}))
+  paddingBottom: 16,
+  paddingHorizontal: 16,
+})
 
 export const CardActions = React.forwardRef<RNView, CardActionsProps>(
   (inProps, ref) => {

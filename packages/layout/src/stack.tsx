@@ -23,9 +23,13 @@ export interface StackTypeMap<
      * The content of the component.
      */
     children?: React.ReactNode
-    /** @default "column" */
+    /**
+     * @default "column"
+     */
     direction?: FlexStyle["flexDirection"]
-    /** @default 0 */
+    /**
+     * @default 0
+     */
     spacing?: number
     /**
      * Override or extend the styles applied to the component.
@@ -56,8 +60,7 @@ const StackRoot = styled(RNView, {
 })<OwnerStateProps<Pick<StackProps, "direction" | "spacing">>>(
   ({ theme, ownerState }) => ({
     flexDirection: ownerState.direction,
-    marginStart: -theme.spacing(ownerState.spacing ?? 0),
-    marginTop: -theme.spacing(ownerState.spacing ?? 0),
+    gap: theme.spacing(ownerState.spacing ?? 0),
   }),
 )
 
@@ -65,12 +68,7 @@ const StackItem = styled(RNView, {
   name: "Stack",
   slot: "Item",
   skipSx: true,
-})<OwnerStateProps<Pick<StackProps, "direction" | "spacing">>>(
-  ({ theme, ownerState }) => ({
-    marginStart: theme.spacing(ownerState.spacing ?? 0),
-    marginTop: theme.spacing(ownerState.spacing ?? 0),
-  }),
-)
+})()
 
 export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
   const {
@@ -95,9 +93,7 @@ export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
       {...props}
     >
       {React.Children.map(children, (child) => (
-        <StackItem ownerState={ownerState} style={styles?.item}>
-          {child}
-        </StackItem>
+        <StackItem style={styles?.item}>{child}</StackItem>
       ))}
     </StackRoot>
   )

@@ -50,7 +50,7 @@ export const Modal: StoryObj = {
               label={text}
             />
           ))}
-          <Divider sx={{ mx: 2 }} />
+          <Divider sx={{ mx: 4 }} />
           {["All mail", "Trash", "Spam"].map((text, index) => (
             <NavigationDrawerItem
               key={text}

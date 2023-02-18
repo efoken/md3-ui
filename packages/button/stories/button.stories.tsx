@@ -8,7 +8,7 @@ export default {
   component: Button,
   // subcomponents: { ButtonBase },
   render: (args) => (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={4}>
       <Button {...args} />
       <Button {...args} icon={<Add />} />
     </Stack>

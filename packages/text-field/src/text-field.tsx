@@ -58,7 +58,7 @@ const TextFieldRoot = styled(TextInput, {
   ({ theme, ownerState }) => ({
     ...theme.sys.typescale["body-large"],
     color: theme.sys.color.onSurface,
-    padding: theme.spacing(2),
+    padding: 16,
     minHeight: 56,
 
     "&:-webkit-autofill": {
@@ -81,17 +81,17 @@ const TextFieldContainer = styled(RNView, {
   skipSx: true,
 })<
   OwnerStateProps<Pick<TextFieldProps, "endIcon" | "fullWidth" | "startIcon">>
->(({ theme, ownerState }) => ({
+>(({ ownerState }) => ({
   ...(ownerState.fullWidth && {
     width: "100%",
   }),
 
   ...(ownerState.startIcon && {
-    paddingStart: theme.spacing(2.5),
+    paddingStart: 20,
   }),
 
   ...(ownerState.endIcon && {
-    paddingEnd: theme.spacing(2.5),
+    paddingEnd: 20,
   }),
 }))
 
@@ -135,7 +135,7 @@ const TextFieldLabel = styled(TextInputLabel, {
   ...theme.sys.typescale["body-large"],
   backgroundColor: theme.sys.color.surface,
   color: theme.sys.color.onSurface,
-  paddingHorizontal: theme.spacing(0.5) / 0.75,
+  paddingHorizontal: 4 / 0.75,
   position: "absolute",
   start: 0,
   top: 0,
@@ -234,16 +234,13 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
                   {
                     translateX: transform.interpolate({
                       inputRange: [0, 1],
-                      outputRange: [
-                        theme.spacing(2) - theme.spacing(0.5) / 0.75,
-                        theme.spacing(2) - theme.spacing(0.5),
-                      ],
+                      outputRange: [16 - 4 / 0.75, 16 - 4],
                     }),
                   },
                   {
                     translateY: transform.interpolate({
                       inputRange: [0, 1],
-                      outputRange: [theme.spacing(2), -12 - 2],
+                      outputRange: [16, -12 - 2],
                     }),
                   },
                 ],

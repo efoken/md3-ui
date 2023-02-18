@@ -13,7 +13,7 @@ export const Elevated: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 1 }}>
+        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
           Play
           <br />
           relaxing songs
@@ -39,7 +39,7 @@ export const Filled: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 1 }}>
+        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
           Play
           <br />
           relaxing songs
@@ -67,7 +67,7 @@ export const Outlined: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 1 }}>
+        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
           Play
           <br />
           relaxing songs
@@ -99,7 +99,7 @@ export const Media: StoryObj<CardProps> = {
         sx={{ height: 140 }}
       />
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 1 }}>
+        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
           Glass Souls&apos; World Tour
         </Text>
         <Text color="onSurfaceVariant" variant="body-medium">

@@ -46,7 +46,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
     <>
       <SEO description={frontMatter.description} title={frontMatter.title} />
       <Header menuOpen={menuOpen} onMenuToggle={handleMenuToggle} />
-      <Box sx={{ flexDirection: "row", pt: 8 }}>
+      <Box sx={{ flexDirection: "row", pt: 16 }}>
         {sidebar &&
           React.cloneElement(sidebar, {
             open: menuOpen,
@@ -59,15 +59,15 @@ export const PageContainer: React.FC<PageContainerProps> = ({
             width: { compact: "100%", expanded: "calc(100% - 280px)" },
           }}
         >
-          <Box sx={{ maxWidth: 1280, mx: "auto", my: 3, width: "100%" }}>
+          <Box sx={{ maxWidth: 1280, mx: "auto", my: 6, width: "100%" }}>
             <Box as="main" aria-label="Main content">
               <Box
                 as="header"
                 sx={{
                   bgColor: "secondaryContainer",
                   borderRadius: 60,
-                  mx: 5,
-                  px: 5,
+                  mx: 10,
+                  px: 10,
                 }}
               >
                 <Box
@@ -78,17 +78,17 @@ export const PageContainer: React.FC<PageContainerProps> = ({
                     mx: "auto",
                   }}
                 >
-                  <Box sx={{ py: 5, width: "50%" }}>
+                  <Box sx={{ py: 10, width: "50%" }}>
                     <Text as="h1" variant="display-large">
                       {frontMatter.title}
                     </Text>
-                    <Text variant="headline-large" sx={{ mt: 2 }}>
+                    <Text variant="headline-large" sx={{ mt: 4 }}>
                       {frontMatter.description}
                     </Text>
                   </Box>
                 </Box>
               </Box>
-              <Box sx={{ mt: 8, mx: 5 }}>{children}</Box>
+              <Box sx={{ mt: 16, mx: 10 }}>{children}</Box>
             </Box>
           </Box>
         </Box>

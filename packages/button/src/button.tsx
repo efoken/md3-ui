@@ -65,7 +65,7 @@ const ButtonRoot = styled(ButtonBase, {
       flexDirection: "row",
       height: 40,
       justifyContent: "center",
-      paddingHorizontal: theme.spacing(3),
+      paddingHorizontal: 24,
 
       ...(ownerState.variant === "elevated" && {
         ...theme.sys.elevation.level1,
@@ -125,7 +125,7 @@ const ButtonRoot = styled(ButtonBase, {
         backgroundColor: "transparent",
         borderColor: theme.sys.color.outline,
         borderWidth: 1,
-        paddingHorizontal: theme.spacing(3) - 1,
+        paddingHorizontal: 24 - 1,
 
         ...(ownerState.disabled && {
           borderColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
@@ -139,8 +139,8 @@ const ButtonRoot = styled(ButtonBase, {
       ...(ownerState.variant === "text" && {
         ...theme.sys.elevation.level0,
         minWidth: 48,
-        paddingEnd: ownerState.icon ? theme.spacing(2) : theme.spacing(1.5),
-        paddingStart: theme.spacing(1.5),
+        paddingEnd: ownerState.icon ? 16 : 12,
+        paddingStart: 12,
       }),
     },
   ],
@@ -182,9 +182,9 @@ const ButtonIcon = styled(RNView, {
   name: "Button",
   slot: "Icon",
   skipSx: true,
-})<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ theme, ownerState }) => ({
-  marginEnd: theme.spacing(1),
-  marginStart: ownerState.variant === "text" ? 0 : -theme.spacing(1),
+})<OwnerStateProps<Pick<ButtonProps, "variant">>>(({ ownerState }) => ({
+  marginEnd: 8,
+  marginStart: ownerState.variant === "text" ? 0 : -8,
 }))
 
 const ButtonLabel = styled(Text, {

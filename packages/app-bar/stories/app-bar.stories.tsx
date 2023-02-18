@@ -20,23 +20,13 @@ export const CenterAligned: StoryObj<AppBarProps> = {
   render: (args) => (
     <AppBar {...args}>
       <Toolbar>
-        <IconButton
-          aria-label="menu"
-          edge="start"
-          size="large"
-          sx={{ me: 1.5 }}
-        >
+        <IconButton aria-label="menu" edge="start" size="large" sx={{ me: 3 }}>
           <Menu />
         </IconButton>
         <Text variant="title-large" sx={{ flexGrow: 1, textAlign: "center" }}>
           Title Large
         </Text>
-        <IconButton
-          aria-label="profile"
-          edge="end"
-          size="large"
-          sx={{ ms: 1.5 }}
-        >
+        <IconButton aria-label="profile" edge="end" size="large" sx={{ ms: 3 }}>
           <Person />
         </IconButton>
       </Toolbar>
@@ -48,12 +38,7 @@ export const Small: StoryObj<AppBarProps> = {
   render: (args) => (
     <AppBar {...args}>
       <Toolbar>
-        <IconButton
-          aria-label="menu"
-          edge="start"
-          size="large"
-          sx={{ me: 0.5 }}
-        >
+        <IconButton aria-label="menu" edge="start" size="large" sx={{ me: 1 }}>
           <Menu />
         </IconButton>
         <Text variant="title-large" sx={{ flexGrow: 1 }}>
@@ -79,8 +64,8 @@ export const Medium: StoryObj<AppBarProps> = {
       <Toolbar
         sx={{
           alignItems: "flex-start",
-          pt: 1,
-          pb: 2,
+          pt: 2,
+          pb: 4,
           minHeight: 112,
         }}
       >
@@ -89,7 +74,7 @@ export const Medium: StoryObj<AppBarProps> = {
         </IconButton>
         <Text
           variant="headline-small"
-          sx={{ alignSelf: "flex-end", ms: -4.5, flexGrow: 1 }}
+          sx={{ alignSelf: "flex-end", ms: -9, flexGrow: 1 }}
         >
           Headline Small
         </Text>
@@ -113,8 +98,8 @@ export const Large: StoryObj<AppBarProps> = {
       <Toolbar
         sx={{
           alignItems: "flex-start",
-          pt: 1,
-          pb: 2,
+          pt: 2,
+          pb: 4,
           minHeight: 152,
         }}
       >
@@ -123,7 +108,7 @@ export const Large: StoryObj<AppBarProps> = {
         </IconButton>
         <Text
           variant="headline-medium"
-          sx={{ alignSelf: "flex-end", ms: -4.5, flexGrow: 1 }}
+          sx={{ alignSelf: "flex-end", ms: -9, flexGrow: 1 }}
         >
           Headline Medium
         </Text>

@@ -43,9 +43,9 @@ export type CardContentStyleKey = keyof NonNullable<CardContentProps["styles"]>
 const CardContentRoot = styled(RNView, {
   name: "CardContent",
   slot: "Root",
-})(({ theme }) => ({
-  padding: theme.spacing(2),
-}))
+})({
+  padding: 16,
+})
 
 export const CardContent = React.forwardRef<RNView, CardContentProps>(
   (inProps, ref) => {

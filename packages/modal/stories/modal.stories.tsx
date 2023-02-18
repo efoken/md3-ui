@@ -15,10 +15,10 @@ const style = {
   borderWidth: 2,
   elevation: "level5" as const,
   left: "50%",
-  pb: 4,
+  pb: 8,
   position: "absolute" as const,
-  pt: 2,
-  px: 4,
+  pt: 4,
+  px: 8,
   top: "50%",
   transform: "translateX(-50%) translateY(-50%)",
   width: 400,
@@ -81,7 +81,7 @@ export const NestedModal: StoryObj<ModalProps> = {
             <Text
               id="parent-modal-description"
               variant="body-medium"
-              sx={{ mb: 2 }}
+              sx={{ mb: 4 }}
             >
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Text>
@@ -100,7 +100,7 @@ export const NestedModal: StoryObj<ModalProps> = {
                 <Text
                   id="child-modal-description"
                   variant="body-medium"
-                  sx={{ mb: 2 }}
+                  sx={{ mb: 4 }}
                 >
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 </Text>

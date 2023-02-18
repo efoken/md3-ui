@@ -80,7 +80,7 @@ const NavigationDrawerSurface = styled(Animated.View, {
     flexGrow: 1,
     height: "100%",
     maxWidth: "100%",
-    padding: theme.spacing(1.5),
+    padding: 12,
     position: "absolute",
     width: 360,
     zIndex: Z_INDEX,

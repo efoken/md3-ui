@@ -10,7 +10,7 @@ export default {
 
 export const Base: StoryObj<SwitchProps> = {
   render: (args) => (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={4}>
       <Switch {...args} />
       <Switch {...args} defaultChecked />
     </Stack>

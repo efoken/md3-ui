@@ -22,8 +22,8 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
           sx={{
             borderBottomColor: "surfaceVariant",
             borderBottomWidth: 1,
-            mt: 2,
-            pb: 2,
+            mt: 4,
+            pb: 4,
           }}
         >
           {level1.heading && (
@@ -32,7 +32,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
               key={i}
               as="h4"
               variant="label-large"
-              sx={{ color: "onSurfaceVariant", mb: 1, ml: 3 }}
+              sx={{ color: "onSurfaceVariant", mb: 2, ml: 6 }}
             >
               {level1.title}
             </Text>
@@ -42,7 +42,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
               // eslint-disable-next-line react/no-array-index-key
               key={j}
               role="group"
-              sx={{ mb: 0.25, mx: 0.75, px: 0.25 }}
+              sx={{ mb: 0.5, mx: 1.5, px: 0.5 }}
             >
               <NextLink passHref href={level2.path ?? "/"}>
                 <Pressable>

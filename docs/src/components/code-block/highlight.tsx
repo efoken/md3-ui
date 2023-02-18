@@ -78,7 +78,7 @@ export const Highlight: React.FC<HighlightProps> = ({
                   {showLines && (
                     <Text
                       as="span"
-                      sx={{ mr: 6, fontSize: 14 }}
+                      sx={{ mr: 12, fontSize: 14 }}
                       style={{ opacity: 0.5 }}
                     >
                       {i + 1}

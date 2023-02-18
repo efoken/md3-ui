@@ -81,7 +81,7 @@ const ChipRoot = styled(ButtonBase, {
     borderWidth: 1,
     flexDirection: "row",
     height: 32,
-    paddingHorizontal: theme.spacing(2) - 1,
+    paddingHorizontal: 16 - 1,
 
     ...(ownerState.variant === "assist" && {
       ...theme.sys.elevation.level0,
@@ -107,7 +107,7 @@ const ChipRoot = styled(ButtonBase, {
       ...(ownerState.selected && {
         backgroundColor: theme.sys.color.secondaryContainer,
         borderWidth: 0,
-        paddingHorizontal: theme.spacing(2),
+        paddingHorizontal: 16,
       }),
     }),
 
@@ -119,7 +119,7 @@ const ChipRoot = styled(ButtonBase, {
       ...(ownerState.selected && {
         backgroundColor: theme.sys.color.secondaryContainer,
         borderWidth: 0,
-        paddingHorizontal: theme.spacing(2),
+        paddingHorizontal: 16,
       }),
     }),
 
@@ -136,7 +136,7 @@ const ChipRoot = styled(ButtonBase, {
       ...(ownerState.selected && {
         backgroundColor: theme.sys.color.secondaryContainer,
         borderWidth: 0,
-        paddingHorizontal: theme.spacing(2),
+        paddingHorizontal: 16,
       }),
     }),
   }),
@@ -154,10 +154,10 @@ const ChipIcon = styled(RNView, {
   name: "Chip",
   slot: "Icon",
   skipSx: true,
-})<OwnerStateProps<Pick<ChipProps, "variant">>>(({ theme }) => ({
-  marginEnd: theme.spacing(1),
-  marginStart: -theme.spacing(1),
-}))
+})<OwnerStateProps<Pick<ChipProps, "variant">>>({
+  marginEnd: 8,
+  marginStart: -8,
+})
 
 const ChipLabel = styled(Text, {
   name: "Chip",

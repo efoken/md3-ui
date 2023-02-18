@@ -49,7 +49,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   // TODO: Not sure if this is even used?
   if (mounted && render) {
     return (
-      <Box sx={{ mt: 4 }}>
+      <Box sx={{ mt: 8 }}>
         <ReactLiveBlock editable={false} {...reactLiveBlockProps} />
       </Box>
     )
@@ -61,10 +61,10 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         sx={{
           bgColor: "#011627",
           borderRadius: 8,
-          my: 8,
+          my: 16,
           overflow: "hidden",
           px: 0,
-          py: 5,
+          py: 10,
         }}
       >
         <Highlight

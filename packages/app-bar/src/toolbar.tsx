@@ -43,11 +43,11 @@ export type ToolbarStyleKey = keyof NonNullable<ToolbarProps["styles"]>
 const ToolbarRoot = styled(RNView, {
   name: "Toolbar",
   slot: "Root",
-})(({ theme }) => ({
+})({
   alignItems: "center",
   flexDirection: "row",
-  paddingHorizontal: theme.spacing(2),
-}))
+  paddingHorizontal: 16,
+})
 
 export const Toolbar = React.forwardRef<RNView, ToolbarProps>(
   (inProps, ref) => {

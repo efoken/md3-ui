@@ -8,7 +8,7 @@ export default {
 
 export const Basic: StoryObj = {
   render: () => (
-    <Stack spacing={1}>
+    <Stack spacing={2}>
       <Text variant="display-large">Display Large</Text>
       <Text variant="display-medium">Display Medium</Text>
       <Text variant="display-small">Display Small</Text>

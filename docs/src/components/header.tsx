@@ -14,7 +14,7 @@ export const Header: React.FC<HeaderProps> = ({ menuOpen, onMenuToggle }) => (
       <IconButton onPress={onMenuToggle}>
         {menuOpen ? <MenuOpen /> : <Menu />}
       </IconButton>
-      <Text variant="title-large" sx={{ mr: 2, ml: 0.5 }}>
+      <Text variant="title-large" sx={{ mr: 4, ml: 1 }}>
         MD3-UI
       </Text>
       <Stack direction="row" sx={{ flexGrow: 1 }}>
