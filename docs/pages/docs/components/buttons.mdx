@@ -6,6 +6,53 @@ description:
 package: "@md3-ui/button"
 ---
 
+There are five types of common buttons: elevated, filled, filled tonal,
+outlined, and text.
+
+- [Design article](https://m3.material.io/components/buttons)
+- API Documentation (coming soon)
+- [Source code](https://github.com/efoken/md3-ui/tree/main/packages/button)
+
+## Usage
+
+Buttons have label text that describes the action that will occur if a user taps
+a button.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <Button variant="outlined">Back</Button>
+  <Button variant="filled">Complete</Button>
+</Stack>
+```
+
+### Icon
+
+An icon may optionally be added to a button to help communicate the button's
+action and help draw attention.
+
+```jsx
+<Button
+  icon={
+    <svg fill="currentColor" viewBox="0 0 48 48">
+      <path d="M6 40V8l38 16Zm3-4.65L36.2 24 9 12.5v8.4L21.1 24 9 27Zm0 0V12.5 27Z" />
+    </svg>
+  }
+>
+  Send
+</Button>
+```
+
+## Accessibility
+
+Add an `aria-label` attribute to buttons whose labels need a more descriptive
+label.
+
+```jsx live=false
+<Button variant="elevated" aria-label="Add a new contact">
+  Add
+</Button>
+```
+
 ## Elevated button
 
 Elevated buttons are essentially filled tonal buttons with a shadow. To prevent
