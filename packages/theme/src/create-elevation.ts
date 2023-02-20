@@ -1,12 +1,12 @@
-import { Platform, ViewStyle } from "react-native"
+import { Platform, ViewStyle as RNViewStyle } from "react-native"
 
 export interface Elevation {
-  level0: ViewStyle
-  level1: ViewStyle
-  level2: ViewStyle
-  level3: ViewStyle
-  level4: ViewStyle
-  level5: ViewStyle
+  level0: RNViewStyle
+  level1: RNViewStyle
+  level2: RNViewStyle
+  level3: RNViewStyle
+  level4: RNViewStyle
+  level5: RNViewStyle
 }
 
 export function createElevation(elevation?: Partial<Elevation>): Elevation {

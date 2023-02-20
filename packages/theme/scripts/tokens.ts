@@ -80,6 +80,18 @@ export default async function main() {
           },
         ],
       },
+      js: {
+        transforms: ["attribute/cti", "name/ti/camel"],
+        buildPath: "src/tokens/",
+        files: [
+          {
+            destination: "palette.js",
+            format: "javascript/module",
+            filter: (token) =>
+              token.path.join(".").startsWith("md.ref.palette"),
+          },
+        ],
+      },
     },
     tokens,
   })
