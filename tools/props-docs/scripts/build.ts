@@ -3,7 +3,6 @@ import glob from "glob"
 import mkdirp from "mkdirp"
 import { writeFileSync } from "node:fs"
 import path from "node:path"
-import { promisify } from "node:util"
 import { ComponentDoc, withCustomConfig } from "react-docgen-typescript"
 
 interface ComponentInfo {
@@ -13,8 +12,6 @@ interface ComponentInfo {
   fileName: string
   importPath: string
 }
-
-const globAsync = promisify(glob)
 
 const excludedPropNames = new Set(["as", "style", "sx"])
 
@@ -32,7 +29,7 @@ const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
  * Find all TypeScript files which could contain component definitions
  */
 async function findComponentFiles() {
-  const tsFiles = await globAsync("core/**/src/index.ts", {
+  const tsFiles = await glob("core/**/src/index.ts", {
     cwd: sourcePath,
   })
   return tsFiles.filter((f) => !f.includes(".stories") && !f.includes(".test"))
