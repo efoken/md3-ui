@@ -1,5 +1,5 @@
 import { Box, createTheme, Md3Provider } from "@md3-ui/core"
-import { DecoratorFn, Parameters } from "@storybook/react"
+import { Decorator, Parameters } from "@storybook/react"
 import { I18nManager } from "react-native"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 
@@ -32,7 +32,7 @@ export const parameters: Parameters = {
   },
 }
 
-export const decorators: DecoratorFn[] = [
+export const decorators: Decorator[] = [
   (StoryFn, context) => {
     const { direction } = context.globals
     const dir = direction.toLowerCase()
@@ -42,13 +42,7 @@ export const decorators: DecoratorFn[] = [
     return (
       <SafeAreaProvider style={{ height: "100%" }}>
         <Md3Provider theme={createTheme()}>
-          <Box
-            {...({
-              dir,
-              nativeID: "story-wrapper",
-            } as any)}
-            sx={{ alignItems: "flex-start" }}
-          >
+          <Box dir={dir} id="story-wrapper" sx={{ alignItems: "flex-start" }}>
             <StoryFn />
           </Box>
         </Md3Provider>
