@@ -165,7 +165,7 @@ const ChipLabel = styled(Text, {
   skipSx: true,
 })<OwnerStateProps<Pick<ChipProps, "selected" | "variant">>>(
   ({ theme, ownerState }) => ({
-    ...theme.sys.typescale["label-large"],
+    ...theme.sys.typescale.labelLarge,
 
     ...(ownerState.variant === "assist" && {
       color: theme.sys.color.onSurface,

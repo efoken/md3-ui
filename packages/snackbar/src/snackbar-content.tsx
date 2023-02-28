@@ -82,7 +82,7 @@ const SnackbarContentText = styled(RNText, {
   name: "SnackbarContent",
   slot: "Text",
 })(({ theme }) => ({
-  ...theme.sys.typescale["body-medium"],
+  ...theme.sys.typescale.bodyMedium,
   color: theme.sys.color.inverseOnSurface,
   paddingVertical: 10,
 }))

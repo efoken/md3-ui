@@ -56,7 +56,7 @@ const TextFieldRoot = styled(TextInput, {
   slot: "Root",
 })<OwnerStateProps<Pick<TextFieldProps, "endIcon" | "startIcon">>>(
   ({ theme, ownerState }) => ({
-    ...theme.sys.typescale["body-large"],
+    ...theme.sys.typescale.bodyLarge,
     color: theme.sys.color.onSurface,
     padding: 16,
     minHeight: 56,
@@ -132,7 +132,7 @@ const TextFieldLabel = styled(TextInputLabel, {
   slot: "Label",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.sys.typescale["body-large"],
+  ...theme.sys.typescale.bodyLarge,
   backgroundColor: theme.sys.color.surface,
   color: theme.sys.color.onSurface,
   paddingHorizontal: 4 / 0.75,
@@ -147,7 +147,7 @@ const TextFieldHelperText = styled(RNText, {
   slot: "HelperText",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.sys.typescale["body-large"],
+  ...theme.sys.typescale.bodyLarge,
   color: theme.sys.color.onSurface,
 }))
 

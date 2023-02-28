@@ -50,23 +50,23 @@ export interface TextTypeMap<
      * additional styles.
      */
     sx?: SxProps
-    /** @default "body-medium" */
+    /** @default "bodyMedium" */
     variant?:
-      | "display-large"
-      | "display-medium"
-      | "display-small"
-      | "headline-large"
-      | "headline-medium"
-      | "headline-small"
-      | "title-large"
-      | "title-medium"
-      | "title-small"
-      | "label-large"
-      | "label-medium"
-      | "label-small"
-      | "body-large"
-      | "body-medium"
-      | "body-small"
+      | "displayLarge"
+      | "displayMedium"
+      | "displaySmall"
+      | "headlineLarge"
+      | "headlineMedium"
+      | "headlineSmall"
+      | "titleLarge"
+      | "titleMedium"
+      | "titleSmall"
+      | "labelLarge"
+      | "labelMedium"
+      | "labelSmall"
+      | "bodyLarge"
+      | "bodyMedium"
+      | "bodySmall"
       | "inherit"
   }
   defaultAs: C

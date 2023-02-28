@@ -192,7 +192,7 @@ const ButtonLabel = styled(Text, {
   slot: "Label",
   skipSx: true,
 })(({ theme }) => ({
-  ...theme.sys.typescale["label-large"],
+  ...theme.sys.typescale.labelLarge,
   textAlign: "center",
 }))
 

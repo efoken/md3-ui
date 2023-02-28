@@ -4,6 +4,6 @@ import { ScrollView } from "react-native"
 
 export const ThemesScreen: React.FC = () => (
   <ScrollView style={{ flexGrow: 1 }}>
-    <Text variant="body-medium">Themes</Text>
+    <Text variant="bodyMedium">Themes</Text>
   </ScrollView>
 )

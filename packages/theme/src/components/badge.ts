@@ -1,35 +1,15 @@
-import type { Theme } from ".."
+/**
+ * Do not edit directly
+ * Generated on Tue, 28 Feb 2023 12:57:19 GMT
+ */
 
-export interface Md3CompBadge {
-  color: string
-  large: {
-    color: string
-    labelText: {
-      color: string
-      fontFamily: string
-      lineHeight: number
-      fontSize: number
-      letterSpacing: number
-      fontWeight: string
-    }
-    shape: number
-    size: number
-  }
-  shape: number
-  size: number
-}
-
-export const badge = (theme: Omit<Theme, "comp">): Md3CompBadge => ({
+export const badge = (theme: any) => ({
   color: theme.sys.color.error,
   large: {
     color: theme.sys.color.error,
     labelText: {
       color: theme.sys.color.onError,
-      fontFamily: theme.sys.typescale["label-small"].fontFamily,
-      lineHeight: theme.sys.typescale["label-small"].lineHeight,
-      fontSize: theme.sys.typescale["label-small"].fontSize,
-      letterSpacing: theme.sys.typescale["label-small"].letterSpacing,
-      fontWeight: theme.sys.typescale["label-small"].fontWeight,
+      textStyle: theme.sys.typescale.labelSmall,
     },
     shape: theme.sys.shape.corner.full,
     size: 16,
@@ -37,3 +17,5 @@ export const badge = (theme: Omit<Theme, "comp">): Md3CompBadge => ({
   shape: theme.sys.shape.corner.full,
   size: 6,
 })
+
+export type Md3CompBadge = ReturnType<typeof badge>

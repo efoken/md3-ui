@@ -21,10 +21,10 @@ export const IntroductionCard: React.FC<IntroductionCardProps> = ({
   <Grid container spacing={6} sx={{ mb: 18 }}>
     <Grid item span={{ compact: 12, expanded: 6 }}>
       <Box sx={{ flexShrink: 1 }}>
-        <Text variant="headline-large">{headline}</Text>
+        <Text variant="headlineLarge">{headline}</Text>
         <Text
           color="onSurfaceVariant"
-          variant="headline-small"
+          variant="headlineSmall"
           sx={{ mb: 3.5, mt: 6 }}
         >
           {copy}
@@ -100,10 +100,10 @@ const Home: NextPage = () => (
           />
         </svg>
 
-        <Text color="onPrimary" variant="display-large">
+        <Text color="onPrimary" variant="displayLarge">
           Material 3 UI
         </Text>
-        <Text color="onPrimary" variant="headline-small">
+        <Text color="onPrimary" variant="headlineSmall">
           Get started with the Material 3 Design System for React Native.
         </Text>
       </Box>

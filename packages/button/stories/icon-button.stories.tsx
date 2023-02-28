@@ -3,9 +3,8 @@ import { Meta, StoryObj } from "@storybook/react"
 import { IconButton, IconButtonProps } from "../src"
 
 export default {
-  title: "Components/Buttons/Icon buttons",
+  title: "Components / Buttons / Icon buttons",
   component: IconButton,
-  // subcomponents: { ButtonBase },
   render: (args) => (
     <IconButton {...args}>
       <SettingsOutlined />

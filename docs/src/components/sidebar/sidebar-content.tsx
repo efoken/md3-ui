@@ -31,7 +31,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
               // eslint-disable-next-line react/no-array-index-key
               key={i}
               as="h4"
-              variant="label-large"
+              variant="labelLarge"
               sx={{ color: "onSurfaceVariant", mb: 2, ml: 6 }}
             >
               {level1.title}
@@ -52,7 +52,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
                       role="presentation"
                       styles={{
                         label: {
-                          ...theme.sys.typescale["body-large"],
+                          ...theme.sys.typescale["bodyLarge"],
                           color: theme.sys.color.onBackground,
                         },
                       }}

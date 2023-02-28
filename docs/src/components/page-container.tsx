@@ -79,10 +79,10 @@ export const PageContainer: React.FC<PageContainerProps> = ({
                   }}
                 >
                   <Box sx={{ py: 10, width: "50%" }}>
-                    <Text as="h1" variant="display-large">
+                    <Text as="h1" variant="displayLarge">
                       {frontMatter.title}
                     </Text>
-                    <Text variant="headline-large" sx={{ mt: 4 }}>
+                    <Text variant="headlineLarge" sx={{ mt: 4 }}>
                       {frontMatter.description}
                     </Text>
                   </Box>

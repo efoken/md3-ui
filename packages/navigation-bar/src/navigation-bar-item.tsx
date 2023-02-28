@@ -97,7 +97,7 @@ const NavigationBarItemLabel = styled(Text, {
   slot: "Label",
   skipSx: true,
 })<OwnerStateProps<{ selected: boolean }>>(({ theme, ownerState }) => ({
-  ...theme.sys.typescale["label-medium"],
+  ...theme.sys.typescale.labelMedium,
   color: ownerState.selected
     ? theme.sys.color.onSurface
     : theme.sys.color.onSurfaceVariant,

@@ -27,11 +27,16 @@
   },
   "dependencies": {
     "@ctrl/tinycolor": "^3.6.0",
+    "@emotion/react": "^11.10.6",
     "@md3-ui/utils": "^0.2.0"
   },
   "devDependencies": {
     "@types/adm-zip": "^0.5.0",
+    "@types/lodash.camelcase": "^4.3.7",
+    "@types/lodash.kebabcase": "^4.1.7",
     "adm-zip": "^0.5.10",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.kebabcase": "^4.1.1",
     "react-native": "0.71.3",
     "style-dictionary": "^3.7.2"
   },
@@ -39,6 +44,6 @@
     "react-native": ">=0.71.3"
   },
   "scripts": {
-    "tokens": "ts-node scripts/tokens.ts"
+    "generate": "ts-node scripts/generate.ts"
   }
 }

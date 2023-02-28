@@ -3,16 +3,13 @@
  * Generated on Tue, 28 Feb 2023 12:57:19 GMT
  */
 
-export const elevatedButton = (theme: any) => ({
+export const filledButton = (theme: any) => ({
   container: {
-    color: theme.sys.color.surface,
-    elevation: theme.sys.elevation.level1,
+    color: theme.sys.color.primary,
+    elevation: theme.sys.elevation.level0,
     height: 40,
     shadowColor: theme.sys.color.shadow,
     shape: theme.sys.shape.corner.full,
-    surfaceTintLayer: {
-      color: theme.sys.color.surfaceTint,
-    },
   },
   disabled: {
     container: {
@@ -27,41 +24,41 @@ export const elevatedButton = (theme: any) => ({
   },
   focus: {
     container: {
-      elevation: theme.sys.elevation.level1,
+      elevation: theme.sys.elevation.level0,
     },
     labelText: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
     },
     stateLayer: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
       opacity: theme.sys.state.focus.stateLayerOpacity,
     },
   },
   hover: {
     container: {
-      elevation: theme.sys.elevation.level2,
+      elevation: theme.sys.elevation.level1,
     },
     labelText: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
     },
     stateLayer: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
       opacity: theme.sys.state.hover.stateLayerOpacity,
     },
   },
   labelText: {
-    color: theme.sys.color.primary,
+    color: theme.sys.color.onPrimary,
     textStyle: theme.sys.typescale.labelLarge,
   },
   pressed: {
     container: {
-      elevation: theme.sys.elevation.level1,
+      elevation: theme.sys.elevation.level0,
     },
     labelText: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
     },
     stateLayer: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
       opacity: theme.sys.state.pressed.stateLayerOpacity,
     },
   },
@@ -74,24 +71,24 @@ export const elevatedButton = (theme: any) => ({
     },
     focus: {
       icon: {
-        color: theme.sys.color.primary,
+        color: theme.sys.color.onPrimary,
       },
     },
     hover: {
       icon: {
-        color: theme.sys.color.primary,
+        color: theme.sys.color.onPrimary,
       },
     },
     icon: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onPrimary,
       size: 18,
     },
     pressed: {
       icon: {
-        color: theme.sys.color.primary,
+        color: theme.sys.color.onPrimary,
       },
     },
   },
 })
 
-export type Md3CompElevatedButton = ReturnType<typeof elevatedButton>
+export type Md3CompFilledButton = ReturnType<typeof filledButton>

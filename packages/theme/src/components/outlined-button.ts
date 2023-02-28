@@ -1,35 +1,28 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 12:57:19 GMT
+ * Generated on Tue, 28 Feb 2023 12:57:20 GMT
  */
 
-export const elevatedButton = (theme: any) => ({
+export const outlinedButton = (theme: any) => ({
   container: {
-    color: theme.sys.color.surface,
-    elevation: theme.sys.elevation.level1,
     height: 40,
-    shadowColor: theme.sys.color.shadow,
     shape: theme.sys.shape.corner.full,
-    surfaceTintLayer: {
-      color: theme.sys.color.surfaceTint,
-    },
   },
   disabled: {
-    container: {
-      color: theme.sys.color.onSurface,
-      elevation: theme.sys.elevation.level0,
-      opacity: 0.12,
-    },
     labelText: {
       color: theme.sys.color.onSurface,
       opacity: 0.38,
     },
+    outline: {
+      color: theme.sys.color.onSurface,
+      opacity: 0.12,
+    },
   },
   focus: {
-    container: {
-      elevation: theme.sys.elevation.level1,
-    },
     labelText: {
+      color: theme.sys.color.primary,
+    },
+    outline: {
       color: theme.sys.color.primary,
     },
     stateLayer: {
@@ -38,11 +31,11 @@ export const elevatedButton = (theme: any) => ({
     },
   },
   hover: {
-    container: {
-      elevation: theme.sys.elevation.level2,
-    },
     labelText: {
       color: theme.sys.color.primary,
+    },
+    outline: {
+      color: theme.sys.color.outline,
     },
     stateLayer: {
       color: theme.sys.color.primary,
@@ -53,12 +46,16 @@ export const elevatedButton = (theme: any) => ({
     color: theme.sys.color.primary,
     textStyle: theme.sys.typescale.labelLarge,
   },
+  outline: {
+    color: theme.sys.color.outline,
+    width: 1,
+  },
   pressed: {
-    container: {
-      elevation: theme.sys.elevation.level1,
-    },
     labelText: {
       color: theme.sys.color.primary,
+    },
+    outline: {
+      color: theme.sys.color.outline,
     },
     stateLayer: {
       color: theme.sys.color.primary,
@@ -94,4 +91,4 @@ export const elevatedButton = (theme: any) => ({
   },
 })
 
-export type Md3CompElevatedButton = ReturnType<typeof elevatedButton>
+export type Md3CompOutlinedButton = ReturnType<typeof outlinedButton>

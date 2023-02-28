@@ -173,7 +173,7 @@ export interface TypographyProps {
   fontStyle?: RNTextStyle["fontStyle"]
   fontVariant?: RNTextStyle["fontVariant"]
   fontWeight?:
-    | keyof Theme["ref"]["typeface"]["weight"]
+    | Exclude<keyof Theme["ref"]["typeface"], "brand" | "plain">
     | RNTextStyle["fontWeight"]
   lineHeight?: RNTextStyle["lineHeight"]
   textAlign?: RNTextStyle["textAlign"]

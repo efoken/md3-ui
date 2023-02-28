@@ -23,10 +23,10 @@ export const CSSBaseline: React.FC = () => (
         wordWrap: "break-word",
       },
       body: {
-        ...theme.sys.typescale["body-medium"],
+        ...theme.sys.typescale.bodyMedium,
         backgroundColor: theme.sys.color.background,
         color: theme.sys.color.onBackground,
-        lineHeight: `${theme.sys.typescale["body-medium"].lineHeight}px`,
+        lineHeight: `${theme.sys.typescale.bodyMedium.lineHeight}px`,
         margin: 0, // Remove the margin in all browsers.
       },
       "h1, h2, h3, h4, h5, h6": {

@@ -13,12 +13,12 @@ export const Elevated: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
+        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
           Play
           <br />
           relaxing songs
         </Text>
-        <Text color="onSurfaceVariant" variant="body-medium">
+        <Text color="onSurfaceVariant" variant="bodyMedium">
           From your recent favorites
         </Text>
       </CardContent>
@@ -39,12 +39,12 @@ export const Filled: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
+        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
           Play
           <br />
           relaxing songs
         </Text>
-        <Text color="onSurfaceVariant" variant="body-medium">
+        <Text color="onSurfaceVariant" variant="bodyMedium">
           From your recent favorites
         </Text>
       </CardContent>
@@ -67,12 +67,12 @@ export const Outlined: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
+        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
           Play
           <br />
           relaxing songs
         </Text>
-        <Text color="onSurfaceVariant" variant="body-medium">
+        <Text color="onSurfaceVariant" variant="bodyMedium">
           From your recent favorites
         </Text>
       </CardContent>
@@ -99,10 +99,10 @@ export const Media: StoryObj<CardProps> = {
         sx={{ height: 140 }}
       />
       <CardContent>
-        <Text color="onSurface" variant="title-large" sx={{ mb: 2 }}>
+        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
           Glass Souls&apos; World Tour
         </Text>
-        <Text color="onSurfaceVariant" variant="body-medium">
+        <Text color="onSurfaceVariant" variant="bodyMedium">
           From your recent favorites
         </Text>
       </CardContent>

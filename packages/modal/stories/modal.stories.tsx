@@ -42,10 +42,10 @@ export const Basic: StoryObj<ModalProps> = {
           {...args}
         >
           <Box sx={style}>
-            <Text as="h2" id="modal-modal-title" variant="headline-small">
+            <Text as="h2" id="modal-modal-title" variant="headlineSmall">
               Text in a modal
             </Text>
-            <Text id="modal-modal-description" variant="body-medium">
+            <Text id="modal-modal-description" variant="bodyMedium">
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Text>
           </Box>
@@ -75,12 +75,12 @@ export const NestedModal: StoryObj<ModalProps> = {
           {...args}
         >
           <Box sx={{ ...style, width: 400 }}>
-            <Text as="h2" id="parent-modal-title" variant="headline-small">
+            <Text as="h2" id="parent-modal-title" variant="headlineSmall">
               Text in a modal
             </Text>
             <Text
               id="parent-modal-description"
-              variant="body-medium"
+              variant="bodyMedium"
               sx={{ mb: 4 }}
             >
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
@@ -94,12 +94,12 @@ export const NestedModal: StoryObj<ModalProps> = {
               onClose={handleCloseChild}
             >
               <Box sx={{ ...style, width: 240 }}>
-                <Text as="h2" id="child-modal-title" variant="headline-small">
+                <Text as="h2" id="child-modal-title" variant="headlineSmall">
                   Text in a child modal
                 </Text>
                 <Text
                   id="child-modal-description"
-                  variant="body-medium"
+                  variant="bodyMedium"
                   sx={{ mb: 4 }}
                 >
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.

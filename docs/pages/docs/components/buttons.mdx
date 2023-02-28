@@ -48,9 +48,7 @@ Add an `aria-label` attribute to buttons whose labels need a more descriptive
 label.
 
 ```jsx live=false
-<Button variant="elevated" aria-label="Add a new contact">
-  Add
-</Button>
+<ElevatedButton aria-label="Add a new contact">Add</ElevatedButton>
 ```
 
 ## Elevated button
@@ -61,8 +59,8 @@ requires visual separation from a patterned background.
 
 ```jsx
 <Stack direction="row" spacing={4}>
-  <Button variant="elevated">Elevated button</Button>
-  <Button variant="elevated" icon={<Add />}>
+  <ElevatedButton>Elevated button</ElevatedButton>
+  <ElevatedButton icon={<Add />}>
     Elevated button
   </Button>
 </Stack>

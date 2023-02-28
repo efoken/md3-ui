@@ -23,7 +23,7 @@ export const CenterAligned: StoryObj<AppBarProps> = {
         <IconButton aria-label="menu" edge="start" size="large" sx={{ me: 3 }}>
           <Menu />
         </IconButton>
-        <Text variant="title-large" sx={{ flexGrow: 1, textAlign: "center" }}>
+        <Text variant="titleLarge" sx={{ flexGrow: 1, textAlign: "center" }}>
           Title Large
         </Text>
         <IconButton aria-label="profile" edge="end" size="large" sx={{ ms: 3 }}>
@@ -41,7 +41,7 @@ export const Small: StoryObj<AppBarProps> = {
         <IconButton aria-label="menu" edge="start" size="large" sx={{ me: 1 }}>
           <Menu />
         </IconButton>
-        <Text variant="title-large" sx={{ flexGrow: 1 }}>
+        <Text variant="titleLarge" sx={{ flexGrow: 1 }}>
           Title Large
         </Text>
         <IconButton aria-label="attachment" size="large">
@@ -73,7 +73,7 @@ export const Medium: StoryObj<AppBarProps> = {
           <Menu />
         </IconButton>
         <Text
-          variant="headline-small"
+          variant="headlineSmall"
           sx={{ alignSelf: "flex-end", ms: -9, flexGrow: 1 }}
         >
           Headline Small
@@ -107,7 +107,7 @@ export const Large: StoryObj<AppBarProps> = {
           <Menu />
         </IconButton>
         <Text
-          variant="headline-medium"
+          variant="headlineMedium"
           sx={{ alignSelf: "flex-end", ms: -9, flexGrow: 1 }}
         >
           Headline Medium

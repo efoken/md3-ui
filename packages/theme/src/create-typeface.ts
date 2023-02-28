@@ -1,32 +1,21 @@
-import { TextStyle as RNTextStyle } from "react-native"
-import {
-  MdRefTypefaceBrand,
-  MdRefTypefacePlain,
-  MdRefTypefaceWeightBold,
-  MdRefTypefaceWeightMedium,
-  MdRefTypefaceWeightRegular,
-} from "./tokens"
+/**
+ * Do not edit directly
+ * Generated on Tue, 28 Feb 2023 12:57:19 GMT
+ */
 
-export interface Typeface {
-  plain: string
-  brand: string
-  weight: {
-    bold: NonNullable<RNTextStyle["fontWeight"]>
-    medium: NonNullable<RNTextStyle["fontWeight"]>
-    regular: NonNullable<RNTextStyle["fontWeight"]>
-  }
-}
+import { mergeDeep } from "@md3-ui/utils"
 
-export function createTypeface(typeface?: Partial<Typeface>): Typeface {
-  return {
-    plain: MdRefTypefacePlain,
-    brand: MdRefTypefaceBrand,
-    ...typeface,
-    weight: {
-      bold: MdRefTypefaceWeightBold as any,
-      medium: MdRefTypefaceWeightMedium as any,
-      regular: MdRefTypefaceWeightRegular as any,
-      ...typeface?.weight,
+export function createTypeface(typeface: any) {
+  return mergeDeep(
+    {
+      brand: "Roboto",
+      plain: "Roboto",
+      weightBold: 700,
+      weightMedium: 500,
+      weightRegular: 400,
     },
-  }
+    typeface,
+  )
 }
+
+export type Typeface = ReturnType<typeof createTypeface>

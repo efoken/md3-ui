@@ -1,12 +1,18 @@
 import { Add } from "@md3-ui/icons"
 import { Stack } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
-import { Button, ButtonProps } from "../src"
+import {
+  Button,
+  ButtonBase,
+  ButtonBaseProps,
+  ButtonProps,
+  ElevatedButton,
+  FilledButton,
+} from "../src"
 
 export default {
-  title: "Components/Buttons/Common buttons",
-  component: Button,
-  // subcomponents: { ButtonBase },
+  title: "Components / Buttons / Common buttons",
+  component: ButtonBase,
   render: (args) => (
     <Stack direction="row" spacing={4}>
       <Button {...args} />
@@ -15,17 +21,27 @@ export default {
   ),
 } as Meta<ButtonProps>
 
-export const Elevated: StoryObj<ButtonProps> = {
+export const Elevated: StoryObj<ButtonBaseProps> = {
+  render: (args) => (
+    <Stack direction="row" spacing={4}>
+      <ElevatedButton {...args} />
+      <ElevatedButton {...args} icon={<Add />} />
+    </Stack>
+  ),
   args: {
     children: "Elevated button",
-    variant: "elevated",
   },
 }
 
-export const Filled: StoryObj<ButtonProps> = {
+export const Filled: StoryObj<ButtonBaseProps> = {
+  render: (args) => (
+    <Stack direction="row" spacing={4}>
+      <FilledButton {...args} />
+      <FilledButton {...args} icon={<Add />} />
+    </Stack>
+  ),
   args: {
     children: "Filled button",
-    variant: "filled",
   },
 }
 

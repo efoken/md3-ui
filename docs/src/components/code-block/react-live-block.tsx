@@ -21,7 +21,7 @@ const EditableNotice: React.FC<BoxProps> = ({ sx, ...props }) => (
     {...props}
   >
     <Text
-      variant="body-small"
+      variant="bodySmall"
       color="inverseOnSurface"
       sx={{
         textAlign: "center",

@@ -4,6 +4,7 @@ import { Media, Pseudo } from "@md3-ui/utils"
 import * as React from "react"
 import {
   ImageStyle as RNImageStyle,
+  StyleProp,
   TextStyle as RNTextStyle,
   ViewStyle as RNViewStyle,
 } from "react-native"
@@ -60,6 +61,10 @@ export type SystemProps = {
 export type SystemStyleObject = SystemProps | Record<string, SystemProps> | null
 
 export type SxProps = SystemStyleObject
+
+export type StylesProp<T> = {
+  [K in keyof T]?: StyleProp<NonNullable<T[K]>>
+}
 
 export interface OwnerStateProps<T> {
   ownerState: T
