@@ -1,8 +1,8 @@
-import { Button, ButtonProps } from "@md3-ui/core"
+import { ElevatedButton, ElevatedButtonProps } from "@md3-ui/core"
 import copy from "copy-to-clipboard"
 import * as React from "react"
 
-interface CopyButtonProps extends ButtonProps {
+interface CopyButtonProps extends ElevatedButtonProps {
   code: string
 }
 
@@ -34,7 +34,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   }, [copied])
 
   return (
-    <Button
+    <ElevatedButton
       sx={{
         fontSize: 14,
         height: 24,
@@ -48,6 +48,6 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
       onPress={handleCopy}
     >
       {copied ? "Copied" : "Copy"}
-    </Button>
+    </ElevatedButton>
   )
 }

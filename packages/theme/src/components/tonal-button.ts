@@ -3,16 +3,13 @@
  * Generated on Tue, 28 Feb 2023 14:24:17 GMT
  */
 
-export const elevatedButton = (theme: any) => ({
+export const filledTonalButton = (theme: any) => ({
   container: {
-    color: theme.sys.color.surface,
-    elevation: theme.sys.elevation.level1,
+    color: theme.sys.color.secondaryContainer,
+    elevation: theme.sys.elevation.level0,
     height: 40,
     shadowColor: theme.sys.color.shadow,
     shape: theme.sys.shape.corner.full,
-    surfaceTintLayer: {
-      color: theme.sys.color.surfaceTint,
-    },
   },
   disabled: {
     container: {
@@ -27,41 +24,41 @@ export const elevatedButton = (theme: any) => ({
   },
   focus: {
     container: {
-      elevation: theme.sys.elevation.level1,
+      elevation: theme.sys.elevation.level0,
     },
     labelText: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
     },
     stateLayer: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
       opacity: theme.sys.state.focus.stateLayerOpacity,
     },
   },
   hover: {
     container: {
-      elevation: theme.sys.elevation.level2,
+      elevation: theme.sys.elevation.level1,
     },
     labelText: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
     },
     stateLayer: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
       opacity: theme.sys.state.hover.stateLayerOpacity,
     },
   },
   labelText: {
-    color: theme.sys.color.primary,
+    color: theme.sys.color.onSecondaryContainer,
     textStyle: theme.sys.typescale.labelLarge,
   },
   pressed: {
     container: {
-      elevation: theme.sys.elevation.level1,
+      elevation: theme.sys.elevation.level0,
     },
     labelText: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
     },
     stateLayer: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
       opacity: theme.sys.state.pressed.stateLayerOpacity,
     },
   },
@@ -74,24 +71,24 @@ export const elevatedButton = (theme: any) => ({
     },
     focus: {
       icon: {
-        color: theme.sys.color.primary,
+        color: theme.sys.color.onSecondaryContainer,
       },
     },
     hover: {
       icon: {
-        color: theme.sys.color.primary,
+        color: theme.sys.color.onSecondaryContainer,
       },
     },
     icon: {
-      color: theme.sys.color.primary,
+      color: theme.sys.color.onSecondaryContainer,
       size: 18,
     },
     pressed: {
       icon: {
-        color: theme.sys.color.primary,
+        color: theme.sys.color.onSecondaryContainer,
       },
     },
   },
 })
 
-export type Md3CompElevatedButton = ReturnType<typeof elevatedButton>
+export type Md3CompFilledTonalButton = ReturnType<typeof filledTonalButton>

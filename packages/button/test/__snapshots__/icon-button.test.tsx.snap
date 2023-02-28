@@ -2,7 +2,7 @@
 
 exports[`<IconButton /> prop: edge should render the correct size 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-sdzlij r-height-mabqd8 r-justifyContent-1777fci r-width-1yvhtrz"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-height-mabqd8 r-justifyContent-1777fci r-width-1yvhtrz"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   type="button"
@@ -32,7 +32,7 @@ exports[`<IconButton /> prop: edge should render the correct size 1`] = `
 
 exports[`<IconButton /> prop: edge should render the correct size 2`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-sdzlij r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   type="button"
@@ -62,7 +62,7 @@ exports[`<IconButton /> prop: edge should render the correct size 2`] = `
 
 exports[`<IconButton /> prop: edge should render the correct size 3`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-sdzlij r-height-h3s6tt r-justifyContent-1777fci r-width-rwqe4o"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-height-h3s6tt r-justifyContent-1777fci r-width-rwqe4o"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   type="button"
@@ -92,7 +92,7 @@ exports[`<IconButton /> prop: edge should render the correct size 3`] = `
 
 exports[`<IconButton /> should render 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-sdzlij r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
   data-class="IconButton-root ButtonBase-root"
   role="button"
   type="button"

@@ -43,12 +43,12 @@ Here is a simple example to get you started:
 ```jsx
 import * as React from "react"
 import { AppRegistry } from "react-native"
-import { Md3Provider, Button } from "@md3-ui/core"
+import { Md3Provider, FilledButton } from "@md3-ui/core"
 
 function App() {
   return (
     <Md3Provider>
-      <Button variant="filled">Hello World</Button>
+      <FilledButton>Hello World</FilledButton>
     </Md3Provider>
   )
 }

@@ -1,4 +1,4 @@
-import { Button } from "@md3-ui/button"
+import { ElevatedButton } from "@md3-ui/button"
 import { Box, Text } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
@@ -33,7 +33,7 @@ export const Basic: StoryObj<ModalProps> = {
 
     return (
       <Box>
-        <Button onPress={handleOpen}>Open modal</Button>
+        <ElevatedButton onPress={handleOpen}>Open modal</ElevatedButton>
         <Modal
           open={open}
           aria-labelledby="modal-modal-title"
@@ -66,7 +66,7 @@ export const NestedModal: StoryObj<ModalProps> = {
 
     return (
       <Box>
-        <Button onPress={handleOpenParent}>Open modal</Button>
+        <ElevatedButton onPress={handleOpenParent}>Open modal</ElevatedButton>
         <Modal
           open={open[0]}
           aria-labelledby="parent-modal-title"
@@ -85,7 +85,9 @@ export const NestedModal: StoryObj<ModalProps> = {
             >
               Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Text>
-            <Button onPress={handleOpenChild}>Open child modal</Button>
+            <ElevatedButton onPress={handleOpenChild}>
+              Open child modal
+            </ElevatedButton>
             <Modal
               hideScrim
               open={open[1]}
@@ -104,7 +106,9 @@ export const NestedModal: StoryObj<ModalProps> = {
                 >
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit.
                 </Text>
-                <Button onPress={handleCloseChild}>Close child modal</Button>
+                <ElevatedButton onPress={handleCloseChild}>
+                  Close child modal
+                </ElevatedButton>
               </Box>
             </Modal>
           </Box>

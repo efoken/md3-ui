@@ -1,4 +1,11 @@
-import { AppBar, Button, IconButton, Stack, Text, Toolbar } from "@md3-ui/core"
+import {
+  AppBar,
+  IconButton,
+  Stack,
+  Text,
+  TextButton,
+  Toolbar,
+} from "@md3-ui/core"
 import { Github, Menu, MenuOpen, Nightlight } from "@md3-ui/icons"
 import NextLink from "next/link"
 import * as React from "react"
@@ -18,11 +25,11 @@ export const Header: React.FC<HeaderProps> = ({ menuOpen, onMenuToggle }) => (
         MD3-UI
       </Text>
       <Stack direction="row" sx={{ flexGrow: 1 }}>
-        <Button variant="text">Getting Started</Button>
+        <TextButton>Getting Started</TextButton>
         <NextLink passHref href="/docs/styles/typography">
-          <Button variant="text">Styles</Button>
+          <TextButton>Styles</TextButton>
         </NextLink>
-        <Button variant="text">Components</Button>
+        <TextButton>Components</TextButton>
       </Stack>
       <IconButton>
         <Github />

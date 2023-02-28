@@ -125,20 +125,31 @@ export default async function main() {
         transforms,
         buildPath: "src/components/",
         files: [
-          "badge",
-          "elevatedButton",
-          "filledButton",
-          "outlinedButton",
-          "textButton",
-        ].map<StyleDictionary.File>((component) => ({
-          destination: `${kebabCase(component)}.ts`,
-          format: "typescript/comp",
-          filter: (token) =>
-            token.path.join(".").startsWith(`md.comp.${component}`),
-          options: {
-            component,
+          ...[
+            "badge",
+            "elevatedButton",
+            "filledButton",
+            "outlinedButton",
+            "textButton",
+          ].map<StyleDictionary.File>((component) => ({
+            destination: `${kebabCase(component)}.ts`,
+            format: "typescript/comp",
+            filter: (token) =>
+              token.path.join(".").startsWith(`md.comp.${component}`),
+            options: {
+              component,
+            },
+          })),
+          {
+            destination: "tonal-button.ts",
+            format: "typescript/comp",
+            filter: (token) =>
+              token.path.join(".").startsWith("md.comp.filledTonalButton"),
+            options: {
+              component: "filledTonalButton",
+            },
           },
-        })),
+        ],
       },
     },
     tokens,

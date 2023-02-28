@@ -66,6 +66,7 @@ const ElevatedButtonRoot = styled(ButtonBase, {
       height: theme.comp.elevatedButton.container.height,
       justifyContent: "center",
       paddingHorizontal: 24,
+      shadowColor: theme.comp.elevatedButton.container.shadowColor,
 
       ...(ownerState.disabled && {
         ...theme.comp.elevatedButton.disabled.container.elevation,
@@ -151,8 +152,13 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
       <ElevatedButtonRoot
         ref={ref}
         disabled={disabled}
+        focusColor={theme.comp.elevatedButton.focus.stateLayer.color}
+        focusOpacity={theme.comp.elevatedButton.focus.stateLayer.opacity}
+        hoverColor={theme.comp.elevatedButton.hover.stateLayer.color}
+        hoverOpacity={theme.comp.elevatedButton.hover.stateLayer.opacity}
         ownerState={ownerState}
-        rippleColor={theme.sys.color.primary}
+        pressedColor={theme.comp.elevatedButton.pressed.stateLayer.color}
+        pressedOpacity={theme.comp.elevatedButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
         onBlur={handleFocus.off}
         onFocus={handleFocus.on}

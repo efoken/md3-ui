@@ -2,24 +2,19 @@ import { Add } from "@md3-ui/icons"
 import { Stack } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
 import {
-  Button,
   ButtonBase,
   ButtonBaseProps,
-  ButtonProps,
   ElevatedButton,
   FilledButton,
+  OutlinedButton,
+  TextButton,
+  TonalButton,
 } from "../src"
 
 export default {
   title: "Components / Buttons / Common buttons",
   component: ButtonBase,
-  render: (args) => (
-    <Stack direction="row" spacing={4}>
-      <Button {...args} />
-      <Button {...args} icon={<Add />} />
-    </Stack>
-  ),
-} as Meta<ButtonProps>
+} as Meta<ButtonBaseProps>
 
 export const Elevated: StoryObj<ButtonBaseProps> = {
   render: (args) => (
@@ -45,23 +40,38 @@ export const Filled: StoryObj<ButtonBaseProps> = {
   },
 }
 
-export const Tonal: StoryObj<ButtonProps> = {
+export const Tonal: StoryObj<ButtonBaseProps> = {
+  render: (args) => (
+    <Stack direction="row" spacing={4}>
+      <TonalButton {...args} />
+      <TonalButton {...args} icon={<Add />} />
+    </Stack>
+  ),
   args: {
     children: "Tonal button",
-    variant: "tonal",
   },
 }
 
-export const Outlined: StoryObj<ButtonProps> = {
+export const Outlined: StoryObj<ButtonBaseProps> = {
+  render: (args) => (
+    <Stack direction="row" spacing={4}>
+      <OutlinedButton {...args} />
+      <OutlinedButton {...args} icon={<Add />} />
+    </Stack>
+  ),
   args: {
     children: "Outlined button",
-    variant: "outlined",
   },
 }
 
-export const Text: StoryObj<ButtonProps> = {
+export const Text: StoryObj<ButtonBaseProps> = {
+  render: (args) => (
+    <Stack direction="row" spacing={4}>
+      <TextButton {...args} />
+      <TextButton {...args} icon={<Add />} />
+    </Stack>
+  ),
   args: {
     children: "Text button",
-    variant: "text",
   },
 }

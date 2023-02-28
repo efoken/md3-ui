@@ -66,6 +66,7 @@ const FilledButtonRoot = styled(ButtonBase, {
       height: theme.comp.filledButton.container.height,
       justifyContent: "center",
       paddingHorizontal: 24,
+      shadowColor: theme.comp.filledButton.container.shadowColor,
 
       ...(ownerState.disabled && {
         ...theme.comp.filledButton.disabled.container.elevation,
@@ -151,8 +152,13 @@ export const FilledButton = React.forwardRef<RNView, FilledButtonProps>(
       <FilledButtonRoot
         ref={ref}
         disabled={disabled}
+        focusColor={theme.comp.filledButton.focus.stateLayer.color}
+        focusOpacity={theme.comp.filledButton.focus.stateLayer.opacity}
+        hoverColor={theme.comp.filledButton.hover.stateLayer.color}
+        hoverOpacity={theme.comp.filledButton.hover.stateLayer.opacity}
         ownerState={ownerState}
-        rippleColor={theme.sys.color.onPrimary}
+        pressedColor={theme.comp.filledButton.pressed.stateLayer.color}
+        pressedOpacity={theme.comp.filledButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
         onBlur={handleFocus.off}
         onFocus={handleFocus.on}

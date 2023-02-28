@@ -9,6 +9,10 @@ import {
   outlinedButton,
 } from "./components/outlined-button"
 import { Md3CompTextButton, textButton } from "./components/text-button"
+import {
+  filledTonalButton,
+  Md3CompFilledTonalButton,
+} from "./components/tonal-button"
 
 export interface Components {
   badge: Md3CompBadge
@@ -16,6 +20,7 @@ export interface Components {
   filledButton: Md3CompFilledButton
   outlinedButton: Md3CompOutlinedButton
   textButton: Md3CompTextButton
+  tonalButton: Md3CompFilledTonalButton
   [name: string]: any
 }
 
@@ -26,5 +31,6 @@ export function createComponents(theme: any): Components {
     filledButton: filledButton(theme),
     outlinedButton: outlinedButton(theme),
     textButton: textButton(theme),
+    tonalButton: filledTonalButton(theme),
   }
 }

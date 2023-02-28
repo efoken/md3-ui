@@ -1,4 +1,4 @@
-import { Button } from "@md3-ui/button"
+import { TextButton } from "@md3-ui/button"
 import { Stack } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
 import { Snackbar, SnackbarContent, SnackbarProps } from "../src"
@@ -20,16 +20,16 @@ export const Configurations: StoryObj<SnackbarProps> = {
     <Stack spacing={4} sx={{ width: "100%" }}>
       <SnackbarContent message="Single-line snackbar" />
       <SnackbarContent
-        action={<Button variant="text">Action</Button>}
+        action={<TextButton>Action</TextButton>}
         message="Single-line snackbar with action"
       />
       <SnackbarContent message={`Two-line snackbar\nwithout action`} />
       <SnackbarContent
-        action={<Button variant="text">Action</Button>}
+        action={<TextButton>Action</TextButton>}
         message={`Two-line snackbar\nwith action`}
       />
       <SnackbarContent
-        action={<Button variant="text">Longer action</Button>}
+        action={<TextButton>Longer action</TextButton>}
         message={`Two-line snackbar\nwith longer action`}
       />
     </Stack>

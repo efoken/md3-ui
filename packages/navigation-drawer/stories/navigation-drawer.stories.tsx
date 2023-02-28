@@ -1,4 +1,4 @@
-import { Button } from "@md3-ui/button"
+import { TextButton } from "@md3-ui/button"
 import { Circle, Mail } from "@md3-ui/icons"
 import { Box, Divider, Stack } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
@@ -66,9 +66,9 @@ export const Modal: StoryObj = {
       <Stack direction="row">
         {(["start", "end"] as const).map((anchor) => (
           <React.Fragment key={anchor}>
-            <Button variant="text" onPress={toggleDrawer(anchor, true)}>
+            <TextButton onPress={toggleDrawer(anchor, true)}>
               {anchor}
-            </Button>
+            </TextButton>
             <NavigationDrawer
               anchor={anchor}
               open={state[anchor]}

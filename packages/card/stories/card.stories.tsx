@@ -1,4 +1,4 @@
-import { Button } from "@md3-ui/button"
+import { FilledButton, OutlinedButton, TonalButton } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
 import { Card, CardActions, CardContent, CardMedia, CardProps } from "../src"
@@ -23,7 +23,7 @@ export const Elevated: StoryObj<CardProps> = {
         </Text>
       </CardContent>
       <CardActions>
-        <Button variant="filled">Get started</Button>
+        <FilledButton>Get started</FilledButton>
       </CardActions>
     </Card>
   ),
@@ -49,9 +49,7 @@ export const Filled: StoryObj<CardProps> = {
         </Text>
       </CardContent>
       <CardActions>
-        <Button variant="outlined" sx={{ bgColor: "surface" }}>
-          Get started
-        </Button>
+        <OutlinedButton sx={{ bgColor: "surface" }}>Get started</OutlinedButton>
       </CardActions>
     </Card>
   ),
@@ -77,7 +75,7 @@ export const Outlined: StoryObj<CardProps> = {
         </Text>
       </CardContent>
       <CardActions>
-        <Button variant="tonal">Get started</Button>
+        <TonalButton>Get started</TonalButton>
       </CardActions>
     </Card>
   ),
@@ -107,7 +105,7 @@ export const Media: StoryObj<CardProps> = {
         </Text>
       </CardContent>
       <CardActions sx={{ justifyContent: "flex-start" }}>
-        <Button variant="tonal">Buy tickets</Button>
+        <TonalButton>Buy tickets</TonalButton>
       </CardActions>
     </Card>
   ),
