@@ -13,5 +13,13 @@ npm i @md3-ui/button
 ## Import Components
 
 ```jsx
-import { Button, ButtonBase, IconButton } from "@md3-ui/button"
+import {
+  ButtonBase,
+  ElevatedButton,
+  FilledButton,
+  IconButton,
+  OutlinedButton,
+  TextButton,
+  TonalButton,
+} from "@md3-ui/button"
 ```

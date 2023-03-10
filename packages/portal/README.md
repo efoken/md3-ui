@@ -4,7 +4,7 @@
 
 ```sh
 // with yarn
-yarn add @md3-ui/modportalal
+yarn add @md3-ui/portal
 
 // with npm
 npm i @md3-ui/portal
@@ -13,5 +13,5 @@ npm i @md3-ui/portal
 ## Import Components
 
 ```jsx
-import { Portal, PortalProvider } from "@md3-ui/portal"
+import { Portal } from "@md3-ui/portal"
 ```
