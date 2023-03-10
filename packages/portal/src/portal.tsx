@@ -6,8 +6,7 @@ import {
 } from "@md3-ui/hooks"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
-import { findNodeHandle } from "react-native"
-import { PortalContext } from "./context"
+import { findNodeHandle, Platform, RootTagContext } from "react-native"
 import { createPortal } from "./create-portal"
 
 export interface PortalProps {
@@ -18,7 +17,9 @@ export interface PortalProps {
 
 export const Portal = React.forwardRef<any, PortalProps>(
   ({ children, containerRef, disablePortal = false }, ref) => {
-    const context = React.useContext(PortalContext)
+    const rootTag =
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      Platform.OS === "web" ? undefined : React.useContext(RootTagContext)
 
     const [mountNode, setMountNode] = React.useState<Element | number>()
     const handleRef = useForkRef(
@@ -35,9 +36,7 @@ export const Portal = React.forwardRef<any, PortalProps>(
     useEnhancedEffect(() => {
       if (!disablePortal) {
         setMountNode(
-          findNodeHandle(
-            containerRef?.current ?? context.rootRef.current,
-          ) as number,
+          findNodeHandle(containerRef?.current) ?? rootTag ?? document.body,
         )
       }
     }, [containerRef?.current, disablePortal])

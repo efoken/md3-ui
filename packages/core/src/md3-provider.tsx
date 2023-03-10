@@ -1,4 +1,3 @@
-import { PortalProvider } from "@md3-ui/portal"
 import { ThemeProvider } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
 import * as React from "react"
@@ -15,6 +14,6 @@ export const Md3Provider: React.FC<Md3ProviderProps> = ({
 }) => (
   <ThemeProvider theme={theme}>
     <CSSBaseline />
-    <PortalProvider>{children}</PortalProvider>
+    {children}
   </ThemeProvider>
 )
