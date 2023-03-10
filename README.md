@@ -18,6 +18,7 @@ fully customizable to follow your own design system.
 
 - Buttons
   - Common buttons
+  - Icon buttons
 - Cards
 - Chips
 - Navigation bar

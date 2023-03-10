@@ -1,11 +1,117 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:16 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:23 GMT
  */
 
 import { mergeDeep } from "@md3-ui/utils"
 
-export function createPalette(palette: any) {
+export interface Palette {
+  black: string
+  error: {
+    0: string
+    10: string
+    20: string
+    30: string
+    40: string
+    50: string
+    60: string
+    70: string
+    80: string
+    90: string
+    95: string
+    99: string
+    100: string
+  }
+  neutral: {
+    0: string
+    4: string
+    6: string
+    10: string
+    12: string
+    17: string
+    20: string
+    22: string
+    24: string
+    30: string
+    40: string
+    50: string
+    60: string
+    70: string
+    80: string
+    87: string
+    90: string
+    92: string
+    94: string
+    95: string
+    96: string
+    98: string
+    99: string
+    100: string
+  }
+  neutralVariant: {
+    0: string
+    10: string
+    20: string
+    30: string
+    40: string
+    50: string
+    60: string
+    70: string
+    80: string
+    90: string
+    95: string
+    99: string
+    100: string
+  }
+  primary: {
+    0: string
+    10: string
+    20: string
+    30: string
+    40: string
+    50: string
+    60: string
+    70: string
+    80: string
+    90: string
+    95: string
+    99: string
+    100: string
+  }
+  secondary: {
+    0: string
+    10: string
+    20: string
+    30: string
+    40: string
+    50: string
+    60: string
+    70: string
+    80: string
+    90: string
+    95: string
+    99: string
+    100: string
+  }
+  tertiary: {
+    0: string
+    10: string
+    20: string
+    30: string
+    40: string
+    50: string
+    60: string
+    70: string
+    80: string
+    90: string
+    95: string
+    99: string
+    100: string
+  }
+  white: string
+}
+
+export function createPalette(palette?: Partial<Palette>) {
   return mergeDeep(
     {
       black: "#000000",
@@ -115,5 +221,3 @@ export function createPalette(palette: any) {
     palette,
   )
 }
-
-export type Palette = ReturnType<typeof createPalette>

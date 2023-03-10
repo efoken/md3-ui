@@ -1,11 +1,11 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { mapValues, mergeDeep } from "@md3-ui/utils"
 import AdmZip from "adm-zip"
-import camelCase from "lodash.camelcase"
-import kebabCase from "lodash.kebabcase"
-import * as fs from "node:fs"
-import * as StyleDictionary from "style-dictionary"
-import { TypescriptComp } from "./formats/typescript-comp"
+import { camelCase, kebabCase, mapKeys } from "lodash"
+import fs from "node:fs"
+import StyleDictionary from "style-dictionary"
+import { TypescriptColor } from "./formats/typescript-color"
+import { TypescriptComponent } from "./formats/typescript-component"
 import { TypescriptFunction } from "./formats/typescript-function"
 
 function normalizePath(str: any, ref = false) {
@@ -36,7 +36,27 @@ function objectify(obj: Record<string, any>) {
   }, {})
 }
 
-let tokens = {}
+const componentMap = {
+  badge: "badge",
+  elevatedButton: "elevatedButton",
+  filledButton: "filledButton",
+  filledIconButton: "filledIconButton",
+  filledTonalButton: "tonalButton",
+  filledTonalIconButton: "tonalIconButton",
+  iconButton: "iconButton",
+  outlinedButton: "outlinedButton",
+  outlinedIconButton: "outlinedIconButton",
+  switch: "switch",
+  textButton: "textButton",
+}
+
+let tokens = {
+  md: {
+    sys: {
+      color: {},
+    },
+  },
+}
 
 export default async function main() {
   const data = await fetch(
@@ -45,22 +65,43 @@ export default async function main() {
   const buffer = Buffer.from(await data.arrayBuffer())
   const zip = new AdmZip(buffer)
 
-  zip
+  for (const entry of zip
     .getEntries()
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     .filter((entry) =>
-      entry.entryName.match(/dev\/tools\/gen_defaults\/data\/.*\.json/),
-    )
-    .forEach((entry) => {
-      const json = objectify(
-        mapValues(JSON.parse(entry.getData().toString("utf8")), (value) => ({
-          value: normalizePath(value),
-          type: "other",
-        })),
+      /dev\/tools\/gen_defaults\/data\/.*\.json/.test(entry.entryName),
+    )) {
+    const { entryName } = entry
+    let entryData = JSON.parse(entry.getData().toString("utf8"))
+
+    if ("version" in entryData) {
+      delete entryData.version
+    }
+
+    if (entryName.endsWith("color_dark.json")) {
+      entryData = mapKeys(entryData, (_value, key) =>
+        key.replace("md.sys.color", "md.sys.color.dark"),
       )
-      tokens = mergeDeep(tokens, json)
-    })
+    } else if (entryName.endsWith("color_light.json")) {
+      entryData = {
+        ...entryData,
+        ...mapKeys(entryData, (_value, key) =>
+          key.replace("md.sys.color", "md.sys.color.light"),
+        ),
+      }
+    }
+
+    const json = objectify(
+      mapValues(entryData, (value) => ({
+        value: normalizePath(value),
+        type: "other",
+      })),
+    )
+    tokens = mergeDeep(tokens, json)
+  }
 
   fs.writeFileSync("dist/tokens.json", JSON.stringify(tokens, undefined, 2))
+  // tokens = JSON.parse(fs.readFileSync("dist/tokens.json").toString())
 
   const transforms = [
     "attribute/cti",
@@ -119,37 +160,28 @@ export default async function main() {
               prefix: "md.sys.state",
             },
           },
+          {
+            destination: "create-color.ts",
+            format: "typescript/color",
+            filter: (token) => token.name.startsWith("sysColor"),
+          },
         ],
       },
       comp: {
         transforms,
         buildPath: "src/components/",
-        files: [
-          ...[
-            "badge",
-            "elevatedButton",
-            "filledButton",
-            "outlinedButton",
-            "textButton",
-          ].map<StyleDictionary.File>((component) => ({
-            destination: `${kebabCase(component)}.ts`,
-            format: "typescript/comp",
+        files: Object.entries(componentMap).map<StyleDictionary.File>(
+          ([component, typeName]) => ({
+            destination: `${kebabCase(typeName)}.ts`,
+            format: "typescript/component",
             filter: (token) =>
               token.path.join(".").startsWith(`md.comp.${component}`),
             options: {
               component,
+              typeName,
             },
-          })),
-          {
-            destination: "tonal-button.ts",
-            format: "typescript/comp",
-            filter: (token) =>
-              token.path.join(".").startsWith("md.comp.filledTonalButton"),
-            options: {
-              component: "filledTonalButton",
-            },
-          },
-        ],
+          }),
+        ),
       },
     },
     tokens,
@@ -187,7 +219,8 @@ export default async function main() {
     transformer: (token) => `md.sys.typescale.${token.value}`,
   })
 
-  dict.registerFormat(TypescriptComp)
+  dict.registerFormat(TypescriptColor)
+  dict.registerFormat(TypescriptComponent)
   dict.registerFormat(TypescriptFunction)
 
   dict.buildAllPlatforms()

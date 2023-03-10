@@ -3,6 +3,7 @@ import {
   OverrideProps,
   OwnerStateProps,
   styled,
+  StylesProp,
   SxProps,
   useTextStyle,
   useThemeProps,
@@ -24,6 +25,7 @@ export interface TextTypeMap<
      * The content of the component.
      */
     children?: React.ReactNode
+    /** @default "inherit" */
     color?:
       | "onBackground"
       | "primary"
@@ -42,9 +44,9 @@ export interface TextTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNTextStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.

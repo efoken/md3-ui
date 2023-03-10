@@ -6,6 +6,7 @@ import {
   resolveBreakpointValues,
   ResponsiveValue,
   styled,
+  StylesProp,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
@@ -14,6 +15,7 @@ import { resolveProps, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
+  Platform,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
@@ -71,11 +73,11 @@ export interface GridTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNViewStyle
       container?: RNViewStyle
       item?: RNViewStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.
@@ -112,7 +114,7 @@ export function generateGrid({
     breakpoints: theme.breakpoints.values,
   })
 
-  return theme.breakpoints.keys.reduce((finalStyles, breakpoint) => {
+  return theme.breakpoints.keys.reduce((acc, breakpoint) => {
     // Use side effect over immutability for better performance
     let styles: any = {}
 
@@ -124,7 +126,7 @@ export function generateGrid({
       span = spanValues
     }
     if (!span) {
-      return finalStyles
+      return acc
     }
 
     if (span === true) {
@@ -154,7 +156,7 @@ export function generateGrid({
           : columnsValues
 
       if (columns == null) {
-        return finalStyles
+        return acc
       }
       // Keep 7 significant numbers
       const width = `${Math.round((span / columns) * 10e7) / 10e5}%`
@@ -167,7 +169,7 @@ export function generateGrid({
       ) {
         const spacing = theme.spacing(ownerState.columnSpacing)
         if (spacing !== 0) {
-          moreStyles = {
+          moreStyles = Platform.OS === "web" && {
             flexBasis: `calc(${width} + ${spacing}px)`,
             maxWidth: `calc(${width} + ${spacing}px)`,
           }
@@ -175,8 +177,8 @@ export function generateGrid({
       }
 
       styles = {
-        flexBasis: width,
-        flexGrow: 0,
+        flexBasis: Platform.OS === "web" ? width : 0,
+        flexGrow: Platform.OS === "web" ? 0 : 1,
         flexShrink: 1,
         maxWidth: width,
         ...moreStyles,
@@ -185,12 +187,11 @@ export function generateGrid({
 
     // No need for a media query for the first size
     if (theme.breakpoints.values[breakpoint] === 0) {
-      Object.assign(finalStyles, styles)
+      Object.assign(acc, styles)
     } else {
-      // eslint-disable-next-line no-param-reassign
-      finalStyles[theme.breakpoints.up(breakpoint)] = styles
+      acc[theme.breakpoints.up(breakpoint)] = styles
     }
-    return finalStyles
+    return acc
   }, {})
 }
 
@@ -238,10 +239,11 @@ export function generateRowGap({
 
       if (spacing !== 0) {
         if (ownerState.container) {
-          styles.marginTop = -spacing
+          // styles.marginTop = -spacing
+          styles.rowGap = spacing
         }
         if (ownerState.item) {
-          styles.paddingTop = spacing
+          // styles.paddingTop = spacing
         }
       }
 
@@ -271,11 +273,13 @@ export function generateColumnGap({
 
       if (spacing !== 0) {
         if (ownerState.container) {
-          styles.width = `calc(100% + ${spacing}px)`
-          styles.marginStart = -spacing
+          // styles.width = `calc(100% + ${spacing}px)`
+          // styles.marginStart = -spacing
+          styles.width = "100%"
+          styles.columnGap = spacing
         }
         if (ownerState.item) {
-          styles.paddingStart = spacing
+          // styles.paddingStart = spacing
         }
       }
 

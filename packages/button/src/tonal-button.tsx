@@ -12,6 +12,7 @@ import {
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
+  Platform,
   TextStyle as RNTextStyle,
   View as RNView,
   ViewStyle as RNViewStyle,
@@ -64,7 +65,10 @@ const TonalButtonRoot = styled(ButtonBase, {
       height: theme.comp.tonalButton.container.height,
       justifyContent: "center",
       paddingHorizontal: 24,
-      shadowColor: theme.comp.tonalButton.container.shadowColor,
+
+      ...(Platform.OS !== "web" && {
+        shadowColor: theme.comp.tonalButton.container.shadowColor,
+      }),
 
       ...(ownerState.disabled && {
         ...theme.comp.tonalButton.disabled.container.elevation,

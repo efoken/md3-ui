@@ -3,7 +3,6 @@ import { isObject } from "./assertion"
 export function get(obj: object, path: string | number, fallback?: any) {
   const keys = typeof path === "string" ? path.split(".") : [path]
 
-  // eslint-disable-next-line no-restricted-syntax
   for (const key of keys) {
     if (!obj) {
       break
@@ -47,10 +46,10 @@ export function mergeDeep<T>(
   const output = options.clone ? { ...target } : target
 
   if (isObject(target) && isObject(source)) {
-    Object.keys(source).forEach((key) => {
+    for (const key of Object.keys(source)) {
       // Avoid prototype pollution
       if (key === "__proto__" || key === "constructor") {
-        return
+        continue
       }
 
       if (isObject(source[key]) && key in target && isObject(target[key])) {
@@ -64,7 +63,7 @@ export function mergeDeep<T>(
       } else {
         ;(output as Record<keyof any, unknown>)[key] = source[key]
       }
-    })
+    }
   }
 
   return output

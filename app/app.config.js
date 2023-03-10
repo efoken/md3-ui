@@ -7,5 +7,6 @@ module.exports = {
     version: packagJson.version,
     owner: "efoken",
     assetBundlePatterns: ["**/*"],
+    orientation: "default",
   },
 }

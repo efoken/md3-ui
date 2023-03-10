@@ -6,11 +6,11 @@ export function resolveProps<T extends Record<string, unknown>>(
 ) {
   const result = { ...props }
 
-  objectKeys(defaultProps).forEach((propName) => {
+  for (const propName of objectKeys(defaultProps)) {
     if (result[propName] == null) {
       result[propName] = defaultProps[propName]
     }
-  })
+  }
 
   return result
 }
@@ -147,15 +147,15 @@ export function splitProps<T extends Record<string, any>>(
 ) {
   const result: any = []
   const mapping = args.reduce<any>((acc, defs, index) => {
-    defs.forEach((def) => {
+    for (const def of defs) {
       acc[def] = { name: def, index }
-    })
+    }
     return acc
   }, {})
-  Object.entries(props).forEach(([key, value]) => {
+  for (const [key, value] of Object.entries(props)) {
     const def = mapping[key]
     const [index, name] = def ? [def.index, def.name] : [args.length, key]
     result[index] = { ...result[index], [name]: value }
-  })
+  }
   return result
 }

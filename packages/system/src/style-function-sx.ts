@@ -42,7 +42,7 @@ export function styleFunctionSx(props: any = {}) {
 
     let css = emptyBreakpoints
 
-    Object.keys(sxObject).forEach((styleKey) => {
+    for (const styleKey of Object.keys(sxObject)) {
       const value = runIfFn(sxObject[styleKey], theme)
       if (value != null) {
         if (typeof value === "object") {
@@ -65,7 +65,7 @@ export function styleFunctionSx(props: any = {}) {
           css = merge(css, getThemeValue(styleKey, value, theme))
         }
       }
-    })
+    }
 
     return removeUnusedBreakpoints(breakpointsKeys, css)
   }

@@ -149,10 +149,10 @@ export function describeConformance(
 
     afterAll(afterAllHook)
 
-    filteredTests.forEach((testKey) => {
+    for (const testKey of filteredTests) {
       const test = fullSuite[testKey]
       test(ui, getOptions)
-    })
+    }
   })
 }
 

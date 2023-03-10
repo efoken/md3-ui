@@ -1,9 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { Queue } from "@md3-ui/utils"
 import { Config, transform } from "@svgr/core"
-import * as fse from "fs-extra"
 import { camelCase, kebabCase, startCase } from "lodash"
-import * as path from "node:path"
+import fs from "node:fs"
+import path from "node:path"
 
 const svgrConfig: Config = {
   expandProps: false,
@@ -75,13 +75,15 @@ async function createComponent(icon: { data: string; name: string }) {
 }
 
 async function run() {
-  await fse.emptyDir(path.join(__dirname, "../src"))
+  for (const file of fs.readdirSync(path.join(__dirname, "../src"))) {
+    fs.rmSync(path.join(__dirname, "../src", file))
+  }
 
-  fse.readdir(path.join(__dirname, "../assets"), async (_err, files) => {
+  fs.readdir(path.join(__dirname, "../assets"), async (_err, files) => {
     const icons = files
       .map((file) => ({
         name: createComponentName(file.replace(/\..+$/, "")),
-        data: fse
+        data: fs
           .readFileSync(path.join(__dirname, `../assets/${file}`), {
             flag: "r",
           })
@@ -92,11 +94,11 @@ async function run() {
     const queue = new Queue<{ data: string; name: string }>(
       async (icon) => {
         const jsCode = await createComponent(icon)
-        await fse.writeFile(
+        fs.writeFileSync(
           path.join(__dirname, `../src/${kebabCase(icon.name)}.tsx`),
           jsCode,
         )
-        await fse.appendFile(
+        fs.appendFileSync(
           path.join(__dirname, "../src/index.ts"),
           `export * from "./${kebabCase(icon.name)}"\n`,
         )

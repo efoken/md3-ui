@@ -12,23 +12,24 @@ export const TypescriptFunction: Format = {
   formatter: ({ dictionary, file, options }) => {
     const { prefix, typeName } = options
 
+    const tokens = formatHelpers.minifyDictionary(
+      prefix ? get(dictionary.tokens, prefix, {}) : dictionary.tokens,
+    )
+
     const tpl = `${formatHelpers.fileHeader({
       file,
     })}import { mergeDeep } from "@md3-ui/utils"
 
-    export function create${typeName}(${lowerCaseFirst(typeName)}: any) {
-      return mergeDeep(${JSON.stringify(
-        formatHelpers.minifyDictionary(
-          prefix ? get(dictionary.tokens, prefix, {}) : dictionary.tokens,
-        ),
-        null,
-        2,
-      )
-        .replace(/"(\d{1,3})":/g, "$1:")
-        .replace(/"md\.(.+?)"/g, "theme.$1")}, ${lowerCaseFirst(typeName)})
-      }
+    export interface ${typeName} ${formatHelpers.getTypeScriptType(tokens)}
 
-    export type ${typeName} = ReturnType<typeof create${typeName}>`
+    export function create${typeName}(${lowerCaseFirst(
+      typeName,
+    )}?: Partial<${typeName}>) {
+      return mergeDeep(${JSON.stringify(tokens, null, 2)
+        .replace(/"(\d{1,3})":/g, "$1:")
+        // .replace(/palette\.(\w+)\.(\d{1,3})/g, "palette.$1[$2]")
+        .replace(/"md\.(.+?)"/g, "theme.$1")}, ${lowerCaseFirst(typeName)})
+    }`
 
     return prettier.format(tpl, {
       parser: "typescript",

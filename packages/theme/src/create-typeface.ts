@@ -1,11 +1,19 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:16 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:23 GMT
  */
 
 import { mergeDeep } from "@md3-ui/utils"
 
-export function createTypeface(typeface: any) {
+export interface Typeface {
+  brand: string
+  plain: string
+  weightBold: number
+  weightMedium: number
+  weightRegular: number
+}
+
+export function createTypeface(typeface?: Partial<Typeface>) {
   return mergeDeep(
     {
       brand: "Roboto",
@@ -17,5 +25,3 @@ export function createTypeface(typeface: any) {
     typeface,
   )
 }
-
-export type Typeface = ReturnType<typeof createTypeface>

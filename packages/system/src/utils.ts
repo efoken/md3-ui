@@ -1,5 +1,5 @@
 import { isMedia, mergeDeep } from "@md3-ui/utils"
-import MediaQuery from "css-mediaquery"
+import MediaQuery from "css-mediaquery2"
 import { PixelRatio } from "react-native"
 import createReactDOMStyle from "react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle"
 import prefixStyles from "react-native-web/dist/modules/prefixStyles"
@@ -12,17 +12,19 @@ export function findBreakpoints(emotionStyles: RNStyle) {
 
   const mediaValues = allMedia.reduce((acc, query) => {
     const data = MediaQuery.parse(query.replace("@media", ""))
-    data.forEach((item) => {
-      item.expressions.forEach((exp) => {
+    for (const item of data) {
+      for (const exp of item.expressions) {
         if (exp.value.includes("rem") || exp.value.includes("em")) {
           acc.add(
-            Number.parseInt(exp.value, 10) * 16 * PixelRatio.getFontScale(),
+            Number.parseInt(exp.value, 10) *
+              MediaQuery.remBase *
+              PixelRatio.getFontScale(),
           )
         } else {
           acc.add(Number.parseInt(exp.value, 10))
         }
-      })
-    })
+      }
+    }
     return acc
   }, new Set<number>())
 

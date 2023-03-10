@@ -19,6 +19,8 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
     <>
       {routes.map((level1, i) => (
         <Box
+          // eslint-disable-next-line react/no-array-index-key
+          key={i}
           sx={{
             borderBottomColor: "surfaceVariant",
             borderBottomWidth: 1,
@@ -52,7 +54,7 @@ export const SidebarContent: React.FC<SidebarContentProps> = ({ routes }) => {
                       role="presentation"
                       styles={{
                         label: {
-                          ...theme.sys.typescale["bodyLarge"],
+                          ...theme.sys.typescale.bodyLarge,
                           color: theme.sys.color.onBackground,
                         },
                       }}

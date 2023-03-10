@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { mergeDeep } from "@md3-ui/utils"
 import AdmZip from "adm-zip"
-import * as fs from "node:fs"
+import fs from "node:fs"
 import StyleDictionary from "style-dictionary"
 
 function objectify(obj: Record<string, any>) {
@@ -48,15 +48,15 @@ export default async function main() {
     },
   }
 
-  zip
+  for (const entry of zip
     .getEntries()
+    // eslint-disable-next-line @typescript-eslint/no-shadow
     .filter((entry) =>
-      entry.entryName.match(/material-tokens-json\/json\/.*\.json/),
-    )
-    .forEach((entry) => {
-      const json = objectify(JSON.parse(entry.getData().toString("utf8")))
-      tokens = mergeDeep(tokens, json)
-    })
+      /material-tokens-json\/json\/.*\.json/.test(entry.entryName),
+    )) {
+    const json = objectify(JSON.parse(entry.getData().toString("utf8")))
+    tokens = mergeDeep(tokens, json)
+  }
 
   fs.writeFileSync("dist/tokens.json", JSON.stringify(tokens, undefined, 2))
 

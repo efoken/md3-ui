@@ -4,6 +4,7 @@ import {
   OverrideProps,
   OwnerStateProps,
   styled,
+  StylesProp,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
@@ -39,13 +40,14 @@ export interface BadgeTypeMap<
      * @default 99
      */
     max?: number
+    /** @default false */
     showZero?: boolean
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNViewStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.
@@ -79,7 +81,7 @@ const BadgeLabel = styled(Animated.Text, {
   slot: "Label",
   skipSx: true,
 })<OwnerStateProps<Pick<BadgeProps, "variant">>>(({ theme, ownerState }) => ({
-  ...theme.comp.badge.large.labelText,
+  ...theme.comp.badge.large.labelText.textStyle,
   backgroundColor: theme.comp.badge.large.color,
   borderRadius: theme.comp.badge.large.shape,
   height: theme.comp.badge.large.size,

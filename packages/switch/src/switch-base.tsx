@@ -1,6 +1,6 @@
 import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { useControlled } from "@md3-ui/hooks"
-import { styled, SxProps, useThemeProps } from "@md3-ui/system"
+import { styled, StylesProp, SxProps, useThemeProps } from "@md3-ui/system"
 import { createChainedFunction, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
@@ -22,9 +22,7 @@ export interface SwitchBaseProps extends ButtonBaseProps {
    * If `true`, the component is checked.
    */
   checked?: boolean
-  /**
-   * @ignore
-   */
+  /** @ignore */
   defaultChecked?: boolean
   /**
    * Name attribute of the `input` element.
@@ -39,9 +37,7 @@ export interface SwitchBaseProps extends ButtonBaseProps {
    * (boolean).
    */
   onChange?: (event: NativeSyntheticEvent<SwitchChangeEventData>) => void
-  /**
-   * @ignore
-   */
+  /** @ignore */
   readOnly?: boolean
   /**
    * If `true`, the `input` element is required.
@@ -51,10 +47,10 @@ export interface SwitchBaseProps extends ButtonBaseProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     root?: RNViewStyle
     input?: React.CSSProperties
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as additional
    * styles.

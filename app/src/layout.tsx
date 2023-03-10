@@ -28,7 +28,7 @@ export const Layout: React.FC = () => {
       <Outlet />
       <NavigationBar value={location.pathname}>
         <NavigationBarItem
-          icon={<Icon as={MaterialIcons} name="circle" />}
+          icon={<Icon as={MaterialIcons} name="widgets" />}
           label="Components"
           value="/"
           onPress={() => navigate("/")}

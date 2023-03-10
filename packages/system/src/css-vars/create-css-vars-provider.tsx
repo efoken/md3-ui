@@ -1,13 +1,11 @@
-import { useEnhancedEffect } from "@md3-ui/hooks"
-import { createBreakpoints, createSpacing } from "@md3-ui/theme"
+import { Theme } from "@md3-ui/theme"
 import { mergeDeep } from "@md3-ui/utils"
 import * as React from "react"
-import { ThemeProvider } from "../context"
+import { ThemeProvider, useTheme } from "../context"
 import { Global } from "../global"
-import createGetCssVar from "./create-get-css-var"
-import { cssVarsParser } from "./css-vars-parser"
 import {
   DEFAULT_ATTRIBUTE,
+  DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
   getInitColorSchemeScript,
 } from "./get-init-color-scheme-script"
@@ -23,11 +21,21 @@ export interface ColorSchemeContextValue<SupportedColorScheme extends string>
 
 export interface CssVarsProviderConfig<ColorScheme extends string> {
   /**
-   * The initial color scheme used.
+   * DOM attribute for applying color scheme.
+   * @default "data-md3-color-scheme"
+   */
+  attribute?: string
+  /**
+   * The localStorage key used to store `colorScheme`.
+   * @default "md3-color-scheme"
+   */
+  colorSchemeStorageKey?: string
+  /**
+   * Design system default color scheme.
    */
   defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme }
   /**
-   * The initial mode used.
+   * Design system default mode.
    * @default "light"
    */
   defaultMode?: Mode
@@ -37,52 +45,39 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   disableTransitionOnChange?: boolean
   /**
-   * Indicate to the browser which color scheme is used (light or dark) for
-   * rendering built-in UI.
-   * @default true
+   * The localStorage key used to store application `mode`.
+   * @default "md3-mode"
    */
-  enableColorScheme?: boolean
-  /**
-   * CSS variable prefix.
-   * @default ""
-   */
-  prefix?: string
+  modeStorageKey?: string
 }
 
-export function createCssVarsProvider<
-  ColorScheme extends string,
-  ThemeInput extends { colorSchemes?: Partial<Record<ColorScheme, any>> },
->({
+export function createCssVarsProvider<ColorScheme extends string>({
+  attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
+  colorSchemeStorageKey:
+    defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   defaultColorScheme: designSystemColorScheme,
-  defaultMode: desisgnSystemMode = "light",
+  defaultMode: designSystemMode = "light",
   disableTransitionOnChange: designSystemTransitionOnChange = false,
-  enableColorScheme: designSystemEnableColorScheme = true,
-  prefix: designSystemPrefix = "",
+  excludeVariablesFromRoot,
+  modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
   resolveTheme,
-  shouldSkipGeneratingVar,
-  theme: baseTheme = {},
+  theme: defaultTheme = {},
 }: CssVarsProviderConfig<ColorScheme> & {
+  excludeVariablesFromRoot?: (cssVarPrefix: string) => string[]
   resolveTheme?: (theme: any) => any
-  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean
-  /**
-   * The calculated theme object that will be passed through context.
-   */
   theme: any
 }) {
-  const systemSpacing = createSpacing(baseTheme.spacing)
-  const systemBreakpoints = createBreakpoints(baseTheme.breakpoints ?? {})
-
   if (
-    !baseTheme.colorSchemes ||
+    !defaultTheme.colorSchemes ||
     (typeof designSystemColorScheme === "string" &&
-      !baseTheme.colorSchemes[designSystemColorScheme]) ||
+      !defaultTheme.colorSchemes[designSystemColorScheme]) ||
     (typeof designSystemColorScheme === "object" &&
-      !baseTheme.colorSchemes[designSystemColorScheme?.light]) ||
+      !defaultTheme.colorSchemes[designSystemColorScheme?.light]) ||
     (typeof designSystemColorScheme === "object" &&
-      !baseTheme.colorSchemes[designSystemColorScheme?.dark])
+      !defaultTheme.colorSchemes[designSystemColorScheme?.dark])
   ) {
     console.error(
-      `MUI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`,
+      `MD3-UI: \`${designSystemColorScheme}\` does not exist in \`theme.colorSchemes\`.`,
     )
   }
   const ColorSchemeContext = React.createContext<
@@ -103,39 +98,73 @@ export function createCssVarsProvider<
     React.PropsWithChildren<
       Partial<CssVarsProviderConfig<ColorScheme>> & {
         /**
-         * The body attribute name to attach color scheme.
-         * @default "data-md3-color-scheme"
+         * The node used to attach the color-scheme attribute.
+         * @default document
          */
-        attribute?: string
+        colorSchemeNode?: Element | null
         /**
-         * The key in the local storage used to store current color scheme.
-         * @default "md3-mode"
+         * The CSS selector for attaching the generated custom properties.
+         * @default ":root"
          */
-        modeStorageKey?: string
-        theme?: ThemeInput
+        colorSchemeSelector?: string
+        /**
+         * If `true`, the provider creates its own context and generate
+         * stylesheet as if it is a root `CssVarsProvider`.
+         * @default false
+         */
+        disableNestedContext?: boolean
+        /**
+         * If `true`, the style sheet won't be generated. This is useful for
+         * controlling nested `CssVarsProvider` behavior.
+         * @default false
+         */
+        disableStyleSheetGeneration?: boolean
+        /**
+         * The document used to perform `disableTransitionOnChange` feature.
+         * @default document
+         */
+        documentNode?: Document | null
+        /**
+         * The window that attaches the storage event listener.
+         * @default window
+         */
+        storageWindow?: Window | null
+        theme?: {
+          colorSchemes: Record<ColorScheme, Record<string, any>>
+          cssVarPrefix?: string
+        }
       }
     >
   > = ({
+    attribute = defaultAttribute,
     children,
-    theme: themeProp = {} as any,
-    prefix = designSystemPrefix,
-    modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
-    attribute = DEFAULT_ATTRIBUTE,
-    defaultMode = desisgnSystemMode,
+    colorSchemeNode = typeof document === "undefined"
+      ? undefined
+      : document.documentElement,
+    colorSchemeSelector = ":root",
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
     defaultColorScheme = designSystemColorScheme,
+    defaultMode = designSystemMode,
+    disableNestedContext = false,
+    disableStyleSheetGeneration = false,
     disableTransitionOnChange = designSystemTransitionOnChange,
-    enableColorScheme = designSystemEnableColorScheme,
+    documentNode = typeof document === "undefined" ? undefined : document,
+    modeStorageKey = defaultModeStorageKey,
+    storageWindow = typeof window === "undefined" ? undefined : window,
+    theme: themeProp = defaultTheme,
   }) => {
-    const { colorSchemes: baseColorSchemes = {}, ...restBaseTheme } = baseTheme
-    const { colorSchemes: colorSchemesProp = {}, ...restThemeProp } = themeProp
-    const hasMounted = React.useRef(false)
+    const mounted = React.useRef(false)
+    const upperTheme: any = useTheme()
+    const context = React.useContext(ColorSchemeContext)
+    const nested = !!context && !disableNestedContext
 
-    // eslint-disable-next-line prefer-const
-    let { components = {}, ...mergedTheme } = mergeDeep(
-      restBaseTheme,
-      restThemeProp,
-    )
-    const colorSchemes = mergeDeep(baseColorSchemes, colorSchemesProp)
+    const {
+      colorSchemes = {},
+      components = {},
+      cssVarPrefix,
+      generateCssVars = () => ({ vars: {}, css: {} }),
+      ...restThemeProp
+    } = themeProp
 
     const allColorSchemes = Object.keys(colorSchemes) as ColorScheme[]
 
@@ -147,75 +176,97 @@ export function createCssVarsProvider<
       typeof defaultColorScheme === "string"
         ? defaultColorScheme
         : defaultColorScheme.dark
+
+    // 1. Get the data about the `mode`, `colorScheme`, and setter functions.
     const {
-      mode,
+      colorScheme: stateColorScheme,
+      darkColorScheme,
+      lightColorScheme,
+      mode: stateMode,
+      setColorScheme,
       setMode,
       systemMode,
-      lightColorScheme,
-      darkColorScheme,
-      colorScheme,
-      setColorScheme,
     } = useCurrentColorScheme({
-      supportedColorSchemes: allColorSchemes,
-      defaultLightColorScheme,
+      colorSchemeStorageKey,
       defaultDarkColorScheme,
-      modeStorageKey,
+      defaultLightColorScheme,
       defaultMode,
+      modeStorageKey,
+      storageWindow,
+      supportedColorSchemes: allColorSchemes,
     })
-    const resolvedColorScheme = (() => {
+
+    let mode = stateMode
+    let colorScheme = stateColorScheme
+
+    if (nested) {
+      mode = context.mode
+      colorScheme = context.colorScheme
+    }
+
+    const calculatedMode = (() => {
+      if (mode) {
+        return mode
+      }
+      // This scope occurs on the server
+      if (defaultMode === "system") {
+        return designSystemMode
+      }
+      return defaultMode
+    })()
+    const calculatedColorScheme = (() => {
       if (!colorScheme) {
         // This scope occurs on the server
-        if (defaultMode === "dark") {
+        if (calculatedMode === "dark") {
           return defaultDarkColorScheme
         }
-        // use light color scheme, if default mode is 'light' | 'auto'
+        // use light color scheme, if default mode is 'light' | 'system'
         return defaultLightColorScheme
       }
       return colorScheme
     })()
 
-    const {
-      css: rootCss,
-      vars: rootVars,
-      parsedTheme,
-    } = cssVarsParser(mergedTheme, {
-      prefix,
-      basePrefix: designSystemPrefix,
-      shouldSkipGeneratingVar,
-    })
+    // 2. Create CSS variables and store them in objects (to be generated in
+    //    stylesheets in the final step)
+    const { css: rootCss, vars: rootVars } = generateCssVars()
 
-    mergedTheme = {
-      ...parsedTheme,
-      components,
+    // 3. Start composing the theme object
+    const theme: Theme = {
+      ...restThemeProp,
       colorSchemes,
-      prefix,
+      components,
+      cssVarPrefix,
+      getColorSchemeSelector: (targetColorScheme: string) =>
+        `[${attribute}="${targetColorScheme}"] &`,
       vars: rootVars,
-      spacing: themeProp.spacing
-        ? createSpacing(themeProp.spacing)
-        : systemSpacing,
-      breakpoints: themeProp.breakpoints
-        ? createBreakpoints(themeProp.breakpoints)
-        : systemBreakpoints,
-      getCssVar: createGetCssVar(prefix),
     }
 
-    const styleSheet = {}
-
-    Object.entries(colorSchemes).forEach(([key, scheme]) => {
-      const {
-        css,
-        vars,
-        parsedTheme: parsedScheme,
-      } = cssVarsParser(scheme as any, {
-        prefix,
-        basePrefix: designSystemPrefix,
-        shouldSkipGeneratingVar,
-      })
-      mergedTheme.vars = mergeDeep(mergedTheme.vars, vars)
-      if (key === resolvedColorScheme) {
-        mergedTheme = {
-          ...mergedTheme,
-          ...parsedScheme,
+    // 4. Create color CSS variables and store them in objects (to be generated
+    //    in stylesheets in the final step).
+    //    The default color scheme stylesheet is constructed to have the least
+    //    CSS specificity.
+    //    The other color schemes uses selector, default as data attribute, to
+    //    increase the CSS specificity so that they can override the default
+    //    color scheme stylesheet.
+    const defaultColorSchemeStyleSheet = {}
+    const otherColorSchemesStyleSheet = {}
+    for (const [key, scheme] of Object.entries<any>(colorSchemes)) {
+      const { css, vars } = generateCssVars(key)
+      theme.vars = mergeDeep(theme.vars, vars)
+      if (key === calculatedColorScheme) {
+        // 4.1 Merge the selected color scheme to the theme
+        for (const schemeKey of Object.keys(scheme)) {
+          theme[schemeKey] =
+            // shallow merge the 1st level structure of the theme.
+            scheme[schemeKey] && typeof scheme[schemeKey] === "object"
+              ? {
+                  ...theme[schemeKey],
+                  ...scheme[schemeKey],
+                }
+              : scheme[schemeKey]
+        }
+        if (theme.sys.color) {
+          theme.sys.color.mode = key
         }
       }
       const resolvedDefaultColorScheme = (() => {
@@ -228,55 +279,49 @@ export function createCssVarsProvider<
         return defaultColorScheme.light
       })()
       if (key === resolvedDefaultColorScheme) {
-        styleSheet[":root"] = css
+        if (excludeVariablesFromRoot) {
+          const excludedVariables = {}
+          for (const cssVar of excludeVariablesFromRoot(cssVarPrefix)) {
+            excludedVariables[cssVar] = css[cssVar]
+            delete css[cssVar]
+          }
+          defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] =
+            excludedVariables
+        }
+        defaultColorSchemeStyleSheet[
+          `${colorSchemeSelector}, [${attribute}="${key}"]`
+        ] = css
       } else {
-        styleSheet[`[${attribute}="${key}"]`] = css
+        otherColorSchemesStyleSheet[
+          `${
+            colorSchemeSelector === ":root" ? "" : colorSchemeSelector
+          }[${attribute}="${key}"]`
+        ] = css
       }
-    })
+    }
 
+    theme.vars = mergeDeep(theme.vars, rootVars)
+
+    // 5. Declaring effects
+    // 5.1 Updates the selector value to use the current color scheme which tells CSS to use the proper stylesheet.
     React.useEffect(() => {
-      if (colorScheme) {
-        // attaches attribute to <html> because the css variables are attached
-        // to :root (html)
-        document.documentElement.setAttribute(attribute, colorScheme)
+      if (colorScheme && colorSchemeNode) {
+        // attaches attribute to <html> because the css variables are attached to :root (html)
+        colorSchemeNode.setAttribute(attribute, colorScheme)
       }
-    }, [colorScheme, attribute])
+    }, [colorScheme, attribute, colorSchemeNode])
 
-    useEnhancedEffect(() => {
-      if (!mode || !enableColorScheme) {
-        return () => {}
-      }
-      const priorColorScheme =
-        document.documentElement.style.getPropertyValue("color-scheme")
-      // `color-scheme` tells browser to render built-in elements according to
-      // its value: `light` or `dark`
-      if (mode === "system") {
-        document.documentElement.style.setProperty(
-          "color-scheme",
-          systemMode ?? null,
-        )
-      } else {
-        document.documentElement.style.setProperty("color-scheme", mode)
-      }
-
-      return () => {
-        document.documentElement.style.setProperty(
-          "color-scheme",
-          priorColorScheme,
-        )
-      }
-    }, [mode, systemMode, enableColorScheme])
-
+    // 5.2 Remove the CSS transition when color scheme changes to create instant experience.
+    // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
     React.useEffect(() => {
       let timer: ReturnType<typeof setTimeout>
-      if (disableTransitionOnChange && hasMounted.current) {
-        // credit: https://github.com/pacocoursey/next-themes/blob/b5c2bad50de2d61ad7b52a9c5cdc801a78507d7a/index.tsx#L313
-        const css = document.createElement("style")
-        css.append(document.createTextNode(DISABLE_CSS_TRANSITION))
-        document.head.append(css)
+      if (disableTransitionOnChange && mounted.current && documentNode) {
+        const css = documentNode.createElement("style")
+        css.append(documentNode.createTextNode(DISABLE_CSS_TRANSITION))
+        documentNode.head.append(css)
 
         // Force browser repaint
-        ;(() => window.getComputedStyle(document.body))()
+        ;(() => window.getComputedStyle(documentNode.body))()
 
         timer = setTimeout(() => {
           css.remove()
@@ -285,35 +330,67 @@ export function createCssVarsProvider<
       return () => {
         clearTimeout(timer)
       }
-    }, [colorScheme, disableTransitionOnChange])
-
+    }, [colorScheme, disableTransitionOnChange, documentNode])
     React.useEffect(() => {
-      hasMounted.current = true
+      mounted.current = true
       return () => {
-        hasMounted.current = false
+        mounted.current = false
       }
     }, [])
 
-    return (
-      <ColorSchemeContext.Provider
-        // eslint-disable-next-line react/jsx-no-constructed-context-values
-        value={{
-          mode,
-          setMode,
-          lightColorScheme,
-          darkColorScheme,
-          colorScheme,
-          setColorScheme,
-          allColorSchemes,
-        }}
-      >
-        <Global styles={{ ":root": rootCss }} />
-        <Global styles={styleSheet} />
-        <ThemeProvider
-          theme={resolveTheme != null ? resolveTheme(mergedTheme) : mergedTheme}
-        >
+    const contextValue = React.useMemo(
+      () => ({
+        mode,
+        systemMode,
+        setMode,
+        lightColorScheme,
+        darkColorScheme,
+        colorScheme,
+        setColorScheme,
+        allColorSchemes,
+      }),
+      [
+        allColorSchemes,
+        colorScheme,
+        darkColorScheme,
+        lightColorScheme,
+        mode,
+        setColorScheme,
+        setMode,
+        systemMode,
+      ],
+    )
+
+    let shouldGenerateStyleSheet = true
+    if (
+      disableStyleSheetGeneration ||
+      (nested && upperTheme?.cssVarPrefix === cssVarPrefix)
+    ) {
+      shouldGenerateStyleSheet = false
+    }
+
+    const element = (
+      <>
+        {shouldGenerateStyleSheet && (
+          <>
+            <Global styles={{ ":root": rootCss }} />
+            <Global styles={defaultColorSchemeStyleSheet} />
+            <Global styles={otherColorSchemesStyleSheet} />
+          </>
+        )}
+        <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>
           {children}
         </ThemeProvider>
+      </>
+    )
+
+    if (nested) {
+      return element
+    }
+
+    return (
+      <ColorSchemeContext.Provider value={contextValue}>
+        {element}
       </ColorSchemeContext.Provider>
     )
   }

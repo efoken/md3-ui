@@ -12,6 +12,7 @@ import {
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
+  Platform,
   TextStyle as RNTextStyle,
   View as RNView,
   ViewStyle as RNViewStyle,
@@ -66,7 +67,10 @@ const ElevatedButtonRoot = styled(ButtonBase, {
       height: theme.comp.elevatedButton.container.height,
       justifyContent: "center",
       paddingHorizontal: 24,
-      shadowColor: theme.comp.elevatedButton.container.shadowColor,
+
+      ...(Platform.OS !== "web" && {
+        shadowColor: theme.comp.elevatedButton.container.shadowColor,
+      }),
 
       ...(ownerState.disabled && {
         ...theme.comp.elevatedButton.disabled.container.elevation,

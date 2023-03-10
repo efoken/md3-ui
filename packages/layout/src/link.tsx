@@ -2,6 +2,7 @@ import {
   OverridableComponent,
   OverrideProps,
   styled,
+  StylesProp,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
@@ -22,9 +23,9 @@ export interface LinkTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNTextStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.

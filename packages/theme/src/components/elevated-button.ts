@@ -1,9 +1,51 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:17 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:23 GMT
  */
 
-export const elevatedButton = (theme: any) => ({
+import { TextStyle as RNTextStyle } from "react-native"
+
+export interface Md3CompElevatedButton {
+  container: {
+    color: string
+    elevation: any
+    height: number
+    shadowColor: string
+    shape: number
+    surfaceTintLayer: { color: string }
+  }
+  disabled: {
+    container: { color: string; elevation: any; opacity: number }
+    labelText: { color: string; opacity: number }
+  }
+  focus: {
+    container: { elevation: any }
+    labelText: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  hover: {
+    container: { elevation: any }
+    labelText: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  labelText: { color: string; textStyle: Partial<RNTextStyle> }
+  pressed: {
+    container: { elevation: any }
+    labelText: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  withIcon: {
+    disabled: { icon: { color: string; opacity: number } }
+    focus: { icon: { color: string } }
+    hover: { icon: { color: string } }
+    icon: { color: string; size: number }
+    pressed: { icon: { color: string } }
+  }
+}
+
+export const elevatedButtonTheme = (
+  theme: Record<string, any>,
+): Md3CompElevatedButton => ({
   container: {
     color: theme.sys.color.surface,
     elevation: theme.sys.elevation.level1,
@@ -93,5 +135,3 @@ export const elevatedButton = (theme: any) => ({
     },
   },
 })
-
-export type Md3CompElevatedButton = ReturnType<typeof elevatedButton>

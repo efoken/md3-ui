@@ -1,6 +1,7 @@
 import {
   OwnerStateProps,
   styled,
+  StylesProp,
   SxProps,
   TextStyleProvider,
   useTheme,
@@ -39,10 +40,10 @@ export interface IconButtonProps extends ButtonBaseProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     root?: RNViewStyle
     content?: RNTextStyle
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as
    * additional styles.

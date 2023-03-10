@@ -44,9 +44,9 @@ const styleFunctionMapping = {
 
 export const propToStyleFunction = Object.keys(filterPropsMapping).reduce(
   (acc, styleFnName) => {
-    filterPropsMapping[styleFnName].forEach((propName: any) => {
+    for (const propName of filterPropsMapping[styleFnName]) {
       acc[propName] = styleFunctionMapping[styleFnName]
-    })
+    }
     return acc
   },
   {},

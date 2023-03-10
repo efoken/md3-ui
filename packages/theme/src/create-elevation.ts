@@ -14,7 +14,6 @@ export function createElevation(elevation?: Partial<Elevation>): Elevation {
     level0: Platform.select({
       default: {
         elevation: 0,
-        shadowColor: "#000",
       },
       web: {
         boxShadow:

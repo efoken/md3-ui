@@ -135,11 +135,13 @@ function defaultGetTabbable(root: HTMLElement) {
     tabIndex: number
   }[] = []
 
-  root.querySelectorAll<HTMLElement>(candidatesSelector).forEach((node, i) => {
+  for (const [i, node] of root
+    .querySelectorAll<HTMLElement>(candidatesSelector)
+    .entries()) {
     const nodeTabIndex = getTabIndex(node)
 
     if (nodeTabIndex === -1 || !isNodeMatchingSelectorFocusable(node)) {
-      return
+      continue
     }
 
     if (nodeTabIndex === 0) {
@@ -151,7 +153,7 @@ function defaultGetTabbable(root: HTMLElement) {
         tabIndex: nodeTabIndex,
       })
     }
-  })
+  }
 
   return [
     ...orderedTabNodes

@@ -1,7 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies, no-console */
 import glob from "glob"
 import mkdirp from "mkdirp"
-import { writeFileSync } from "node:fs"
+import fs from "node:fs"
 import path from "node:path"
 import { ComponentDoc, withCustomConfig } from "react-docgen-typescript"
 
@@ -99,11 +99,11 @@ function extractComponentInfo(docs: ComponentDoc[]) {
  * Write component info as JSON to disk
  */
 function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
-  componentInfo.forEach((info) => {
+  for (const info of componentInfo) {
     const filePath = path.join(outputPath, info.fileName)
     const content = JSON.stringify(info.def)
-    writeFileSync(filePath, content)
-  })
+    fs.writeFileSync(filePath, content)
+  }
 }
 
 /**
@@ -114,7 +114,7 @@ function writeIndexCJS(componentInfo: ComponentInfo[]) {
     ({ displayName, importPath }) =>
       `module.exports['${displayName}'] = require('${importPath}')`,
   )
-  writeFileSync(cjsIndexFilePath, cjsExports.join("\n"))
+  fs.writeFileSync(cjsIndexFilePath, cjsExports.join("\n"))
 }
 
 /**
@@ -132,7 +132,7 @@ function writeIndexESM(componentInfo: ComponentInfo[]) {
     .map(({ exportName }) => `export const ${exportName} = ${exportName}Import`)
     .join("\n")
 
-  writeFileSync(
+  fs.writeFileSync(
     esmIndexFilePath,
     `${esmPropImports}
 ${esmPropExports}`,
@@ -178,11 +178,10 @@ function writeTypes(componentInfo: ComponentInfo[]) {
     }
   `
 
-  writeFileSync(typeFilePath, `${baseType}\n${typeExports}`)
+  fs.writeFileSync(typeFilePath, `${baseType}\n${typeExports}`)
 }
 
 function log(...args: unknown[]) {
-  // eslint-disable-next-line no-console
   console.info("[props-docs]", ...args)
 }
 

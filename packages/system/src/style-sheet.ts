@@ -1,5 +1,5 @@
 import { isMedia, isMediaOrPseudo, mergeDeep } from "@md3-ui/utils"
-import MediaQuery from "css-mediaquery"
+import MediaQuery, { MediaValues } from "css-mediaquery2"
 import {
   Appearance,
   Dimensions,
@@ -12,8 +12,11 @@ import { addCSS } from "./inject"
 import { NamedStyles } from "./types"
 import { createCSSRule, createDeclarationBlock } from "./utils"
 
-function getDefaultMediaValues(): Partial<MediaQuery.MediaValues> {
-  const { width, height } = Dimensions.get("window")
+export function getDefaultMediaValues(): Partial<MediaValues> {
+  const { width, height, scale, fontScale } = Dimensions.get("window")
+
+  MediaQuery.remBase = 16 * fontScale
+
   return {
     orientation: width > height ? "landscape" : "portrait",
     width,
@@ -22,9 +25,11 @@ function getDefaultMediaValues(): Partial<MediaQuery.MediaValues> {
     "device-height": height,
     "aspect-ratio": width / height,
     "device-aspect-ratio": width / height,
-    "prefers-color-scheme": Appearance.getColorScheme(),
-    // @ts-ignore: `type` if missing in type definitions
-    type: Platform.OS,
+    "device-pixel-ratio": scale,
+    "prefers-color-scheme": Appearance.getColorScheme() ?? undefined,
+    "prefers-reduced-motion": "no-preference",
+    "inverted-colors": "none",
+    type: Platform.OS === "web" ? "screen" : Platform.OS,
   }
 }
 
@@ -38,7 +43,7 @@ export class StyleSheet {
 
   static createWithMedia<T extends NamedStyles<T> | NamedStyles<any>>(
     stylesWithQuery: T | NamedStyles<T>,
-    mediaValues: Partial<MediaQuery.MediaValues> = {},
+    mediaValues: Partial<MediaValues> = {},
   ): {
     fullStyles: T
     styles: T
@@ -50,46 +55,47 @@ export class StyleSheet {
     let cleanStyles = { ...stylesWithQuery }
     const mediaStyles: Record<keyof T, any> = {} as any
 
-    Object.entries(stylesWithQuery).forEach(([key, styleWithQuery]) => {
+    for (const [key, styleWithQuery] of Object.entries(stylesWithQuery)) {
       if (!styleWithQuery) {
-        return
+        continue
       }
 
-      Object.keys(styleWithQuery)
-        .filter((query) => isMediaOrPseudo(query))
-        .forEach((query) => {
-          if (Platform.OS === "web") {
-            const css = createDeclarationBlock(styleWithQuery[query])
-            const stringHash = `md3-media-${hash(`${key}${query}${css}`)}`
-            const rule = createCSSRule(query, stringHash, css)
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      for (const query of Object.keys(styleWithQuery).filter((query) =>
+        isMediaOrPseudo(query),
+      )) {
+        if (Platform.OS === "web") {
+          const css = createDeclarationBlock(styleWithQuery[query])
+          const stringHash = `md3-media-${hash(`${key}${query}${css}`)}`
+          const rule = createCSSRule(query, stringHash, css)
 
-            addCSS(stringHash, rule)
-            delete cleanStyles[key][query]
+          addCSS(stringHash, rule)
+          delete cleanStyles[key][query]
 
-            mediaStyles[key] = {
-              ...mediaStyles[key],
-              $$css: true,
-              [query]: stringHash,
-            }
-          } else {
-            if (isMedia(query)) {
-              const isMatchingMediaQuery = MediaQuery.match(
-                query.replace("@media", ""),
-                { ...getDefaultMediaValues(), ...mediaValues },
-              )
+          mediaStyles[key] = {
+            ...mediaStyles[key],
+            $$css: true,
+            [query]: stringHash,
+          }
+        } else {
+          if (isMedia(query)) {
+            const isMatchingMediaQuery = MediaQuery.match(
+              query.replace("@media", ""),
+              { ...getDefaultMediaValues(), ...mediaValues },
+            )
 
-              if (isMatchingMediaQuery) {
-                cleanStyles = {
-                  ...cleanStyles,
-                  [key]: { ...cleanStyles[key], ...styleWithQuery[query] },
-                }
+            if (isMatchingMediaQuery) {
+              cleanStyles = {
+                ...cleanStyles,
+                [key]: { ...cleanStyles[key], ...styleWithQuery[query] },
               }
             }
-
-            delete cleanStyles[key][query]
           }
-        })
-    })
+
+          delete cleanStyles[key][query]
+        }
+      }
+    }
 
     const styles: T = Object.fromEntries(
       Object.entries(this.create(cleanStyles)).map(([key, style]) =>

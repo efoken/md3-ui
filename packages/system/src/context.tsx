@@ -5,10 +5,17 @@ import {
 import { theme, Theme } from "@md3-ui/theme"
 import { isEmptyObject, objectFilter } from "@md3-ui/utils"
 import * as React from "react"
-import { Platform, StyleProp, TextStyle as RNTextStyle } from "react-native"
+import {
+  AccessibilityChangeEventName,
+  AccessibilityInfo,
+  Platform,
+  StyleProp,
+  TextStyle as RNTextStyle,
+  ViewStyle as RNViewStyle,
+} from "react-native"
 import { StyleSheet } from "./style-sheet"
 
-const TEXT_STYLE_KEYS = new Set([
+const TEXT_STYLE_KEYS = new Set<string>([
   "color",
   "fontFamily",
   "fontSize",
@@ -27,8 +34,9 @@ const TEXT_STYLE_KEYS = new Set([
   "textShadowOffset",
   "textShadowRadius",
   "textTransform",
+  "verticalAlign",
   "writingDirection",
-])
+] satisfies Exclude<keyof RNTextStyle, keyof RNViewStyle>[])
 
 export interface ThemeProviderProps {
   children: React.ReactNode
@@ -86,4 +94,73 @@ export const TextStyleProvider: React.FC<TextStyleProviderProps> = ({
 
 export function useTextStyle() {
   return React.useContext(TextStyleContext)
+}
+
+const AccessibilityInfoContext = React.createContext({
+  invertColorsEnabled: false,
+  reduceMotionEnabled: false,
+})
+
+function useAccessibilityChangeEventHandler(
+  eventName: AccessibilityChangeEventName,
+  initializerName:
+    | "isBoldTextEnabled"
+    | "isGrayscaleEnabled"
+    | "isInvertColorsEnabled"
+    | "isReduceMotionEnabled"
+    | "isReduceTransparencyEnabled"
+    | "isScreenReaderEnabled",
+) {
+  const [enabled, setEnabled] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!AccessibilityInfo[initializerName]) {
+      return () => {}
+    }
+
+    AccessibilityInfo[initializerName]().then(setEnabled)
+
+    const subscription = AccessibilityInfo.addEventListener(
+      eventName,
+      setEnabled,
+    )
+
+    return () => {
+      subscription.remove()
+    }
+  }, [eventName, initializerName])
+
+  return enabled
+}
+
+export interface AccessibilityInfoProviderProps {
+  children?: React.ReactNode
+}
+
+export const AccessibilityInfoProvider: React.FC<
+  AccessibilityInfoProviderProps
+> = ({ children }) => {
+  const invertColorsEnabled = useAccessibilityChangeEventHandler(
+    "invertColorsChanged",
+    "isInvertColorsEnabled",
+  )
+  const reduceMotionEnabled = useAccessibilityChangeEventHandler(
+    "reduceMotionChanged",
+    "isReduceMotionEnabled",
+  )
+
+  const context = React.useMemo(
+    () => ({ invertColorsEnabled, reduceMotionEnabled }),
+    [invertColorsEnabled, reduceMotionEnabled],
+  )
+
+  return (
+    <AccessibilityInfoContext.Provider value={context}>
+      {children}
+    </AccessibilityInfoContext.Provider>
+  )
+}
+
+export function useAccessibilityInfo() {
+  return React.useContext(AccessibilityInfoContext)
 }

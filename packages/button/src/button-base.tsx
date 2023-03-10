@@ -43,42 +43,26 @@ export interface ButtonBaseProps
    * @default false
    */
   disableRipple?: boolean
-  /**
-   * @ignore
-   */
+  /** @ignore */
   focusColor?: string
-  /**
-   * @ignore
-   */
-  focusOpacity?: string
-  /**
-   * @ignore
-   */
+  /** @ignore */
+  focusOpacity?: number
+  /** @ignore */
   hoverColor?: string
-  /**
-   * @ignore
-   */
+  /** @ignore */
   hoverOpacity?: number
   /**
    * Callback fired when the component is focused with a keyboard. We also
    * trigger an `onFocus` callback.
    */
   onFocusVisible?: (event: NativeSyntheticEvent<TargetedEvent>) => void
-  /**
-   * @ignore
-   */
+  /** @ignore */
   pressedColor?: string
-  /**
-   * @ignore
-   */
+  /** @ignore */
   pressedOpacity?: number
-  /**
-   * @ignore
-   */
+  /** @ignore */
   rippleColor?: string
-  /**
-   * @ignore
-   */
+  /** @ignore */
   style?: StyleProp<RNViewStyle>
   /**
    * Override or extend the styles applied to the component.
@@ -101,12 +85,12 @@ const ButtonBaseRoot = styled(RNPressable, {
   slot: "Root",
 })<OwnerStateProps<Pick<ButtonBaseProps, "disabled">>>(
   ({ theme, ownerState }) => ({
+    cursor: ownerState.disabled ? "default" : "pointer",
     outlineWidth: 0,
     pointerEvents: ownerState.disabled ? "none" : undefined,
     userSelect: "none",
 
     ...(Platform.OS === "web" && {
-      cursor: ownerState.disabled ? "default" : "pointer",
       transition: theme.sys.motion.create("box-shadow", {
         duration: 200,
         easing: "linear",

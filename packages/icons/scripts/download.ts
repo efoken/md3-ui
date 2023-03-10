@@ -1,10 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 import { Queue, retry, sleep } from "@md3-ui/utils"
 import fetch from "cross-fetch"
-import * as fse from "fs-extra"
-import * as path from "node:path"
+import fs from "node:fs"
+import path from "node:path"
 import { Config, optimize } from "svgo"
-import * as yargs from "yargs"
+import yargs from "yargs"
 
 const svgoConfig: Config = {
   multipass: true,
@@ -121,7 +121,7 @@ function downloadIcon(icon: { index: number; name: string; version: string }) {
         path: dataPath,
         ...svgoConfig,
       })
-      await fse.writeFile(dataPath, data.data)
+      fs.writeFileSync(dataPath, data.data)
     }),
   )
 }
@@ -132,7 +132,9 @@ async function run() {
       .usage("Download the SVG from material.io/resources/icons")
       .describe("start-after", "Resume at the following index")
     console.log("run", argv)
-    await fse.emptyDir(path.join(__dirname, "../assets"))
+    for (const file of fs.readdirSync(path.join(__dirname, "../assets"))) {
+      fs.rmSync(path.join(__dirname, "../assets", file))
+    }
     const response = await fetch("https://fonts.google.com/metadata/icons")
     const text = await response.text()
     const data = JSON.parse(text.replace(")]}'", "")) as {
@@ -144,7 +146,7 @@ async function run() {
       .splice(((argv as any).startAfter as number) ?? 0)
     console.log(`${icons.length} icons to download`)
 
-    const queue = new Queue<typeof icons[0]>(
+    const queue = new Queue<(typeof icons)[0]>(
       async (icon) => {
         await retry(async ({ tries }) => {
           await sleep((tries - 1) * 100)

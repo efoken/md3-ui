@@ -1,9 +1,50 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:17 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:24 GMT
  */
 
-export const filledButton = (theme: any) => ({
+import { TextStyle as RNTextStyle } from "react-native"
+
+export interface Md3CompFilledButton {
+  container: {
+    color: string
+    elevation: any
+    height: number
+    shadowColor: string
+    shape: number
+  }
+  disabled: {
+    container: { color: string; elevation: any; opacity: number }
+    labelText: { color: string; opacity: number }
+  }
+  focus: {
+    container: { elevation: any }
+    labelText: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  hover: {
+    container: { elevation: any }
+    labelText: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  labelText: { color: string; textStyle: Partial<RNTextStyle> }
+  pressed: {
+    container: { elevation: any }
+    labelText: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  withIcon: {
+    disabled: { icon: { color: string; opacity: number } }
+    focus: { icon: { color: string } }
+    hover: { icon: { color: string } }
+    icon: { color: string; size: number }
+    pressed: { icon: { color: string } }
+  }
+}
+
+export const filledButtonTheme = (
+  theme: Record<string, any>,
+): Md3CompFilledButton => ({
   container: {
     color: theme.sys.color.primary,
     elevation: theme.sys.elevation.level0,
@@ -90,5 +131,3 @@ export const filledButton = (theme: any) => ({
     },
   },
 })
-
-export type Md3CompFilledButton = ReturnType<typeof filledButton>

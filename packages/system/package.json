@@ -31,13 +31,13 @@
     "@md3-ui/hooks": "^0.2.0",
     "@md3-ui/theme": "^0.2.0",
     "@md3-ui/utils": "^0.2.0",
-    "@types/css-mediaquery": "^0.1.1",
-    "css-mediaquery": "^0.1.2"
+    "css-mediaquery2": "^1.0.7",
+    "media-query-fns": "^1.4.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
     "react": "18.2.0",
-    "react-native": "0.71.3",
+    "react-native": "0.71.4",
     "react-native-web": "0.0.0-c26cb9b08"
   },
   "peerDependencies": {

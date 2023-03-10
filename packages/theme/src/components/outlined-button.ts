@@ -1,9 +1,45 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:17 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:24 GMT
  */
 
-export const outlinedButton = (theme: any) => ({
+import { TextStyle as RNTextStyle } from "react-native"
+
+export interface Md3CompOutlinedButton {
+  container: { height: number; shape: number }
+  disabled: {
+    labelText: { color: string; opacity: number }
+    outline: { color: string; opacity: number }
+  }
+  focus: {
+    labelText: { color: string }
+    outline: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  hover: {
+    labelText: { color: string }
+    outline: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  labelText: { color: string; textStyle: Partial<RNTextStyle> }
+  outline: { color: string; width: number }
+  pressed: {
+    labelText: { color: string }
+    outline: { color: string }
+    stateLayer: { color: string; opacity: number }
+  }
+  withIcon: {
+    disabled: { icon: { color: string; opacity: number } }
+    focus: { icon: { color: string } }
+    hover: { icon: { color: string } }
+    icon: { color: string; size: number }
+    pressed: { icon: { color: string } }
+  }
+}
+
+export const outlinedButtonTheme = (
+  theme: Record<string, any>,
+): Md3CompOutlinedButton => ({
   container: {
     height: 40,
     shape: theme.sys.shape.corner.full,
@@ -90,5 +126,3 @@ export const outlinedButton = (theme: any) => ({
     },
   },
 })
-
-export type Md3CompOutlinedButton = ReturnType<typeof outlinedButton>

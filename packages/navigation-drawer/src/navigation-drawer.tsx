@@ -1,4 +1,4 @@
-import { useAnimate, useLayout } from "@md3-ui/hooks"
+import { useAnimate, useLayout, useLocale } from "@md3-ui/hooks"
 import { Modal, ModalProps } from "@md3-ui/modal"
 import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
@@ -6,7 +6,6 @@ import * as React from "react"
 import {
   Animated,
   Easing,
-  I18nManager,
   Platform,
   View as RNView,
   ViewStyle as RNViewStyle,
@@ -133,6 +132,8 @@ export const NavigationDrawer = React.forwardRef<RNView, NavigationDrawerProps>(
     const { handleLayout, width: maxWidth } = useLayout()
     const width = maxWidth === 0 ? 360 : maxWidth
 
+    const { direction } = useLocale()
+
     const [transform] = useAnimate({
       duration: 225,
       easing: Easing.bezier(0, 0, 0.2, 1),
@@ -158,8 +159,8 @@ export const NavigationDrawer = React.forwardRef<RNView, NavigationDrawerProps>(
                   inputRange: [0, 1],
                   outputRange:
                     anchor === "start"
-                      ? [0, I18nManager.isRTL ? width : -width]
-                      : [0, I18nManager.isRTL ? -width : width],
+                      ? [0, direction === "rtl" ? width : -width]
+                      : [0, direction === "rtl" ? -width : width],
                 }),
               },
             ],

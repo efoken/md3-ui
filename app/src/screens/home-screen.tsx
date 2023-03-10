@@ -1,12 +1,9 @@
-import { Box, FilledButton } from "@md3-ui/core"
 import * as React from "react"
 import { ScrollView } from "react-native"
+import { ActionsPreview } from "../previews/actions-preview"
 
 export const HomeScreen: React.FC = () => (
   <ScrollView style={{ flexGrow: 1 }}>
-    <Box sx={{ p: 4 }}>
-      <FilledButton sx={{ mb: 4 }}>Buttons</FilledButton>
-      <FilledButton sx={{ mb: 4 }}>Chips</FilledButton>
-    </Box>
+    <ActionsPreview />
   </ScrollView>
 )

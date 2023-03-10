@@ -51,11 +51,11 @@ function ariaHiddenSiblings(
   ])
   const blacklistTagNames = new Set(["TEMPLATE", "SCRIPT", "STYLE"])
 
-  Array.from(container.children).forEach((element) => {
+  for (const element of Array.from(container.children)) {
     if (!blacklist.has(element) && !blacklistTagNames.has(element.tagName)) {
       ariaHidden(element, show)
     }
-  })
+  }
 }
 
 function handleContainer(containerInfo: Container, props: ManagedModalProps) {
@@ -88,17 +88,16 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
         HTMLElement | SVGElement
       >(".md3-fixed")
 
-      fixedElements.forEach((element) => {
+      for (const element of fixedElements) {
         restoreStyle.push({
           el: element,
           property: "padding-right",
           value: element.style.paddingRight,
         })
-        // eslint-disable-next-line no-param-reassign
         element.style.paddingRight = `${
           getPaddingRight(element) + scrollbarSize
         }px`
-      })
+      }
     }
 
     // Improve Gatsby support
@@ -135,13 +134,13 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
   }
 
   const restore = () => {
-    restoreStyle.forEach(({ value, el, property }) => {
+    for (const { value, el, property } of restoreStyle) {
       if (value) {
         el.style.setProperty(property, value)
       } else {
         el.style.removeProperty(property)
       }
-    })
+    }
   }
 
   return restore

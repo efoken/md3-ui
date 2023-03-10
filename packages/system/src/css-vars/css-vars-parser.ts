@@ -1,50 +1,54 @@
-interface NestedRecord<V = any> {
-  [k: string | number]: NestedRecord<V> | V
+interface NestedRecord<T = any> {
+  [k: string | number]: NestedRecord<T> | T
 }
 
 export function assignNestedKeys<
-  Object extends Record<string, any> = NestedRecord,
+  T extends Record<string, any> = NestedRecord,
   Value = any,
->(obj: Object, keys: string[], value: Value) {
+>(obj: T, keys: string[], value: Value, arrayKeys: string[] = []) {
   let temp: Record<string, any> = obj
-  keys.forEach((k, index) => {
+  for (const [index, k] of keys.entries()) {
     if (index === keys.length - 1) {
-      if (temp && typeof temp === "object") {
+      if (Array.isArray(temp)) {
+        temp[Number(k)] = value
+      } else if (temp && typeof temp === "object") {
         temp[k] = value
       }
     } else if (temp && typeof temp === "object") {
       if (!temp[k]) {
-        temp[k] = {}
+        temp[k] = arrayKeys.includes(k) ? [] : {}
       }
       temp = temp[k]
     }
-  })
+  }
 }
 
 export function walkObjectDeep<Value, T = Record<string, any>>(
   obj: T,
-  callback: (
-    keys: string[],
-    value: Value,
-    scope: Record<string, string | number>,
-  ) => void,
+  callback: (keys: string[], value: Value, arrayKeys: string[]) => void,
   shouldSkipPaths?: (keys: string[]) => boolean,
 ) {
-  function recurse(object: any, parentKeys: string[] = []) {
-    Object.entries(object).forEach(([key, value]: [string, any]) => {
+  function recurse(
+    object: any,
+    parentKeys: string[] = [],
+    arrayKeys: string[] = [],
+  ) {
+    for (const [key, value] of Object.entries<any>(object)) {
       if (
-        (!shouldSkipPaths ||
-          (shouldSkipPaths && !shouldSkipPaths([...parentKeys, key]))) &&
-        value !== undefined &&
+        (shouldSkipPaths == null || !shouldSkipPaths([...parentKeys, key])) &&
         value !== null
       ) {
         if (typeof value === "object" && Object.keys(value).length > 0) {
-          recurse(value, [...parentKeys, key])
+          recurse(
+            value,
+            [...parentKeys, key],
+            Array.isArray(value) ? [...arrayKeys, key] : arrayKeys,
+          )
         } else {
-          callback([...parentKeys, key], value, object)
+          callback([...parentKeys, key], value, arrayKeys)
         }
       }
-    })
+    }
   }
   recurse(obj)
 }
@@ -61,7 +65,7 @@ function getCssValue(keys: string[], value: string | number) {
     }
     const lastKey = keys[keys.length - 1]
     if (lastKey.toLowerCase().includes("opacity")) {
-      // opacity values are unitless
+      // Opacity values are unitless
       return value
     }
     return `${value}px`
@@ -71,58 +75,42 @@ function getCssValue(keys: string[], value: string | number) {
 
 export function cssVarsParser<T extends Record<string, any>>(
   theme: T,
-  options?: {
+  options: {
     prefix?: string
-    basePrefix?: string
     shouldSkipGeneratingVar?: (
       objectPathKeys: string[],
       value: string | number,
     ) => boolean
-  },
+  } = {},
 ) {
-  const { prefix, basePrefix = "", shouldSkipGeneratingVar } = options || {}
-  const css = {} as NestedRecord<string>
+  const { prefix, shouldSkipGeneratingVar } = options
+  const css = {} as Record<string, string | number>
   const vars = {} as NestedRecord<string>
-  const parsedTheme = {} as T
+  const varsWithDefaults = {}
 
   walkObjectDeep(
     theme,
-    (keys, value: string | number | object) => {
-      if (typeof value === "string" || typeof value === "number") {
-        if (typeof value === "string" && /var\(\s*--/.test(value)) {
-          // for CSS var, apply prefix or remove basePrefix from the variable
-          if (!basePrefix && prefix) {
-            // eslint-disable-next-line no-param-reassign
-            value = value.replace(/var\(\s*--/g, `var(--${prefix}-`)
-          } else {
-            // eslint-disable-next-line no-param-reassign
-            value = prefix
-              ? value.replace(
-                  new RegExp(`var\\(\\s*--${basePrefix}`, "g"),
-                  `var(--${prefix}`,
-                ) // removing spaces
-              : value.replace(
-                  new RegExp(`var\\(\\s*--${basePrefix}-`, "g"),
-                  "var(--",
-                )
-          }
-        }
+    (keys, value: string | number | object, arrayKeys) => {
+      if (
+        (typeof value === "string" || typeof value === "number") &&
+        (shouldSkipGeneratingVar == null ||
+          !shouldSkipGeneratingVar(keys, value))
+      ) {
+        // Only create CSS & var if `shouldSkipGeneratingVar` returns false
+        const cssVar = `--${prefix ? `${prefix}-` : ""}${keys.join("-")}`
+        Object.assign(css, { [cssVar]: getCssValue(keys, value) })
 
-        if (
-          shouldSkipGeneratingVar == null ||
-          shouldSkipGeneratingVar(keys, value)
-        ) {
-          // only create css & var if `shouldSkipGeneratingVar` return false
-          const cssVar = `--${prefix ? `${prefix}-` : ""}${keys.join("-")}`
-          Object.assign(css, { [cssVar]: getCssValue(keys, value) })
-
-          assignNestedKeys(vars, keys, `var(${cssVar})`)
-        }
+        assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys)
+        assignNestedKeys(
+          varsWithDefaults,
+          keys,
+          `var(${cssVar}, ${value})`,
+          arrayKeys,
+        )
       }
-      assignNestedKeys(parsedTheme, keys, value)
     },
     (keys) => keys[0] === "vars", // skip 'vars/*' paths
   )
 
-  return { css, vars, parsedTheme }
+  return { css, vars, varsWithDefaults }
 }

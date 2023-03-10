@@ -1,7 +1,7 @@
 // Function assertions
-export function isFunction<T extends Function = Function>(
-  value: any,
-): value is T {
+export function isFunction<
+  T extends (...args: any[]) => any = (...args: any[]) => any,
+>(value: any): value is T {
   return typeof value === "function"
 }
 

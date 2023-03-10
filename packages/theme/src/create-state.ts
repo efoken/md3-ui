@@ -1,11 +1,18 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:17 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:23 GMT
  */
 
 import { mergeDeep } from "@md3-ui/utils"
 
-export function createState(state: any) {
+export interface State {
+  dragged: { stateLayerOpacity: number }
+  focus: { stateLayerOpacity: number }
+  hover: { stateLayerOpacity: number }
+  pressed: { stateLayerOpacity: number }
+}
+
+export function createState(state?: Partial<State>) {
   return mergeDeep(
     {
       dragged: {
@@ -24,5 +31,3 @@ export function createState(state: any) {
     state,
   )
 }
-
-export type State = ReturnType<typeof createState>

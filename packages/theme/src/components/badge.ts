@@ -1,9 +1,23 @@
 /**
  * Do not edit directly
- * Generated on Tue, 28 Feb 2023 14:24:17 GMT
+ * Generated on Tue, 07 Mar 2023 17:08:23 GMT
  */
 
-export const badge = (theme: any) => ({
+import { TextStyle as RNTextStyle } from "react-native"
+
+export interface Md3CompBadge {
+  color: string
+  large: {
+    color: string
+    labelText: { color: string; textStyle: Partial<RNTextStyle> }
+    shape: number
+    size: number
+  }
+  shape: number
+  size: number
+}
+
+export const badgeTheme = (theme: Record<string, any>): Md3CompBadge => ({
   color: theme.sys.color.error,
   large: {
     color: theme.sys.color.error,
@@ -17,5 +31,3 @@ export const badge = (theme: any) => ({
   shape: theme.sys.shape.corner.full,
   size: 6,
 })
-
-export type Md3CompBadge = ReturnType<typeof badge>

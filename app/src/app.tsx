@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/filename-case */
 import { Md3Provider } from "@md3-ui/core"
 import { StatusBar } from "expo-status-bar"
 import * as React from "react"
@@ -7,9 +6,9 @@ import {
   SafeAreaProvider,
 } from "react-native-safe-area-context"
 import { NativeRouter, Route, Routes } from "react-router-native"
-import { Layout } from "./src/layout"
-import { HomeScreen } from "./src/screens/home-screen"
-import { ThemesScreen } from "./src/screens/themes-screen"
+import { Layout } from "./layout"
+import { HomeScreen } from "./screens/home-screen"
+import { ThemesScreen } from "./screens/themes-screen"
 
 const App: React.FC = () => (
   <SafeAreaProvider initialMetrics={initialWindowMetrics}>

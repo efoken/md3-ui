@@ -109,14 +109,15 @@ export class Queue<T> {
     this.process()
   }
 
-  process = () => {
+  process = async () => {
     const scheduled = this.pendingEntries.splice(
       0,
       this.concurrency - this.inFlight,
     )
     this.inFlight += scheduled.length
-    scheduled.forEach(async (task) => {
+    for (const task of scheduled) {
       try {
+        // eslint-disable-next-line no-await-in-loop
         await this.worker(task)
       } catch (error) {
         this.error = error as Error
@@ -127,7 +128,7 @@ export class Queue<T> {
       if (this.pendingEntries.length > 0) {
         this.process()
       }
-    })
+    }
   }
 
   wait = ({ empty = false }: { empty?: boolean } = {}) =>

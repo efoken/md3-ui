@@ -97,17 +97,17 @@ export function computeBreakpointsBase(
   const base: Record<string, boolean> = {}
   const breakpointKeys = Object.keys(themeBreakpoints)
   if (Array.isArray(breakpointValues)) {
-    breakpointKeys.forEach((breakpoint, i) => {
+    for (const [i, breakpoint] of breakpointKeys.entries()) {
       if (i < breakpointValues.length) {
         base[breakpoint] = true
       }
-    })
+    }
   } else {
-    breakpointKeys.forEach((breakpoint) => {
+    for (const breakpoint of breakpointKeys) {
       if (breakpointValues[breakpoint] != null) {
         base[breakpoint] = true
       }
-    })
+    }
   }
   return base
 }

@@ -15,16 +15,13 @@ module.exports = {
     "^react-native$": "react-native-web",
   },
   transform: {
-    // "^.+\\.(ts|tsx|js|jsx)?$": "@swc-node/jest",
     "^.+\\.(ts|tsx|js|jsx)?$": "babel-jest",
   },
   transformIgnorePatterns: [
     "node_modules/(?!(jest-)?react-native(-.*)?|@react-native(-community)?/)",
   ],
-  setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
-  globals: {
-    "ts-jest": {
-      tsconfig: "tsconfig.json",
-    },
-  },
+  setupFilesAfterEnv: [
+    "@testing-library/jest-dom/extend-expect",
+    "./jest.setup.js",
+  ],
 }

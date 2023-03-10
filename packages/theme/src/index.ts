@@ -42,6 +42,7 @@ export interface Theme {
     mix: typeof mix
     rgba: typeof rgba
   }
+  vars: any
   comp: Components
 }
 
@@ -53,23 +54,25 @@ declare module "@emotion/react" {
 }
 
 export function createTheme(theme: Partial<Theme> = {}): Theme {
+  const palette = createPalette(theme.ref?.palette)
   const typeface = createTypeface(theme.ref?.typeface)
 
   const mergedTheme = {
     breakpoints: createBreakpoints(),
     spacing: createSpacing(4),
     ref: {
-      palette: createPalette(theme.ref?.palette),
+      palette,
       typeface,
     },
     sys: {
-      color: createColor(theme.sys?.color),
+      color: createColor(palette, theme.sys?.color),
       elevation: createElevation(theme.sys?.elevation),
       motion: createMotion(theme.sys?.motion),
       shape: createShape(theme.sys?.shape),
       state: createState(theme.sys?.state),
       typescale: createTypescale(typeface, theme.sys?.typescale),
     },
+    vars: {},
     utils: {
       mix,
       rgba,

@@ -89,11 +89,10 @@ export function compose<Props extends Record<string, any>>(
   ...styles: { (props: any): any; filterProps: (keyof Props)[] }[]
 ) {
   // eslint-disable-next-line @typescript-eslint/no-shadow
-  const handlers = styles.reduce((acc, style) => {
-    style.filterProps.forEach((prop: any) => {
+  const handlers = styles.reduce<any>((acc, style) => {
+    for (const prop of style.filterProps) {
       acc[prop] = style
-    })
-
+    }
     return acc
   }, {})
 

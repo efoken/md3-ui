@@ -1,5 +1,11 @@
 import { useBoolean, useControlled, useEventCallback } from "@md3-ui/hooks"
-import { styled, SxProps, useTheme, useThemeProps } from "@md3-ui/system"
+import {
+  styled,
+  StylesProp,
+  SxProps,
+  useTheme,
+  useThemeProps,
+} from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
@@ -35,11 +41,11 @@ export interface SwitchProps extends SwitchBaseProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     root?: RNViewStyle
     switchBase?: RNViewStyle
     thumb?: RNViewStyle
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as additional
    * styles.

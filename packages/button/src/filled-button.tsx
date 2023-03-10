@@ -12,6 +12,7 @@ import {
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
+  Platform,
   TextStyle as RNTextStyle,
   View as RNView,
   ViewStyle as RNViewStyle,
@@ -66,7 +67,10 @@ const FilledButtonRoot = styled(ButtonBase, {
       height: theme.comp.filledButton.container.height,
       justifyContent: "center",
       paddingHorizontal: 24,
-      shadowColor: theme.comp.filledButton.container.shadowColor,
+
+      ...(Platform.OS !== "web" && {
+        shadowColor: theme.comp.filledButton.container.shadowColor,
+      }),
 
       ...(ownerState.disabled && {
         ...theme.comp.filledButton.disabled.container.elevation,

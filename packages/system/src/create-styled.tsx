@@ -1,12 +1,10 @@
 import { Theme } from "@md3-ui/theme"
-import { cx, isFunction, objectFilter, __DEV__ } from "@md3-ui/utils"
-import MediaQuery from "css-mediaquery"
+import { cx, isFunction, __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
-import { PressableStateCallbackType, useWindowDimensions } from "react-native"
+import { PressableStateCallbackType as RNPressableStateCallbackType } from "react-native"
 import { useTheme } from "./context"
 import { css } from "./create-css"
 import { styleFunctionSx } from "./style-function-sx"
-import { StyleSheet } from "./style-sheet"
 import {
   CreateStyled,
   NamedStyles,
@@ -14,29 +12,12 @@ import {
   StyledComponent,
   StyledOptions,
 } from "./types"
-import { findBreakpoints } from "./utils"
+import { useStyleSheet } from "./use-style-sheet"
 
 function getDisplayName(Component: React.ElementType) {
   return typeof Component === "string"
     ? Component
     : Component.displayName || Component.name || "Styled"
-}
-
-function useStyleSheet(
-  styles: RNStyle,
-  mediaValues?: Partial<MediaQuery.MediaValues>,
-  breakpoint?: string | number,
-) {
-  const { styles: createdStyles } = React.useMemo(
-    () =>
-      StyleSheet.createWithMedia(
-        { styles: objectFilter(styles, (style) => style != null) },
-        mediaValues,
-      ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [breakpoint, mediaValues, styles],
-  )
-  return { style: createdStyles.styles }
 }
 
 export function defaultShouldForwardProp(prop: keyof any) {
@@ -73,7 +54,6 @@ export const styled: CreateStyled = <
     const Styled = React.forwardRef<T, React.ComponentProps<T>>(
       ({ dataSet, style, ...props }: React.ComponentProps<T> & any, ref) => {
         const theme = useTheme()
-        const { width } = useWindowDimensions()
 
         const FinalTag = (shouldUseAs && props.as) || Component
 
@@ -91,23 +71,7 @@ export const styled: CreateStyled = <
           [mergedProps],
         )
 
-        const breakpoints = React.useMemo(
-          () => findBreakpoints(extendedStyles),
-          [extendedStyles],
-        )
-
-        const getBreakpoint = React.useCallback(
-          (newWidth: number) => breakpoints.find((item) => newWidth < item),
-          [breakpoints],
-        )
-
-        const [breakpoint, setBreakpoint] = React.useState(getBreakpoint(width))
-
-        React.useEffect(() => {
-          setBreakpoint(getBreakpoint(width))
-        }, [getBreakpoint, width])
-
-        const styleSheet = useStyleSheet(extendedStyles, {}, breakpoint)
+        const styleSheet = useStyleSheet(extendedStyles)
 
         const newProps = Object.keys(props).reduce((acc, key) => {
           if (shouldForwardProp(key) && (!shouldUseAs || key !== "as")) {
@@ -122,7 +86,7 @@ export const styled: CreateStyled = <
           class: cx(dataSet?.class, label),
         }
         newProps.style = isFunction(style)
-          ? (state: PressableStateCallbackType) => [
+          ? (state: RNPressableStateCallbackType) => [
               styleSheet.style,
               style(state),
             ]

@@ -6,6 +6,7 @@ const config: StorybookConfig = {
   framework: {
     name: "@storybook/react-webpack5",
     options: {
+      strictMode: true,
       builder: {
         fsCache: true,
         lazyCompilation: true,
@@ -23,6 +24,10 @@ const config: StorybookConfig = {
       extensions: [".web.js", ".web.jsx", ".web.ts", ".web.tsx"].concat(
         config.resolve?.extensions ?? [],
       ),
+      fallback: {
+        ...config.resolve?.fallback,
+        "react-native/Libraries/Renderer/shims/ReactNative": false,
+      },
     },
   }),
 }
