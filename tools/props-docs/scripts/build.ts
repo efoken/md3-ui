@@ -19,9 +19,9 @@ const sourcePath = path.join(__dirname, "../../../packages")
 const distPath = path.join(__dirname, "../dist")
 const outputPath = path.join(distPath, "../dist/components")
 
-const cjsIndexFilePath = path.join(distPath, "md3-ui-props-docs.cjs.js")
-const esmIndexFilePath = path.join(distPath, "md3-ui-props-docs.esm.js")
-const typeFilePath = path.join(distPath, "md3-ui-props-docs.cjs.d.ts")
+const cjsIndexFilePath = path.join(distPath, "commonjs/index.js")
+const esmIndexFilePath = path.join(distPath, "module/index.js")
+const typeFilePath = path.join(distPath, "typescript/index.d.ts")
 
 const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
 
@@ -89,7 +89,7 @@ function extractComponentInfo(docs: ComponentDoc[]) {
       displayName: def.displayName,
       exportName,
       fileName,
-      importPath: `./components/${fileName}`,
+      importPath: `../components/${fileName}`,
     })
     return acc
   }, [] as ComponentInfo[])
@@ -112,8 +112,9 @@ function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
 function writeIndexCJS(componentInfo: ComponentInfo[]) {
   const cjsExports = componentInfo.map(
     ({ displayName, importPath }) =>
-      `module.exports['${displayName}'] = require('${importPath}')`,
+      `module.exports["${displayName}"] = require("${importPath}")`,
   )
+  fs.mkdirSync(path.dirname(cjsIndexFilePath), { recursive: true })
   fs.writeFileSync(cjsIndexFilePath, cjsExports.join("\n"))
 }
 
@@ -124,7 +125,7 @@ function writeIndexESM(componentInfo: ComponentInfo[]) {
   const esmPropImports = componentInfo
     .map(
       ({ exportName, importPath }) =>
-        `import ${exportName}Import from '${importPath}'`,
+        `import ${exportName}Import from "${importPath}"`,
     )
     .join("\n")
 
@@ -132,6 +133,7 @@ function writeIndexESM(componentInfo: ComponentInfo[]) {
     .map(({ exportName }) => `export const ${exportName} = ${exportName}Import`)
     .join("\n")
 
+  fs.mkdirSync(path.dirname(esmIndexFilePath), { recursive: true })
   fs.writeFileSync(
     esmIndexFilePath,
     `${esmPropImports}
@@ -144,40 +146,39 @@ function writeTypes(componentInfo: ComponentInfo[]) {
     .map(({ exportName }) => `export declare const ${exportName}: PropDoc`)
     .join("\n")
 
-  const baseType = `
-    export interface Parent {
-      fileName: string;
-      name: string;
-    }
+  const baseType = `export interface Parent {
+  fileName: string
+  name: string
+}
 
-    export interface Declaration {
-      fileName: string;
-      name: string;
-    }
+export interface Declaration {
+  fileName: string
+  name: string
+}
 
-    export interface DefaultProps {
-      declarations: Declaration[];
-      defaultValue?: any;
-      description: string | JSX.Element;
-      name: string;
-      parent: Parent;
-      required: boolean;
-      type: { name: string };
-    }
+export interface DefaultProps {
+  declarations: Declaration[]
+  defaultValue?: any
+  description: string | JSX.Element
+  name: string
+  parent: Parent
+  required: boolean
+  type: { name: string }
+}
 
-    export interface PropDoc {
-      description: string | JSX.Element;
-      displayName: string;
-      filePath: string;
-      methods: any[];
-      props: {
-        components?: DefaultProps;
-        defaultProps?: DefaultProps;
-      };
-      tags: { see: string };
-    }
-  `
+export interface PropDoc {
+  description: string | JSX.Element
+  displayName: string
+  filePath: string
+  methods: any[]
+  props: {
+    components?: DefaultProps
+    defaultProps?: DefaultProps
+  }
+  tags: { see: string }
+}\n`
 
+  fs.mkdirSync(path.dirname(typeFilePath), { recursive: true })
   fs.writeFileSync(typeFilePath, `${baseType}\n${typeExports}`)
 }
 

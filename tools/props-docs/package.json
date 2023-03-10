@@ -1,9 +1,9 @@
 {
   "name": "@md3-ui/props-docs",
   "version": "0.2.0",
-  "main": "dist/md3-ui-props-docs.cjs.js",
-  "module": "dist/md3-ui-props-docs.esm.js",
-  "types": "dist/md3-ui-props-docs.cjs.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "types": "dist/typescript/index.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {

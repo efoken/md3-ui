@@ -46,13 +46,6 @@ export interface Theme {
   comp: Components
 }
 
-interface DefaultTheme extends Theme {}
-
-declare module "@emotion/react" {
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  export interface Theme extends DefaultTheme {}
-}
-
 export function createTheme(theme: Partial<Theme> = {}): Theme {
   const palette = createPalette(theme.ref?.palette)
   const typeface = createTypeface(theme.ref?.typeface)

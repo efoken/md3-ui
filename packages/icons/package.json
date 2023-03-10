@@ -1,9 +1,10 @@
 {
   "name": "@md3-ui/icons",
   "version": "0.2.0",
-  "main": "dist/md3-ui-icons.cjs.js",
-  "module": "dist/md3-ui-icons.esm.js",
-  "types": "dist/md3-ui-icons.cjs.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "react-native": "src/index.ts",
+  "types": "dist/typescript/index.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {
@@ -50,7 +51,17 @@
     "react-native-svg": "^13.4.0"
   },
   "scripts": {
+    "build": "bob build",
     "download": "ts-node scripts/download.ts",
     "generate": "ts-node scripts/generate.ts"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "dist",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }

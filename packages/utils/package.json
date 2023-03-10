@@ -1,9 +1,10 @@
 {
   "name": "@md3-ui/utils",
   "version": "0.2.0",
-  "main": "dist/md3-ui-utils.cjs.js",
-  "module": "dist/md3-ui-utils.esm.js",
-  "types": "dist/md3-ui-utils.cjs.d.ts",
+  "main": "dist/commonjs/index.js",
+  "module": "dist/module/index.js",
+  "react-native": "src/index.ts",
+  "types": "dist/typescript/index.d.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {
@@ -24,5 +25,17 @@
   "sideEffects": false,
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "build": "bob build"
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "dist",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }
