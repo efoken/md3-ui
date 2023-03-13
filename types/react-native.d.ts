@@ -6,15 +6,15 @@ declare module "react-native" {
     readonly hovered: boolean
   }
 
-  export interface AppParams {
-    callback?: () => void
-    hydrate?: boolean
-    initialProps?: object
-    rootTag: HTMLElement
-  }
-
   export namespace AppRegistry {
-    function getApplication(
+    export interface AppParams {
+      callback?: () => void
+      hydrate?: boolean
+      initialProps?: object
+      rootTag: HTMLElement
+    }
+
+    export function getApplication(
       appKey: string,
       params?: AppParams,
     ): {

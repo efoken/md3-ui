@@ -44,7 +44,8 @@
   },
   "scripts": {
     "build": "bob build",
-    "generate": "ts-node scripts/generate.ts"
+    "generate": "ts-node scripts/generate.ts",
+    "typecheck": "tsc --noEmit"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -52,7 +53,12 @@
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }

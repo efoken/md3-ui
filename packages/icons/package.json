@@ -35,7 +35,6 @@
     "@svgr/core": "^6.5.1",
     "@types/lodash": "^4.14.191",
     "@types/react": "^18.0.28",
-    "@types/svgo": "^3.0.0",
     "cross-fetch": "^3.1.5",
     "lodash": "^4.17.21",
     "react": "18.2.0",
@@ -53,7 +52,8 @@
   "scripts": {
     "build": "bob build",
     "download": "ts-node scripts/download.ts",
-    "generate": "ts-node scripts/generate.ts"
+    "generate": "ts-node scripts/generate.ts",
+    "typecheck": "tsc --noEmit"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -61,7 +61,12 @@
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }

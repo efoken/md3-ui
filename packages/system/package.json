@@ -32,8 +32,7 @@
     "@md3-ui/hooks": "^0.2.0",
     "@md3-ui/theme": "^0.2.0",
     "@md3-ui/utils": "^0.2.0",
-    "css-mediaquery2": "^1.0.7",
-    "media-query-fns": "^1.4.0"
+    "css-mediaquery2": "^1.0.7"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
@@ -48,7 +47,8 @@
     "react-native-web": ">=0.18.2 || 0.0.0-c26cb9b08"
   },
   "scripts": {
-    "build": "bob build"
+    "build": "bob build",
+    "typecheck": "tsc --noEmit"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -56,7 +56,12 @@
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }

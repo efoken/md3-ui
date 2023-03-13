@@ -40,7 +40,8 @@
     "react-native": ">=0.71.3"
   },
   "scripts": {
-    "build": "bob build"
+    "build": "bob build",
+    "typecheck": "tsc --noEmit"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -48,7 +49,12 @@
     "targets": [
       "commonjs",
       "module",
-      "typescript"
+      [
+        "typescript",
+        {
+          "project": "tsconfig.build.json"
+        }
+      ]
     ]
   }
 }
