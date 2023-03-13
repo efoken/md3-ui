@@ -1,10 +1,11 @@
----
-title: Buttons
-description:
-  Buttons help people initiate actions, from sending an email, to sharing a
-  document, to liking a post.
-package: "@md3-ui/button"
----
+import { Layout } from "../../../src/layouts/layout"
+
+export const meta = {
+  title: "Buttons",
+  description:
+    "Buttons help people initiate actions, from sending an email, to sharing a document, to liking a post.",
+  package: "@md3-ui/button",
+}
 
 There are five types of common buttons: elevated, filled, filled tonal,
 outlined, and text.
@@ -120,3 +121,5 @@ interacted with, its container isn't visible.
   <TextButton icon={<Add />}>Text button</TextButton>
 </Stack>
 ```
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>

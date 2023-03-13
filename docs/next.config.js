@@ -1,11 +1,24 @@
-const { withContentlayer } = require("next-contentlayer")
+// import remarkEmoji from "remark-emoji"
+// import remarkGfm from "remark-gfm"
+// import remarkSlug from "remark-slug"
 const withPreconstruct = require("@preconstruct/next")
 
 const withTM = require("next-transpile-modules")(["react-native"])
 
+const withMDX = require("@next/mdx")({
+  extension: /\.mdx?$/,
+  options: {
+    providerImportSource: "@mdx-js/react",
+    // remarkPlugins: [remarkSlug, remarkGfm, remarkEmoji],
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+})
+
 module.exports = withTM(
   withPreconstruct(
-    withContentlayer({
+    withMDX({
+      pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
       reactStrictMode: true,
       webpack: (config) => ({
         ...config,
@@ -18,10 +31,6 @@ module.exports = withTM(
           extensions: [".web.js", ".web.jsx", ".web.ts", ".web.tsx"].concat(
             config.resolve.extensions,
           ),
-          fallback: {
-            ...config.resolve.fallback,
-            "react-native/Libraries/Renderer/shims/ReactNative": false,
-          },
         },
       }),
     }),

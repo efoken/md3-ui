@@ -1,9 +1,10 @@
----
-title: Elevation
-description:
-  Elevation can be depicted using shadows or other visual cues, such as surface
-  fills or opacities.
----
+import { Layout } from "../../../src/layouts/layout"
+
+export const meta = {
+  title: "Elevation",
+  description:
+    "Elevation can be depicted using shadows or other visual cues, such as surface fills or opacities.",
+}
 
 <Stack direction="row" spacing={8}>
   <Box sx={{ elevation: "level1", size: 216 }} />
@@ -18,3 +19,5 @@ description:
 ```jsx
 <Box sx={{ elevation: "level1", size: 216 }} />
 ```
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>

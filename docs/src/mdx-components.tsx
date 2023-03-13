@@ -30,5 +30,5 @@ export const MDXComponents = {
         {React.Children.only(children) as React.ReactElement}
       </CodeBlock>
     ),
-  ...Md3Core,
+  ...(Md3Core as Record<string, any>),
 }

@@ -1,9 +1,10 @@
----
-title: Typography
-description:
-  Use typography to present your design and content as clearly and efficiently
-  as possible.
----
+import { Layout } from "../../../src/layouts/layout"
+
+export const meta = {
+  title: "Typography",
+  description:
+    "Use typography to present your design and content as clearly and efficiently as possible.",
+}
 
 [See design guideline](https://m3.material.io/styles/typography/overview)
 
@@ -36,3 +37,5 @@ description:
   <Text variant="bodyMedium">Body Medium - Roboto 14/20 . +0.25</Text>
   <Text variant="bodySmall">Body Small - Roboto 12/16 . +0.4</Text>
 </Box>
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>

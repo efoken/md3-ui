@@ -1,13 +1,13 @@
 import { Box, Text } from "@md3-ui/core"
-import { Doc } from "contentlayer/generated"
 import { useRouter } from "next/router"
 import * as React from "react"
+import { Meta } from "../types"
 import { Header } from "./header"
 import { SEO } from "./seo"
 
 interface PageContainerProps {
   children?: React.ReactNode
-  frontMatter?: Pick<Doc, "description" | "title">
+  frontMatter?: Pick<Meta, "description" | "title">
   sidebar?: React.ReactElement
 }
 

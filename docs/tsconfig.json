@@ -1,8 +1,6 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
     "downlevelIteration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -13,21 +11,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
-    "paths": {
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "suppressImplicitAnyIndexErrors": true,
     "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
     "target": "es5"
   },
   "exclude": ["node_modules"],
-  "include": [
-    "next-env.d.ts",
-    "../types/**/*",
-    "**/*.ts",
-    "**/*.tsx",
-    ".contentlayer/generated"
-  ]
+  "include": ["next-env.d.ts", "../types/**/*", "**/*.ts", "**/*.tsx"]
 }
