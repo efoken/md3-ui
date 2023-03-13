@@ -1,6 +1,6 @@
-import { isBrowser } from "@md3-ui/utils"
+import { isBrowser, isMedia } from "@md3-ui/utils"
 
-const cache = new Map<string, { text: string }>()
+const cache = new Map<string, string>()
 let styleSheet: CSSStyleSheet | undefined
 
 if (isBrowser) {
@@ -14,15 +14,20 @@ if (isBrowser) {
 }
 
 export function hasCSS(id: string, text: string) {
-  return cache.has(id) && cache.get(id)?.text.includes(text)
+  return cache.has(id) && cache.get(id)?.includes(text)
 }
 
-export function addCSS(id: string, text: string) {
-  if (!hasCSS(id, text)) {
-    cache.set(id, {
-      text: `${cache.get(id)?.text ?? ""}${text}`,
-    })
-    styleSheet?.insertRule(text, cache.size - 1)
+export function createCSSRule(query: string, stringHash: string, css: string) {
+  const dataMediaSelector = `.${stringHash}`
+  return isMedia(query)
+    ? `${query} {${dataMediaSelector} ${css}}`
+    : `${dataMediaSelector}${query.replace(/^&/, "")} ${css}`
+}
+
+export function addCSS(id: string, rule: string) {
+  if (!hasCSS(id, rule)) {
+    cache.set(id, `${cache.get(id) ?? ""}${rule}`)
+    styleSheet?.insertRule(rule, cache.size - 1)
   }
 }
 
@@ -31,9 +36,7 @@ export const flush = () => (
     id="md3-server-css"
     // eslint-disable-next-line react/no-danger
     dangerouslySetInnerHTML={{
-      __html: Array.from(cache.values())
-        .map((rule) => rule.text)
-        .join("\n"),
+      __html: Array.from(cache.values()).join("\n"),
     }}
   />
 )

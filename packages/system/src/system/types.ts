@@ -56,6 +56,9 @@ export interface ElevationProps {
 }
 
 export interface FlexboxProps {
+  gap?: RNFlexStyle["gap"]
+  columnGap?: RNFlexStyle["columnGap"]
+  rowGap?: RNFlexStyle["rowGap"]
   alignContent?: RNFlexStyle["alignContent"]
   alignItems?: RNFlexStyle["alignItems"]
   alignSelf?: RNFlexStyle["alignSelf"]

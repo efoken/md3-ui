@@ -8,9 +8,9 @@ import {
   StyleSheet as RNStyleSheet,
 } from "react-native"
 import hash from "react-native-web/dist/vendor/hash"
-import { addCSS } from "./inject"
+import { createDeclarationBlock } from "./create-declaration-block"
+import { addCSS, createCSSRule } from "./inject"
 import { NamedStyles } from "./types"
-import { createCSSRule, createDeclarationBlock } from "./utils"
 
 export function getDefaultMediaValues(): Partial<MediaValues> {
   const { width, height, scale, fontScale } = Dimensions.get("window")

@@ -1,6 +1,25 @@
 import { compose, style } from "../style"
 import { SpacingProps } from "./types"
 
+export function getValue(
+  transform: (cssValue: any) => string | number,
+  propValue: any,
+) {
+  if (typeof propValue === "string" || propValue == null) {
+    return propValue as string | undefined
+  }
+
+  const value = transform(Math.abs(propValue))
+
+  if (propValue >= 0) {
+    return value
+  }
+  if (typeof value === "number") {
+    return -value
+  }
+  return `-${value}`
+}
+
 const padding = style({
   prop: "padding",
   styleProp: ["paddingTop", "paddingRight", "paddingBottom", "paddingLeft"],

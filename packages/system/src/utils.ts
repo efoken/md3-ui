@@ -1,8 +1,6 @@
 import { isMedia, mergeDeep } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery2"
 import { PixelRatio } from "react-native"
-import createReactDOMStyle from "react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle"
-import prefixStyles from "react-native-web/dist/modules/prefixStyles"
 import { RNStyle } from "./types"
 
 export function findBreakpoints(emotionStyles: RNStyle) {
@@ -29,42 +27,6 @@ export function findBreakpoints(emotionStyles: RNStyle) {
   }, new Set<number>())
 
   return [...mediaValues]
-}
-
-export function createCSSRule(query: string, stringHash: string, css: string) {
-  const dataMediaSelector = `.${stringHash}`
-  return isMedia(query)
-    ? `${query} {${dataMediaSelector} ${css}}`
-    : `${dataMediaSelector}${query.replace(/^&/, "")} ${css}`
-}
-
-const cache = new Map<string, string>()
-
-function hyphenateStyleName(name: string) {
-  if (cache.has(name)) {
-    return cache.get(name)
-  }
-  const newName = name
-    .replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
-    .replace(/^ms-/, "-ms-")
-  cache.set(name, newName)
-  return newName
-}
-
-export function createDeclarationBlock(style: Record<string, any>) {
-  const domStyle = prefixStyles(createReactDOMStyle(style))
-  const declarationsString = Object.keys(domStyle)
-    .map((property) => {
-      const value = domStyle[property]
-      const prop = hyphenateStyleName(property)
-      if (Array.isArray(value)) {
-        return value.map((v) => `${prop}:${v}`).join(";")
-      }
-      return `${prop}:${value} !important`
-    })
-    .sort()
-    .join(";")
-  return `{${declarationsString};}`
 }
 
 export function merge<T>(acc: T, item: unknown) {
