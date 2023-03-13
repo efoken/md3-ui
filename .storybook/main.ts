@@ -1,8 +1,12 @@
 import { StorybookConfig } from "@storybook/react-webpack5"
 
 const config: StorybookConfig = {
-  stories: ["../packages/**/*.stories.tsx"],
-  addons: ["@storybook/addon-a11y", "@storybook/addon-essentials"],
+  stories: ["../packages/*/stories/*.stories.tsx"],
+  addons: [
+    "@storybook/addon-a11y",
+    "@storybook/addon-essentials",
+    "storybook-addon-performance",
+  ],
   framework: {
     name: "@storybook/react-webpack5",
     options: {
@@ -24,10 +28,6 @@ const config: StorybookConfig = {
       extensions: [".web.js", ".web.jsx", ".web.ts", ".web.tsx"].concat(
         config.resolve?.extensions ?? [],
       ),
-      fallback: {
-        ...config.resolve?.fallback,
-        "react-native/Libraries/Renderer/shims/ReactNative": false,
-      },
     },
   }),
 }

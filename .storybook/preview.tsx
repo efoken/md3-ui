@@ -1,6 +1,7 @@
 import { Box, createTheme, Md3Provider } from "@md3-ui/core"
 import { Preview } from "@storybook/react"
 import { SafeAreaProvider } from "react-native-safe-area-context"
+import { withPerformance } from "storybook-addon-performance"
 
 const preview: Preview = {
   globalTypes: {
@@ -31,6 +32,7 @@ const preview: Preview = {
     },
   },
   decorators: [
+    withPerformance,
     (StoryFn, context) => (
       <SafeAreaProvider style={{ height: "100%" }}>
         <Md3Provider theme={createTheme()}>
