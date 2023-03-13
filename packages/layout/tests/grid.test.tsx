@@ -1,5 +1,4 @@
 import { describeConformance, render, screen } from "@md3-ui/test-utils"
-import * as React from "react"
 import { Grid } from "../src/grid"
 
 describe("<Grid />", () => {
