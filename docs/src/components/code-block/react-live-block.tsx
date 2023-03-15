@@ -61,6 +61,8 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
         style={{
           borderRadius: 12,
           borderWidth: 1,
+          borderColor: theme.sys.color.outlineVariant,
+          backgroundColor: theme.sys.color.surface,
           fontFamily: theme.ref.typeface.plain,
           marginTop: 20,
           overflowX: "auto",

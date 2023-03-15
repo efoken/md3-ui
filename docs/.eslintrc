@@ -5,6 +5,7 @@
     "project": "./docs/tsconfig.json"
   },
   "rules": {
-    "@next/next/no-html-link-for-pages": ["error", "docs/pages/"]
+    "@next/next/no-html-link-for-pages": ["error", "docs/pages/"],
+    "react/no-array-index-key": "off"
   }
 }

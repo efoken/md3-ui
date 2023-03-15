@@ -1,4 +1,4 @@
-import { NavigationDrawer } from "@md3-ui/core"
+import { Box } from "@md3-ui/core"
 import { useRouter } from "next/router"
 import * as React from "react"
 import { useWindowDimensions } from "react-native"
@@ -19,39 +19,39 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const { pathname } = useRouter()
   const contentRef = React.useRef<HTMLElement>(null)
 
-  const expanded = useWindowDimensions().width >= 840
+  const expanded = useWindowDimensions().width >= 0
 
   return (
-    <NavigationDrawer
-      ref={contentRef as any}
-      aria-label="Main navigation"
-      hideScrim={expanded}
-      open={open}
-      role="navigation"
-      variant={expanded ? "dismissible" : "modal"}
-      styles={{
-        surface: expanded
-          ? {
-              height: "calc(100vh - 64px)",
-              top: 64,
-              width: 280,
-            }
-          : {
-              borderRadius: 16,
-              bottom: 8,
-              height: "calc(100% - 80px)",
-              start: 8,
-              top: 72,
-              width: 280,
-            },
+    <Box
+      id="navigation"
+      sx={{
+        bgColor: "white",
+        borderColor: "surfaceVariant",
+        borderRightWidth: 1,
+        bottom: 0,
+        height: "100vh",
+        left: { compact: "auto", expanded: 0 },
+        position: expanded ? ("sticky" as any) : ("fixed" as any),
+        right: { compact: "100%", expanded: "auto" },
+        top: 0,
+        width: 288,
+        zIndex: 10,
       }}
-      onClose={onMenuClose}
+      style={{
+        opacity: expanded ? 1 : 0,
+      }}
     >
-      <SidebarContent
-        routes={routes}
-        pathname={pathname}
-        contentRef={contentRef}
-      />
-    </NavigationDrawer>
+      <Box
+        as="nav"
+        sx={{ height: "100%", p: 6, pt: 12 }}
+        style={{ overflowX: "hidden", overflowY: "auto" }}
+      >
+        <SidebarContent
+          routes={routes}
+          pathname={pathname}
+          contentRef={contentRef}
+        />
+      </Box>
+    </Box>
   )
 }

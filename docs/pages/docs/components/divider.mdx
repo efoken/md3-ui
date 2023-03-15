@@ -1,0 +1,37 @@
+import { Layout } from "../../../src/layouts/layout"
+
+export const meta = {
+  title: "Divider",
+  description:
+    "A divider is a thin line that groups content in lists and containers.",
+  package: "@md3-ui/layout",
+}
+
+There's one type of checkbox in Material. Use this selection control when the
+user needs to select one or more options from a list.
+
+- [Design article](https://m3.material.io/components/divider)
+- API Documentation (coming soon)
+- [Source code](https://github.com/efoken/md3-ui/tree/main/packages/layout)
+
+<Divider />
+
+## Usage
+
+Use full width dividers to separate larger sections of unrelated content.
+
+```jsx
+<section>
+  <p>Lorem ipsum</p>
+  <Divider />
+  <p>Lorem ipsum</p>
+</section>
+```
+
+## API
+
+### Props
+
+<PropsTable of="Divider" />
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>
