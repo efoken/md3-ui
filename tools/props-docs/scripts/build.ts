@@ -45,13 +45,14 @@ function parseInfo(filePaths: string[]) {
       const isStyledSystemProp = excludedPropNames.has(prop.name)
       const isNativeElementProp =
         prop.parent?.fileName.includes("node_modules") ?? false
+      const isIgnoredProp = /@ignore/.test(prop.description)
       const isHook = component.name.startsWith("use")
       const isTypeScriptNative =
         prop.parent?.fileName.includes("node_modules/typescript") ?? false
 
       return (
         (isHook && !isTypeScriptNative) ||
-        !(isStyledSystemProp || isNativeElementProp)
+        !(isStyledSystemProp || isNativeElementProp || isIgnoredProp)
       )
     },
   })
