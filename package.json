@@ -19,7 +19,7 @@
     "@storybook/addon-essentials": "^7.0.0-rc.3",
     "@storybook/react": "^7.0.0-rc.3",
     "@storybook/react-webpack5": "^7.0.0-rc.3",
-    "@types/jest": "^29.4.2",
+    "@types/jest": "^29.5.0",
     "@types/node": "^18.15.3",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
