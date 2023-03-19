@@ -44,7 +44,7 @@ export function handleBreakpoints<P extends { theme?: Theme }>(
     return Object.keys(propValue).reduce<any>((acc, breakpoint) => {
       // Key is the breakpoint
       if (Object.keys(themeBreakpoints.values || values).includes(breakpoint)) {
-        const mediaKey = themeBreakpoints.up(breakpoint)
+        const mediaKey = themeBreakpoints.up(breakpoint as Breakpoint)
         acc[mediaKey] = styleFromPropValue(propValue[breakpoint])
       } else {
         const cssKey = breakpoint
@@ -60,8 +60,8 @@ export function handleBreakpoints<P extends { theme?: Theme }>(
 export function createEmptyBreakpointObject(
   themeBreakpoints?: Theme["breakpoints"],
 ) {
-  const breakpointsInOrder = themeBreakpoints?.keys.reduce(
-    (acc: any, key: string) => {
+  const breakpointsInOrder = themeBreakpoints?.keys.reduce<Record<string, any>>(
+    (acc, key) => {
       const breakpointStyleKey = themeBreakpoints.up(key)
       acc[breakpointStyleKey] = {}
       return acc
@@ -71,15 +71,12 @@ export function createEmptyBreakpointObject(
   return breakpointsInOrder || {}
 }
 
-export function removeUnusedBreakpoints(
-  breakpointKeys: Theme["breakpoints"]["keys"],
-  style: any,
-) {
+export function removeUnusedBreakpoints(breakpointKeys: string[], style: any) {
   return breakpointKeys.reduce((acc, key) => {
     const breakpointOutput = acc[key]
-    const isBreakpointUnused =
+    const breakpointUnused =
       !breakpointOutput || isEmptyObject(breakpointOutput)
-    if (isBreakpointUnused) {
+    if (breakpointUnused) {
       delete acc[key]
     }
     return acc
@@ -123,13 +120,13 @@ export function resolveBreakpointValues<T>({
 }) {
   const base =
     baseProp ?? computeBreakpointsBase(breakpointValues, themeBreakpoints)
-  const keys = Object.keys(base)
+  const keys = objectKeys(base)
 
   if (keys.length === 0) {
     return breakpointValues as T
   }
 
-  let previous: string | number
+  let previous: Breakpoint | number
 
   return keys.reduce((acc, breakpoint, i) => {
     if (Array.isArray(breakpointValues)) {
@@ -141,9 +138,9 @@ export function resolveBreakpointValues<T>({
       previous = i
     } else {
       acc[breakpoint] =
-        breakpointValues[breakpoint] != null
-          ? breakpointValues[breakpoint]
-          : breakpointValues[previous] || breakpointValues
+        (breakpointValues as any)[breakpoint] != null
+          ? (breakpointValues as any)[breakpoint]
+          : (breakpointValues as any)[previous] || breakpointValues
       previous = breakpoint
     }
     return acc

@@ -295,14 +295,14 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
         }
 
         if (tabbable.length > 0) {
-          const isShiftTab = Boolean(
+          const shiftTab = Boolean(
             lastKeydown.current?.shiftKey && lastKeydown.current?.key === "Tab",
           )
 
           const focusNext = tabbable[0]
           const focusPrevious = tabbable[tabbable.length - 1]
 
-          if (isShiftTab) {
+          if (shiftTab) {
             focusPrevious.focus()
           } else {
             focusNext.focus()

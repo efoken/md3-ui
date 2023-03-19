@@ -26,7 +26,7 @@ export const Basic: StoryObj<NavigationBarProps> = {
         <NavigationBarItem icon={<ChangeHistory />} label="Label" />
         <NavigationBarItem
           icon={
-            <Badge badgeContent={1}>
+            <Badge value={1}>
               <ChangeHistory />
             </Badge>
           }
@@ -35,7 +35,7 @@ export const Basic: StoryObj<NavigationBarProps> = {
         <NavigationBarItem icon={<ChangeHistory />} label="Label" />
         <NavigationBarItem
           icon={
-            <Badge badgeContent={10}>
+            <Badge value={10}>
               <ChangeHistory />
             </Badge>
           }

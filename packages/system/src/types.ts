@@ -58,7 +58,11 @@ export type SystemProps = {
     | SystemStyleObject
 }
 
-export type SystemStyleObject = SystemProps | Record<string, SystemProps> | null
+export type SystemStyleObject =
+  | SystemProps
+  | ((theme: Theme) => SystemProps)
+  | Record<string, SystemProps>
+  | null
 
 export type SxProps = SystemStyleObject
 

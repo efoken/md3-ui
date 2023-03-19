@@ -114,85 +114,88 @@ export function generateGrid({
     breakpoints: theme.breakpoints.values,
   })
 
-  return theme.breakpoints.keys.reduce((acc, breakpoint) => {
-    // Use side effect over immutability for better performance
-    let styles: any = {}
+  return theme.breakpoints.keys.reduce<Record<string, any>>(
+    (acc, breakpoint) => {
+      // Use side effect over immutability for better performance
+      let styles: any = {}
 
-    if (typeof spanValues === "object") {
-      if (spanValues[breakpoint]) {
-        span = spanValues[breakpoint]
+      if (typeof spanValues === "object") {
+        if (spanValues[breakpoint]) {
+          span = spanValues[breakpoint]
+        }
+      } else if (spanValues != null) {
+        span = spanValues
       }
-    } else if (spanValues != null) {
-      span = spanValues
-    }
-    if (!span) {
-      return acc
-    }
-
-    if (span === true) {
-      // For the auto layouting
-      styles = {
-        flexBasis: 0,
-        flexGrow: 1,
-        maxWidth: "100%",
-      }
-    } else if (span === "auto") {
-      styles = {
-        flexBasis: "auto",
-        flexGrow: 0,
-        flexShrink: 0,
-        maxWidth: "none",
-        width: "auto",
-      }
-    } else {
-      const columnsValues = resolveBreakpointValues({
-        values: ownerState.columns as GridProps["columns"],
-        breakpoints: theme.breakpoints.values,
-      })
-
-      const columns =
-        typeof columnsValues === "object"
-          ? columnsValues[breakpoint]
-          : columnsValues
-
-      if (columns == null) {
+      if (!span) {
         return acc
       }
-      // Keep 7 significant numbers
-      const width = `${Math.round((span / columns) * 10e7) / 10e5}%`
-      let moreStyles = {}
 
-      if (
-        ownerState.container &&
-        ownerState.item &&
-        ownerState.columnSpacing !== 0
-      ) {
-        const spacing = theme.spacing(ownerState.columnSpacing)
-        if (spacing !== 0) {
-          moreStyles = Platform.OS === "web" && {
-            flexBasis: `calc(${width} + ${spacing}px)`,
-            maxWidth: `calc(${width} + ${spacing}px)`,
+      if (span === true) {
+        // For the auto layouting
+        styles = {
+          flexBasis: 0,
+          flexGrow: 1,
+          maxWidth: "100%",
+        }
+      } else if (span === "auto") {
+        styles = {
+          flexBasis: "auto",
+          flexGrow: 0,
+          flexShrink: 0,
+          maxWidth: "none",
+          width: "auto",
+        }
+      } else {
+        const columnsValues = resolveBreakpointValues({
+          values: ownerState.columns as GridProps["columns"],
+          breakpoints: theme.breakpoints.values,
+        })
+
+        const columns =
+          typeof columnsValues === "object"
+            ? columnsValues[breakpoint]
+            : columnsValues
+
+        if (columns == null) {
+          return acc
+        }
+        // Keep 7 significant numbers
+        const width = `${Math.round((span / columns) * 10e7) / 10e5}%`
+        let moreStyles = {}
+
+        if (
+          ownerState.container &&
+          ownerState.item &&
+          ownerState.columnSpacing !== 0
+        ) {
+          const spacing = theme.spacing(ownerState.columnSpacing)
+          if (spacing !== 0) {
+            moreStyles = Platform.OS === "web" && {
+              flexBasis: `calc(${width} + ${spacing}px)`,
+              maxWidth: `calc(${width} + ${spacing}px)`,
+            }
           }
+        }
+
+        styles = {
+          flexBasis: Platform.OS === "web" ? width : 0,
+          flexGrow: Platform.OS === "web" ? 0 : 1,
+          flexShrink: 1,
+          maxWidth: width,
+          ...moreStyles,
         }
       }
 
-      styles = {
-        flexBasis: Platform.OS === "web" ? width : 0,
-        flexGrow: Platform.OS === "web" ? 0 : 1,
-        flexShrink: 1,
-        maxWidth: width,
-        ...moreStyles,
+      // No need for a media query for the first size
+      if (theme.breakpoints.values[breakpoint] === 0) {
+        Object.assign(acc, styles)
+      } else {
+        acc[theme.breakpoints.up(breakpoint)] = styles
       }
-    }
-
-    // No need for a media query for the first size
-    if (theme.breakpoints.values[breakpoint] === 0) {
-      Object.assign(acc, styles)
-    } else {
-      acc[theme.breakpoints.up(breakpoint)] = styles
-    }
-    return acc
-  }, {})
+      return acc
+    },
+    {},
+  )
 }
 
 export function generateDirection({

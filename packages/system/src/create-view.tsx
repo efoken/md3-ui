@@ -4,9 +4,11 @@ import { View as RNView, ViewProps as RNViewProps } from "react-native"
 import { useTheme } from "./context"
 import { styled } from "./create-styled"
 import { extendSxProp, styleFunctionSx } from "./style-function-sx"
+import { SxProps } from "./types"
 
 export interface ViewProps extends RNViewProps {
   as?: React.ElementType
+  sx?: SxProps
 }
 
 export function createView({

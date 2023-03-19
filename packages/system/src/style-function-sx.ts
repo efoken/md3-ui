@@ -1,10 +1,11 @@
-import { isObject, objectKeys, runIfFn, splitProps } from "@md3-ui/utils"
+import { isObject, runIfFn, splitProps } from "@md3-ui/utils"
 import { getThemeValue, propToStyleFunction } from "./get-theme-value"
 import {
   createEmptyBreakpointObject,
   handleBreakpoints,
   removeUnusedBreakpoints,
 } from "./system/breakpoints"
+import { SxProps } from "./types"
 import { merge } from "./utils/merge"
 
 function objectsHaveSameKeys(...objects: any[]) {
@@ -46,7 +47,7 @@ export function styleFunctionSx(props: any = {}) {
       const value = runIfFn(sxObject[styleKey], theme)
       if (value != null) {
         if (typeof value === "object") {
-          if (propToStyleFunction[styleKey]) {
+          if (styleKey in propToStyleFunction) {
             css = merge(css, getThemeValue(styleKey, value, theme))
           } else {
             const breakpointsValues = handleBreakpoints(
@@ -77,20 +78,21 @@ export function styleFunctionSx(props: any = {}) {
 
 styleFunctionSx.filterProps = ["sx"]
 
-export function extendSxProp<T extends object>({
+export function extendSxProp<T extends { sx?: SxProps } = {}>({
   sx: inSx,
   ...props
-}: T & { sx?: any }) {
+}: T) {
   const [systemProps, otherProps] = splitProps(
     props,
-    objectKeys(propToStyleFunction),
+    Object.keys(propToStyleFunction) as any,
   )
 
-  let finalSx
+  let finalSx: any
   if (Array.isArray(inSx)) {
     finalSx = [systemProps, ...inSx]
   } else if (typeof inSx === "function") {
     finalSx = (...args: any[]) => {
+      // @ts-expect-error
       const result = inSx(...args)
       if (!isObject(result)) {
         return systemProps
@@ -104,5 +106,5 @@ export function extendSxProp<T extends object>({
   return {
     ...otherProps,
     sx: finalSx,
-  }
+  } as T
 }
