@@ -9,7 +9,7 @@ describe("<IconButton />", () => {
     </IconButton>,
     () => ({
       inheritComponent: "button",
-      refInstanceof: window.HTMLDivElement,
+      refInstanceof: window.HTMLButtonElement,
       skip: ["asProp"],
     }),
   )
@@ -51,32 +51,6 @@ describe("<IconButton />", () => {
     expect(
       button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
     ).toBeNull()
-  })
-
-  describe("prop: edge", () => {
-    it("should render the correct size", () => {
-      const { rerender } = render(
-        <IconButton size="small">
-          <Icon />
-        </IconButton>,
-      )
-      const button = screen.getByRole("button")
-      expect(button).toMatchSnapshot()
-
-      rerender(
-        <IconButton size="medium">
-          <Icon />
-        </IconButton>,
-      )
-      expect(button).toMatchSnapshot()
-
-      rerender(
-        <IconButton size="large">
-          <Icon />
-        </IconButton>,
-      )
-      expect(button).toMatchSnapshot()
-    })
   })
 
   describe("prop: edge", () => {

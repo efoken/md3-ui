@@ -1,3 +1,8 @@
+declare module "react-native-web" {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  export function unstable_createElement(type: string, props: any): any
+}
+
 declare module "react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle" {
   export default function createReactDOMStyle(
     style: Record<string, any>,

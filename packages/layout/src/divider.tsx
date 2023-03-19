@@ -16,10 +16,6 @@ export interface DividerTypeMap<
 > {
   props: P & {
     /**
-     * The content of the component.
-     */
-    children?: React.ReactNode
-    /**
      * Override or extend the styles applied to the component.
      */
     styles?: StylesProp<{
@@ -45,22 +41,18 @@ const DividerRoot = styled(RNView, {
   name: "Divider",
   slot: "Root",
 })(({ theme }) => ({
-  backgroundColor: theme.sys.color.outline,
-  height: 1,
+  backgroundColor: theme.comp.divider.color,
+  height: theme.comp.divider.thickness,
 }))
 
 export const Divider = React.forwardRef<RNView, DividerProps>(
   (inProps, ref) => {
-    const { children, style, styles, ...props } = useThemeProps({
+    const { style, styles, ...props } = useThemeProps({
       name: "Divider",
       props: inProps,
     })
 
-    return (
-      <DividerRoot ref={ref} style={[style, styles?.root]} {...props}>
-        {children}
-      </DividerRoot>
-    )
+    return <DividerRoot ref={ref} style={[style, styles?.root]} {...props} />
   },
 ) as OverridableComponent<DividerTypeMap>
 

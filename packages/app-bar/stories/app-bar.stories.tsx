@@ -20,13 +20,13 @@ export const CenterAligned: StoryObj<AppBarProps> = {
   render: (args) => (
     <AppBar {...args}>
       <Toolbar>
-        <IconButton aria-label="menu" edge="start" size="large" sx={{ me: 3 }}>
+        <IconButton aria-label="menu" edge="start" sx={{ me: 3 }}>
           <Menu />
         </IconButton>
         <Text variant="titleLarge" sx={{ flexGrow: 1, textAlign: "center" }}>
           Title Large
         </Text>
-        <IconButton aria-label="profile" edge="end" size="large" sx={{ ms: 3 }}>
+        <IconButton aria-label="profile" edge="end" sx={{ ms: 3 }}>
           <Person />
         </IconButton>
       </Toolbar>
@@ -38,19 +38,19 @@ export const Small: StoryObj<AppBarProps> = {
   render: (args) => (
     <AppBar {...args}>
       <Toolbar>
-        <IconButton aria-label="menu" edge="start" size="large" sx={{ me: 1 }}>
+        <IconButton aria-label="menu" edge="start" sx={{ me: 1 }}>
           <Menu />
         </IconButton>
         <Text variant="titleLarge" sx={{ flexGrow: 1 }}>
           Title Large
         </Text>
-        <IconButton aria-label="attachment" size="large">
+        <IconButton aria-label="attachment">
           <Attachment />
         </IconButton>
-        <IconButton aria-label="calendar" size="large">
+        <IconButton aria-label="calendar">
           <CalendarToday />
         </IconButton>
-        <IconButton aria-label="profile" edge="end" size="large">
+        <IconButton aria-label="profile" edge="end">
           <MoreVert />
         </IconButton>
       </Toolbar>
@@ -69,7 +69,7 @@ export const Medium: StoryObj<AppBarProps> = {
           minHeight: 112,
         }}
       >
-        <IconButton aria-label="menu" edge="start" size="large">
+        <IconButton aria-label="menu" edge="start">
           <Menu />
         </IconButton>
         <Text
@@ -78,13 +78,13 @@ export const Medium: StoryObj<AppBarProps> = {
         >
           Headline Small
         </Text>
-        <IconButton aria-label="attachment" size="large">
+        <IconButton aria-label="attachment">
           <Attachment />
         </IconButton>
-        <IconButton aria-label="calendar" size="large">
+        <IconButton aria-label="calendar">
           <CalendarToday />
         </IconButton>
-        <IconButton aria-label="profile" edge="end" size="large">
+        <IconButton aria-label="profile" edge="end">
           <MoreVert />
         </IconButton>
       </Toolbar>
@@ -103,7 +103,7 @@ export const Large: StoryObj<AppBarProps> = {
           minHeight: 152,
         }}
       >
-        <IconButton aria-label="menu" edge="start" size="large">
+        <IconButton aria-label="menu" edge="start">
           <Menu />
         </IconButton>
         <Text
@@ -112,13 +112,13 @@ export const Large: StoryObj<AppBarProps> = {
         >
           Headline Medium
         </Text>
-        <IconButton aria-label="attachment" size="large">
+        <IconButton aria-label="attachment">
           <Attachment />
         </IconButton>
-        <IconButton aria-label="calendar" size="large">
+        <IconButton aria-label="calendar">
           <CalendarToday />
         </IconButton>
-        <IconButton aria-label="profile" edge="end" size="large">
+        <IconButton aria-label="profile" edge="end">
           <MoreVert />
         </IconButton>
       </Toolbar>

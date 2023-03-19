@@ -9,7 +9,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
+import { __DEV__, createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -53,64 +53,78 @@ export type ElevatedButtonStyleKey = keyof NonNullable<
   ElevatedButtonProps["styles"]
 >
 
+type ElevatedButtonOwnerState = Pick<ElevatedButtonProps, "disabled"> & {
+  focused: boolean
+  hovered: boolean
+  pressed: boolean
+}
+
 const ElevatedButtonRoot = styled(ButtonBase, {
   name: "ElevatedButton",
   slot: "Root",
-})<OwnerStateProps<Pick<ElevatedButtonProps, "disabled">>>(
-  ({ theme, ownerState }) => [
-    {
-      ...theme.comp.elevatedButton.container.elevation,
-      alignItems: "center",
-      backgroundColor: theme.comp.elevatedButton.container.color,
-      borderRadius: theme.comp.elevatedButton.container.shape,
-      flexDirection: "row",
-      height: theme.comp.elevatedButton.container.height,
-      justifyContent: "center",
-      paddingHorizontal: 24,
+})<OwnerStateProps<ElevatedButtonOwnerState>>(({ theme, ownerState }) => [
+  {
+    ...theme.comp.elevatedButton.container.elevation,
+    alignItems: "center",
+    backgroundColor: theme.comp.elevatedButton.container.color,
+    borderRadius: theme.comp.elevatedButton.container.shape,
+    flexDirection: "row",
+    height: theme.comp.elevatedButton.container.height,
+    justifyContent: "center",
+    paddingHorizontal: 24,
 
-      ...(Platform.OS !== "web" && {
-        shadowColor: theme.comp.elevatedButton.container.shadowColor,
-      }),
+    ...(Platform.OS !== "web" && {
+      shadowColor: theme.comp.elevatedButton.container.shadowColor,
+    }),
 
-      ...(ownerState.disabled && {
-        ...theme.comp.elevatedButton.disabled.container.elevation,
-        backgroundColor: theme.utils.rgba(
-          theme.comp.elevatedButton.disabled.container.color,
-          theme.comp.elevatedButton.disabled.container.opacity,
-        ),
-      }),
+    ...(ownerState.disabled && {
+      ...theme.comp.elevatedButton.disabled.container.elevation,
+      backgroundColor: theme.utils.rgba(
+        theme.comp.elevatedButton.disabled.container.color,
+        theme.comp.elevatedButton.disabled.container.opacity,
+      ),
+    }),
 
-      "&:hover": {
-        ...theme.comp.elevatedButton.hover.container.elevation,
-      },
+    ...(ownerState.hovered && {
+      ...theme.comp.elevatedButton.hover.container.elevation,
+    }),
 
-      "&:focus-visible": {
-        ...theme.comp.elevatedButton.focus.container.elevation,
-      },
+    ...(ownerState.focused && {
+      ...theme.comp.elevatedButton.focus.container.elevation,
+    }),
 
-      "&:active": {
-        ...theme.comp.elevatedButton.pressed.container.elevation,
-      },
-    },
-  ],
-)
+    ...(ownerState.pressed && {
+      ...theme.comp.elevatedButton.pressed.container.elevation,
+    }),
+  },
+])
 
 const ElevatedButtonContent = styled(TextStyleProvider, {
   name: "ElevatedButton",
   slot: "Content",
   skipSx: true,
-})<OwnerStateProps<Pick<ElevatedButtonProps, "disabled">>>(
-  ({ theme, ownerState }) => ({
-    color: theme.comp.elevatedButton.labelText.color,
+})<OwnerStateProps<ElevatedButtonOwnerState>>(({ theme, ownerState }) => ({
+  color: theme.comp.elevatedButton.labelText.color,
 
-    ...(ownerState.disabled && {
-      color: theme.utils.rgba(
-        theme.comp.elevatedButton.disabled.labelText.color,
-        theme.comp.elevatedButton.disabled.labelText.opacity,
-      ),
-    }),
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.elevatedButton.disabled.labelText.color,
+      theme.comp.elevatedButton.disabled.labelText.opacity,
+    ),
   }),
-)
+
+  ...(ownerState.hovered && {
+    color: theme.comp.elevatedButton.hover.labelText.color,
+  }),
+
+  ...(ownerState.focused && {
+    color: theme.comp.elevatedButton.focus.labelText.color,
+  }),
+
+  ...(ownerState.pressed && {
+    color: theme.comp.elevatedButton.pressed.labelText.color,
+  }),
+}))
 
 const ElevatedButtonIcon = styled(RNView, {
   name: "ElevatedButton",
@@ -136,6 +150,12 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
       children,
       disabled = false,
       icon,
+      onBlur,
+      onFocusVisible,
+      onHoverIn,
+      onHoverOut,
+      onPressIn,
+      onPressOut,
       style,
       styles,
       ...props
@@ -145,11 +165,13 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
 
     const [hovered, handleHover] = useBoolean()
     const [focused, handleFocus] = useBoolean()
+    const [pressed, handlePress] = useBoolean()
 
     const ownerState = {
       disabled,
       focused,
       hovered,
+      pressed,
     }
 
     return (
@@ -164,10 +186,12 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
         pressedColor={theme.comp.elevatedButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.elevatedButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
-        onBlur={handleFocus.off}
-        onFocus={handleFocus.on}
-        onHoverIn={handleHover.on}
-        onHoverOut={handleHover.off}
+        onBlur={createChainedFunction(onBlur, handleFocus.off)}
+        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
+        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
+        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
+        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
+        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
         {...props}
       >
         <ElevatedButtonContent ownerState={ownerState} style={styles?.content}>

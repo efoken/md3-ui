@@ -1,7 +1,7 @@
-import { isMedia, mergeDeep } from "@md3-ui/utils"
+import { isMedia } from "@md3-ui/utils"
 import MediaQuery from "css-mediaquery2"
 import { PixelRatio } from "react-native"
-import { RNStyle } from "./types"
+import { RNStyle } from "../types"
 
 export function findBreakpoints(emotionStyles: RNStyle) {
   const allMedia = Object.keys(emotionStyles).filter(
@@ -27,13 +27,4 @@ export function findBreakpoints(emotionStyles: RNStyle) {
   }, new Set<number>())
 
   return [...mediaValues]
-}
-
-export function merge<T>(acc: T, item: unknown) {
-  if (!item) {
-    return acc
-  }
-  return mergeDeep(acc, item, {
-    clone: false, // No need to clone deep, it's way faster.
-  })
 }

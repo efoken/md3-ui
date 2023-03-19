@@ -22,7 +22,7 @@ function normalizePath(str: any, ref = false) {
 }
 
 function objectify(obj: Record<string, any>) {
-  return Object.keys(obj).reduce((res, key) => {
+  return Object.keys(obj).reduce<any>((res, key) => {
     const path = normalizePath(key).split(".") as string[]
     path.reduce((acc, k, i) => {
       try {
@@ -38,6 +38,7 @@ function objectify(obj: Record<string, any>) {
 
 const componentMap = {
   badge: "badge",
+  divider: "divider",
   elevatedButton: "elevatedButton",
   filledButton: "filledButton",
   filledIconButton: "filledIconButton",
@@ -209,7 +210,11 @@ export default async function main() {
     name: "md/color",
     matcher: (token) =>
       ["color", "shadowColor"].includes(token.path[token.path.length - 1]),
-    transformer: (token) => `md.sys.color.${token.value}`,
+    transformer: (token) =>
+      `md.sys.color.${token.value.replace(
+        "onInverseSurface",
+        "inverseOnSurface",
+      )}`,
   })
 
   dict.registerTransform({

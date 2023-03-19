@@ -9,7 +9,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
+import { __DEV__, createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -52,60 +52,73 @@ export type OutlinedButtonStyleKey = keyof NonNullable<
   OutlinedButtonProps["styles"]
 >
 
+type OutlinedButtonOwnerState = Pick<OutlinedButtonProps, "disabled"> & {
+  focused: boolean
+  hovered: boolean
+  pressed: boolean
+}
+
 const OutlinedButtonRoot = styled(ButtonBase, {
   name: "OutlinedButton",
   slot: "Root",
-})<OwnerStateProps<Pick<OutlinedButtonProps, "disabled">>>(
-  ({ theme, ownerState }) => [
-    {
-      alignItems: "center",
-      backgroundColor: "transparent",
-      borderColor: theme.comp.outlinedButton.outline.color,
-      borderRadius: theme.comp.outlinedButton.container.shape,
-      borderWidth: theme.comp.outlinedButton.outline.width,
-      flexDirection: "row",
-      height: theme.comp.outlinedButton.container.height,
-      justifyContent: "center",
-      paddingHorizontal: 24 - theme.comp.outlinedButton.outline.width,
+})<OwnerStateProps<OutlinedButtonOwnerState>>(({ theme, ownerState }) => [
+  {
+    alignItems: "center",
+    borderColor: theme.comp.outlinedButton.outline.color,
+    borderRadius: theme.comp.outlinedButton.container.shape,
+    borderWidth: theme.comp.outlinedButton.outline.width,
+    flexDirection: "row",
+    height: theme.comp.outlinedButton.container.height,
+    justifyContent: "center",
+    paddingHorizontal: 24 - theme.comp.outlinedButton.outline.width,
 
-      ...(ownerState.disabled && {
-        borderColor: theme.utils.rgba(
-          theme.comp.outlinedButton.disabled.outline.color,
-          theme.comp.outlinedButton.disabled.outline.opacity,
-        ),
-      }),
+    ...(ownerState.disabled && {
+      borderColor: theme.utils.rgba(
+        theme.comp.outlinedButton.disabled.outline.color,
+        theme.comp.outlinedButton.disabled.outline.opacity,
+      ),
+    }),
 
-      "&:hover": {
-        borderColor: theme.comp.outlinedButton.hover.outline.color,
-      },
+    ...(ownerState.hovered && {
+      borderColor: theme.comp.outlinedButton.hover.outline.color,
+    }),
 
-      "&:focus-visible": {
-        borderColor: theme.comp.outlinedButton.focus.outline.color,
-      },
+    ...(ownerState.focused && {
+      borderColor: theme.comp.outlinedButton.focus.outline.color,
+    }),
 
-      "&:active": {
-        borderColor: theme.comp.outlinedButton.pressed.outline.color,
-      },
-    },
-  ],
-)
+    ...(ownerState.pressed && {
+      borderColor: theme.comp.outlinedButton.pressed.outline.color,
+    }),
+  },
+])
 
 const OutlinedButtonContent = styled(TextStyleProvider, {
   name: "OutlinedButton",
   slot: "Content",
   skipSx: true,
-})<OwnerStateProps<Pick<OutlinedButtonProps, "disabled">>>(
-  ({ theme, ownerState }) => ({
-    color: theme.comp.outlinedButton.labelText.color,
+})<OwnerStateProps<OutlinedButtonOwnerState>>(({ theme, ownerState }) => ({
+  color: theme.comp.outlinedButton.labelText.color,
 
-    ...(ownerState.disabled && {
-      color: theme.utils.rgba(
-        theme.comp.outlinedButton.disabled.labelText.color,
-        theme.comp.outlinedButton.disabled.labelText.opacity,
-      ),
-    }),
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.outlinedButton.disabled.labelText.color,
+      theme.comp.outlinedButton.disabled.labelText.opacity,
+    ),
   }),
-)
+
+  ...(ownerState.hovered && {
+    color: theme.comp.outlinedButton.hover.labelText.color,
+  }),
+
+  ...(ownerState.focused && {
+    color: theme.comp.outlinedButton.focus.labelText.color,
+  }),
+
+  ...(ownerState.pressed && {
+    color: theme.comp.outlinedButton.pressed.labelText.color,
+  }),
+}))
 
 const OutlinedButtonIcon = styled(RNView, {
   name: "OutlinedButton",
@@ -131,6 +144,12 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
       children,
       disabled = false,
       icon,
+      onBlur,
+      onFocusVisible,
+      onHoverIn,
+      onHoverOut,
+      onPressIn,
+      onPressOut,
       style,
       styles,
       ...props
@@ -138,13 +157,15 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
 
     const theme = useTheme()
 
-    const [hovered, handleHover] = useBoolean()
     const [focused, handleFocus] = useBoolean()
+    const [hovered, handleHover] = useBoolean()
+    const [pressed, handlePress] = useBoolean()
 
     const ownerState = {
       disabled,
       focused,
       hovered,
+      pressed,
     }
 
     return (
@@ -159,10 +180,12 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
         pressedColor={theme.comp.outlinedButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.outlinedButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
-        onBlur={handleFocus.off}
-        onFocus={handleFocus.on}
-        onHoverIn={handleHover.on}
-        onHoverOut={handleHover.off}
+        onBlur={createChainedFunction(onBlur, handleFocus.off)}
+        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
+        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
+        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
+        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
+        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
         {...props}
       >
         <OutlinedButtonContent ownerState={ownerState} style={styles?.content}>

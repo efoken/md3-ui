@@ -5,7 +5,7 @@ import {
   handleBreakpoints,
   removeUnusedBreakpoints,
 } from "./system/breakpoints"
-import { merge } from "./utils"
+import { merge } from "./utils/merge"
 
 function objectsHaveSameKeys(...objects: any[]) {
   const allKeys = objects.reduce(

@@ -2,7 +2,7 @@
 
 exports[`<ElevatedButton /> should render 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-cpet4d r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0 md3-media-17h1dt4 md3-media-1ev2qvy md3-media-1u06bu3"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-cpet4d r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
   data-class="ElevatedButton-root ButtonBase-root"
   role="button"
   type="button"
@@ -33,7 +33,7 @@ exports[`<ElevatedButton /> should render 1`] = `
 
 exports[`<ElevatedButton /> should render a button with icon 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-cpet4d r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0 md3-media-17h1dt4 md3-media-1ev2qvy md3-media-1u06bu3"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-cpet4d r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
   data-class="ElevatedButton-root ButtonBase-root"
   role="button"
   type="button"

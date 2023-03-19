@@ -1,17 +1,17 @@
 import {
-  ThemeContext,
   ThemeProvider as EmotionThemeProvider,
+  ThemeContext,
 } from "@emotion/react"
-import { theme, Theme } from "@md3-ui/theme"
+import { Theme, theme } from "@md3-ui/theme"
 import { isEmptyObject, objectFilter } from "@md3-ui/utils"
 import * as React from "react"
 import {
   AccessibilityChangeEventName,
   AccessibilityInfo,
   Platform,
-  StyleProp,
   TextStyle as RNTextStyle,
   ViewStyle as RNViewStyle,
+  StyleProp,
 } from "react-native"
 import { StyleSheet } from "./style-sheet"
 

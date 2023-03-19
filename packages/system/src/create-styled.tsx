@@ -1,18 +1,13 @@
 import { Theme } from "@md3-ui/theme"
-import { cx, isFunction, __DEV__ } from "@md3-ui/utils"
+import { __DEV__, cx, isFunction } from "@md3-ui/utils"
 import * as React from "react"
 import { PressableStateCallbackType as RNPressableStateCallbackType } from "react-native"
 import { useTheme } from "./context"
 import { css } from "./create-css"
 import { styleFunctionSx } from "./style-function-sx"
-import {
-  CreateStyled,
-  NamedStyles,
-  RNStyle,
-  StyledComponent,
-  StyledOptions,
-} from "./types"
+import { CreateStyled, RNStyle, StyledComponent, StyledOptions } from "./types"
 import { useStyleSheet } from "./use-style-sheet"
+import { createElement } from "./utils/create-element"
 
 function getDisplayName(Component: React.ElementType) {
   return typeof Component === "string"
@@ -32,7 +27,7 @@ function lowerCaseFirst(str: string) {
 
 export const styled: CreateStyled = <
   T extends React.ComponentType<{
-    style?: NamedStyles<any>
+    style?: RNStyle
     theme?: Theme
   }>,
 >(
@@ -92,12 +87,7 @@ export const styled: CreateStyled = <
             ]
           : [styleSheet.style, style]
 
-        return typeof FinalTag === "string" ? (
-          // eslint-disable-next-line global-require
-          require("react-native-web").unstable_createElement(FinalTag, newProps)
-        ) : (
-          <FinalTag {...newProps} />
-        )
+        return createElement(FinalTag, newProps)
       },
     ) as StyledComponent<T, React.ComponentProps<T>, {}>
 

@@ -4,7 +4,7 @@ import { FilledButton } from "../src/filled-button"
 describe("<FilledButton />", () => {
   describeConformance(<FilledButton>Conformance</FilledButton>, () => ({
     inheritComponent: "button",
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     skip: ["asProp"],
   }))
 

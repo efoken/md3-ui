@@ -3,9 +3,9 @@ import {
   OverridableComponent,
   OverrideProps,
   OwnerStateProps,
-  styled,
   StylesProp,
   SxProps,
+  styled,
   useThemeProps,
 } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
@@ -22,10 +22,6 @@ export interface BadgeTypeMap<
   C extends React.ElementType = typeof RNView,
 > {
   props: P & {
-    /**
-     * The content rendered within the badge.
-     */
-    badgeContent?: number
     /**
      * The content of the component.
      */
@@ -54,10 +50,9 @@ export interface BadgeTypeMap<
      */
     sx?: SxProps
     /**
-     * The variant to use.
-     * @default "standard"
+     * The value rendered within the badge.
      */
-    variant?: "standard" | "dot"
+    value?: string | number
   }
   defaultAs: C
 }
@@ -68,6 +63,8 @@ export type BadgeProps<
 > = OverrideProps<BadgeTypeMap<P, C>, C>
 
 export type BadgeStyleKey = keyof NonNullable<BadgeProps["styles"]>
+
+type BadgeOwnerState = Pick<BadgeProps, "value">
 
 const BadgeRoot = styled(RNView, {
   name: "Badge",
@@ -80,37 +77,36 @@ const BadgeLabel = styled(Animated.Text, {
   name: "Badge",
   slot: "Label",
   skipSx: true,
-})<OwnerStateProps<Pick<BadgeProps, "variant">>>(({ theme, ownerState }) => ({
+})<OwnerStateProps<BadgeOwnerState>>(({ theme, ownerState }) => ({
   ...theme.comp.badge.large.labelText.textStyle,
-  backgroundColor: theme.comp.badge.large.color,
-  borderRadius: theme.comp.badge.large.shape,
-  height: theme.comp.badge.large.size,
-  minWidth: theme.comp.badge.large.size,
-  paddingHorizontal: 4,
+  backgroundColor: theme.comp.badge.color,
+  borderRadius: theme.comp.badge.shape,
+  height: theme.comp.badge.size,
+  minWidth: theme.comp.badge.size,
   position: "absolute",
   right: 0,
   textAlign: "center",
   top: 0,
 
-  ...(ownerState.variant === "dot" && {
-    backgroundColor: theme.comp.badge.color,
-    borderRadius: theme.comp.badge.shape,
-    height: theme.comp.badge.size,
-    minWidth: theme.comp.badge.size,
-    paddingHorizontal: 0,
+  ...(ownerState.value != null && {
+    backgroundColor: theme.comp.badge.large.color,
+    borderRadius: theme.comp.badge.large.shape,
+    color: theme.comp.badge.large.labelText.color,
+    height: theme.comp.badge.large.size,
+    minWidth: theme.comp.badge.large.size,
+    paddingHorizontal: 4,
   }),
 }))
 
 export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
   const {
-    badgeContent: badgeContentProp,
     children,
     invisible: invisibleProp = false,
     max = 99,
     showZero = false,
     style,
     styles,
-    variant = "standard",
+    value: valueProp,
     ...props
   } = useThemeProps({
     name: "Badge",
@@ -119,10 +115,7 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
 
   const { handleLayout, ...layout } = useLayout()
 
-  const invisible =
-    !invisibleProp &&
-    ((badgeContentProp === 0 && !showZero) ||
-      (badgeContentProp == null && variant !== "dot"))
+  const invisible = invisibleProp || (valueProp === 0 && !showZero)
 
   const [scale] = useAnimate({
     duration: 225,
@@ -132,16 +125,12 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
     toValue: invisible ? 0 : 1,
   })
 
-  const ownerState = {
-    variant,
-  }
+  const value =
+    valueProp != null && Number(valueProp) > max ? `${max}+` : valueProp
 
-  const badgeContent =
-    variant !== "dot"
-      ? badgeContentProp != null && Number(badgeContentProp) > max
-        ? `${max}+`
-        : badgeContentProp
-      : undefined
+  const ownerState = {
+    value,
+  }
 
   return (
     <BadgeRoot ref={ref} style={[style, styles?.root]} {...props}>
@@ -150,13 +139,13 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
         style={{
           transform: [
             { scale },
-            { translateX: layout.width / 4 },
+            { translateX: layout.width / 2 },
             { translateY: -(layout.height / 4) },
           ],
         }}
         onLayout={handleLayout}
       >
-        {badgeContent}
+        {value}
       </BadgeLabel>
       {children}
     </BadgeRoot>

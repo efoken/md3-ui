@@ -1,37 +1,34 @@
 import { SettingsOutlined } from "@md3-ui/icons"
 import { Meta, StoryObj } from "@storybook/react"
-import { IconButton, IconButtonProps } from "../src"
+import {
+  FilledIconButton,
+  IconButton,
+  IconButtonProps,
+  OutlinedIconButton,
+  TonalIconButton,
+} from "../src"
 
 export default {
   title: "Components / Buttons / Icon buttons",
   component: IconButton,
-  render: (args) => (
-    <IconButton {...args}>
-      <SettingsOutlined />
-    </IconButton>
-  ),
+  args: {
+    "aria-label": "Settings",
+    children: <SettingsOutlined />,
+  },
 } as Meta<IconButtonProps>
 
 export const Filled: StoryObj<IconButtonProps> = {
-  args: {
-    variant: "filled",
-  },
+  render: (args) => <FilledIconButton {...args} />,
 }
 
 export const Tonal: StoryObj<IconButtonProps> = {
-  args: {
-    variant: "tonal",
-  },
+  render: (args) => <TonalIconButton {...args} />,
 }
 
 export const Outlined: StoryObj<IconButtonProps> = {
-  args: {
-    variant: "outlined",
-  },
+  render: (args) => <OutlinedIconButton {...args} />,
 }
 
 export const Standard: StoryObj<IconButtonProps> = {
-  args: {
-    variant: "standard",
-  },
+  render: (args) => <IconButton {...args} />,
 }

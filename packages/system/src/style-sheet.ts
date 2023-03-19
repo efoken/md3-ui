@@ -4,13 +4,13 @@ import {
   Appearance,
   Dimensions,
   Platform,
-  StyleProp,
   StyleSheet as RNStyleSheet,
+  StyleProp,
 } from "react-native"
 import hash from "react-native-web/dist/vendor/hash"
-import { createDeclarationBlock } from "./create-declaration-block"
 import { addCSS, createCSSRule } from "./inject"
 import { NamedStyles } from "./types"
+import { createDeclarationBlock } from "./utils/create-declaration-block"
 
 export function getDefaultMediaValues(): Partial<MediaValues> {
   const { width, height, scale, fontScale } = Dimensions.get("window")
@@ -52,10 +52,10 @@ export class StyleSheet {
       return { fullStyles: {} as T, styles: {} as T }
     }
 
-    let cleanStyles = { ...stylesWithQuery }
-    const mediaStyles: Record<keyof T, any> = {} as any
+    let cleanStyles: Record<string, any> = { ...stylesWithQuery }
+    const mediaStyles: Record<string, any> = {} as any
 
-    for (const [key, styleWithQuery] of Object.entries(stylesWithQuery)) {
+    for (const [key, styleWithQuery] of Object.entries<any>(stylesWithQuery)) {
       if (!styleWithQuery) {
         continue
       }
@@ -97,13 +97,13 @@ export class StyleSheet {
       }
     }
 
-    const styles: T = Object.fromEntries(
+    const styles = Object.fromEntries(
       Object.entries(this.create(cleanStyles)).map(([key, style]) =>
         mediaStyles[key] == null
           ? [key, style]
           : [key, [style, mediaStyles[key]]],
       ),
-    )
+    ) as T
 
     return {
       fullStyles: stylesWithQuery as T,

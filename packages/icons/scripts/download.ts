@@ -84,7 +84,7 @@ const ignoredIconNames = new Set([
   "waving_hand",
 ])
 
-const themeMap = {
+const themeMap: Record<string, string> = {
   baseline: "", // filled
   outline: "_outlined",
   round: "_round",
@@ -92,7 +92,7 @@ const themeMap = {
   sharp: "_sharp",
 }
 
-const themeFileMap = {
+const themeFileMap: Record<string, string> = {
   baseline: "", // filled
   outline: "-outlined",
   round: "-rounded",

@@ -2,7 +2,7 @@
 
 exports[`<TonalButton /> should render 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-cpet4d r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0 md3-media-iwmwhq md3-media-1ld86pe md3-media-xuq1z7"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-cpet4d r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
   data-class="TonalButton-root ButtonBase-root"
   role="button"
   type="button"
@@ -33,7 +33,7 @@ exports[`<TonalButton /> should render 1`] = `
 
 exports[`<TonalButton /> should render a button with icon 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-cpet4d r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0 md3-media-iwmwhq md3-media-1ld86pe md3-media-xuq1z7"
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-oc2s68 r-borderRadius-cpet4d r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
   data-class="TonalButton-root ButtonBase-root"
   role="button"
   type="button"

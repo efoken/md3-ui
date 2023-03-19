@@ -1,6 +1,6 @@
 import { useAnimate, useLayout, useLocale } from "@md3-ui/hooks"
 import { Modal, ModalProps } from "@md3-ui/modal"
-import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
+import { OwnerStateProps, SxProps, styled, useThemeProps } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {

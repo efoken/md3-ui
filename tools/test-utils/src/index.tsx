@@ -1,11 +1,12 @@
 import { Md3Provider } from "@md3-ui/core"
+import { objectKeys } from "@md3-ui/utils"
 import "@testing-library/jest-dom/extend-expect"
 import {
-  render as rtlRender,
   RenderOptions,
   RenderResult,
+  render as rtlRender,
 } from "@testing-library/react"
-import { axe, JestAxeConfigureOptions, toHaveNoViolations } from "jest-axe"
+import { JestAxeConfigureOptions, axe, toHaveNoViolations } from "jest-axe"
 import * as React from "react"
 
 expect.extend(toHaveNoViolations)
@@ -45,8 +46,22 @@ export async function testA11y(
 ) {
   const container = React.isValidElement(ui)
     ? render(ui, options).container
-    : ui
+    : (ui as HTMLElement)
   expect(await axe(container, axeOptions)).toHaveNoViolations()
+}
+
+function assertDOMNode(node: unknown) {
+  expect(typeof (node as HTMLElement).nodeName).toBe("string")
+}
+
+function testRef(
+  element: React.ReactElement,
+  mount: NonNullable<ConformanceOptions["render"]>,
+  onRef: (instance: unknown, result: RenderResult) => void = assertDOMNode,
+) {
+  const ref = React.createRef()
+  const result = mount(React.cloneElement(element, { ref }))
+  onRef(ref.current, result)
 }
 
 function testAsProp(
@@ -109,12 +124,39 @@ function testPropsSpread(
   })
 }
 
+export function describeRef(
+  element: React.ReactElement,
+  getOptions: () => ConformanceOptions,
+) {
+  describe("ref", () => {
+    it("attaches the ref", () => {
+      const {
+        inheritComponent,
+        refInstanceof,
+        render: testRender = render,
+      } = getOptions()
+
+      testRef(element, testRender, (instance, result) => {
+        expect(instance).toBeInstanceOf(refInstanceof)
+
+        if (
+          inheritComponent != null &&
+          (instance as HTMLElement).nodeType === 1
+        ) {
+          const rootHost = result.container.firstChild
+          expect(instance).toBe(rootHost)
+        }
+      })
+    })
+  })
+}
+
 const fullSuite = {
   asProp: testAsProp,
   // componentsProp: testComponentsProp,
   mergeClassName: testClassName,
   propsSpread: testPropsSpread,
-  // refForwarding: describeRef,
+  refForwarding: describeRef,
   // rootClass: testRootClass,
   // reactTestRenderer: testReactTestRenderer,
   // themeDefaultProps: testThemeDefaultProps,
@@ -139,11 +181,11 @@ export function describeConformance(
   describe("component API", () => {
     const {
       afterAll: afterAllHook = () => {},
-      only = Object.keys(fullSuite),
+      only = objectKeys(fullSuite),
       skip = [] as string[],
     } = getOptions()
 
-    const filteredTests = Object.keys(fullSuite).filter(
+    const filteredTests = objectKeys(fullSuite).filter(
       (testKey) => only.includes(testKey) && !skip.includes(testKey),
     )
 

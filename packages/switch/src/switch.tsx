@@ -1,8 +1,8 @@
 import { useBoolean, useControlled, useEventCallback } from "@md3-ui/hooks"
 import {
-  styled,
   StylesProp,
   SxProps,
+  styled,
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
@@ -11,8 +11,8 @@ import * as React from "react"
 import {
   Animated,
   Easing,
-  FlexAlignType as RNFlexAlignType,
   NativeSyntheticEvent,
+  FlexAlignType as RNFlexAlignType,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"

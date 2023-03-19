@@ -24,13 +24,9 @@ export interface StackTypeMap<
      * The content of the component.
      */
     children?: React.ReactNode
-    /**
-     * @default "column"
-     */
+    /** @default "column" */
     direction?: FlexStyle["flexDirection"]
-    /**
-     * @default 0
-     */
+    /** @default 0 */
     spacing?: number
     /**
      * Override or extend the styles applied to the component.

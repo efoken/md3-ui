@@ -6,8 +6,9 @@ import {
 } from "@md3-ui/hooks"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
-import { findNodeHandle, Platform, RootTagContext } from "react-native"
+import { findNodeHandle } from "react-native"
 import { createPortal } from "./create-portal"
+import { useRootTag } from "./use-root-tag"
 
 export interface PortalProps {
   children?: React.ReactNode
@@ -17,9 +18,7 @@ export interface PortalProps {
 
 export const Portal = React.forwardRef<any, PortalProps>(
   ({ children, containerRef, disablePortal = false }, ref) => {
-    const rootTag =
-      // eslint-disable-next-line react-hooks/rules-of-hooks
-      Platform.OS === "web" ? undefined : React.useContext(RootTagContext)
+    const rootTag = useRootTag()
 
     const [mountNode, setMountNode] = React.useState<Element | number>()
     const handleRef = useForkRef(

@@ -2,8 +2,8 @@ import { useControlled, useEnhancedEffect, useForkRef } from "@md3-ui/hooks"
 import {
   Global,
   OwnerStateProps,
-  styled,
   SxProps,
+  styled,
   useThemeProps,
 } from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"

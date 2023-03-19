@@ -6,7 +6,7 @@ import { Platform, useWindowDimensions } from "react-native"
 import { StyleSheet } from "./style-sheet"
 import { RNStyle } from "./types"
 import { useMediaValues } from "./use-media-values"
-import { findBreakpoints } from "./utils"
+import { findBreakpoints } from "./utils/find-breakpoints"
 
 export function useStyleSheet(styles: RNStyle) {
   let breakpoint: number | undefined

@@ -2,7 +2,7 @@ import { Theme } from "@md3-ui/theme"
 import { get } from "@md3-ui/utils"
 import { handleBreakpoints } from "./system/breakpoints"
 import { RNStyle } from "./types"
-import { merge } from "./utils"
+import { merge } from "./utils/merge"
 
 type StyleValue = number | string | RNStyle
 

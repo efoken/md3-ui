@@ -1,5 +1,6 @@
 import createReactDOMStyle from "react-native-web/dist/exports/StyleSheet/compiler/createReactDOMStyle"
 import prefixStyles from "react-native-web/dist/modules/prefixStyles"
+import { preprocess } from "./preprocess"
 
 const cache = new Map<string, string>()
 
@@ -15,7 +16,7 @@ function hyphenateStyleName(name: string) {
 }
 
 export function createDeclarationBlock(style: Record<string, any>) {
-  const domStyle = prefixStyles(createReactDOMStyle(style))
+  const domStyle = prefixStyles(createReactDOMStyle(preprocess(style)))
   const declarationsString = Object.keys(domStyle)
     .map((property) => {
       const value = domStyle[property]

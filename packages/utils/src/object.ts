@@ -1,6 +1,10 @@
 import { isObject } from "./assertion"
 
-export function get(obj: object, path: string | number, fallback?: any) {
+export function get(
+  obj: Record<string, any>,
+  path: string | number,
+  fallback?: any,
+) {
   const keys = typeof path === "string" ? path.split(".") : [path]
 
   for (const key of keys) {

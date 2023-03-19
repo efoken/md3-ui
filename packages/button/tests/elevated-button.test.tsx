@@ -4,7 +4,7 @@ import { ElevatedButton } from "../src/elevated-button"
 describe("<ElevatedButton />", () => {
   describeConformance(<ElevatedButton>Conformance</ElevatedButton>, () => ({
     inheritComponent: "button",
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     skip: ["asProp"],
   }))
 

@@ -4,9 +4,9 @@ import { Media, Pseudo } from "@md3-ui/utils"
 import * as React from "react"
 import {
   ImageStyle as RNImageStyle,
-  StyleProp,
   TextStyle as RNTextStyle,
   ViewStyle as RNViewStyle,
+  StyleProp,
 } from "react-native"
 import {
   BackgroundProps,
@@ -23,7 +23,7 @@ import {
   TypographyProps,
 } from "./system/types"
 
-export type RNStyle = RNViewStyle | RNTextStyle | RNImageStyle
+export type RNStyle = RNViewStyle | RNTextStyle | Omit<RNImageStyle, "overflow">
 
 export type RNStyleWithMediaAndPseudo = RNStyle & {
   [K in Media | Pseudo]?: RNStyle

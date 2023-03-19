@@ -1,24 +1,24 @@
 import { useEventCallback, useForkRef } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
-  styled,
   StyleSheet,
   StylesProp,
   SxProps,
+  styled,
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { isHTMLElement, splitProps, __DEV__ } from "@md3-ui/utils"
+import { __DEV__, isHTMLElement, splitProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
   NativeSyntheticEvent,
   Platform,
   Pressable as RNPressable,
   PressableProps as RNPressableProps,
-  StyleProp,
-  TargetedEvent,
   View as RNView,
   ViewStyle as RNViewStyle,
+  StyleProp,
+  TargetedEvent,
 } from "react-native"
 
 export interface ButtonBaseProps
@@ -80,24 +80,29 @@ export interface ButtonBaseProps
 
 export type ButtonBaseStyleKey = keyof NonNullable<ButtonBaseProps["styles"]>
 
+type ButtonBaseOwnerState = Required<
+  Pick<
+    ButtonBaseProps,
+    "disabled" | "hoverOpacity" | "pressedColor" | "pressedOpacity"
+  >
+>
+
 const ButtonBaseRoot = styled(RNPressable, {
   name: "ButtonBase",
   slot: "Root",
-})<OwnerStateProps<Pick<ButtonBaseProps, "disabled">>>(
-  ({ theme, ownerState }) => ({
-    cursor: ownerState.disabled ? "default" : "pointer",
-    outlineWidth: 0,
-    pointerEvents: ownerState.disabled ? "none" : undefined,
-    userSelect: "none",
+})<OwnerStateProps<ButtonBaseOwnerState>>(({ theme, ownerState }) => ({
+  cursor: ownerState.disabled ? "default" : "pointer",
+  outlineWidth: 0,
+  pointerEvents: ownerState.disabled ? "none" : undefined,
+  userSelect: "none",
 
-    ...(Platform.OS === "web" && {
-      transition: theme.sys.motion.create("box-shadow", {
-        duration: 200,
-        easing: "linear",
-      }),
+  ...(Platform.OS === "web" && {
+    transition: theme.sys.motion.create("box-shadow", {
+      duration: 200,
+      easing: "linear",
     }),
   }),
-)
+}))
 
 const ButtonBaseContainer = styled(RNView, {
   name: "ButtonBase",
@@ -145,13 +150,7 @@ const ButtonBaseRipple = styled("span", {
   name: "ButtonBase",
   slot: "Ripple",
   skipSx: true,
-})<
-  OwnerStateProps<
-    Required<
-      Pick<ButtonBaseProps, "hoverOpacity" | "pressedColor" | "pressedOpacity">
-    >
-  >
->(({ ownerState, theme }) => ({
+})<OwnerStateProps<ButtonBaseOwnerState>>(({ ownerState, theme }) => ({
   animationDuration: "550ms",
   animationFillMode: "forwards",
   animationKeyframes: {
@@ -169,7 +168,7 @@ const ButtonBaseRipple = styled("span", {
     ownerState.pressedColor,
     ownerState.pressedOpacity - ownerState.hoverOpacity,
   ),
-  borderRadius: 999,
+  borderRadius: theme.sys.shape.corner.full,
   pointerEvents: "none",
   position: "absolute",
   zIndex: -1,
@@ -256,12 +255,12 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         : // Otherwise we mix the `rippleColor` with the background color
           theme.utils.mix(
             pressedOpacity,
-            pressedColor,
             backgroundColor.toString(),
+            pressedColor,
           )
 
-    const removeRipple = (rippleID: number) => () => {
-      setRipples((prevRipples) => prevRipples.filter((r) => r.id !== rippleID))
+    const removeRipple = (rippleId: number) => () => {
+      setRipples((prevRipples) => prevRipples.filter((r) => r.id !== rippleId))
     }
 
     const appendRipple = React.useCallback(
@@ -305,13 +304,14 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
           rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2)
         }
 
-        const rippleID =
+        const rippleId =
           ripples.length === 0 ? 1 : ripples[ripples.length - 1].id + 1
 
         const ripple = (
           <ButtonBaseRipple
-            key={rippleID}
+            key={rippleId}
             ownerState={{
+              disabled,
               hoverOpacity,
               pressedColor,
               pressedOpacity,
@@ -322,11 +322,11 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
               top: -(rippleSize / 2) + rippleY,
               width: rippleSize,
             }}
-            onAnimationEnd={removeRipple(rippleID)}
+            onAnimationEnd={removeRipple(rippleId)}
           />
         )
 
-        setRipples((prevRipples) => [...prevRipples, { id: rippleID, ripple }])
+        setRipples((prevRipples) => [...prevRipples, { id: rippleId, ripple }])
       },
       [
         rootRef,
@@ -437,6 +437,9 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
 
     const ownerState = {
       disabled,
+      hoverOpacity,
+      pressedColor,
+      pressedOpacity,
     }
 
     const button = (

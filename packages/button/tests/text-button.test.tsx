@@ -4,7 +4,7 @@ import { TextButton } from "../src/text-button"
 describe("<TextButton />", () => {
   describeConformance(<TextButton>Conformance</TextButton>, () => ({
     inheritComponent: "button",
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     skip: ["asProp"],
   }))
 

@@ -1,6 +1,6 @@
-import { Theme } from "@md3-ui/theme"
-import { isEmptyObject } from "@md3-ui/utils"
-import { ResponsiveValue, RNStyle } from "../types"
+import { Breakpoint, Theme } from "@md3-ui/theme"
+import { isEmptyObject, objectKeys } from "@md3-ui/utils"
+import { RNStyle, ResponsiveValue } from "../types"
 
 const values = {
   compact: 0,
@@ -11,8 +11,8 @@ const values = {
 const defaultBreakpoints = {
   // Sorted ASC by size. That's important.
   // It can't be configured as it's used statically for types.
-  keys: ["compact", "medium", "expanded"],
-  up: (key: string) =>
+  keys: ["compact", "medium", "expanded"] as Breakpoint[],
+  up: (key: Breakpoint) =>
     key === "medium"
       ? // Phones in landscape mode still use `compact`
         // See: https://m3.material.io/foundations/adaptive-design/large-screens/overview
@@ -21,10 +21,10 @@ const defaultBreakpoints = {
   values: undefined,
 }
 
-export function handleBreakpoints<P extends { theme?: Theme }, T>(
+export function handleBreakpoints<P extends { theme?: Theme }>(
   props: P,
-  propValue: T | Partial<Record<keyof Theme["breakpoints"]["values"], T>>,
-  styleFromPropValue: (propValueFinal?: T) => RNStyle,
+  propValue: any,
+  styleFromPropValue: (value?: any) => RNStyle,
 ) {
   const { theme } = props
 
@@ -41,7 +41,7 @@ export function handleBreakpoints<P extends { theme?: Theme }, T>(
   if (propValue != null && typeof propValue === "object") {
     const themeBreakpoints = theme?.breakpoints || defaultBreakpoints
 
-    return Object.keys(propValue).reduce((acc, breakpoint) => {
+    return Object.keys(propValue).reduce<any>((acc, breakpoint) => {
       // Key is the breakpoint
       if (Object.keys(themeBreakpoints.values || values).includes(breakpoint)) {
         const mediaKey = themeBreakpoints.up(breakpoint)
@@ -94,8 +94,8 @@ export function computeBreakpointsBase(
   if (typeof breakpointValues !== "object") {
     return {}
   }
-  const base: Record<string, boolean> = {}
-  const breakpointKeys = Object.keys(themeBreakpoints)
+  const base: Partial<Record<Breakpoint, boolean>> = {}
+  const breakpointKeys = objectKeys(themeBreakpoints)
   if (Array.isArray(breakpointValues)) {
     for (const [i, breakpoint] of breakpointKeys.entries()) {
       if (i < breakpointValues.length) {
@@ -133,10 +133,11 @@ export function resolveBreakpointValues<T>({
 
   return keys.reduce((acc, breakpoint, i) => {
     if (Array.isArray(breakpointValues)) {
-      acc[breakpoint] =
+      acc[breakpoint] = (
         breakpointValues[i] != null
           ? breakpointValues[i]
-          : breakpointValues[previous]
+          : breakpointValues[previous as number]
+      ) as T
       previous = i
     } else {
       acc[breakpoint] =
@@ -146,5 +147,5 @@ export function resolveBreakpointValues<T>({
       previous = breakpoint
     }
     return acc
-  }, {} as Record<keyof Theme["breakpoints"]["values"], T>)
+  }, {} as Record<string, T>) as Record<Breakpoint, T>
 }

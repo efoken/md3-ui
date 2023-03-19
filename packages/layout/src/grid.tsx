@@ -11,11 +11,11 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
-import { resolveProps, __DEV__ } from "@md3-ui/utils"
+import { __DEV__, resolveProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
-  FlexStyle as RNFlexStyle,
   Platform,
+  FlexStyle as RNFlexStyle,
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"

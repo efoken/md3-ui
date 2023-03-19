@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<OutlinedIconButton /> prop: selected should select the component 1`] = `
+<button
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fpry2e r-borderRadius-cpet4d r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
+  data-class="OutlinedIconButton-root ButtonBase-root"
+  role="button"
+  type="button"
+>
+  <div
+    style="display: contents;"
+  >
+    <svg
+      class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
+      color="currentColor"
+      data-class="Icon-root"
+      fill="currentColor"
+    />
+  </div>
+  <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(255, 251, 254); opacity: 0;"
+  />
+  <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
+    data-class="ButtonBase-rippleContainer"
+  />
+</button>
+`;
+
+exports[`<OutlinedIconButton /> prop: selected should unselect the component 1`] = `
+<button
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderColor-1t01w60 r-borderRadius-cpet4d r-borderWidth-rs99b7 r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
+  data-class="OutlinedIconButton-root ButtonBase-root"
+  role="button"
+  type="button"
+>
+  <div
+    style="color: rgb(73, 69, 79); display: contents;"
+  >
+    <svg
+      class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
+      color="currentColor"
+      data-class="Icon-root"
+      fill="currentColor"
+      style="color: rgb(73, 69, 79);"
+    />
+  </div>
+  <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(73, 69, 79); opacity: 0;"
+  />
+  <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
+    data-class="ButtonBase-rippleContainer"
+  />
+</button>
+`;
+
+exports[`<OutlinedIconButton /> should render 1`] = `
+<button
+  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderColor-1t01w60 r-borderRadius-cpet4d r-borderWidth-rs99b7 r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
+  data-class="OutlinedIconButton-root ButtonBase-root"
+  role="button"
+  type="button"
+>
+  <div
+    style="color: rgb(73, 69, 79); display: contents;"
+  >
+    <svg
+      class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
+      color="currentColor"
+      data-class="Icon-root"
+      data-testid="icon"
+      fill="currentColor"
+      style="color: rgb(73, 69, 79);"
+    />
+  </div>
+  <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
+    data-class="ButtonBase-hover"
+    style="background-color: rgb(73, 69, 79); opacity: 0;"
+  />
+  <span
+    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
+    data-class="ButtonBase-rippleContainer"
+  />
+</button>
+`;

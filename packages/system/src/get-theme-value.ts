@@ -1,4 +1,5 @@
 import { Theme } from "@md3-ui/theme"
+import { objectKeys } from "@md3-ui/utils"
 import { background } from "./system/background"
 import { border } from "./system/border"
 import { display } from "./system/display"
@@ -11,6 +12,7 @@ import { spacing } from "./system/spacing"
 import { transform } from "./system/transform"
 import { transition } from "./system/transition"
 import { typography } from "./system/typography"
+import { AllSystemProps } from "./types"
 
 const filterPropsMapping = {
   background: background.filterProps,
@@ -42,14 +44,14 @@ const styleFunctionMapping = {
   typography,
 }
 
-export const propToStyleFunction = Object.keys(filterPropsMapping).reduce(
+export const propToStyleFunction = objectKeys(filterPropsMapping).reduce(
   (acc, styleFnName) => {
     for (const propName of filterPropsMapping[styleFnName]) {
       acc[propName] = styleFunctionMapping[styleFnName]
     }
     return acc
   },
-  {},
+  {} as Record<keyof AllSystemProps, any>,
 )
 
 export function getThemeValue(prop: string, value: any, theme: Theme) {
@@ -57,6 +59,6 @@ export function getThemeValue(prop: string, value: any, theme: Theme) {
     [prop]: value,
     theme,
   }
-  const styleFunction = propToStyleFunction[prop]
+  const styleFunction = (propToStyleFunction as any)[prop]
   return styleFunction ? styleFunction(inputProps) : { [prop]: value }
 }

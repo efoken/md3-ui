@@ -8,11 +8,11 @@ import {
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
-  Role,
   Text as RNText,
   TextStyle as RNTextStyle,
   View as RNView,
   ViewStyle as RNViewStyle,
+  Role,
 } from "react-native"
 
 export interface SnackbarContentTypeMap<

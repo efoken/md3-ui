@@ -4,7 +4,7 @@ import { TonalButton } from "../src/tonal-button"
 describe("<TonalButton />", () => {
   describeConformance(<TonalButton>Conformance</TonalButton>, () => ({
     inheritComponent: "button",
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     skip: ["asProp"],
   }))
 

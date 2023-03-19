@@ -4,7 +4,7 @@ import { OutlinedButton } from "../src/outlined-button"
 describe("<OutlinedButton />", () => {
   describeConformance(<OutlinedButton>Conformance</OutlinedButton>, () => ({
     inheritComponent: "button",
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     skip: ["asProp"],
   }))
 

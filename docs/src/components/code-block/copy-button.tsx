@@ -18,17 +18,17 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   }, [code])
 
   React.useEffect(() => {
-    let timeoutID: number | undefined
+    let timeoutId: number | undefined
 
     if (copied) {
-      timeoutID = window.setTimeout(() => {
+      timeoutId = window.setTimeout(() => {
         setCopied(false)
       }, 1500)
     }
 
     return () => {
-      if (timeoutID != null) {
-        window.clearTimeout(timeoutID)
+      if (timeoutId != null) {
+        window.clearTimeout(timeoutId)
       }
     }
   }, [copied])

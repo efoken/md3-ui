@@ -1,19 +1,22 @@
-import { Mail } from "@md3-ui/icons"
+import { HomeOutlined } from "@md3-ui/icons"
 import { Meta, StoryObj } from "@storybook/react"
 import { Badge, BadgeProps } from "../src"
 
 export default {
   title: "Layout/Badge",
   component: Badge,
+  argTypes: {
+    value: { type: "number" },
+  },
 } as Meta<BadgeProps>
 
 export const Basic: StoryObj<BadgeProps> = {
   render: (args) => (
     <Badge {...args}>
-      <Mail />
+      <HomeOutlined size="large" />
     </Badge>
   ),
   args: {
-    badgeContent: 4,
+    value: 4,
   },
 }

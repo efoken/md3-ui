@@ -1,5 +1,6 @@
 import { mergeDeep } from "@md3-ui/utils"
 import { badgeTheme, Md3CompBadge } from "./components/badge"
+import { dividerTheme, Md3CompDivider } from "./components/divider"
 import {
   elevatedButtonTheme,
   Md3CompElevatedButton,
@@ -30,6 +31,7 @@ import {
 
 export interface Components {
   badge: Md3CompBadge
+  divider: Md3CompDivider
   elevatedButton: Md3CompElevatedButton
   filledButton: Md3CompFilledButton
   filledIconButton: Md3CompFilledIconButton
@@ -46,6 +48,7 @@ export function createComponents(theme: Record<string, any>): Components {
   return mergeDeep(
     {
       badge: badgeTheme(theme),
+      divider: dividerTheme(theme),
       elevatedButton: elevatedButtonTheme(theme),
       filledButton: filledButtonTheme(theme),
       filledIconButton: filledIconButtonTheme(theme),

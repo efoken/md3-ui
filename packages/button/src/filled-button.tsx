@@ -9,7 +9,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
+import { __DEV__, createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -53,64 +53,78 @@ export type FilledButtonStyleKey = keyof NonNullable<
   FilledButtonProps["styles"]
 >
 
+type FilledButtonOwnerState = Pick<FilledButtonProps, "disabled"> & {
+  focused: boolean
+  hovered: boolean
+  pressed: boolean
+}
+
 const FilledButtonRoot = styled(ButtonBase, {
   name: "FilledButton",
   slot: "Root",
-})<OwnerStateProps<Pick<FilledButtonProps, "disabled">>>(
-  ({ theme, ownerState }) => [
-    {
-      ...theme.comp.filledButton.container.elevation,
-      alignItems: "center",
-      backgroundColor: theme.comp.filledButton.container.color,
-      borderRadius: theme.comp.filledButton.container.shape,
-      flexDirection: "row",
-      height: theme.comp.filledButton.container.height,
-      justifyContent: "center",
-      paddingHorizontal: 24,
+})<OwnerStateProps<FilledButtonOwnerState>>(({ theme, ownerState }) => [
+  {
+    ...theme.comp.filledButton.container.elevation,
+    alignItems: "center",
+    backgroundColor: theme.comp.filledButton.container.color,
+    borderRadius: theme.comp.filledButton.container.shape,
+    flexDirection: "row",
+    height: theme.comp.filledButton.container.height,
+    justifyContent: "center",
+    paddingHorizontal: 24,
 
-      ...(Platform.OS !== "web" && {
-        shadowColor: theme.comp.filledButton.container.shadowColor,
-      }),
+    ...(Platform.OS !== "web" && {
+      shadowColor: theme.comp.filledButton.container.shadowColor,
+    }),
 
-      ...(ownerState.disabled && {
-        ...theme.comp.filledButton.disabled.container.elevation,
-        backgroundColor: theme.utils.rgba(
-          theme.comp.filledButton.disabled.container.color,
-          theme.comp.filledButton.disabled.container.opacity,
-        ),
-      }),
+    ...(ownerState.disabled && {
+      ...theme.comp.filledButton.disabled.container.elevation,
+      backgroundColor: theme.utils.rgba(
+        theme.comp.filledButton.disabled.container.color,
+        theme.comp.filledButton.disabled.container.opacity,
+      ),
+    }),
 
-      "&:hover": {
-        ...theme.comp.filledButton.hover.container.elevation,
-      },
+    ...(ownerState.hovered && {
+      ...theme.comp.filledButton.hover.container.elevation,
+    }),
 
-      "&:focus-visible": {
-        ...theme.comp.filledButton.focus.container.elevation,
-      },
+    ...(ownerState.focused && {
+      ...theme.comp.filledButton.focus.container.elevation,
+    }),
 
-      "&:active": {
-        ...theme.comp.filledButton.pressed.container.elevation,
-      },
-    },
-  ],
-)
+    ...(ownerState.pressed && {
+      ...theme.comp.filledButton.pressed.container.elevation,
+    }),
+  },
+])
 
 const FilledButtonContent = styled(TextStyleProvider, {
   name: "FilledButton",
   slot: "Content",
   skipSx: true,
-})<OwnerStateProps<Pick<FilledButtonProps, "disabled">>>(
-  ({ theme, ownerState }) => ({
-    color: theme.comp.filledButton.labelText.color,
+})<OwnerStateProps<FilledButtonOwnerState>>(({ theme, ownerState }) => ({
+  color: theme.comp.filledButton.labelText.color,
 
-    ...(ownerState.disabled && {
-      color: theme.utils.rgba(
-        theme.comp.filledButton.disabled.labelText.color,
-        theme.comp.filledButton.disabled.labelText.opacity,
-      ),
-    }),
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.filledButton.disabled.labelText.color,
+      theme.comp.filledButton.disabled.labelText.opacity,
+    ),
   }),
-)
+
+  ...(ownerState.hovered && {
+    color: theme.comp.filledButton.hover.labelText.color,
+  }),
+
+  ...(ownerState.focused && {
+    color: theme.comp.filledButton.focus.labelText.color,
+  }),
+
+  ...(ownerState.pressed && {
+    color: theme.comp.filledButton.pressed.labelText.color,
+  }),
+}))
 
 const FilledButtonIcon = styled(RNView, {
   name: "FilledButton",
@@ -136,6 +150,12 @@ export const FilledButton = React.forwardRef<RNView, FilledButtonProps>(
       children,
       disabled = false,
       icon,
+      onBlur,
+      onFocusVisible,
+      onHoverIn,
+      onHoverOut,
+      onPressIn,
+      onPressOut,
       style,
       styles,
       ...props
@@ -143,13 +163,15 @@ export const FilledButton = React.forwardRef<RNView, FilledButtonProps>(
 
     const theme = useTheme()
 
-    const [hovered, handleHover] = useBoolean()
     const [focused, handleFocus] = useBoolean()
+    const [hovered, handleHover] = useBoolean()
+    const [pressed, handlePress] = useBoolean()
 
     const ownerState = {
       disabled,
       focused,
       hovered,
+      pressed,
     }
 
     return (
@@ -164,10 +186,12 @@ export const FilledButton = React.forwardRef<RNView, FilledButtonProps>(
         pressedColor={theme.comp.filledButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.filledButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
-        onBlur={handleFocus.off}
-        onFocus={handleFocus.on}
-        onHoverIn={handleHover.on}
-        onHoverOut={handleHover.off}
+        onBlur={createChainedFunction(onBlur, handleFocus.off)}
+        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
+        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
+        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
+        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
+        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
         {...props}
       >
         <FilledButtonContent ownerState={ownerState} style={styles?.content}>

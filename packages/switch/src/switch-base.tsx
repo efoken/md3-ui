@@ -1,7 +1,7 @@
 import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { useControlled } from "@md3-ui/hooks"
-import { styled, StylesProp, SxProps, useThemeProps } from "@md3-ui/system"
-import { createChainedFunction, __DEV__ } from "@md3-ui/utils"
+import { StylesProp, SxProps, styled, useThemeProps } from "@md3-ui/system"
+import { __DEV__, createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   GestureResponderEvent,
@@ -79,6 +79,7 @@ const SwitchBaseInput = styled("input", {
   slot: "Input",
   skipSx: true,
 })({
+  cursor: "inherit",
   height: "100%",
   left: 0,
   margin: 0,
@@ -88,10 +89,6 @@ const SwitchBaseInput = styled("input", {
   top: 0,
   width: "100%",
   zIndex: 1,
-
-  ...(Platform.OS === "web" && {
-    cursor: "inherit",
-  }),
 })
 
 export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(

@@ -1,3 +1,4 @@
+import { useBoolean } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
   styled,
@@ -7,7 +8,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
+import { __DEV__, createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -32,12 +33,6 @@ export interface IconButtonProps extends ButtonBaseProps {
    */
   selected?: boolean
   /**
-   * The size of the component. `small` is equivalent to the dense button
-   * styling.
-   * @default "medium"
-   */
-  size?: "small" | "medium" | "large"
-  /**
    * Override or extend the styles applied to the component.
    */
   styles?: StylesProp<{
@@ -49,121 +44,66 @@ export interface IconButtonProps extends ButtonBaseProps {
    * additional styles.
    */
   sx?: SxProps
-  /**
-   * The variant to use.
-   * @default "standard"
-   */
-  variant?: "filled" | "tonal" | "outlined" | "standard"
 }
 
 export type IconButtonStyleKey = keyof NonNullable<IconButtonProps["styles"]>
 
+type IconButtonOwnerState = Pick<
+  IconButtonProps,
+  "disabled" | "edge" | "selected"
+> & {
+  focused: boolean
+  hovered: boolean
+  pressed: boolean
+}
+
 const IconButtonRoot = styled(ButtonBase, {
   name: "IconButton",
   slot: "Root",
-})<
-  OwnerStateProps<
-    Pick<IconButtonProps, "disabled" | "edge" | "selected" | "size" | "variant">
-  >
->(({ theme, ownerState }) => ({
+})<OwnerStateProps<IconButtonOwnerState>>(({ theme, ownerState }) => ({
   alignItems: "center",
-  borderRadius: theme.sys.shape.corner.full,
+  borderRadius: theme.comp.iconButton.stateLayer.shape,
+  height: theme.comp.iconButton.stateLayer.size,
   justifyContent: "center",
   marginEnd: ownerState.edge === "end" ? -12 : undefined,
   marginStart: ownerState.edge === "start" ? -12 : undefined,
-
-  ...(ownerState.size === "small" && {
-    height: 32,
-    width: 32,
-  }),
-
-  ...(ownerState.size === "medium" && {
-    height: 40,
-    width: 40,
-  }),
-
-  ...(ownerState.size === "large" && {
-    height: 48,
-    width: 48,
-  }),
-
-  ...(ownerState.variant === "filled" && {
-    backgroundColor:
-      ownerState.selected === false
-        ? theme.sys.color.surfaceVariant
-        : theme.sys.color.primary,
-
-    ...(ownerState.disabled && {
-      backgroundColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
-    }),
-  }),
-
-  ...(ownerState.variant === "tonal" && {
-    backgroundColor:
-      ownerState.selected === false
-        ? theme.sys.color.surfaceVariant
-        : theme.sys.color.secondaryContainer,
-
-    ...(ownerState.disabled && {
-      backgroundColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
-    }),
-  }),
-
-  ...(ownerState.variant === "outlined" && {
-    backgroundColor: "transparent",
-    borderColor: theme.sys.color.outline,
-    borderWidth: 1,
-
-    ...(ownerState.selected === true && {
-      backgroundColor: theme.sys.color.inverseSurface,
-      borderColor: "transparent",
-    }),
-
-    ...(ownerState.disabled && {
-      borderColor: theme.utils.rgba(theme.sys.color.onSurface, 0.12),
-    }),
-  }),
+  width: theme.comp.iconButton.stateLayer.size,
 }))
 
 const IconButtonContent = styled(TextStyleProvider, {
   name: "IconButton",
   slot: "Content",
   skipSx: true,
-})<OwnerStateProps<Pick<IconButtonProps, "disabled" | "selected" | "variant">>>(
-  ({ theme, ownerState }) => ({
-    ...(ownerState.variant === "filled" && {
-      color:
-        ownerState.selected === false
-          ? theme.sys.color.primary
-          : theme.sys.color.onPrimary,
-    }),
+})<OwnerStateProps<IconButtonOwnerState>>(({ theme, ownerState }) => ({
+  color: ownerState.selected
+    ? theme.comp.iconButton.selected.icon.color
+    : theme.comp.iconButton.unselected.icon.color,
 
-    ...(ownerState.variant === "tonal" && {
-      color:
-        ownerState.selected === false
-          ? theme.sys.color.surfaceVariant
-          : theme.sys.color.onSecondaryContainer,
-    }),
-
-    ...(ownerState.variant === "outlined" && {
-      color:
-        ownerState.selected === true
-          ? theme.sys.color.inverseOnSurface
-          : theme.sys.color.onSurfaceVariant,
-    }),
-
-    ...(ownerState.variant === "standard" && {
-      color:
-        ownerState.selected === true
-          ? theme.sys.color.primary
-          : theme.sys.color.onSurfaceVariant,
-    }),
-
-    ...(ownerState.disabled && {
-      color: theme.utils.rgba(theme.sys.color.onSurface, 0.38),
-    }),
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.iconButton.disabled.icon.color,
+      theme.comp.iconButton.disabled.icon.opacity,
+    ),
   }),
-)
+
+  ...(ownerState.hovered && {
+    color: ownerState.selected
+      ? theme.comp.iconButton.selected.hover.icon.color
+      : theme.comp.iconButton.unselected.hover.icon.color,
+  }),
+
+  ...(ownerState.focused && {
+    color: ownerState.selected
+      ? theme.comp.iconButton.selected.focus.icon.color
+      : theme.comp.iconButton.unselected.focus.icon.color,
+  }),
+
+  ...(ownerState.pressed && {
+    color: ownerState.selected
+      ? theme.comp.iconButton.selected.pressed.icon.color
+      : theme.comp.iconButton.unselected.pressed.icon.color,
+  }),
+}))
 
 export const IconButton = React.forwardRef<RNView, IconButtonProps>(
   (inProps, ref) => {
@@ -171,11 +111,15 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
       children,
       disabled = false,
       edge = false,
+      onBlur,
+      onFocusVisible,
+      onHoverIn,
+      onHoverOut,
+      onPressIn,
+      onPressOut,
       selected,
-      size = "medium",
       style,
       styles,
-      variant = "standard",
       ...props
     } = useThemeProps({
       name: "IconButton",
@@ -184,38 +128,68 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
 
     const theme = useTheme()
 
+    const [focused, handleFocus] = useBoolean()
+    const [hovered, handleHover] = useBoolean()
+    const [pressed, handlePress] = useBoolean()
+
     const ownerState = {
       disabled,
       edge,
+      focused,
+      hovered,
+      pressed,
       selected,
-      size,
-      variant,
     }
 
     return (
       <IconButtonRoot
         ref={ref}
         disabled={disabled}
+        focusColor={
+          selected
+            ? theme.comp.iconButton.selected.focus.stateLayer.color
+            : theme.comp.iconButton.unselected.focus.stateLayer.color
+        }
+        focusOpacity={
+          selected
+            ? theme.comp.iconButton.selected.focus.stateLayer.opacity
+            : theme.comp.iconButton.unselected.focus.stateLayer.opacity
+        }
         hitSlop={4}
-        rippleColor={
-          variant === "filled"
-            ? theme.sys.color.onPrimary
-            : variant === "tonal"
-            ? theme.sys.color.onSecondaryContainer
-            : variant === "outlined"
-            ? theme.sys.color.primary
-            : variant === "standard"
-            ? theme.sys.color.primary
-            : undefined
+        hoverColor={
+          selected
+            ? theme.comp.iconButton.selected.hover.stateLayer.color
+            : theme.comp.iconButton.unselected.hover.stateLayer.color
+        }
+        hoverOpacity={
+          selected
+            ? theme.comp.iconButton.selected.hover.stateLayer.opacity
+            : theme.comp.iconButton.unselected.hover.stateLayer.opacity
+        }
+        ownerState={ownerState}
+        pressedColor={
+          selected
+            ? theme.comp.iconButton.selected.pressed.stateLayer.color
+            : theme.comp.iconButton.unselected.pressed.stateLayer.color
+        }
+        pressedOpacity={
+          selected
+            ? theme.comp.iconButton.selected.pressed.stateLayer.opacity
+            : theme.comp.iconButton.unselected.pressed.stateLayer.opacity
         }
         style={[style, styles?.root]}
-        ownerState={ownerState}
+        onBlur={createChainedFunction(onBlur, handleFocus.off)}
+        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
+        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
+        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
+        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
+        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
         {...props}
       >
         <IconButtonContent ownerState={ownerState} style={styles?.content}>
           {React.cloneElement(children, {
-            height: 24,
-            width: 24,
+            height: theme.comp.iconButton.icon.size,
+            width: theme.comp.iconButton.icon.size,
           })}
         </IconButtonContent>
       </IconButtonRoot>

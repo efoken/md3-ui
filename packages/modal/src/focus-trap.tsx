@@ -1,5 +1,5 @@
 import { useForkRef } from "@md3-ui/hooks"
-import { getOwnerDocument, runIfFn, __DEV__ } from "@md3-ui/utils"
+import { __DEV__, getOwnerDocument, runIfFn } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform } from "react-native"
 

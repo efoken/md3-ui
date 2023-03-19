@@ -88,7 +88,9 @@ const TextRoot = styled(RNText, {
   ({ theme, ownerState }) => ({
     textAlign: Platform.OS === "web" ? "start" : "left",
 
-    ...(ownerState.variant != null && theme.sys.typescale[ownerState.variant]),
+    ...(ownerState.variant != null &&
+      ownerState.variant !== "inherit" &&
+      theme.sys.typescale[ownerState.variant]),
 
     ...(Platform.OS === "web" &&
       ownerState.variant === "inherit" && {
@@ -99,9 +101,10 @@ const TextRoot = styled(RNText, {
         lineHeight: "inherit",
       }),
 
-    ...(ownerState.color != null && {
-      color: theme.sys.color[ownerState.color],
-    }),
+    ...(ownerState.color != null &&
+      ownerState.color !== "inherit" && {
+        color: theme.sys.color[ownerState.color],
+      }),
   }),
 )
 

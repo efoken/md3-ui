@@ -8,8 +8,8 @@ import {
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
-  Image as RNImage,
   ImageSourcePropType,
+  Image as RNImage,
   ImageStyle as RNImageStyle,
 } from "react-native"
 

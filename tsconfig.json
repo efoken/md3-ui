@@ -4,7 +4,6 @@
     "declaration": true,
     "downlevelIteration": true,
     "esModuleInterop": true,
-    "incremental": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
     "lib": ["dom", "esnext"],
@@ -15,7 +14,6 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strict": true,
-    "suppressImplicitAnyIndexErrors": true,
     "target": "esnext"
   },
   "exclude": ["node_modules"],

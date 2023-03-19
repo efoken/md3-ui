@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Tue, 07 Mar 2023 17:08:24 GMT
+ * Generated on Sat, 18 Mar 2023 23:31:03 GMT
  */
 
 export interface Md3CompOutlinedIconButton {
@@ -79,29 +79,29 @@ export const outlinedIconButtonTheme = (
     },
     focus: {
       icon: {
-        color: theme.sys.color.onInverseSurface,
+        color: theme.sys.color.inverseOnSurface,
       },
       stateLayer: {
-        color: theme.sys.color.onInverseSurface,
+        color: theme.sys.color.inverseOnSurface,
       },
     },
     hover: {
       icon: {
-        color: theme.sys.color.onInverseSurface,
+        color: theme.sys.color.inverseOnSurface,
       },
       stateLayer: {
-        color: theme.sys.color.onInverseSurface,
+        color: theme.sys.color.inverseOnSurface,
       },
     },
     icon: {
-      color: theme.sys.color.onInverseSurface,
+      color: theme.sys.color.inverseOnSurface,
     },
     pressed: {
       icon: {
-        color: theme.sys.color.onInverseSurface,
+        color: theme.sys.color.inverseOnSurface,
       },
       stateLayer: {
-        color: theme.sys.color.onInverseSurface,
+        color: theme.sys.color.inverseOnSurface,
       },
     },
   },

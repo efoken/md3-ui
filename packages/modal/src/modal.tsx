@@ -9,19 +9,19 @@ import {
   OverridableComponent,
   OverrideProps,
   OwnerStateProps,
-  styled,
   SxProps,
+  styled,
   useThemeProps,
 } from "@md3-ui/system"
-import { getOwnerDocument, __DEV__ } from "@md3-ui/utils"
+import { __DEV__, getOwnerDocument } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Animated,
   Easing,
   Platform,
-  TouchableWithoutFeedback,
   View as RNView,
   ViewStyle as RNViewStyle,
+  TouchableWithoutFeedback,
 } from "react-native"
 import { FocusTrap, FocusTrapProps } from "./focus-trap"
 import { ModalManager } from "./modal-manager"

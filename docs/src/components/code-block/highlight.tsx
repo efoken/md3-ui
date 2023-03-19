@@ -1,8 +1,8 @@
 import { Box, Text } from "@md3-ui/core"
 import BaseHighlight, {
-  defaultProps,
   Language,
   PrismTheme,
+  defaultProps,
 } from "prism-react-renderer"
 import * as React from "react"
 

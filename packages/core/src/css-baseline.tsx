@@ -24,13 +24,18 @@ export const CSSBaseline: React.FC = () => (
       },
       body: {
         ...theme.sys.typescale.bodyMedium,
-        backgroundColor: theme.sys.color.background,
+        backgroundColor: theme.ref.palette.white,
         color: theme.sys.color.onBackground,
         lineHeight: `${theme.sys.typescale.bodyMedium.lineHeight}px`,
         margin: 0, // Remove the margin in all browsers.
+        // Add support for `document.body.requestFullScreen()`.
+        // Other elements, if background transparent, are not supported.
+        "&::backdrop": {
+          backgroundColor: theme.ref.palette.white,
+        },
       },
-      "h1, h2, h3, h4, h5, h6": {
-        margin: 0,
+      a: {
+        color: theme.sys.color.primary,
       },
     })}
   />
