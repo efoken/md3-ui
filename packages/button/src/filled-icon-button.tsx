@@ -57,6 +57,7 @@ type FilledIconButtonOwnerState = Pick<
   focused: boolean
   hovered: boolean
   pressed: boolean
+  toggleable: boolean
 }
 
 const FilledIconButtonRoot = styled(ButtonBase, {
@@ -72,12 +73,10 @@ const FilledIconButtonRoot = styled(ButtonBase, {
   marginStart: ownerState.edge === "start" ? -12 : undefined,
   width: theme.comp.filledIconButton.container.size,
 
-  ...(ownerState.selected === true && {
-    backgroundColor: theme.comp.filledIconButton.selected.container.color,
-  }),
-
-  ...(ownerState.selected === false && {
-    backgroundColor: theme.comp.filledIconButton.unselected.container.color,
+  ...(ownerState.toggleable && {
+    backgroundColor: ownerState.selected
+      ? theme.comp.filledIconButton.selected.container.color
+      : theme.comp.filledIconButton.unselected.container.color,
   }),
 
   ...(ownerState.disabled && {
@@ -95,13 +94,6 @@ const FilledIconButtonContent = styled(TextStyleProvider, {
 })<OwnerStateProps<FilledIconButtonOwnerState>>(({ theme, ownerState }) => ({
   color: theme.comp.filledIconButton.icon.color,
 
-  ...(ownerState.disabled && {
-    color: theme.utils.rgba(
-      theme.comp.filledIconButton.disabled.icon.color,
-      theme.comp.filledIconButton.disabled.icon.opacity,
-    ),
-  }),
-
   ...(ownerState.hovered && {
     color: theme.comp.filledIconButton.hover.icon.color,
   }),
@@ -112,6 +104,37 @@ const FilledIconButtonContent = styled(TextStyleProvider, {
 
   ...(ownerState.pressed && {
     color: theme.comp.filledIconButton.pressed.icon.color,
+  }),
+
+  ...(ownerState.toggleable && {
+    color: ownerState.selected
+      ? theme.comp.filledIconButton.toggle.selected.icon.color
+      : theme.comp.filledIconButton.toggle.unselected.icon.color,
+
+    ...(ownerState.hovered && {
+      color: ownerState.selected
+        ? theme.comp.filledIconButton.toggle.selected.hover.icon.color
+        : theme.comp.filledIconButton.toggle.unselected.hover.icon.color,
+    }),
+
+    ...(ownerState.focused && {
+      color: ownerState.selected
+        ? theme.comp.filledIconButton.toggle.selected.focus.icon.color
+        : theme.comp.filledIconButton.toggle.unselected.focus.icon.color,
+    }),
+
+    ...(ownerState.pressed && {
+      color: ownerState.selected
+        ? theme.comp.filledIconButton.toggle.selected.pressed.icon.color
+        : theme.comp.filledIconButton.toggle.unselected.pressed.icon.color,
+    }),
+  }),
+
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.filledIconButton.disabled.icon.color,
+      theme.comp.filledIconButton.disabled.icon.opacity,
+    ),
   }),
 }))
 
@@ -142,6 +165,8 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
     const [hovered, handleHover] = useBoolean()
     const [pressed, handlePress] = useBoolean()
 
+    const toggleable = selected != null
+
     const ownerState = {
       disabled,
       edge,
@@ -149,6 +174,7 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
       hovered,
       pressed,
       selected,
+      toggleable,
     }
 
     return (
@@ -163,6 +189,19 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
         ownerState={ownerState}
         pressedColor={theme.comp.filledIconButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.filledIconButton.pressed.stateLayer.opacity}
+        {...(toggleable && {
+          focusColor: selected
+            ? theme.comp.filledIconButton.toggle.selected.focus.stateLayer.color
+            : theme.comp.filledIconButton.toggle.unselected.focus.stateLayer
+                .color,
+          hoverColor: selected
+            ? theme.comp.filledIconButton.toggle.selected.hover.stateLayer.color
+            : theme.comp.filledIconButton.toggle.unselected.hover.stateLayer
+                .color,
+          pressedColor:
+            theme.comp.filledIconButton.toggle.unselected.pressed.stateLayer
+              .color,
+        })}
         style={[style, styles?.root]}
         onBlur={createChainedFunction(onBlur, handleFocus.off)}
         onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
