@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/docs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "build": "next build",
@@ -9,8 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@md3-ui/core": "^0.2.0",
-    "@md3-ui/icons": "^0.2.0",
+    "@md3-ui/core": "^0.2.1",
+    "@md3-ui/icons": "^0.2.1",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.2.4",

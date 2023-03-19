@@ -1,12 +1,12 @@
 {
   "name": "@md3-ui/app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "main": "src/index.ts",
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
-    "@md3-ui/core": "^0.2.0",
-    "@md3-ui/icons": "^0.2.0",
+    "@md3-ui/core": "^0.2.1",
+    "@md3-ui/icons": "^0.2.1",
     "expo": "^48.0.7",
     "expo-app-loading": "~2.1.1",
     "expo-status-bar": "~1.4.4",

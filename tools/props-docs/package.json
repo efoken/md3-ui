@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/props-docs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/commonjs/index.js",
   "module": "dist/module/index.js",
   "types": "dist/typescript/index.d.ts",

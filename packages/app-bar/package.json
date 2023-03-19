@@ -1,6 +1,6 @@
 {
   "name": "@md3-ui/app-bar",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist/commonjs/index.js",
   "module": "dist/module/index.js",
   "react-native": "src/index.ts",
@@ -35,8 +35,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/system": "^0.2.0",
-    "@md3-ui/utils": "^0.2.0"
+    "@md3-ui/system": "^0.2.1",
+    "@md3-ui/utils": "^0.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
