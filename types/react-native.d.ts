@@ -41,6 +41,8 @@ declare module "react-native" {
     /** @platform web */
     animationTimingFunction?: React.CSSProperties["animationTimingFunction"]
     /** @platform web */
+    backgroundImage?: React.CSSProperties["backgroundImage"]
+    /** @platform web */
     boxShadow?: React.CSSProperties["boxShadow"]
     /** @platform web */
     cursor?: React.CSSProperties["cursor"]

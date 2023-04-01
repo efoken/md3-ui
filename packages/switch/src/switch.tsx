@@ -44,7 +44,7 @@ export interface SwitchProps extends SwitchBaseProps {
   styles?: StylesProp<{
     root?: RNViewStyle
     switchBase?: RNViewStyle
-    thumb?: RNViewStyle
+    handle?: RNViewStyle
   }>
   /**
    * The system prop that allows defining system overrides as well as additional
@@ -64,12 +64,12 @@ const SwitchRoot = styled(Animated.View, {
 })(({ theme }) => ({
   backgroundColor: theme.sys.color.surfaceVariant,
   borderColor: theme.sys.color.outline,
-  borderRadius: theme.sys.shape.corner.full,
-  borderWidth: 2,
+  borderRadius: theme.comp.switch.track.shape,
+  borderWidth: theme.comp.switch.track.outline.width,
   cursor: "pointer",
-  height: 32,
+  height: theme.comp.switch.track.height,
   justifyContent: "center",
-  width: 52,
+  width: theme.comp.switch.track.width,
 }))
 
 const SwitchSwitchBase = styled(SwitchBase, {
@@ -84,17 +84,17 @@ const SwitchSwitchBase = styled(SwitchBase, {
   width: 40,
 }))
 
-const SwitchThumb = styled(Animated.View, {
+const SwitchHandle = styled(Animated.View, {
   name: "Switch",
-  slot: "Thumb",
+  slot: "Handle",
   skipSx: true,
 })(({ theme }) => ({
   alignItems: "center",
   backgroundColor: theme.sys.color.outline,
-  borderRadius: theme.sys.shape.corner.full,
-  height: 16,
+  borderRadius: theme.comp.switch.handle.shape,
+  height: theme.comp.switch.unselected.handle.height,
   justifyContent: "center",
-  width: 16,
+  width: theme.comp.switch.unselected.handle.width,
 }))
 
 export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
@@ -149,11 +149,11 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     },
   )
 
-  const thumbAnimation = React.useRef(new Animated.Value(0)).current
+  const handleAnimation = React.useRef(new Animated.Value(0)).current
 
-  const animateThumb = useEventCallback(
+  const animateHandle = useEventCallback(
     (toValue: number, callback?: Animated.EndCallback) => {
-      Animated.timing(thumbAnimation, {
+      Animated.timing(handleAnimation, {
         toValue,
         duration: ANIMATION_DURATION,
         easing: Easing.bezier(...theme.sys.motion.easing.standard),
@@ -172,7 +172,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
         })
       }
     })
-    animateThumb(0)
+    animateHandle(0)
   })
 
   React.useEffect(() => {
@@ -182,8 +182,8 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
   }, [checked, checkedProp, animate])
 
   React.useEffect(() => {
-    animateThumb(pressed ? 1 : 0)
-  }, [animateThumb, pressed])
+    animateHandle(pressed ? 1 : 0)
+  }, [animateHandle, pressed])
 
   const handleChange = (event: NativeSyntheticEvent<SwitchChangeEventData>) => {
     const newChecked = event.nativeEvent.checked
@@ -194,10 +194,32 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
 
   const switchAnimationInputRange = prevChecked ? [-offset, -1] : [1, offset]
 
-  const thumbSize = thumbAnimation.interpolate({
-    inputRange: [0, 1],
-    outputRange: prevChecked ? [24, 28] : [16, 28],
-  })
+  const handleSizeStyle = {
+    height: handleAnimation.interpolate({
+      inputRange: [0, 1],
+      outputRange: prevChecked
+        ? [
+            theme.comp.switch.selected.handle.height,
+            theme.comp.switch.pressed.handle.height,
+          ]
+        : [
+            theme.comp.switch.unselected.handle.height,
+            theme.comp.switch.pressed.handle.height,
+          ],
+    }),
+    width: handleAnimation.interpolate({
+      inputRange: [0, 1],
+      outputRange: prevChecked
+        ? [
+            theme.comp.switch.selected.handle.width,
+            theme.comp.switch.pressed.handle.width,
+          ]
+        : [
+            theme.comp.switch.unselected.handle.width,
+            theme.comp.switch.pressed.handle.width,
+          ],
+    }),
+  }
 
   return (
     <SwitchRoot
@@ -258,13 +280,13 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
           onPressOut={handlePress.off}
           {...props}
         >
-          <SwitchThumb
+          <SwitchHandle
             style={[
-              styles?.thumb,
+              styles?.handle,
               {
                 backgroundColor:
                   pressed && !prevChecked
-                    ? thumbAnimation.interpolate({
+                    ? handleAnimation.interpolate({
                         inputRange: [0, 1],
                         outputRange: [
                           theme.sys.color.outline,
@@ -280,19 +302,18 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
                         ],
                         extrapolate: "clamp",
                       }),
-                height: thumbSize,
-                width: thumbSize,
               },
+              handleSizeStyle,
             ]}
           >
             {prevChecked
               ? checkedIcon &&
                 React.cloneElement(checkedIcon, {
-                  height: 16,
-                  width: 16,
+                  height: theme.comp.switch.selected.icon.size,
+                  width: theme.comp.switch.selected.icon.size,
                 })
               : undefined}
-          </SwitchThumb>
+          </SwitchHandle>
         </SwitchSwitchBase>
       </Animated.View>
     </SwitchRoot>

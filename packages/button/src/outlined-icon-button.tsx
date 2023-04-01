@@ -1,4 +1,3 @@
-import { useBoolean } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
   styled,
@@ -8,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -16,6 +15,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
+import { useButtonBaseState } from "./use-button-base-state"
 
 export interface OutlinedIconButtonProps extends ButtonBaseProps {
   /**
@@ -105,13 +105,6 @@ const OutlinedIconButtonContent = styled(TextStyleProvider, {
     ? theme.comp.outlinedIconButton.selected.icon.color
     : theme.comp.outlinedIconButton.unselected.icon.color,
 
-  ...(ownerState.disabled && {
-    color: theme.utils.rgba(
-      theme.comp.outlinedIconButton.disabled.icon.color,
-      theme.comp.outlinedIconButton.disabled.icon.opacity,
-    ),
-  }),
-
   ...(ownerState.hovered && {
     color: ownerState.selected
       ? theme.comp.outlinedIconButton.selected.hover.icon.color
@@ -129,6 +122,13 @@ const OutlinedIconButtonContent = styled(TextStyleProvider, {
       ? theme.comp.outlinedIconButton.selected.pressed.icon.color
       : theme.comp.outlinedIconButton.unselected.pressed.icon.color,
   }),
+
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.outlinedIconButton.disabled.icon.color,
+      theme.comp.outlinedIconButton.disabled.icon.opacity,
+    ),
+  }),
 }))
 
 export const OutlinedIconButton = React.forwardRef<
@@ -139,12 +139,6 @@ export const OutlinedIconButton = React.forwardRef<
     children,
     disabled = false,
     edge = false,
-    onBlur,
-    onFocusVisible,
-    onHoverIn,
-    onHoverOut,
-    onPressIn,
-    onPressOut,
     selected = false,
     style,
     styles,
@@ -156,9 +150,8 @@ export const OutlinedIconButton = React.forwardRef<
 
   const theme = useTheme()
 
-  const [focused, handleFocus] = useBoolean()
-  const [hovered, handleHover] = useBoolean()
-  const [pressed, handlePress] = useBoolean()
+  const { focused, hovered, pressed, ...buttonBaseProps } =
+    useButtonBaseState(props)
 
   const ownerState = {
     disabled,
@@ -172,6 +165,7 @@ export const OutlinedIconButton = React.forwardRef<
   return (
     <OutlinedIconButtonRoot
       ref={ref}
+      centerRipple
       disabled={disabled}
       focusColor={
         selected
@@ -194,12 +188,7 @@ export const OutlinedIconButton = React.forwardRef<
       }
       pressedOpacity={theme.comp.outlinedIconButton.pressed.stateLayer.opacity}
       style={[style, styles?.root]}
-      onBlur={createChainedFunction(onBlur, handleFocus.off)}
-      onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
-      onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
-      onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
-      onPressIn={createChainedFunction(onPressIn, handlePress.on)}
-      onPressOut={createChainedFunction(onPressOut, handlePress.off)}
+      {...buttonBaseProps}
       {...props}
     >
       <OutlinedIconButtonContent

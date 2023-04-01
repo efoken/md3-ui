@@ -43,16 +43,16 @@
     "css-mediaquery2": "^1.0.7"
   },
   "devDependencies": {
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.31",
     "react": "18.2.0",
-    "react-native": "0.71.4",
-    "react-native-web": "0.0.0-c26cb9b08"
+    "react-native": "0.71.5",
+    "react-native-web": "^0.19.1"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0",
     "react": "^18.2.0",
     "react-native": ">=0.71.3",
-    "react-native-web": ">=0.18.2 || 0.0.0-c26cb9b08"
+    "react-native-web": ">=0.19.1"
   },
   "scripts": {
     "build": "bob build",

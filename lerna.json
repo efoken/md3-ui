@@ -7,6 +7,9 @@
     "publish": {
       "message": "chore(release): publish %s",
       "conventionalCommits": true
+    },
+    "version": {
+      "exact": true
     }
   }
 }

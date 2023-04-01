@@ -73,17 +73,17 @@ export interface FlexboxProps {
 
 export interface InteractivityProps {
   /** @platform web */
-  cursor?: RNViewStyle["cursor"]
+  cursor?: React.CSSProperties["cursor"]
   pointerEvents?: RNViewStyle["pointerEvents"]
   userSelect?: RNViewStyle["userSelect"]
   /** @platform web */
-  outlineStyle?: RNViewStyle["outlineStyle"]
+  outlineStyle?: React.CSSProperties["outlineStyle"]
   /** @platform web */
-  outlineColor?: RNViewStyle["outlineColor"]
+  outlineColor?: React.CSSProperties["outlineColor"]
   /** @platform web */
-  outlineOffset?: RNViewStyle["outlineOffset"]
+  outlineOffset?: React.CSSProperties["outlineOffset"]
   /** @platform web */
-  outlineWidth?: RNViewStyle["outlineWidth"]
+  outlineWidth?: React.CSSProperties["outlineWidth"]
 }
 
 export interface PositionProops {
@@ -185,7 +185,6 @@ export interface TypographyProps {
   textDecorationStyle?: RNTextStyle["textDecorationStyle"]
   textDecorationColor?: keyof Theme["sys"]["color"] | (string & {})
   textShadowColor?: keyof Theme["sys"]["color"] | (string & {})
-  textShadowOffset?: RNTextStyle["textShadowOffset"]
   textShadowRadius?: RNTextStyle["textShadowRadius"]
   textTransform?: RNTextStyle["textTransform"]
 }

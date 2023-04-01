@@ -13,7 +13,7 @@ interface ComponentInfo {
   importPath: string
 }
 
-const excludedPropNames = new Set(["as", "style", "sx"])
+const excludedPropNames = new Set(["as", "style", "styles", "sx"])
 
 const sourcePath = path.join(__dirname, "../../../packages")
 const distPath = path.join(__dirname, "../dist")

@@ -1,5 +1,7 @@
 import { isFunction } from "./assertion"
 
+export { default as memoize } from "micro-memoize"
+
 export function runIfFn<T, U>(
   valueOrFn: T | ((...fnArgs: U[]) => T),
   ...args: U[]

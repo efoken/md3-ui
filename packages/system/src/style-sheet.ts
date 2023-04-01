@@ -1,55 +1,20 @@
 import { isMedia, isMediaOrPseudo, mergeDeep } from "@md3-ui/utils"
 import MediaQuery, { MediaValues } from "css-mediaquery2"
-import {
-  Appearance,
-  Dimensions,
-  Platform,
-  StyleSheet as RNStyleSheet,
-  StyleProp,
-} from "react-native"
+import { Platform, StyleSheet as RNStyleSheet, StyleProp } from "react-native"
 import hash from "react-native-web/dist/vendor/hash"
 import { addCSS, createCSSRule } from "./inject"
 import { NamedStyles } from "./types"
+import { getDefaultMediaValues } from "./use-media-values"
 import { createDeclarationBlock } from "./utils/create-declaration-block"
-
-export function getDefaultMediaValues(): Partial<MediaValues> {
-  const { width, height, scale, fontScale } = Dimensions.get("window")
-
-  MediaQuery.remBase = 16 * fontScale
-
-  return {
-    orientation: width > height ? "landscape" : "portrait",
-    width,
-    height,
-    "device-width": width,
-    "device-height": height,
-    "aspect-ratio": width / height,
-    "device-aspect-ratio": width / height,
-    "device-pixel-ratio": scale,
-    "prefers-color-scheme": Appearance.getColorScheme() ?? undefined,
-    "prefers-reduced-motion": "no-preference",
-    "inverted-colors": "none",
-    type: Platform.OS === "web" ? "screen" : Platform.OS,
-  }
-}
 
 // eslint-disable-next-line unicorn/no-static-only-class
 export class StyleSheet {
   static create<T extends NamedStyles<T> | NamedStyles<any>>(
-    styles: T | NamedStyles<T>,
-  ): T {
-    return RNStyleSheet.create(styles)
-  }
-
-  static createWithMedia<T extends NamedStyles<T> | NamedStyles<any>>(
     stylesWithQuery: T | NamedStyles<T>,
     mediaValues: Partial<MediaValues> = {},
-  ): {
-    fullStyles: T
-    styles: T
-  } {
+  ): T {
     if (!stylesWithQuery) {
-      return { fullStyles: {} as T, styles: {} as T }
+      return {} as T
     }
 
     let cleanStyles: Record<string, any> = { ...stylesWithQuery }
@@ -98,17 +63,14 @@ export class StyleSheet {
     }
 
     const styles = Object.fromEntries(
-      Object.entries(this.create(cleanStyles)).map(([key, style]) =>
+      Object.entries(RNStyleSheet.create(cleanStyles)).map(([key, style]) =>
         mediaStyles[key] == null
           ? [key, style]
           : [key, [style, mediaStyles[key]]],
       ),
     ) as T
 
-    return {
-      fullStyles: stylesWithQuery as T,
-      styles,
-    }
+    return styles
   }
 
   static flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T {

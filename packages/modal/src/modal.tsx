@@ -9,6 +9,7 @@ import {
   OverridableComponent,
   OverrideProps,
   OwnerStateProps,
+  StylesProp,
   SxProps,
   styled,
   useThemeProps,
@@ -19,9 +20,9 @@ import {
   Animated,
   Easing,
   Platform,
+  Pressable as RNPressable,
   View as RNView,
   ViewStyle as RNViewStyle,
-  TouchableWithoutFeedback,
 } from "react-native"
 import { FocusTrap, FocusTrapProps } from "./focus-trap"
 import { ModalManager } from "./modal-manager"
@@ -84,9 +85,10 @@ export interface ModalTypeMap<
       /**
        * Override or extend the styles applied to the component.
        */
-      styles?: {
+      styles?: StylesProp<{
         root?: RNViewStyle
-      }
+        scrim?: RNViewStyle
+      }>
       /**
        * The system prop that allows defining system overrides as well as
        * additional styles.
@@ -130,12 +132,12 @@ const ModalRoot = styled(RNView, {
     })),
 }))
 
-const ModalScrim = styled(Animated.View, {
+const ModalScrim = styled(Animated.createAnimatedComponent(RNPressable), {
   name: "Modal",
   slot: "Scrim",
   skipSx: true,
 })(({ theme }) => ({
-  backgroundColor: theme.utils.rgba("#322f37", 0.4),
+  backgroundColor: theme.sys.color.scrim,
   height: "100%",
   position: "absolute",
   width: "100%",
@@ -312,9 +314,12 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
         {...props}
       >
         {!hideScrim && (
-          <TouchableWithoutFeedback aria-hidden onPress={onClose}>
-            <ModalScrim aria-hidden style={{ opacity }} tabIndex={-1} />
-          </TouchableWithoutFeedback>
+          <ModalScrim
+            aria-hidden
+            style={[{ opacity }, styles?.scrim]}
+            tabIndex={-1}
+            onPress={onClose}
+          />
         )}
         <FocusTrap
           disableAutoFocus={disableAutoFocus}

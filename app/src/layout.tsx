@@ -1,4 +1,4 @@
-import MaterialIcons from "@expo/vector-icons/MaterialIcons"
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import {
   AppBar,
   Box,
@@ -28,13 +28,27 @@ export const Layout: React.FC = () => {
       <Outlet />
       <NavigationBar value={location.pathname}>
         <NavigationBarItem
-          icon={<Icon as={MaterialIcons} name="widgets" />}
+          icon={
+            <Icon
+              as={MaterialCommunityIcons}
+              name={location.pathname === "/" ? "widgets" : "widgets-outline"}
+            />
+          }
           label="Components"
           value="/"
           onPress={() => navigate("/")}
         />
         <NavigationBarItem
-          icon={<Icon as={MaterialIcons} name="change-history" />}
+          icon={
+            <Icon
+              as={MaterialCommunityIcons}
+              name={
+                location.pathname === "/themes"
+                  ? "triangle"
+                  : "triangle-outline"
+              }
+            />
+          }
           label="Themes"
           value="/themes"
           onPress={() => navigate("/themes")}

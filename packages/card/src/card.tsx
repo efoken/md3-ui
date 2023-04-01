@@ -3,6 +3,7 @@ import {
   OverrideProps,
   OwnerStateProps,
   styled,
+  StylesProp,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
@@ -22,9 +23,9 @@ export interface CardTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNViewStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.

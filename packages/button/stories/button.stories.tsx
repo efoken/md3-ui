@@ -5,10 +5,15 @@ import {
   ButtonBase,
   ButtonBaseProps,
   ElevatedButton,
+  ElevatedButtonProps,
   FilledButton,
+  FilledButtonProps,
   OutlinedButton,
+  OutlinedButtonProps,
   TextButton,
+  TextButtonProps,
   TonalButton,
+  TonalButtonProps,
 } from "../src"
 
 export default {
@@ -16,7 +21,7 @@ export default {
   component: ButtonBase,
 } as Meta<ButtonBaseProps>
 
-export const Elevated: StoryObj<ButtonBaseProps> = {
+export const Elevated: StoryObj<ElevatedButtonProps> = {
   render: (args) => (
     <Stack direction="row" spacing={4}>
       <ElevatedButton {...args} />
@@ -28,7 +33,7 @@ export const Elevated: StoryObj<ButtonBaseProps> = {
   },
 }
 
-export const Filled: StoryObj<ButtonBaseProps> = {
+export const Filled: StoryObj<FilledButtonProps> = {
   render: (args) => (
     <Stack direction="row" spacing={4}>
       <FilledButton {...args} />
@@ -40,7 +45,7 @@ export const Filled: StoryObj<ButtonBaseProps> = {
   },
 }
 
-export const Tonal: StoryObj<ButtonBaseProps> = {
+export const Tonal: StoryObj<TonalButtonProps> = {
   render: (args) => (
     <Stack direction="row" spacing={4}>
       <TonalButton {...args} />
@@ -52,7 +57,7 @@ export const Tonal: StoryObj<ButtonBaseProps> = {
   },
 }
 
-export const Outlined: StoryObj<ButtonBaseProps> = {
+export const Outlined: StoryObj<OutlinedButtonProps> = {
   render: (args) => (
     <Stack direction="row" spacing={4}>
       <OutlinedButton {...args} />
@@ -64,7 +69,7 @@ export const Outlined: StoryObj<ButtonBaseProps> = {
   },
 }
 
-export const Text: StoryObj<ButtonBaseProps> = {
+export const Text: StoryObj<TextButtonProps> = {
   render: (args) => (
     <Stack direction="row" spacing={4}>
       <TextButton {...args} />

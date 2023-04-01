@@ -34,6 +34,9 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "micro-memoize": "^4.0.14"
+  },
   "scripts": {
     "build": "bob build",
     "typecheck": "tsc --noEmit"

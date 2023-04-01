@@ -115,7 +115,9 @@ function downloadIcon(icon: { index: number; name: string; version: string }) {
       const svg = await response.text()
       const dataPath = path.join(
         __dirname,
-        `../assets/${icon.name.replace(/_/g, "-")}${themeFileMap[theme]}.svg`,
+        `../assets.bak/${icon.name.replace(/_/g, "-")}${
+          themeFileMap[theme]
+        }.svg`,
       )
       const data = optimize(svg, {
         path: dataPath,
@@ -132,8 +134,8 @@ async function run() {
       .usage("Download the SVG from material.io/resources/icons")
       .describe("start-after", "Resume at the following index")
     console.log("run", argv)
-    for (const file of fs.readdirSync(path.join(__dirname, "../assets"))) {
-      fs.rmSync(path.join(__dirname, "../assets", file))
+    for (const file of fs.readdirSync(path.join(__dirname, "../assets.bak"))) {
+      fs.rmSync(path.join(__dirname, "../assets.bak", file))
     }
     const response = await fetch("https://fonts.google.com/metadata/icons")
     const text = await response.text()

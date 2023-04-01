@@ -1,4 +1,3 @@
-import { useBoolean } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
   styled,
@@ -8,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -16,6 +15,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
+import { useButtonBaseState } from "./use-button-base-state"
 
 export interface FilledIconButtonProps extends ButtonBaseProps {
   /**
@@ -144,12 +144,6 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
       children,
       disabled = false,
       edge = false,
-      onBlur,
-      onFocusVisible,
-      onHoverIn,
-      onHoverOut,
-      onPressIn,
-      onPressOut,
       selected,
       style,
       styles,
@@ -161,9 +155,8 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
 
     const theme = useTheme()
 
-    const [focused, handleFocus] = useBoolean()
-    const [hovered, handleHover] = useBoolean()
-    const [pressed, handlePress] = useBoolean()
+    const { focused, hovered, pressed, ...buttonBaseProps } =
+      useButtonBaseState(props)
 
     const toggleable = selected != null
 
@@ -180,6 +173,7 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
     return (
       <FilledIconButtonRoot
         ref={ref}
+        centerRipple
         disabled={disabled}
         focusColor={theme.comp.filledIconButton.focus.stateLayer.color}
         focusOpacity={theme.comp.filledIconButton.focus.stateLayer.opacity}
@@ -203,12 +197,7 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
               .color,
         })}
         style={[style, styles?.root]}
-        onBlur={createChainedFunction(onBlur, handleFocus.off)}
-        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
-        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
-        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
-        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
-        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
+        {...buttonBaseProps}
         {...props}
       >
         <FilledIconButtonContent

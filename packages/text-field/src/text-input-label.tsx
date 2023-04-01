@@ -1,5 +1,11 @@
 import { useForkRef } from "@md3-ui/hooks"
-import { OwnerStateProps, styled, SxProps, useThemeProps } from "@md3-ui/system"
+import {
+  OwnerStateProps,
+  styled,
+  StylesProp,
+  SxProps,
+  useThemeProps,
+} from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
@@ -26,9 +32,9 @@ export interface TextInputLabelProps
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     root?: RNTextStyle
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as
    * additional styles.

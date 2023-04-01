@@ -3,6 +3,7 @@ import {
   OverrideProps,
   OwnerStateProps,
   styled,
+  StylesProp,
   SxProps,
   useTextStyle,
   useThemeProps,
@@ -11,6 +12,13 @@ import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform, ViewStyle as RNViewStyle } from "react-native"
 import Svg from "react-native-svg"
+
+const ICON_SIZE = {
+  inherit: undefined,
+  small: 12,
+  medium: 18,
+  large: 24,
+}
 
 export interface IconTypeMap<P = {}, C extends React.ElementType = typeof Svg> {
   props: P & {
@@ -24,14 +32,15 @@ export interface IconTypeMap<P = {}, C extends React.ElementType = typeof Svg> {
      * @default "currentColor"
      */
     color?: string
+    htmlColor?: string
     /** @default "medium" */
     size?: "inherit" | "small" | "medium" | "large"
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNViewStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.
@@ -56,18 +65,18 @@ const IconRoot = styled(Svg, {
     flexShrink: 0,
 
     ...(ownerState.size === "small" && {
-      height: 12,
-      width: 12,
+      height: ICON_SIZE.small,
+      width: ICON_SIZE.small,
     }),
 
     ...(ownerState.size === "medium" && {
-      height: 18,
-      width: 18,
+      height: ICON_SIZE.medium,
+      width: ICON_SIZE.medium,
     }),
 
     ...(ownerState.size === "large" && {
-      height: 24,
-      width: 24,
+      height: ICON_SIZE.large,
+      width: ICON_SIZE.large,
     }),
 
     ...((ownerState.height != null || ownerState.width != null) && {
@@ -80,12 +89,13 @@ const IconRoot = styled(Svg, {
 export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
   const {
     children,
-    color = Platform.OS === "web" ? "currentColor" : undefined,
-    height,
+    color: colorProp,
+    height: heightProp,
+    htmlColor,
     size = "medium",
     style,
     styles,
-    width,
+    width: widthProp,
     ...props
   } = useThemeProps({
     name: "Icon",
@@ -94,19 +104,27 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
 
   const textStyle = useTextStyle()
 
+  const color = colorProp ?? textStyle.color
+  const height = heightProp ?? textStyle.fontSize
+  const width = widthProp ?? textStyle.fontSize
+
   const ownerState = {
-    height: height ?? textStyle.fontSize,
+    height,
     size,
-    width: width ?? textStyle.fontSize,
+    width,
   }
 
   return (
     <IconRoot
       ref={ref}
-      color={color}
-      fill={color}
+      color={Platform.OS === "web" ? htmlColor ?? color : color}
+      fill={color ?? Platform.OS === "web" ? "currentColor" : undefined}
       ownerState={ownerState}
       style={[textStyle, style, styles?.root]}
+      {...(Platform.OS !== "web" && {
+        // Support size prop of e.g. `react-native-vector-icons`
+        size: Math.max(height ?? ICON_SIZE[size], width ?? 0),
+      })}
       {...props}
     >
       {children}

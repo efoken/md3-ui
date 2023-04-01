@@ -14,7 +14,7 @@ exports[`<Modal /> should render 1`] = `
   >
     <div
       aria-hidden="true"
-      class="css-view-175oi2r r-backgroundColor-lseifr r-height-1pi2tsx r-position-u8s1d r-width-13qz1uu r-zIndex-1wyyakw"
+      class="css-view-175oi2r r-backgroundColor-kemksi r-height-1pi2tsx r-position-u8s1d r-width-13qz1uu r-zIndex-1wyyakw"
       data-class="Modal-scrim"
       style="opacity: 1;"
       tabindex="-1"

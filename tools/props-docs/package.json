@@ -23,8 +23,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "glob": "^9.3.0",
-    "mkdirp": "^2.1.5",
+    "glob": "^9.3.2",
+    "mkdirp": "^2.1.6",
     "react-docgen-typescript": "^2.2.2"
   },
   "scripts": {

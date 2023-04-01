@@ -1,7 +1,9 @@
+import { Portal } from "@md3-ui/portal"
 import {
   OverridableComponent,
   OverrideProps,
   styled,
+  StylesProp,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
@@ -13,6 +15,7 @@ import {
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { SnackbarContent } from "./snackbar-content"
 
 const Z_INDEX = 1400
@@ -31,13 +34,14 @@ export interface SnackbarTypeMap<
      * The message to display.
      */
     message?: string
+    open?: boolean
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNViewStyle
       content?: RNTextStyle
-    }
+    }>
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.
@@ -76,24 +80,37 @@ const SnackbarRoot = styled(RNView, {
 
 export const Snackbar = React.forwardRef<RNView, SnackbarProps>(
   (inProps, ref) => {
-    const { action, message, style, styles, ...props } = useThemeProps({
+    const {
+      action,
+      message,
+      open = false,
+      style,
+      styles,
+      ...props
+    } = useThemeProps({
       name: "Snackbar",
       props: inProps,
     })
 
+    const insets = useSafeAreaInsets()
+
     return (
-      <SnackbarRoot
-        ref={ref}
-        role="presentation"
-        style={[style, styles?.root]}
-        {...props}
-      >
-        <SnackbarContent
-          action={action}
-          message={message}
-          style={styles?.content}
-        />
-      </SnackbarRoot>
+      <Portal>
+        {open && (
+          <SnackbarRoot
+            ref={ref}
+            role="presentation"
+            style={[{ marginBottom: insets.bottom }, style, styles?.root]}
+            {...props}
+          >
+            <SnackbarContent
+              action={action}
+              message={message}
+              style={styles?.content}
+            />
+          </SnackbarRoot>
+        )}
+      </Portal>
     )
   },
 ) as OverridableComponent<SnackbarTypeMap>

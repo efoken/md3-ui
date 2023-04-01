@@ -1,4 +1,3 @@
-import { useBoolean } from "@md3-ui/hooks"
 import { Text } from "@md3-ui/layout"
 import {
   OwnerStateProps,
@@ -9,7 +8,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -17,6 +16,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
+import { useButtonBaseState } from "./use-button-base-state"
 
 export interface OutlinedButtonProps extends ButtonBaseProps {
   /**
@@ -144,12 +144,6 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
       children,
       disabled = false,
       icon,
-      onBlur,
-      onFocusVisible,
-      onHoverIn,
-      onHoverOut,
-      onPressIn,
-      onPressOut,
       style,
       styles,
       ...props
@@ -157,9 +151,8 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
 
     const theme = useTheme()
 
-    const [focused, handleFocus] = useBoolean()
-    const [hovered, handleHover] = useBoolean()
-    const [pressed, handlePress] = useBoolean()
+    const { focused, hovered, pressed, ...buttonBaseProps } =
+      useButtonBaseState(props)
 
     const ownerState = {
       disabled,
@@ -180,12 +173,7 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
         pressedColor={theme.comp.outlinedButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.outlinedButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
-        onBlur={createChainedFunction(onBlur, handleFocus.off)}
-        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
-        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
-        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
-        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
-        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
+        {...buttonBaseProps}
         {...props}
       >
         <OutlinedButtonContent ownerState={ownerState} style={styles?.content}>

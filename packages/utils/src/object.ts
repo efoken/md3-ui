@@ -75,10 +75,12 @@ export function mergeDeep<T>(
 
 export function objectFilter<T extends object>(
   object: T,
-  fn: (value: T[keyof T], key: string, object: T) => boolean,
+  fn: (value: T[keyof T], key: keyof T, object: T) => boolean,
 ) {
   return Object.fromEntries(
-    Object.entries(object).filter(([key, value]) => fn(value, key, object)),
+    Object.entries(object).filter(([key, value]) =>
+      fn(value, key as keyof T, object),
+    ),
   )
 }
 

@@ -1,6 +1,7 @@
 import { useEventCallback, useForkRef } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
+  Pressable,
   StyleSheet,
   StylesProp,
   SxProps,
@@ -8,18 +9,36 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, isHTMLElement, splitProps } from "@md3-ui/utils"
+import {
+  __DEV__,
+  getOwnerWindow,
+  isFunction,
+  isHTMLElement,
+  splitProps,
+} from "@md3-ui/utils"
 import * as React from "react"
 import {
   NativeSyntheticEvent,
   Platform,
-  Pressable as RNPressable,
   PressableProps as RNPressableProps,
+  PressableStateCallbackType as RNPressableStateCallbackType,
   View as RNView,
   ViewStyle as RNViewStyle,
   StyleProp,
   TargetedEvent,
 } from "react-native"
+
+const RIPPLE_INITIAL_ORIGIN_SCALE = 0.2
+const RIPPLE_PADDING = 10
+const SOFT_EDGE_MINIMUM_SIZE = 75
+const SOFT_EDGE_CONTAINER_RATIO = 0.35
+
+export interface ButtonBaseStateCallbackType
+  extends RNPressableStateCallbackType {
+  readonly focused: boolean
+  readonly focusVisible: boolean
+  readonly hovered: boolean
+}
 
 export interface ButtonBaseProps
   extends Omit<RNPressableProps, "children" | "disabled" | "style"> {
@@ -32,7 +51,9 @@ export interface ButtonBaseProps
   /**
    * The content of the component.
    */
-  children?: React.ReactNode
+  children?:
+    | React.ReactNode
+    | ((state: ButtonBaseStateCallbackType) => React.ReactNode)
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -71,6 +92,8 @@ export interface ButtonBaseProps
     root?: RNViewStyle
     container?: RNViewStyle
   }>
+  /** @ignore */
+  surfaceTintColor?: string
   /**
    * The system prop that allows defining system overrides as well as
    * additional styles.
@@ -87,7 +110,7 @@ type ButtonBaseOwnerState = Required<
   >
 >
 
-const ButtonBaseRoot = styled(RNPressable, {
+const ButtonBaseRoot = styled(Pressable, {
   name: "ButtonBase",
   slot: "Root",
 })<OwnerStateProps<ButtonBaseOwnerState>>(({ theme, ownerState }) => ({
@@ -150,27 +173,37 @@ const ButtonBaseRipple = styled("span", {
   name: "ButtonBase",
   slot: "Ripple",
   skipSx: true,
-})<OwnerStateProps<ButtonBaseOwnerState>>(({ ownerState, theme }) => ({
+})<
+  OwnerStateProps<
+    ButtonBaseOwnerState & {
+      endPoint: any
+      rippleScale: number
+      startPoint: any
+    }
+  >
+>(({ ownerState, theme }) => ({
   animationDuration: "550ms",
   animationFillMode: "forwards",
   animationKeyframes: {
     "0%": {
       opacity: 1,
-      transform: "scale(0)",
+      transform: `translateX(${ownerState.startPoint.x}px) translateY(${ownerState.startPoint.y}px) scale(1)`,
     },
     "100%": {
       opacity: 0,
-      transform: "scale(1)",
+      transform: `translateX(${ownerState.endPoint.x}px) translateY(${ownerState.endPoint.y}px) scale(${ownerState.rippleScale})`,
     },
   },
   animationTimingFunction: "ease-in",
-  backgroundColor: theme.utils.rgba(
+  backgroundImage: `radial-gradient(closest-side, ${theme.utils.rgba(
     ownerState.pressedColor,
-    ownerState.pressedOpacity - ownerState.hoverOpacity,
-  ),
+    ownerState.pressedOpacity,
+  )}, max(calc(100% - 70px), 65%), transparent 100%)`,
   borderRadius: theme.sys.shape.corner.full,
+  left: 0,
   pointerEvents: "none",
   position: "absolute",
+  top: 0,
   zIndex: -1,
 }))
 
@@ -215,11 +248,12 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       { id: number; ripple: React.ReactElement }[]
     >([])
 
-    const [{ backgroundColor = null, ...containerStyle } = {}] = splitProps(
-      StyleSheet.flatten(style),
+    const [{ backgroundColor = null, ...containerStyle }] = splitProps(
+      StyleSheet.flatten([style, styles?.root]),
       [
         "backgroundColor",
         "borderRadius",
+        "overflow",
         "bottom",
         "flexBasis",
         "flexGrow",
@@ -259,50 +293,87 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
             pressedColor,
           )
 
+    const determineRippleSize = () => {
+      const currentRef = rootRef.current as unknown as HTMLDivElement
+
+      const { width, height } = currentRef.getBoundingClientRect()
+      const maxSize = Math.max(height, width)
+      const softEdgeSize = Math.max(
+        SOFT_EDGE_CONTAINER_RATIO * maxSize,
+        SOFT_EDGE_MINIMUM_SIZE,
+      )
+
+      let maxRadius = maxSize
+      const initialSize = Math.floor(maxSize * RIPPLE_INITIAL_ORIGIN_SCALE)
+
+      const hypotenuse = Math.sqrt(width ** 2 + height ** 2)
+      maxRadius = hypotenuse + RIPPLE_PADDING
+
+      return {
+        initialSize,
+        rippleScale: (maxRadius + softEdgeSize) / initialSize,
+        rippleSize: initialSize,
+      }
+    }
+
+    const getNormalizedPointerEventCoords = (event: PointerEvent) => {
+      const currentRef = rootRef.current as unknown as HTMLDivElement
+
+      const { scrollX, scrollY } = getOwnerWindow(currentRef)
+      const { left, top } = currentRef.getBoundingClientRect()
+      const documentX = scrollX + left
+      const documentY = scrollY + top
+
+      return { x: event.pageX - documentX, y: event.pageY - documentY }
+    }
+
+    const getTranslationCoordinates = React.useCallback(
+      (event: Event | undefined, initialSize: number) => {
+        const currentRef = rootRef.current as unknown as HTMLDivElement
+
+        const { height, width } = currentRef.getBoundingClientRect()
+        // End in the center
+        const endPoint = {
+          x: (width - initialSize) / 2,
+          y: (height - initialSize) / 2,
+        }
+
+        let startPoint =
+          event instanceof PointerEvent && !centerRipple
+            ? getNormalizedPointerEventCoords(event)
+            : {
+                x: width / 2,
+                y: height / 2,
+              }
+
+        // Center around start point
+        startPoint = {
+          x: startPoint.x - initialSize / 2,
+          y: startPoint.y - initialSize / 2,
+        }
+
+        return { startPoint, endPoint }
+      },
+      [centerRipple],
+    )
+
     const removeRipple = (rippleId: number) => () => {
       setRipples((prevRipples) => prevRipples.filter((r) => r.id !== rippleId))
     }
 
     const appendRipple = React.useCallback(
-      (event: TouchEvent | MouseEvent | {} = {}) => {
+      (event?: PointerEvent) => {
         const currentRef = rootRef.current as HTMLDivElement | null
 
         if (disabled || disableRipple || currentRef == null) {
           return
         }
 
-        const { width, height, left, top } = currentRef.getBoundingClientRect()
-
-        // Get the size of the ripple
-        let rippleX: number
-        let rippleY: number
-        let rippleSize: number
-
-        if (
-          centerRipple ||
-          (!("clientX" in event) && !("touches" in event)) ||
-          ("clientX" in event && event?.clientX === 0 && event?.clientY === 0)
-        ) {
-          rippleX = Math.round(width / 2)
-          rippleY = Math.round(height / 2)
-        } else {
-          const { clientX, clientY } =
-            "touches" in event ? event.touches[0] : event
-          rippleX = Math.round(clientX - left)
-          rippleY = Math.round(clientY - top)
-        }
-
-        if (centerRipple) {
-          rippleSize = Math.sqrt((2 * width ** 2 + height ** 2) / 3)
-        } else {
-          const sizeX =
-            Math.max(Math.abs(currentRef.clientWidth - rippleX), rippleX) * 2 +
-            2
-          const sizeY =
-            Math.max(Math.abs(currentRef.clientHeight - rippleY), rippleY) * 2 +
-            2
-          rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2)
-        }
+        const { initialSize, rippleScale, rippleSize } = determineRippleSize()
+        const { endPoint, startPoint } = getTranslationCoordinates(
+          event,
+          initialSize,
+        )
 
         const rippleId =
           ripples.length === 0 ? 1 : ripples[ripples.length - 1].id + 1
@@ -312,14 +383,15 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
             key={rippleId}
             ownerState={{
               disabled,
+              endPoint,
               hoverOpacity,
               pressedColor,
               pressedOpacity,
+              rippleScale,
+              startPoint,
             }}
             style={{
               height: rippleSize,
-              left: -(rippleSize / 2) + rippleX,
-              top: -(rippleSize / 2) + rippleY,
               width: rippleSize,
             }}
             onAnimationEnd={removeRipple(rippleId)}
@@ -329,14 +401,13 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         setRipples((prevRipples) => [...prevRipples, { id: rippleId, ripple }])
       },
       [
-        rootRef,
         disabled,
         disableRipple,
-        centerRipple,
-        ripples,
+        getTranslationCoordinates,
+        hoverOpacity,
         pressedColor,
         pressedOpacity,
-        hoverOpacity,
+        ripples,
       ],
     )
 
@@ -415,20 +486,18 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       }
     })
 
-    const handlePressOut = () => {
+    const handlePressOut = useEventCallback(() => {
       setFocusVisible(false)
-    }
+    })
 
     React.useEffect(() => {
       const currentRef = rootRef.current
 
       if (isHTMLElement<HTMLDivElement>(currentRef)) {
-        currentRef.addEventListener("mousedown", appendRipple)
-        currentRef.addEventListener("touchstart", appendRipple)
+        currentRef.addEventListener("pointerdown", appendRipple)
 
         return () => {
-          currentRef.removeEventListener("mousedown", appendRipple)
-          currentRef.removeEventListener("touchend", appendRipple)
+          currentRef.removeEventListener("pointerdown", appendRipple)
         }
       }
 
@@ -458,39 +527,31 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         href={href}
         ownerState={ownerState}
         role={href ? undefined : "button"}
-        {...(Platform.OS === "web" && {
-          style: [style, styles?.root],
-        })}
-        {...(Platform.OS === "android" && {
+        style={({ pressed }) => [
+          style,
+          styles?.root,
           // For Android we need a wrapping View to cut off the ripple effect.
           // Because of this View and when the button should have
           // `position: absolute`, we need to apply it to the wrapper View and
           // override it here to have `position: relative` with 0px inset.
-          style: [
-            style,
-            styles?.root,
-            {
-              bottom: 0,
-              left: 0,
-              marginBottom: 0,
-              marginEnd: 0,
-              marginLeft: 0,
-              marginRight: 0,
-              marginStart: 0,
-              marginTop: 0,
-              position: "relative",
-              right: 0,
-              top: 0,
-            },
-          ],
-        })}
-        {...(Platform.OS === "ios" && {
-          style: ({ pressed }) => [
-            style,
-            styles?.root,
-            pressed && !disableRipple && { backgroundColor: underlayColor },
-          ],
-        })}
+          Platform.OS === "android" && {
+            bottom: 0,
+            left: 0,
+            marginBottom: 0,
+            marginEnd: 0,
+            marginLeft: 0,
+            marginRight: 0,
+            marginStart: 0,
+            marginTop: 0,
+            overflow: "visible",
+            position: "relative",
+            right: 0,
+            top: 0,
+          },
+          Platform.OS === "ios" &&
+            pressed &&
+            !disableRipple && { backgroundColor: underlayColor },
+        ]}
         onBlur={handleBlur}
         onFocus={handleFocus}
         onKeyDown={handleKeyDown}
@@ -499,9 +560,11 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         onPressOut={handlePressOut}
         {...props}
       >
-        {({ hovered, focused }) => (
+        {({ focused, hovered, ...state }) => (
           <>
-            {React.Children.only(children)}
+            {isFunction(children)
+              ? children({ ...state, focused, focusVisible, hovered })
+              : children}
             {Platform.OS === "web" && (
               <ButtonBaseHover
                 style={{

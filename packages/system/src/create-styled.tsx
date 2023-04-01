@@ -2,9 +2,10 @@ import { Theme } from "@md3-ui/theme"
 import { __DEV__, cx, isFunction } from "@md3-ui/utils"
 import * as React from "react"
 import { PressableStateCallbackType as RNPressableStateCallbackType } from "react-native"
-import { useTheme } from "./context"
+import { TextStyleProvider, useTheme } from "./context"
 import { css } from "./create-css"
 import { styleFunctionSx } from "./style-function-sx"
+import { StyleSheet } from "./style-sheet"
 import { CreateStyled, RNStyle, StyledComponent, StyledOptions } from "./types"
 import { useStyleSheet } from "./use-style-sheet"
 import { createElement } from "./utils/create-element"
@@ -87,7 +88,15 @@ export const styled: CreateStyled = <
             ]
           : [styleSheet.style, style]
 
-        return createElement(FinalTag, newProps)
+        const { color } = StyleSheet.flatten(newProps.style)
+
+        return color ? (
+          <TextStyleProvider style={{ color }} wrapChildren={false}>
+            {createElement(FinalTag, newProps)}
+          </TextStyleProvider>
+        ) : (
+          createElement(FinalTag, newProps)
+        )
       },
     ) as StyledComponent<T, React.ComponentProps<T>, {}>
 

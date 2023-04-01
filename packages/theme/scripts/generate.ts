@@ -44,9 +44,12 @@ const componentMap = {
   filledIconButton: "filledIconButton",
   filledTonalButton: "tonalButton",
   filledTonalIconButton: "tonalIconButton",
+  filterChip: "filterChip",
   iconButton: "iconButton",
+  list: "list",
   outlinedButton: "outlinedButton",
   outlinedIconButton: "outlinedIconButton",
+  snackbar: "snackbar",
   switch: "switch",
   textButton: "textButton",
 }

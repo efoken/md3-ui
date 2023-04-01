@@ -1,21 +1,22 @@
-// import remarkEmoji from "remark-emoji"
-// import remarkGfm from "remark-gfm"
-// import remarkSlug from "remark-slug"
-const withPreconstruct = require("@preconstruct/next")
+import nextMDX from "@next/mdx"
+import withPreconstruct from "@preconstruct/next"
+import nextTranspileModules from "next-transpile-modules"
+import remarkEmoji from "remark-emoji"
+import remarkGfm from "remark-gfm"
+import remarkSlug from "remark-slug"
 
-const withTM = require("next-transpile-modules")(["react-native"])
+const withTM = nextTranspileModules(["react-native"])
 
-const withMDX = require("@next/mdx")({
+const withMDX = nextMDX({
   extension: /\.mdx?$/,
   options: {
     providerImportSource: "@mdx-js/react",
-    // remarkPlugins: [remarkSlug, remarkGfm, remarkEmoji],
-    remarkPlugins: [],
+    remarkPlugins: [remarkSlug, remarkGfm, remarkEmoji],
     rehypePlugins: [],
   },
 })
 
-module.exports = withTM(
+export default withTM(
   withPreconstruct(
     withMDX({
       pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],

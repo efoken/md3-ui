@@ -2,6 +2,7 @@ import { useControlled, useEnhancedEffect, useForkRef } from "@md3-ui/hooks"
 import {
   Global,
   OwnerStateProps,
+  StylesProp,
   SxProps,
   styled,
   useThemeProps,
@@ -50,10 +51,10 @@ export interface TextInputProps extends RNTextInputProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     container?: RNViewStyle
     root?: RNTextStyle
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as
    * additional styles.

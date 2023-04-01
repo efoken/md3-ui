@@ -1,4 +1,3 @@
-import { useBoolean } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
   styled,
@@ -8,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -16,6 +15,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
+import { useButtonBaseState } from "./use-button-base-state"
 
 export interface IconButtonProps extends ButtonBaseProps {
   /**
@@ -79,13 +79,6 @@ const IconButtonContent = styled(TextStyleProvider, {
     ? theme.comp.iconButton.selected.icon.color
     : theme.comp.iconButton.unselected.icon.color,
 
-  ...(ownerState.disabled && {
-    color: theme.utils.rgba(
-      theme.comp.iconButton.disabled.icon.color,
-      theme.comp.iconButton.disabled.icon.opacity,
-    ),
-  }),
-
   ...(ownerState.hovered && {
     color: ownerState.selected
       ? theme.comp.iconButton.selected.hover.icon.color
@@ -103,6 +96,13 @@ const IconButtonContent = styled(TextStyleProvider, {
       ? theme.comp.iconButton.selected.pressed.icon.color
       : theme.comp.iconButton.unselected.pressed.icon.color,
   }),
+
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.iconButton.disabled.icon.color,
+      theme.comp.iconButton.disabled.icon.opacity,
+    ),
+  }),
 }))
 
 export const IconButton = React.forwardRef<RNView, IconButtonProps>(
@@ -111,12 +111,6 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
       children,
       disabled = false,
       edge = false,
-      onBlur,
-      onFocusVisible,
-      onHoverIn,
-      onHoverOut,
-      onPressIn,
-      onPressOut,
       selected,
       style,
       styles,
@@ -128,9 +122,8 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
 
     const theme = useTheme()
 
-    const [focused, handleFocus] = useBoolean()
-    const [hovered, handleHover] = useBoolean()
-    const [pressed, handlePress] = useBoolean()
+    const { focused, hovered, pressed, ...buttonBaseProps } =
+      useButtonBaseState(props)
 
     const ownerState = {
       disabled,
@@ -144,6 +137,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
     return (
       <IconButtonRoot
         ref={ref}
+        centerRipple
         disabled={disabled}
         focusColor={
           selected
@@ -178,12 +172,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
             : theme.comp.iconButton.unselected.pressed.stateLayer.opacity
         }
         style={[style, styles?.root]}
-        onBlur={createChainedFunction(onBlur, handleFocus.off)}
-        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
-        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
-        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
-        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
-        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
+        {...buttonBaseProps}
         {...props}
       >
         <IconButtonContent ownerState={ownerState} style={styles?.content}>

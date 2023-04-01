@@ -2,6 +2,7 @@ import {
   OverridableComponent,
   OverrideProps,
   styled,
+  StylesProp,
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
@@ -25,9 +26,9 @@ export interface CardMediaTypeMap<
     /**
      * Override or extend the styles applied to the component.
      */
-    styles?: {
+    styles?: StylesProp<{
       root?: RNImageStyle
-    }
+    }>
     source: ImageSourcePropType
     /**
      * The system prop that allows defining system overrides as well as

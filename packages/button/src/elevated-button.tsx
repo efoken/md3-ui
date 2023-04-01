@@ -1,4 +1,3 @@
-import { useBoolean } from "@md3-ui/hooks"
 import { Text } from "@md3-ui/layout"
 import {
   OwnerStateProps,
@@ -9,7 +8,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -18,6 +17,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
+import { useButtonBaseState } from "./use-button-base-state"
 
 export interface ElevatedButtonProps extends ButtonBaseProps {
   /**
@@ -150,12 +150,6 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
       children,
       disabled = false,
       icon,
-      onBlur,
-      onFocusVisible,
-      onHoverIn,
-      onHoverOut,
-      onPressIn,
-      onPressOut,
       style,
       styles,
       ...props
@@ -163,9 +157,8 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
 
     const theme = useTheme()
 
-    const [hovered, handleHover] = useBoolean()
-    const [focused, handleFocus] = useBoolean()
-    const [pressed, handlePress] = useBoolean()
+    const { focused, hovered, pressed, ...buttonBaseProps } =
+      useButtonBaseState(props)
 
     const ownerState = {
       disabled,
@@ -186,12 +179,10 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
         pressedColor={theme.comp.elevatedButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.elevatedButton.pressed.stateLayer.opacity}
         style={[styles?.root, style]}
-        onBlur={createChainedFunction(onBlur, handleFocus.off)}
-        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
-        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
-        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
-        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
-        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
+        surfaceTintColor={
+          theme.comp.elevatedButton.container.surfaceTintLayer.color
+        }
+        {...buttonBaseProps}
         {...props}
       >
         <ElevatedButtonContent ownerState={ownerState} style={styles?.content}>

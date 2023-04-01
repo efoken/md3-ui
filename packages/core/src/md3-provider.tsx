@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@md3-ui/system"
+import { MediaValuesProvider, ThemeProvider } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
 import * as React from "react"
 import { CSSBaseline } from "./css-baseline"
@@ -13,7 +13,9 @@ export const Md3Provider: React.FC<Md3ProviderProps> = ({
   theme,
 }) => (
   <ThemeProvider theme={theme}>
-    <CSSBaseline />
-    {children}
+    <MediaValuesProvider>
+      <CSSBaseline />
+      {children}
+    </MediaValuesProvider>
   </ThemeProvider>
 )

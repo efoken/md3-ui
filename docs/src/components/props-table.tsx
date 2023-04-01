@@ -2,6 +2,7 @@ import { Box, Stack, Text } from "@md3-ui/core"
 import * as propsDocs from "@md3-ui/props-docs"
 import * as React from "react"
 import { MDXComponents } from "../mdx-components"
+import { convertBackticksToInlineCode } from "../utils/convert-backticks-to-inline-code"
 
 export interface PropsTableProps {
   of: keyof typeof propsDocs
@@ -82,7 +83,7 @@ export const PropsTable: React.FC<PropsTableProps> = ({
                   <MDXComponents.code>{prop.defaultValue}</MDXComponents.code>.
                 </>
               )}{" "}
-              {prop.description}
+              {convertBackticksToInlineCode(prop.description)}
             </Text>
           </Box>
         </Box>

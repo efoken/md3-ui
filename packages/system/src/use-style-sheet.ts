@@ -1,44 +1,54 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { objectFilter } from "@md3-ui/utils"
-import { MediaValues } from "css-mediaquery2"
+import { isMedia, memoize, objectFilter } from "@md3-ui/utils"
+import MediaQuery, { MediaValues } from "css-mediaquery2"
 import * as React from "react"
-import { Platform, useWindowDimensions } from "react-native"
+import { Platform } from "react-native"
 import { StyleSheet } from "./style-sheet"
 import { RNStyle } from "./types"
 import { useMediaValues } from "./use-media-values"
-import { findBreakpoints } from "./utils/find-breakpoints"
+
+const findMediaFeatures = memoize((emotionStyles: RNStyle) =>
+  Object.keys(emotionStyles)
+    .filter((item) => isMedia(item))
+    .reduce((acc, query) => {
+      const ast = MediaQuery.parse(query.replace("@media", ""))
+      for (const node of ast) {
+        for (const expression of node.expressions) {
+          acc.add(expression.feature)
+        }
+      }
+      return acc
+    }, new Set<keyof MediaValues>()),
+)
 
 export function useStyleSheet(styles: RNStyle) {
-  let breakpoint: number | undefined
-  let mediaValues: Partial<MediaValues> = {}
+  let mediaValues: Partial<MediaValues> | undefined
 
   if (Platform.OS !== "web") {
-    const { width } = useWindowDimensions()
-    const breakpoints = React.useMemo(() => findBreakpoints(styles), [styles])
+    const rawMediaValues = useMediaValues()
 
-    const getBreakpoint = React.useCallback(
-      (newWidth: number) => breakpoints.find((item) => newWidth < item),
-      [breakpoints],
-    )
-
-    let setBreakpoint: React.Dispatch<React.SetStateAction<number | undefined>>
-    ;[breakpoint, setBreakpoint] = React.useState(getBreakpoint(width))
+    let setMediaValues: React.Dispatch<Partial<MediaValues>>
+    ;[mediaValues, setMediaValues] =
+      React.useState<Partial<MediaValues>>(rawMediaValues)
 
     React.useEffect(() => {
-      setBreakpoint(getBreakpoint(width))
-    }, [getBreakpoint, setBreakpoint, width])
-
-    mediaValues = useMediaValues()
+      const nextMediaValues = objectFilter(rawMediaValues, (value, key) =>
+        findMediaFeatures(styles).has(key),
+      )
+      if (JSON.stringify(mediaValues) !== JSON.stringify(nextMediaValues)) {
+        setMediaValues(nextMediaValues)
+      }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [mediaValues, rawMediaValues, styles])
   }
 
-  const { styles: createdStyles } = React.useMemo(
+  const createdStyles = React.useMemo(
     () =>
-      StyleSheet.createWithMedia(
-        { styles: objectFilter(styles, (style) => style != null) },
+      StyleSheet.create(
+        { style: objectFilter(styles, (style) => style != null) },
         mediaValues,
       ),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [breakpoint, mediaValues, styles],
+    [mediaValues, styles],
   )
-  return { style: createdStyles.styles }
+  return { style: createdStyles.style }
 }

@@ -1,4 +1,3 @@
-import { useBoolean } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
   styled,
@@ -8,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -16,6 +15,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { ButtonBase, ButtonBaseProps } from "./button-base"
+import { useButtonBaseState } from "./use-button-base-state"
 
 export interface TonalIconButtonProps extends ButtonBaseProps {
   /**
@@ -57,6 +57,7 @@ type TonalIconButtonOwnerState = Pick<
   focused: boolean
   hovered: boolean
   pressed: boolean
+  toggleable: boolean
 }
 
 const TonalIconButtonRoot = styled(ButtonBase, {
@@ -72,12 +73,10 @@ const TonalIconButtonRoot = styled(ButtonBase, {
   marginStart: ownerState.edge === "start" ? -12 : undefined,
   width: theme.comp.tonalIconButton.container.size,
 
-  ...(ownerState.selected === true && {
-    backgroundColor: theme.comp.tonalIconButton.selected.container.color,
-  }),
-
-  ...(ownerState.selected === false && {
-    backgroundColor: theme.comp.tonalIconButton.unselected.container.color,
+  ...(ownerState.toggleable && {
+    backgroundColor: ownerState.selected
+      ? theme.comp.tonalIconButton.selected.container.color
+      : theme.comp.tonalIconButton.unselected.container.color,
   }),
 
   ...(ownerState.disabled && {
@@ -95,13 +94,6 @@ const TonalIconButtonContent = styled(TextStyleProvider, {
 })<OwnerStateProps<TonalIconButtonOwnerState>>(({ theme, ownerState }) => ({
   color: theme.comp.tonalIconButton.icon.color,
 
-  ...(ownerState.disabled && {
-    color: theme.utils.rgba(
-      theme.comp.tonalIconButton.disabled.icon.color,
-      theme.comp.tonalIconButton.disabled.icon.opacity,
-    ),
-  }),
-
   ...(ownerState.hovered && {
     color: theme.comp.tonalIconButton.hover.icon.color,
   }),
@@ -113,6 +105,37 @@ const TonalIconButtonContent = styled(TextStyleProvider, {
   ...(ownerState.pressed && {
     color: theme.comp.tonalIconButton.pressed.icon.color,
   }),
+
+  ...(ownerState.toggleable && {
+    color: ownerState.selected
+      ? theme.comp.tonalIconButton.toggle.selected.icon.color
+      : theme.comp.tonalIconButton.toggle.unselected.icon.color,
+
+    ...(ownerState.hovered && {
+      color: ownerState.selected
+        ? theme.comp.tonalIconButton.toggle.selected.hover.icon.color
+        : theme.comp.tonalIconButton.toggle.unselected.hover.icon.color,
+    }),
+
+    ...(ownerState.focused && {
+      color: ownerState.selected
+        ? theme.comp.tonalIconButton.toggle.selected.focus.icon.color
+        : theme.comp.tonalIconButton.toggle.unselected.focus.icon.color,
+    }),
+
+    ...(ownerState.pressed && {
+      color: ownerState.selected
+        ? theme.comp.tonalIconButton.toggle.selected.pressed.icon.color
+        : theme.comp.tonalIconButton.toggle.unselected.pressed.icon.color,
+    }),
+  }),
+
+  ...(ownerState.disabled && {
+    color: theme.utils.rgba(
+      theme.comp.tonalIconButton.disabled.icon.color,
+      theme.comp.tonalIconButton.disabled.icon.opacity,
+    ),
+  }),
 }))
 
 export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
@@ -121,12 +144,6 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
       children,
       disabled = false,
       edge = false,
-      onBlur,
-      onFocusVisible,
-      onHoverIn,
-      onHoverOut,
-      onPressIn,
-      onPressOut,
       selected,
       style,
       styles,
@@ -138,9 +155,10 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
 
     const theme = useTheme()
 
-    const [focused, handleFocus] = useBoolean()
-    const [hovered, handleHover] = useBoolean()
-    const [pressed, handlePress] = useBoolean()
+    const { focused, hovered, pressed, ...buttonBaseProps } =
+      useButtonBaseState(props)
+
+    const toggleable = selected != null
 
     const ownerState = {
       disabled,
@@ -149,11 +167,13 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
       hovered,
       pressed,
       selected,
+      toggleable,
     }
 
     return (
       <TonalIconButtonRoot
         ref={ref}
+        centerRipple
         disabled={disabled}
         focusColor={theme.comp.tonalIconButton.focus.stateLayer.color}
         focusOpacity={theme.comp.tonalIconButton.focus.stateLayer.opacity}
@@ -163,13 +183,21 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
         ownerState={ownerState}
         pressedColor={theme.comp.tonalIconButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.tonalIconButton.pressed.stateLayer.opacity}
+        {...(toggleable && {
+          focusColor: selected
+            ? theme.comp.tonalIconButton.toggle.selected.focus.stateLayer.color
+            : theme.comp.tonalIconButton.toggle.unselected.focus.stateLayer
+                .color,
+          hoverColor: selected
+            ? theme.comp.tonalIconButton.toggle.selected.hover.stateLayer.color
+            : theme.comp.tonalIconButton.toggle.unselected.hover.stateLayer
+                .color,
+          pressedColor:
+            theme.comp.tonalIconButton.toggle.unselected.pressed.stateLayer
+              .color,
+        })}
         style={[style, styles?.root]}
-        onBlur={createChainedFunction(onBlur, handleFocus.off)}
-        onFocusVisible={createChainedFunction(onFocusVisible, handleFocus.on)}
-        onHoverIn={createChainedFunction(onHoverIn, handleHover.on)}
-        onHoverOut={createChainedFunction(onHoverOut, handleHover.off)}
-        onPressIn={createChainedFunction(onPressIn, handlePress.on)}
-        onPressOut={createChainedFunction(onPressOut, handlePress.off)}
+        {...buttonBaseProps}
         {...props}
       >
         <TonalIconButtonContent ownerState={ownerState} style={styles?.content}>

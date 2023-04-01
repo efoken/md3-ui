@@ -51,10 +51,6 @@ const textShadowColor = createPaletteStyle({
   prop: "textShadowColor",
 })
 
-const textShadowOffset = style({
-  prop: "textShadowOffset",
-})
-
 const textShadowRadius = style({
   prop: "textShadowRadius",
 })
@@ -76,7 +72,6 @@ export const typography = compose<TypographyProps>(
   textDecorationStyle,
   textDecorationColor,
   textShadowColor,
-  textShadowOffset,
   textShadowRadius,
   textTransform,
 )

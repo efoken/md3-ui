@@ -1,6 +1,12 @@
 import { useAnimate, useLayout, useLocale } from "@md3-ui/hooks"
 import { Modal, ModalProps } from "@md3-ui/modal"
-import { OwnerStateProps, SxProps, styled, useThemeProps } from "@md3-ui/system"
+import {
+  OwnerStateProps,
+  StylesProp,
+  SxProps,
+  styled,
+  useThemeProps,
+} from "@md3-ui/system"
 import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
@@ -32,12 +38,12 @@ export interface NavigationDrawerProps
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     root?: RNViewStyle
     modal?: RNViewStyle
     dock?: RNViewStyle
     surface?: RNViewStyle
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as additional
    * styles.

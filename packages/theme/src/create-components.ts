@@ -14,6 +14,7 @@ import {
   Md3CompFilledIconButton,
 } from "./components/filled-icon-button"
 import { iconButtonTheme, Md3CompIconButton } from "./components/icon-button"
+import { listTheme, Md3CompList } from "./components/list"
 import {
   Md3CompOutlinedButton,
   outlinedButtonTheme,
@@ -22,6 +23,8 @@ import {
   Md3CompOutlinedIconButton,
   outlinedIconButtonTheme,
 } from "./components/outlined-icon-button"
+import { Md3CompSnackbar, snackbarTheme } from "./components/snackbar"
+import { Md3CompSwitch, switchTheme } from "./components/switch"
 import { Md3CompTextButton, textButtonTheme } from "./components/text-button"
 import { Md3CompTonalButton, tonalButtonTheme } from "./components/tonal-button"
 import {
@@ -36,8 +39,11 @@ export interface Components {
   filledButton: Md3CompFilledButton
   filledIconButton: Md3CompFilledIconButton
   iconButton: Md3CompIconButton
+  list: Md3CompList
   outlinedButton: Md3CompOutlinedButton
   outlinedIconButton: Md3CompOutlinedIconButton
+  snackbar: Md3CompSnackbar
+  switch: Md3CompSwitch
   textButton: Md3CompTextButton
   tonalButton: Md3CompTonalButton
   tonalIconButton: Md3CompTonalIconButton
@@ -53,8 +59,11 @@ export function createComponents(theme: Record<string, any>): Components {
       filledButton: filledButtonTheme(theme),
       filledIconButton: filledIconButtonTheme(theme),
       iconButton: iconButtonTheme(theme),
+      list: listTheme(theme),
       outlinedButton: outlinedButtonTheme(theme),
       outlinedIconButton: outlinedIconButtonTheme(theme),
+      snackbar: snackbarTheme(theme),
+      switch: switchTheme(theme),
       textButton: textButtonTheme(theme),
       tonalButton: tonalButtonTheme(theme),
       tonalIconButton: tonalIconButtonTheme(theme),

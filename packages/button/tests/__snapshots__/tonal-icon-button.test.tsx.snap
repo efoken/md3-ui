@@ -12,7 +12,7 @@ exports[`<TonalIconButton /> prop: selected should select the component 1`] = `
   >
     <svg
       class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
-      color="currentColor"
+      color="#1d192b"
       data-class="Icon-root"
       fill="currentColor"
       style="color: rgb(29, 25, 43);"
@@ -38,20 +38,20 @@ exports[`<TonalIconButton /> prop: selected should unselect the component 1`] = 
   type="button"
 >
   <div
-    style="color: rgb(29, 25, 43); display: contents;"
+    style="color: rgb(73, 69, 79); display: contents;"
   >
     <svg
       class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
-      color="currentColor"
+      color="#49454f"
       data-class="Icon-root"
       fill="currentColor"
-      style="color: rgb(29, 25, 43);"
+      style="color: rgb(73, 69, 79);"
     />
   </div>
   <span
     class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
     data-class="ButtonBase-hover"
-    style="background-color: rgb(29, 25, 43); opacity: 0;"
+    style="background-color: rgb(73, 69, 79); opacity: 0;"
   />
   <span
     class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
@@ -72,7 +72,7 @@ exports[`<TonalIconButton /> should render 1`] = `
   >
     <svg
       class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
-      color="currentColor"
+      color="#1d192b"
       data-class="Icon-root"
       data-testid="icon"
       fill="currentColor"

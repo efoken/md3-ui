@@ -3,7 +3,7 @@ import { Circle, Mail } from "@md3-ui/icons"
 import { Box, Divider, Stack } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
-import { GestureResponderEvent, TouchableWithoutFeedback } from "react-native"
+import { GestureResponderEvent, Pressable as RNPressable } from "react-native"
 import {
   NavigationDrawer,
   NavigationDrawerItem,
@@ -37,29 +37,29 @@ export const Modal: StoryObj = {
       }
 
     const list = (anchor: "start" | "end") => (
-      <TouchableWithoutFeedback
+      <Box
+        as={RNPressable}
+        role="presentation"
         tabIndex={-1}
         onKeyDown={toggleDrawer(anchor, false)}
         onPress={toggleDrawer(anchor, false)}
       >
-        <Box role="presentation">
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <NavigationDrawerItem
-              key={text}
-              icon={index % 2 === 0 ? <Circle /> : <Mail />}
-              label={text}
-            />
-          ))}
-          <Divider sx={{ mx: 4 }} />
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <NavigationDrawerItem
-              key={text}
-              icon={index % 2 === 0 ? <Circle /> : <Mail />}
-              label={text}
-            />
-          ))}
-        </Box>
-      </TouchableWithoutFeedback>
+        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+          <NavigationDrawerItem
+            key={text}
+            icon={index % 2 === 0 ? <Circle /> : <Mail />}
+            label={text}
+          />
+        ))}
+        <Divider sx={{ mx: 4 }} />
+        {["All mail", "Trash", "Spam"].map((text, index) => (
+          <NavigationDrawerItem
+            key={text}
+            icon={index % 2 === 0 ? <Circle /> : <Mail />}
+            label={text}
+          />
+        ))}
+      </Box>
     )
 
     return (

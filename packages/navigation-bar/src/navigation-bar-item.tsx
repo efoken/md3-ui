@@ -2,6 +2,7 @@ import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { Text } from "@md3-ui/layout"
 import {
   OwnerStateProps,
+  StylesProp,
   SxProps,
   TextStyleProvider,
   styled,
@@ -32,15 +33,15 @@ export interface NavigationBarItemProps
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     root?: RNViewStyle
     content?: RNTextStyle
     icon?: RNViewStyle
     label?: RNTextStyle
-  }
+  }>
   /**
-   * The system prop that allows defining system overrides as well as
-   * additional styles.
+   * The system prop that allows defining system overrides as well as additional
+   * styles.
    */
   sx?: SxProps
   /**

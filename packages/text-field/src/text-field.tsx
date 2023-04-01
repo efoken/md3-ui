@@ -1,6 +1,7 @@
 import { useAnimate, useBoolean, useForkRef } from "@md3-ui/hooks"
 import {
   OwnerStateProps,
+  StylesProp,
   SxProps,
   styled,
   useTheme,
@@ -31,12 +32,12 @@ export interface TextFieldProps extends TextInputProps {
   /**
    * Override or extend the styles applied to the component.
    */
-  styles?: {
+  styles?: StylesProp<{
     container?: RNViewStyle
     label?: RNTextStyle
     outline?: RNViewStyle
     root?: RNTextStyle
-  }
+  }>
   /**
    * The system prop that allows defining system overrides as well as
    * additional styles.
@@ -56,7 +57,7 @@ const TextFieldRoot = styled(TextInput, {
   slot: "Root",
 })<OwnerStateProps<Pick<TextFieldProps, "endIcon" | "startIcon">>>(
   ({ theme, ownerState }) => ({
-    ...theme.sys.typescale.bodyLarge,
+    // ...theme.sys.typescale.bodyLarge,
     color: theme.sys.color.onSurface,
     padding: 16,
     minHeight: 56,

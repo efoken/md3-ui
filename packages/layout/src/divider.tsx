@@ -1,6 +1,7 @@
 import {
   OverridableComponent,
   OverrideProps,
+  OwnerStateProps,
   styled,
   StylesProp,
   SxProps,
@@ -15,6 +16,21 @@ export interface DividerTypeMap<
   C extends React.ElementType = typeof RNView,
 > {
   props: P & {
+    /**
+     * Indents the divider with equal padding on both sides.
+     * @default false
+     */
+    inset?: boolean
+    /**
+     * Indents the divider with padding on the trailing side.
+     * @default false
+     */
+    insetEnd?: boolean
+    /**
+     * Indents the divider with padding on the leading side.
+     * @default false
+     */
+    insetStart?: boolean
     /**
      * Override or extend the styles applied to the component.
      */
@@ -37,22 +53,55 @@ export type DividerProps<
 
 export type DividerStyleKey = keyof NonNullable<DividerProps["styles"]>
 
+type DividerOwnerState = Required<
+  Pick<DividerProps, "inset" | "insetEnd" | "insetStart">
+>
+
 const DividerRoot = styled(RNView, {
   name: "Divider",
   slot: "Root",
-})(({ theme }) => ({
+})<OwnerStateProps<DividerOwnerState>>(({ ownerState, theme }) => ({
   backgroundColor: theme.comp.divider.color,
   height: theme.comp.divider.thickness,
+  width: "100%",
+
+  ...((ownerState.inset || ownerState.insetStart) && {
+    paddingStart: 16,
+  }),
+
+  ...((ownerState.inset || ownerState.insetEnd) && {
+    paddingEnd: 16,
+  }),
 }))
 
 export const Divider = React.forwardRef<RNView, DividerProps>(
   (inProps, ref) => {
-    const { style, styles, ...props } = useThemeProps({
+    const {
+      inset = false,
+      insetEnd = false,
+      insetStart = false,
+      style,
+      styles,
+      ...props
+    } = useThemeProps({
       name: "Divider",
       props: inProps,
     })
 
-    return <DividerRoot ref={ref} style={[style, styles?.root]} {...props} />
+    const ownerState = {
+      inset,
+      insetEnd,
+      insetStart,
+    }
+
+    return (
+      <DividerRoot
+        ref={ref}
+        ownerState={ownerState}
+        style={[style, styles?.root]}
+        {...props}
+      />
+    )
   },
 ) as OverridableComponent<DividerTypeMap>
 
