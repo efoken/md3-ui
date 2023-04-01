@@ -303,11 +303,10 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         SOFT_EDGE_MINIMUM_SIZE,
       )
 
-      let maxRadius = maxSize
       const initialSize = Math.floor(maxSize * RIPPLE_INITIAL_ORIGIN_SCALE)
 
       const hypotenuse = Math.sqrt(width ** 2 + height ** 2)
-      maxRadius = hypotenuse + RIPPLE_PADDING
+      const maxRadius = hypotenuse + RIPPLE_PADDING
 
       return {
         initialSize,
