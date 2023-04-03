@@ -44,7 +44,7 @@
     "adm-zip": "^0.5.10",
     "lodash": "^4.17.21",
     "prettier": "^2.8.7",
-    "react-native": "0.71.5",
+    "react-native": "0.71.6",
     "style-dictionary": "^3.7.2"
   },
   "peerDependencies": {
