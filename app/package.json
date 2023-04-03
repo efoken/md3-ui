@@ -7,7 +7,7 @@
     "@expo/vector-icons": "^13.0.0",
     "@md3-ui/core": "^0.2.1",
     "@md3-ui/icons": "^0.2.1",
-    "expo": "^48.0.9",
+    "expo": "^48.0.10",
     "expo-app-loading": "~2.1.1",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
@@ -20,7 +20,7 @@
     "uuid": "^3.4.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "^9.3.1",
+    "babel-preset-expo": "^9.3.2",
     "expo-modules-autolinking": "^1.1.2"
   },
   "scripts": {
