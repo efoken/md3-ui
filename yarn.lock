@@ -3031,7 +3031,7 @@ __metadata:
   dependencies:
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3072,7 +3072,7 @@ __metadata:
     "@md3-ui/layout": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3088,7 +3088,7 @@ __metadata:
   dependencies:
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3106,7 +3106,7 @@ __metadata:
     "@md3-ui/layout": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3137,7 +3137,7 @@ __metadata:
     "@md3-ui/system": ^0.2.1
     "@md3-ui/text-field": ^0.2.1
     "@md3-ui/theme": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     "@types/react-dom": ^18.0.11
     react: 18.2.0
     react-dom: 18.2.0
@@ -3184,7 +3184,7 @@ __metadata:
   resolution: "@md3-ui/hooks@workspace:packages/hooks"
   dependencies:
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3200,7 +3200,7 @@ __metadata:
   dependencies:
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
     react-native-svg: 13.4.0
@@ -3220,7 +3220,7 @@ __metadata:
     "@svgr/babel-preset": ^7.0.0
     "@svgr/core": ^7.0.0
     "@types/lodash": ^4.14.192
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     cross-fetch: ^3.1.5
     lodash: ^4.17.21
     react: 18.2.0
@@ -3244,7 +3244,7 @@ __metadata:
     "@md3-ui/system": ^0.2.1
     "@md3-ui/theme": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3263,7 +3263,7 @@ __metadata:
     "@md3-ui/system": ^0.2.1
     "@md3-ui/theme": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3281,7 +3281,7 @@ __metadata:
     "@md3-ui/portal": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     "@types/react-dom": ^18.0.11
     react: 18.2.0
     react-dom: 18.2.0
@@ -3303,7 +3303,7 @@ __metadata:
     "@md3-ui/layout": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-is: 18.2.0
     react-native: 0.71.6
@@ -3326,7 +3326,7 @@ __metadata:
     "@md3-ui/modal": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3342,7 +3342,7 @@ __metadata:
   dependencies:
     "@md3-ui/hooks": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     "@types/react-dom": ^18.0.11
     react: 18.2.0
     react-dom: 18.2.0
@@ -3375,7 +3375,7 @@ __metadata:
     "@md3-ui/portal": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
     react-native-safe-area-context: 4.5.0
@@ -3395,7 +3395,7 @@ __metadata:
     "@md3-ui/hooks": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -3414,7 +3414,7 @@ __metadata:
     "@md3-ui/hooks": ^0.2.1
     "@md3-ui/theme": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     css-mediaquery2: ^1.0.7
     react: 18.2.0
     react-native: 0.71.6
@@ -3436,7 +3436,7 @@ __metadata:
     "@testing-library/jest-dom": ^5.16.5
     "@testing-library/react": ^14.0.0
     "@types/jest-axe": ^3.5.5
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     jest-axe: ^7.0.1
     react: 18.2.0
     react-native: 0.71.6
@@ -3454,7 +3454,7 @@ __metadata:
     "@md3-ui/hooks": ^0.2.1
     "@md3-ui/system": ^0.2.1
     "@md3-ui/utils": ^0.2.1
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     react: 18.2.0
     react-native: 0.71.6
   peerDependencies:
@@ -6334,14 +6334,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.0.32":
-  version: 18.0.32
-  resolution: "@types/react@npm:18.0.32"
+"@types/react@npm:*, @types/react@npm:>=16, @types/react@npm:^18.0.33":
+  version: 18.0.33
+  resolution: "@types/react@npm:18.0.33"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: c8dbce83c455e520e75f3649988f46100e3a3c0bf7241281ea5bd9067a0368290f0d7c6102e12e6ec9d649134b29a3ef4c421f376ec5aa06ed78cbdd8c144b4c
+  checksum: 4fbd2b2b6a26378bdfde121081a6406ec2d39e4ba87ea5f6897ab7bb2198713165e6fd703ad4ed7ba1d4f23ef54a4c9f108f3105c7ed8e136411ee6bdebc5669
   languageName: node
   linkType: hard
 
@@ -16076,7 +16076,7 @@ __metadata:
     "@storybook/react-webpack5": ^7.0.2
     "@types/jest": ^29.5.0
     "@types/node": ^18.15.11
-    "@types/react": ^18.0.32
+    "@types/react": ^18.0.33
     "@types/react-dom": ^18.0.11
     "@types/react-is": ^17.0.3
     "@typescript-eslint/eslint-plugin": ^5.57.0
