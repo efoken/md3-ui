@@ -9,7 +9,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
-import { __DEV__, memoize } from "@md3-ui/utils"
+import { memoize } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Text as RNText,
@@ -371,6 +371,4 @@ export const ListItem = React.forwardRef<RNView, ListItemProps>(
   },
 )
 
-if (__DEV__) {
-  ListItem.displayName = "ListItem"
-}
+ListItem.displayName = "ListItem"

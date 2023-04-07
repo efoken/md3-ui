@@ -141,6 +141,4 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
   },
 ) as OverridableComponent<NavigationBarTypeMap>
 
-if (__DEV__) {
-  NavigationBar.displayName = "NavigationBar"
-}
+NavigationBar.displayName = "NavigationBar"

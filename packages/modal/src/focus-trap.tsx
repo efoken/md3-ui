@@ -410,6 +410,4 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
   )
 }
 
-if (__DEV__) {
-  FocusTrap.displayName = "FocusTrap"
-}
+FocusTrap.displayName = "FocusTrap"

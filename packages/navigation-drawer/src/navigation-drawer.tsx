@@ -7,7 +7,6 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Animated,
@@ -203,6 +202,4 @@ export const NavigationDrawer = React.forwardRef<RNView, NavigationDrawerProps>(
   },
 )
 
-if (__DEV__) {
-  NavigationDrawer.displayName = "NavigationDrawer"
-}
+NavigationDrawer.displayName = "NavigationDrawer"

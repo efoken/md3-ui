@@ -8,7 +8,6 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Animated,
@@ -171,6 +170,4 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
   )
 }) as OverridableComponent<BadgeTypeMap>
 
-if (__DEV__) {
-  Badge.displayName = "Badge"
-}
+Badge.displayName = "Badge"

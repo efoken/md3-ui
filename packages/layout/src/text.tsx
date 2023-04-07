@@ -8,7 +8,6 @@ import {
   useTextStyle,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -137,6 +136,4 @@ export const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
   )
 }) as OverridableComponent<TextTypeMap>
 
-if (__DEV__) {
-  Text.displayName = "Text"
-}
+Text.displayName = "Text"

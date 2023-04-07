@@ -1,4 +1,3 @@
-import { __DEV__ } from "@md3-ui/utils"
 import { View as RNView } from "react-native"
 import { createView } from "../create-view"
 import { OverridableComponent, OverrideProps, SxProps } from "../types"
@@ -34,6 +33,4 @@ export const View = createView({
   name: "View",
 }) as OverridableComponent<ViewTypeMap>
 
-if (__DEV__) {
-  View.displayName = "View"
-}
+View.displayName = "View"

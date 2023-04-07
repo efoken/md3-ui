@@ -1,7 +1,7 @@
 import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { useControlled } from "@md3-ui/hooks"
 import { StylesProp, SxProps, styled, useThemeProps } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   GestureResponderEvent,
@@ -177,6 +177,4 @@ export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(
   },
 )
 
-if (__DEV__) {
-  SwitchBase.displayName = "SwitchBase"
-}
+SwitchBase.displayName = "SwitchBase"

@@ -8,7 +8,6 @@ import {
   useTextStyle,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform, ViewStyle as RNViewStyle } from "react-native"
 import Svg from "react-native-svg"
@@ -139,6 +138,4 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
   )
 }) as OverridableComponent<IconTypeMap>
 
-if (__DEV__) {
-  Icon.displayName = "Icon"
-}
+Icon.displayName = "Icon"

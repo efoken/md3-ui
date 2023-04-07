@@ -8,7 +8,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -119,6 +118,4 @@ export const NavigationDrawerItem = React.forwardRef<
   )
 })
 
-if (__DEV__) {
-  NavigationDrawerItem.displayName = "NavigationDrawerItem"
-}
+NavigationDrawerItem.displayName = "NavigationDrawerItem"

@@ -11,7 +11,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
-import { __DEV__, resolveProps } from "@md3-ui/utils"
+import { resolveProps } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -390,6 +390,4 @@ export const Grid = React.forwardRef<RNView, GridProps>((inProps, ref) => {
   )
 }) as OverridableComponent<GridTypeMap>
 
-if (__DEV__) {
-  Grid.displayName = "Grid"
-}
+Grid.displayName = "Grid"

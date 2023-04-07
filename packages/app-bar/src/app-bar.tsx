@@ -7,7 +7,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -127,6 +126,4 @@ export const AppBar = React.forwardRef<RNView, AppBarProps>((inProps, ref) => {
   )
 }) as OverridableComponent<AppBarTypeMap>
 
-if (__DEV__) {
-  AppBar.displayName = "AppBar"
-}
+AppBar.displayName = "AppBar"

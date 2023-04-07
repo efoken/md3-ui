@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 import { ListItem, ListItemProps } from "./list-item"
@@ -206,6 +206,4 @@ export const List = React.forwardRef<RNView, ListProps>((inProps, ref) => {
   )
 }) as OverridableComponent<ListTypeMap>
 
-if (__DEV__) {
-  List.displayName = "List"
-}
+List.displayName = "List"

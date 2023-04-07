@@ -7,7 +7,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Text as RNText,
@@ -89,6 +88,4 @@ export const TextInputIcon = React.forwardRef<RNView, TextInputIconProps>(
   },
 ) as OverridableComponent<TextInputIconTypeMap>
 
-if (__DEV__) {
-  TextInputIcon.displayName = "TextInputIcon"
-}
+TextInputIcon.displayName = "TextInputIcon"

@@ -1,4 +1,3 @@
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   PressableProps as RNPressableProps,
@@ -25,6 +24,4 @@ export const Pressable = createPressable({
   PressableProps & React.RefAttributes<RNView>
 >
 
-if (__DEV__) {
-  Pressable.displayName = "Pressable"
-}
+Pressable.displayName = "Pressable"

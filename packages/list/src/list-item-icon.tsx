@@ -7,7 +7,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
@@ -69,6 +68,4 @@ export const ListItemIcon = React.forwardRef<RNView, ListItemIconProps>(
   },
 ) as OverridableComponent<ListItemIconTypeMap>
 
-if (__DEV__) {
-  ListItemIcon.displayName = "ListItemIcon"
-}
+ListItemIcon.displayName = "ListItemIcon"

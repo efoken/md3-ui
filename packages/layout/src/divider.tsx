@@ -7,7 +7,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
@@ -105,6 +104,4 @@ export const Divider = React.forwardRef<RNView, DividerProps>(
   },
 ) as OverridableComponent<DividerTypeMap>
 
-if (__DEV__) {
-  Divider.displayName = "Divider"
-}
+Divider.displayName = "Divider"

@@ -37,8 +37,7 @@
   "dependencies": {
     "@md3-ui/button": "^0.2.1",
     "@md3-ui/layout": "^0.2.1",
-    "@md3-ui/system": "^0.2.1",
-    "@md3-ui/utils": "^0.2.1"
+    "@md3-ui/system": "^0.2.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.33",

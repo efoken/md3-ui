@@ -4,7 +4,6 @@ import {
   useForceUpdate,
   useForkRef,
 } from "@md3-ui/hooks"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { findNodeHandle } from "react-native"
 import { createPortal } from "./create-portal"
@@ -63,6 +62,4 @@ export const Portal = React.forwardRef<any, PortalProps>(
   },
 )
 
-if (__DEV__) {
-  Portal.displayName = "Portal"
-}
+Portal.displayName = "Portal"

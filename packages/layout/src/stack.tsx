@@ -7,7 +7,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   FlexStyle,
@@ -96,6 +95,4 @@ export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
   )
 }) as OverridableComponent<StackTypeMap>
 
-if (__DEV__) {
-  Stack.displayName = "Stack"
-}
+Stack.displayName = "Stack"

@@ -8,7 +8,6 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -253,6 +252,4 @@ export const Chip = React.forwardRef<RNView, ChipProps>((inProps, ref) => {
   )
 })
 
-if (__DEV__) {
-  Chip.displayName = "Chip"
-}
+Chip.displayName = "Chip"

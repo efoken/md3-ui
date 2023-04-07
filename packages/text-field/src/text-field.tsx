@@ -7,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, createChainedFunction } from "@md3-ui/utils"
+import { createChainedFunction } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Easing,
@@ -280,6 +280,4 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
   },
 )
 
-if (__DEV__) {
-  TextField.displayName = "TextField"
-}
+TextField.displayName = "TextField"

@@ -4,7 +4,6 @@ import {
   OverrideProps,
   SxProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import { View as RNView } from "react-native"
 
 export interface BoxTypeMap<
@@ -34,6 +33,4 @@ export const Box = createView({
   name: "Box",
 }) as OverridableComponent<BoxTypeMap>
 
-if (__DEV__) {
-  Box.displayName = "Box"
-}
+Box.displayName = "Box"

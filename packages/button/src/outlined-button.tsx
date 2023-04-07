@@ -8,7 +8,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -194,6 +193,4 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
   },
 )
 
-if (__DEV__) {
-  OutlinedButton.displayName = "OutlinedButton"
-}
+OutlinedButton.displayName = "OutlinedButton"

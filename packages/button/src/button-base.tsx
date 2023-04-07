@@ -11,7 +11,6 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import {
-  __DEV__,
   getOwnerWindow,
   isFunction,
   isHTMLElement,
@@ -602,6 +601,4 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
   },
 )
 
-if (__DEV__) {
-  ButtonBase.displayName = "ButtonBase"
-}
+ButtonBase.displayName = "ButtonBase"

@@ -12,7 +12,7 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__, getOwnerDocument } from "@md3-ui/utils"
+import { getOwnerDocument } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Animated,
@@ -342,6 +342,4 @@ export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
   )
 })
 
-if (__DEV__) {
-  Modal.displayName = "Modal"
-}
+Modal.displayName = "Modal"

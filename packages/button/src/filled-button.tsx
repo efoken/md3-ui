@@ -8,7 +8,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -200,6 +199,4 @@ export const FilledButton = React.forwardRef<RNView, FilledButtonProps>(
   },
 )
 
-if (__DEV__) {
-  FilledButton.displayName = "FilledButton"
-}
+FilledButton.displayName = "FilledButton"

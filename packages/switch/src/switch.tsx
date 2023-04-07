@@ -6,7 +6,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Animated,
@@ -320,6 +319,4 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
   )
 })
 
-if (__DEV__) {
-  Switch.displayName = "Switch"
-}
+Switch.displayName = "Switch"

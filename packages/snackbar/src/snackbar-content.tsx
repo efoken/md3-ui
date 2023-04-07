@@ -6,7 +6,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Text as RNText,
@@ -127,6 +126,4 @@ export const SnackbarContent = React.forwardRef<RNView, SnackbarContentProps>(
   },
 ) as OverridableComponent<SnackbarContentTypeMap>
 
-if (__DEV__) {
-  SnackbarContent.displayName = "SnackbarContent"
-}
+SnackbarContent.displayName = "SnackbarContent"

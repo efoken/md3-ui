@@ -1,4 +1,3 @@
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Icon, IconProps } from "./icon"
 
@@ -21,9 +20,7 @@ export function createIcon({
     </Icon>
   ))
 
-  if (__DEV__) {
-    Component.displayName = displayName
-  }
+  Component.displayName = displayName
 
   return Component
 }

@@ -8,7 +8,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -204,6 +203,4 @@ export const ElevatedButton = React.forwardRef<RNView, ElevatedButtonProps>(
   },
 )
 
-if (__DEV__) {
-  ElevatedButton.displayName = "ElevatedButton"
-}
+ElevatedButton.displayName = "ElevatedButton"

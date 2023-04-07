@@ -1,4 +1,3 @@
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -75,6 +74,4 @@ export const Elevation: React.FC<ElevationProps> = ({
   )
 }
 
-if (__DEV__) {
-  Elevation.displayName = "Elevation"
-}
+Elevation.displayName = "Elevation"

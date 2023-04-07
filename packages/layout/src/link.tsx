@@ -6,7 +6,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import { Text as RNText, TextStyle as RNTextStyle } from "react-native"
 import { Text } from "./text"
@@ -67,6 +66,4 @@ export const Link = React.forwardRef<RNText, LinkProps>((inProps, ref) => {
   )
 }) as OverridableComponent<LinkTypeMap>
 
-if (__DEV__) {
-  Link.displayName = "Link"
-}
+Link.displayName = "Link"

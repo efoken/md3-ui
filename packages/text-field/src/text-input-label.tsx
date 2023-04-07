@@ -6,7 +6,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Animated,
@@ -112,6 +111,4 @@ export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
   },
 )
 
-if (__DEV__) {
-  TextInputLabel.displayName = "TextInputLabel"
-}
+TextInputLabel.displayName = "TextInputLabel"

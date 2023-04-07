@@ -6,7 +6,6 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   ImageSourcePropType,
@@ -68,6 +67,4 @@ export const CardMedia = React.forwardRef<RNImage, CardMediaProps>(
   },
 ) as OverridableComponent<CardMediaTypeMap>
 
-if (__DEV__) {
-  CardMedia.displayName = "CardMedia"
-}
+CardMedia.displayName = "CardMedia"

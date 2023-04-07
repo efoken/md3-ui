@@ -7,7 +7,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   TextStyle as RNTextStyle,
@@ -185,6 +184,4 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
   },
 )
 
-if (__DEV__) {
-  IconButton.displayName = "IconButton"
-}
+IconButton.displayName = "IconButton"

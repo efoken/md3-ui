@@ -8,7 +8,6 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -196,6 +195,4 @@ export const TonalButton = React.forwardRef<RNView, TonalButtonProps>(
   },
 )
 
-if (__DEV__) {
-  TonalButton.displayName = "TonalButton"
-}
+TonalButton.displayName = "TonalButton"

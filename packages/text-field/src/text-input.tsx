@@ -7,7 +7,6 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -215,6 +214,4 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
   },
 )
 
-if (__DEV__) {
-  TextInput.displayName = "TextInput"
-}
+TextInput.displayName = "TextInput"
