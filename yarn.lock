@@ -4518,9 +4518,9 @@
     wonka "^4.0.14"
 
 "@urql/core@>=2.3.1":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@urql/core/-/core-4.0.3.tgz#6e0c6d39bfe7d4ec31e76901e399ae897992490a"
-  integrity sha512-13figZkXYD8QHTCY/MTWnzbK958I6Owx6sOm1+tZo5aR9HEnOKFVI0hJZZkzW/JIdiGnXW//YyTrp4ce+LWtbg==
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@urql/core/-/core-4.0.4.tgz#033fbaae7a98fd5a27bd706e74872e7f8af34887"
+  integrity sha512-r1rB/VMVpCnfnMTTzCAs+HY+UqOHUgpZ+GimLtU4DCTP3C78DK+m4qr36M7KKleggrKgcpcC1TE8eFEVcKzfSQ==
   dependencies:
     "@0no-co/graphql.web" "^1.0.0"
     wonka "^6.3.0"
