@@ -59,7 +59,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     <Box as="div" sx={{ position: "relative", zIndex: 0 }}>
       <Box
         sx={{
-          bgColor: "#011627",
+          bgColor: "#1e1e1e",
           borderRadius: 8,
           my: 16,
           overflow: "hidden",

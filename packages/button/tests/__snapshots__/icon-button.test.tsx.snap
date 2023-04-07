@@ -3,19 +3,21 @@
 exports[`<IconButton /> should render 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-height-eu3ka r-justifyContent-1777fci r-width-1aockid"
-  data-class="IconButton-root ButtonBase-root"
+  data-class="IconButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div
     style="color: rgb(73, 69, 79); display: contents;"
   >
     <svg
-      class="r-flexShrink-1q142lx r-height-1472mwg r-width-lrsllp"
+      class="r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
       color="#49454f"
       data-class="Icon-root"
       data-testid="icon"
       fill="currentColor"
+      size="24"
       style="color: rgb(73, 69, 79);"
     />
   </div>

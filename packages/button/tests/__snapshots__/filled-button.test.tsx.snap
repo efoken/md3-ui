@@ -3,8 +3,9 @@
 exports[`<FilledButton /> should render 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-15l9ap5 r-borderRadius-cpet4d r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
-  data-class="FilledButton-root ButtonBase-root"
+  data-class="FilledButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div
@@ -34,8 +35,9 @@ exports[`<FilledButton /> should render 1`] = `
 exports[`<FilledButton /> should render a button with icon 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-15l9ap5 r-borderRadius-cpet4d r-boxShadow-cnhr7f r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
-  data-class="FilledButton-root ButtonBase-root"
+  data-class="FilledButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div

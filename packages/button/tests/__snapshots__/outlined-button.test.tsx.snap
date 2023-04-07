@@ -3,8 +3,9 @@
 exports[`<OutlinedButton /> should render 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderColor-1t01w60 r-borderRadius-cpet4d r-borderWidth-rs99b7 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-10tapur"
-  data-class="OutlinedButton-root ButtonBase-root"
+  data-class="OutlinedButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div
@@ -34,8 +35,9 @@ exports[`<OutlinedButton /> should render 1`] = `
 exports[`<OutlinedButton /> should render a button with icon 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderColor-1t01w60 r-borderRadius-cpet4d r-borderWidth-rs99b7 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-10tapur"
-  data-class="OutlinedButton-root ButtonBase-root"
+  data-class="OutlinedButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div

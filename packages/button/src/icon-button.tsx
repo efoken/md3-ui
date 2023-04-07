@@ -137,7 +137,6 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
     return (
       <IconButtonRoot
         ref={ref}
-        centerRipple
         disabled={disabled}
         focusColor={
           selected

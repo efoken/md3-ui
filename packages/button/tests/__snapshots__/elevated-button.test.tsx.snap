@@ -3,8 +3,9 @@
 exports[`<ElevatedButton /> should render 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-cpet4d r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
-  data-class="ElevatedButton-root ButtonBase-root"
+  data-class="ElevatedButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div
@@ -28,14 +29,19 @@ exports[`<ElevatedButton /> should render 1`] = `
     class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
   />
+  <div
+    class="css-view-175oi2r r-backgroundColor-15l9ap5 r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-opacity-19ub0u3 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-7fjjqx r-zIndex-1wyyakw"
+    data-class="Elevation-surface"
+  />
 </button>
 `;
 
 exports[`<ElevatedButton /> should render a button with icon 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-backgroundColor-1fz3o5x r-borderRadius-cpet4d r-boxShadow-iidqr2 r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-paddingInline-cxgwc0"
-  data-class="ElevatedButton-root ButtonBase-root"
+  data-class="ElevatedButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div
@@ -69,6 +75,10 @@ exports[`<ElevatedButton /> should render a button with icon 1`] = `
   <span
     class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
     data-class="ButtonBase-rippleContainer"
+  />
+  <div
+    class="css-view-175oi2r r-backgroundColor-15l9ap5 r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-opacity-19ub0u3 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-7fjjqx r-zIndex-1wyyakw"
+    data-class="Elevation-surface"
   />
 </button>
 `;

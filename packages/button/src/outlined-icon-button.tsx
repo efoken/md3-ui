@@ -165,7 +165,6 @@ export const OutlinedIconButton = React.forwardRef<
   return (
     <OutlinedIconButtonRoot
       ref={ref}
-      centerRipple
       disabled={disabled}
       focusColor={
         selected

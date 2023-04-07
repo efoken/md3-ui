@@ -16,9 +16,6 @@ const preview: Preview = {
     },
   },
   parameters: {
-    actions: {
-      argTypesRegex: "^on.*",
-    },
     backgrounds: {
       grid: {
         cellSize: 8,

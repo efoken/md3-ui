@@ -173,7 +173,6 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
     return (
       <TonalIconButtonRoot
         ref={ref}
-        centerRipple
         disabled={disabled}
         focusColor={theme.comp.tonalIconButton.focus.stateLayer.color}
         focusOpacity={theme.comp.tonalIconButton.focus.stateLayer.opacity}

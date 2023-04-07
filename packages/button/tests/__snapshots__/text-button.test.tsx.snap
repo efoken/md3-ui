@@ -3,8 +3,9 @@
 exports[`<TextButton /> should render 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-paddingInlineEnd-faml9v r-paddingInlineEnd-2dysd3"
-  data-class="TextButton-root ButtonBase-root"
+  data-class="TextButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div
@@ -34,8 +35,9 @@ exports[`<TextButton /> should render 1`] = `
 exports[`<TextButton /> should render a button with icon 1`] = `
 <button
   class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-paddingInlineEnd-1c4vpko r-paddingInlineEnd-2dysd3"
-  data-class="TextButton-root ButtonBase-root"
+  data-class="TextButton-root ButtonBase-root Pressable-root"
   role="button"
+  tabindex="0"
   type="button"
 >
   <div

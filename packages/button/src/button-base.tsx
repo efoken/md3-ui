@@ -5,6 +5,7 @@ import {
   StyleSheet,
   StylesProp,
   SxProps,
+  View,
   styled,
   useTheme,
   useThemeProps,
@@ -127,12 +128,12 @@ const ButtonBaseRoot = styled(Pressable, {
   }),
 }))
 
-const ButtonBaseContainer = styled(RNView, {
+const ButtonBaseContainer = styled(View, {
   name: "ButtonBase",
   slot: "Container",
   skipSx: true,
 })({
-  backgroundColor: "transparent",
+  backgroundColor: "rgba(255,255,255,0)",
   overflow: "hidden",
 })
 
@@ -253,8 +254,8 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       [
         "backgroundColor",
         "borderRadius",
-        "overflow",
         "bottom",
+        "elevation",
         "flexBasis",
         "flexGrow",
         "flexShrink",
@@ -269,8 +270,10 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
         "marginStart",
         "marginTop",
         "marginVertical",
+        "overflow",
         "position",
         "right",
+        "shadowColor",
         "top",
         "width",
       ],
@@ -535,6 +538,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
           // override it here to have `position: relative` with 0px inset.
           Platform.OS === "android" && {
             bottom: 0,
+            elevation: 0,
             left: 0,
             marginBottom: 0,
             marginEnd: 0,

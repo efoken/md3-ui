@@ -65,21 +65,28 @@ const IconRoot = styled(Svg, {
     flexShrink: 0,
 
     ...(ownerState.size === "small" && {
+      fontSize: ICON_SIZE.small,
       height: ICON_SIZE.small,
       width: ICON_SIZE.small,
     }),
 
     ...(ownerState.size === "medium" && {
+      fontSize: ICON_SIZE.medium,
       height: ICON_SIZE.medium,
       width: ICON_SIZE.medium,
     }),
 
     ...(ownerState.size === "large" && {
+      fontSize: ICON_SIZE.large,
       height: ICON_SIZE.large,
       width: ICON_SIZE.large,
     }),
 
     ...((ownerState.height != null || ownerState.width != null) && {
+      fontSize: Math.max(
+        Number(ownerState.height ?? 0),
+        Number(ownerState.width ?? 0),
+      ),
       height: ownerState.height,
       width: ownerState.width,
     }),
@@ -121,10 +128,10 @@ export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
       fill={color ?? Platform.OS === "web" ? "currentColor" : undefined}
       ownerState={ownerState}
       style={[textStyle, style, styles?.root]}
-      {...(Platform.OS !== "web" && {
+      {...{
         // Support size prop of e.g. `react-native-vector-icons`
         size: Math.max(height ?? ICON_SIZE[size], width ?? 0),
-      })}
+      }}
       {...props}
     >
       {children}

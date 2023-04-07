@@ -173,7 +173,6 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
     return (
       <FilledIconButtonRoot
         ref={ref}
-        centerRipple
         disabled={disabled}
         focusColor={theme.comp.filledIconButton.focus.stateLayer.color}
         focusOpacity={theme.comp.filledIconButton.focus.stateLayer.opacity}

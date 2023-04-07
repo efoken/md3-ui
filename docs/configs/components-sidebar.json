@@ -23,8 +23,8 @@
       "heading": true,
       "routes": [
         {
-          "title": "Buttons",
-          "path": "/docs/components/buttons"
+          "title": "Button",
+          "path": "/docs/components/button"
         },
         {
           "title": "Checkbox",
@@ -33,6 +33,14 @@
         {
           "title": "Divider",
           "path": "/docs/components/divider"
+        },
+        {
+          "title": "Icon Button",
+          "path": "/docs/components/icon-button"
+        },
+        {
+          "title": "List",
+          "path": "/docs/components/list"
         }
       ]
     }

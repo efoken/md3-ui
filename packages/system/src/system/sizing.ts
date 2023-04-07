@@ -45,6 +45,18 @@ export const size = style({
   transform,
 })
 
+export const maxSize = style({
+  prop: "size",
+  styleProp: ["maxWidth", "maxHeight"],
+  transform,
+})
+
+export const minSize = style({
+  prop: "size",
+  styleProp: ["minWidth", "minHeight"],
+  transform,
+})
+
 export const aspectRatio = style({
   prop: "aspectRatio",
 })

@@ -8,7 +8,7 @@ import scope from "./react-live-scope"
 const EditableNotice: React.FC<BoxProps> = ({ sx, ...props }) => (
   <Box
     sx={{
-      bgColor: "#011627",
+      bgColor: "#1e1e1e",
       borderTopRadius: 8,
       pointerEvents: "none",
       position: "absolute",
@@ -51,6 +51,7 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
 
   const liveProviderProps = {
     code: editorCode,
+    enableTypeScript: true,
     scope,
     ...props,
   }
@@ -58,12 +59,15 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
   return (
     <LiveProvider {...liveProviderProps}>
       <LivePreview
+        // @ts-expect-error: `style` does not exist in props, but works
         style={{
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: theme.sys.color.outlineVariant,
           backgroundColor: theme.sys.color.surface,
+          borderColor: theme.sys.color.outlineVariant,
+          borderRadius: theme.sys.shape.corner.medium,
+          borderWidth: 1,
+          display: "flex",
           fontFamily: theme.ref.typeface.plain,
+          gap: 12,
           marginTop: 20,
           overflowX: "auto",
           padding: 12,

@@ -1,0 +1,202 @@
+import { Layout } from "../../../src/layouts/layout"
+
+export const meta = {
+  title: "Icon Button",
+  description:
+    "Icon buttons help people take supplementary actions with a single tap.",
+  package: "@md3-ui/button",
+}
+
+Use icon buttons when a compact button is required, such as in a toolbar or
+image list.
+
+There are two types of icon buttons: standard and contained.
+
+- [Design article](https://m3.material.io/components/icon-buttons)
+- API Documentation (coming soon)
+- [Source code](https://github.com/efoken/md3-ui/tree/main/packages/button)
+
+<Divider />
+
+## Types
+
+1. [Standard Icon Button](#standard-icon-button)
+2. [Filled Icon Button](#filled-icon-button)
+3. [Filled Tonal Icon Button](#filled-tonal-icon-button)
+4. [Outlined Icon Button](#outlined-icon-button)
+
+## Usage
+
+Use icon buttons to display actions in a compact layout. Icon buttons can
+represent opening actions such as opening an overflow menu or search, or
+represent binary actions that can be toggled on and off, such as favorite or
+bookmark.
+
+Icon buttons can be grouped together or they can stand alone.
+
+To use icons by name, see the [Icon](/docs/components/icon#usage) documentation
+for loading the icon font.
+
+```jsx
+<Stack direction="row" spacing={2}>
+  <IconButton>
+    <Check />
+  </IconButton>
+  <FilledIconButton>
+    <Check />
+  </FilledIconButton>
+  <TonalIconButton>
+    <Check />
+  </TonalIconButton>
+  <OutlinedIconButton>
+    <Check />
+  </OutlinedIconButton>
+</Stack>
+```
+
+## Accessibility
+
+Add an `aria-label` attribute to buttons whose labels need a more descriptive
+label.
+
+```jsx live=false
+<IconButton aria-label="Search for Contact">
+  <Search />
+</IconButton>
+```
+
+## Standard Icon Button
+
+Use [icon buttons](https://m3.material.io/components/icon-buttons/guidelines) to
+display actions in a compact layout. Icon buttons can represent opening actions
+such as opening an overflow menu or search, or represent binary actions that can
+be toggled on and off, such as favorite or bookmark.
+
+Icon buttons can be grouped together or they can stand alone.
+
+```jsx
+<IconButton>
+  <Check />
+</IconButton>
+```
+
+### Standard Icon Button Toggle
+
+Toggle icon buttons allow a single choice to be selected or deselected, such as
+adding or removing something from favorites.
+
+```jsx
+function StandardIconButtonToggle() {
+  const [selected, setSelected] = React.useState(false)
+
+  return (
+    <IconButton selected={selected} onPress={() => setSelected(!selected)}>
+      {selected ? <Star /> : <Check />}
+    </IconButton>
+  )
+}
+```
+
+## Filled Icon Button
+
+Filled icon buttons have higher visual impact and are best for high emphasis
+actions.
+
+```jsx
+<FilledIconButton>
+  <Check />
+</FilledIconButton>
+```
+
+### Filled Icon Button Toggle
+
+```jsx
+function FilledIconButtonToggle() {
+  const [selected, setSelected] = React.useState(false)
+
+  return (
+    <FilledIconButton
+      selected={selected}
+      onPress={() => setSelected(!selected)}
+    >
+      {selected ? <Star /> : <Check />}
+    </FilledIconButton>
+  )
+}
+```
+
+## Filled Tonal Icon Button
+
+Filled tonal icon buttons are a middle ground between filled and outlined icon
+buttons. They're useful in contexts where the button requires slightly more
+emphasis than an outline would give, such as a secondary action paired with a
+high emphasis action.
+
+```jsx
+<TonalIconButton>
+  <Check />
+</TonalIconButton>
+```
+
+### Filled Tonal Icon Button Toggle
+
+```jsx
+function TonalIconButtonToggle() {
+  const [selected, setSelected] = React.useState(false)
+
+  return (
+    <TonalIconButton selected={selected} onPress={() => setSelected(!selected)}>
+      {selected ? <Star /> : <Check />}
+    </TonalIconButton>
+  )
+}
+```
+
+## Outlined Icon Button
+
+Outlined icon buttons are medium-emphasis buttons. They're useful when an icon
+button needs more emphasis than a standard icon button but less than a filled or
+filled tonal icon button.
+
+```jsx
+<OutlinedIconButton>
+  <Check />
+</OutlinedIconButton>
+```
+
+### Outlined Icon Button Toggle
+
+```jsx
+function OutlinedIconButtonToggle() {
+  const [selected, setSelected] = React.useState(false)
+
+  return (
+    <OutlinedIconButton
+      selected={selected}
+      onPress={() => setSelected(!selected)}
+    >
+      {selected ? <Star /> : <Check />}
+    </OutlinedIconButton>
+  )
+}
+```
+
+## API
+
+### FilledIconButton Props
+
+<PropsTable of="FilledIconButton" />
+
+### TonalIconButton Props
+
+<PropsTable of="TonalIconButton" />
+
+### OutlinedIconButton Props
+
+<PropsTable of="OutlinedIconButton" />
+
+### IconButton Props
+
+<PropsTable of="IconButton" />
+
+export default ({ children }) => <Layout meta={meta}>{children}</Layout>

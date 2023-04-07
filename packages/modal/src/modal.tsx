@@ -6,8 +6,6 @@ import {
 } from "@md3-ui/hooks"
 import { Portal } from "@md3-ui/portal"
 import {
-  OverridableComponent,
-  OverrideProps,
   OwnerStateProps,
   StylesProp,
   SxProps,
@@ -20,8 +18,10 @@ import {
   Animated,
   Easing,
   Platform,
+  Modal as RNModal,
   Pressable as RNPressable,
   View as RNView,
+  ViewProps as RNViewProps,
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { FocusTrap, FocusTrapProps } from "./focus-trap"
@@ -29,83 +29,73 @@ import { ModalManager } from "./modal-manager"
 
 const Z_INDEX = 1400
 
-export interface ModalTypeMap<
-  P = {},
-  C extends React.ElementType = typeof RNView,
-> {
-  props: P &
+export interface ModalProps
+  extends RNViewProps,
     Pick<
       FocusTrapProps,
       "disableAutoFocus" | "disableEnforceFocus" | "disableRestoreFocus"
-    > & {
-      /**
-       * A single child content element.
-       */
-      children: React.ReactElement
-      /**
-       * The ref to the component that will have the portal children appended to
-       * it. By default, it uses the body of the top-level document object.
-       */
-      containerRef?: React.RefObject<any>
-      /**
-       * If `true`, hitting escape will not fire the `onClose` callback.
-       * @default false
-       */
-      disableEscapeKeyDown?: boolean
-      /**
-       * If `true`, the `children` will be under the DOM hierarchy of the parent
-       * component.
-       * @default false
-       */
-      disablePortal?: boolean
-      /**
-       * Disable the scroll lock behavior.
-       * @default false
-       */
-      disableScrollLock?: boolean
-      /**
-       * If `true`, the scrim is not rendered.
-       * @default false
-       */
-      hideScrim?: boolean
-      /**
-       * Always keep the children in the DOM. This prop can be useful in SEO
-       * situation or when you want to maximize the responsiveness of the Modal.
-       * @default false
-       */
-      keepMounted?: boolean
-      /**
-       * Callback fired when the component requests to be closed.
-       */
-      onClose?: () => void
-      /**
-       * If `true`, the component is shown.
-       */
-      open: boolean
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      styles?: StylesProp<{
-        root?: RNViewStyle
-        scrim?: RNViewStyle
-      }>
-      /**
-       * The system prop that allows defining system overrides as well as
-       * additional styles.
-       */
-      sx?: SxProps
-    }
-  defaultAs: C
+    > {
+  /**
+   * A single child content element.
+   */
+  children: React.ReactElement
+  /**
+   * The ref to the component that will have the portal children appended to
+   * it. By default, it uses the body of the top-level document object.
+   */
+  containerRef?: React.RefObject<any>
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   * @default false
+   */
+  disableEscapeKeyDown?: boolean
+  /**
+   * If `true`, the `children` will be under the DOM hierarchy of the parent
+   * component.
+   * @default false
+   */
+  disablePortal?: boolean
+  /**
+   * Disable the scroll lock behavior.
+   * @default false
+   */
+  disableScrollLock?: boolean
+  /**
+   * If `true`, the scrim is not rendered.
+   * @default false
+   */
+  hideScrim?: boolean
+  /**
+   * Always keep the children in the DOM. This prop can be useful in SEO
+   * situation or when you want to maximize the responsiveness of the Modal.
+   * @default false
+   */
+  keepMounted?: boolean
+  /**
+   * Callback fired when the component requests to be closed.
+   */
+  onClose?: () => void
+  /**
+   * If `true`, the component is shown.
+   */
+  open: boolean
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  styles?: StylesProp<{
+    root?: RNViewStyle
+    scrim?: RNViewStyle
+  }>
+  /**
+   * The system prop that allows defining system overrides as well as
+   * additional styles.
+   */
+  sx?: SxProps
 }
-
-export type ModalProps<
-  C extends React.ElementType = ModalTypeMap["defaultAs"],
-  P = {},
-> = OverrideProps<ModalTypeMap<P, C>, C>
 
 export type ModalStyleKey = keyof NonNullable<ModalProps["styles"]>
 
-const ModalRoot = styled(RNView, {
+const ModalRoot = styled(RNModal, {
   name: "Modal",
   slot: "Root",
 })<
@@ -137,14 +127,14 @@ const ModalScrim = styled(Animated.createAnimatedComponent(RNPressable), {
   slot: "Scrim",
   skipSx: true,
 })(({ theme }) => ({
-  backgroundColor: theme.sys.color.scrim,
+  backgroundColor: theme.utils.rgba(theme.sys.color.scrim, 0.32),
   height: "100%",
   position: "absolute",
   width: "100%",
   zIndex: -1,
 }))
 
-export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
+export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
   const {
     children,
     containerRef,
@@ -168,7 +158,7 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
   })
 
   const mountNodeRef = React.useRef<any>(null)
-  const rootRef = React.useRef<RNView>(null)
+  const rootRef = React.useRef<RNModal>(null)
   const handleRef = useForkRef(rootRef, ref)
 
   const modalRef = React.useRef({
@@ -188,7 +178,10 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     useNativeDriver: true,
   })
 
-  const getDocument = () => getOwnerDocument(mountNodeRef.current)
+  const getDocument = () =>
+    Platform.OS === "web"
+      ? getOwnerDocument(mountNodeRef.current)
+      : { body: {} as HTMLElement }
 
   const getModal = () => {
     modalRef.current.modalRef = rootRef.current as unknown as HTMLElement
@@ -297,45 +290,57 @@ export const Modal = React.forwardRef<RNView, ModalProps>((inProps, ref) => {
     open,
   }
 
-  return (
+  const modal = (
+    <ModalRoot
+      ref={handleRef}
+      transparent
+      accessibilityViewIsModal={Platform.OS === "ios"}
+      animationType="fade"
+      aria-hidden={hidden}
+      as={Platform.OS === "web" ? RNView : RNModal}
+      ownerState={ownerState}
+      role="presentation"
+      style={[style, styles?.root]}
+      visible={open}
+      onAccessibilityEscape={onClose}
+      onKeyDown={handleKeyDown}
+      onRequestClose={onClose}
+      {...props}
+    >
+      {!hideScrim && (
+        <ModalScrim
+          aria-hidden
+          style={[{ opacity }, styles?.scrim]}
+          tabIndex={-1}
+          onPress={onClose}
+        />
+      )}
+      <FocusTrap
+        disableAutoFocus={disableAutoFocus}
+        disableEnforceFocus={disableEnforceFocus}
+        disableRestoreFocus={disableRestoreFocus}
+        enabled={isTopModal}
+        open={open}
+      >
+        {React.cloneElement(children, {
+          tabIndex: children.props.tabIndex ?? -1,
+        })}
+      </FocusTrap>
+    </ModalRoot>
+  )
+
+  return Platform.OS === "web" ? (
     <Portal
       ref={handlePortalRef}
       containerRef={containerRef}
       disablePortal={disablePortal}
     >
-      <ModalRoot
-        ref={handleRef}
-        aria-hidden={hidden}
-        ownerState={ownerState}
-        role="presentation"
-        style={[style, styles?.root]}
-        onAccessibilityEscape={onClose}
-        onKeyDown={handleKeyDown}
-        {...props}
-      >
-        {!hideScrim && (
-          <ModalScrim
-            aria-hidden
-            style={[{ opacity }, styles?.scrim]}
-            tabIndex={-1}
-            onPress={onClose}
-          />
-        )}
-        <FocusTrap
-          disableAutoFocus={disableAutoFocus}
-          disableEnforceFocus={disableEnforceFocus}
-          disableRestoreFocus={disableRestoreFocus}
-          enabled={isTopModal}
-          open={open}
-        >
-          {React.cloneElement(children, {
-            tabIndex: children.props.tabIndex ?? -1,
-          })}
-        </FocusTrap>
-      </ModalRoot>
+      {modal}
     </Portal>
+  ) : (
+    modal
   )
-}) as OverridableComponent<ModalTypeMap>
+})
 
 if (__DEV__) {
   Modal.displayName = "Modal"
