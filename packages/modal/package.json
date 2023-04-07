@@ -41,6 +41,8 @@
     "@md3-ui/utils": "^0.2.1"
   },
   "devDependencies": {
+    "@md3-ui/button": "^0.2.1",
+    "@md3-ui/layout": "^0.2.1",
     "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "react": "18.2.0",

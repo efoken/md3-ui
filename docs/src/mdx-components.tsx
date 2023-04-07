@@ -2,7 +2,7 @@ import * as Md3Core from "@md3-ui/core"
 import { Link, Text } from "@md3-ui/core"
 import * as React from "react"
 import { CodeBlock } from "./components/code-block"
-import PropsTable from "./components/props-table"
+import { PropsTable } from "./components/props-table"
 
 export const MDXComponents = {
   h1: ({ color, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (

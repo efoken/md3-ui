@@ -1,0 +1,36 @@
+{
+  "$schema": "https://unpkg.com/knip@2/schema.json",
+  "entry": [],
+  "project": [],
+  "ignore": ["**/*.{native,test}.{ts,tsx}"],
+  "ignoreDependencies": ["@md3-ui/test-utils"],
+  "rules": {
+    "unresolved": "off"
+  },
+  "workspaces": {
+    ".": {
+      "entry": ["scripts/*.ts"],
+      "project": ["scripts/**/.ts"],
+      "ignoreDependencies": [
+        "prettier-plugin-organize-imports",
+        "yarn-deduplicate"
+      ]
+    },
+    "app": {
+      "entry": ["app.config.js", "metro.config.js", "src/index.ts"],
+      "project": ["src/**/*.{ts,tsx}"],
+      "ignoreDependencies": ["expo-modules-autolinking", "uuid"]
+    },
+    "docs": {
+      "project": ["src/**/*.{ts,tsx}"],
+      "next": {
+        "entry": ["next.config.mjs", "pages/**/*.{ts,tsx}", "src/layouts/*.tsx"]
+      }
+    },
+    "packages/*": {
+      "entry": ["src/index.ts", "scripts/*.ts"],
+      "project": ["src/**/*.{ts,tsx}", "scripts/**/.ts"],
+      "ignore": ["src/**/*.test.{ts,tsx}"]
+    }
+  }
+}

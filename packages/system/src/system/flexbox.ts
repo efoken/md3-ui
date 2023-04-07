@@ -3,7 +3,7 @@ import { handleBreakpoints } from "./breakpoints"
 import { getValue } from "./spacing"
 import { FlexboxProps } from "./types"
 
-export const gap = (props: Record<string, any>) => {
+const gap = (props: Record<string, any>) => {
   if (props.gap == null) {
     return null
   }
@@ -16,7 +16,7 @@ export const gap = (props: Record<string, any>) => {
 
 gap.filterProps = ["gap"] as (keyof FlexboxProps)[]
 
-export const columnGap = (props: Record<string, any>) => {
+const columnGap = (props: Record<string, any>) => {
   if (props.columnGap == null) {
     return null
   }
@@ -29,7 +29,7 @@ export const columnGap = (props: Record<string, any>) => {
 
 columnGap.filterProps = ["columnGap"] as (keyof FlexboxProps)[]
 
-export const rowGap = (props: Record<string, any>) => {
+const rowGap = (props: Record<string, any>) => {
   if (props.rowGap == null) {
     return null
   }

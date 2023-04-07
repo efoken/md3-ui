@@ -13,6 +13,7 @@ import {
   filledIconButtonTheme,
   Md3CompFilledIconButton,
 } from "./components/filled-icon-button"
+import { filterChipTheme, Md3CompFilterChip } from "./components/filter-chip"
 import { iconButtonTheme, Md3CompIconButton } from "./components/icon-button"
 import { listTheme, Md3CompList } from "./components/list"
 import {
@@ -38,6 +39,7 @@ export interface Components {
   elevatedButton: Md3CompElevatedButton
   filledButton: Md3CompFilledButton
   filledIconButton: Md3CompFilledIconButton
+  filterChip: Md3CompFilterChip
   iconButton: Md3CompIconButton
   list: Md3CompList
   outlinedButton: Md3CompOutlinedButton
@@ -58,6 +60,7 @@ export function createComponents(theme: Record<string, any>): Components {
       elevatedButton: elevatedButtonTheme(theme),
       filledButton: filledButtonTheme(theme),
       filledIconButton: filledIconButtonTheme(theme),
+      filterChip: filterChipTheme(theme),
       iconButton: iconButtonTheme(theme),
       list: listTheme(theme),
       outlinedButton: outlinedButtonTheme(theme),

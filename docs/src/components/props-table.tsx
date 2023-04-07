@@ -4,7 +4,7 @@ import * as React from "react"
 import { MDXComponents } from "../mdx-components"
 import { convertBackticksToInlineCode } from "../utils/convert-backticks-to-inline-code"
 
-export interface PropsTableProps {
+interface PropsTableProps {
   of: keyof typeof propsDocs
   omit?: string[] | null
   only?: string[] | null
@@ -91,5 +91,3 @@ export const PropsTable: React.FC<PropsTableProps> = ({
     </Stack>
   )
 }
-
-export default PropsTable

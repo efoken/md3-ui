@@ -9,55 +9,43 @@ function transform(value: string | number) {
     : value
 }
 
-export const width = style({
+const width = style({
   prop: "width",
   transform,
 })
 
-export const maxWidth = style({
+const maxWidth = style({
   prop: "maxWidth",
   transform,
 })
 
-export const minWidth = style({
+const minWidth = style({
   prop: "minWidth",
   transform,
 })
 
-export const height = style({
+const height = style({
   prop: "height",
   transform,
 })
 
-export const maxHeight = style({
+const maxHeight = style({
   prop: "maxHeight",
   transform,
 })
 
-export const minHeight = style({
+const minHeight = style({
   prop: "minHeight",
   transform,
 })
 
-export const size = style({
+const size = style({
   prop: "size",
   styleProp: ["width", "height"],
   transform,
 })
 
-export const maxSize = style({
-  prop: "size",
-  styleProp: ["maxWidth", "maxHeight"],
-  transform,
-})
-
-export const minSize = style({
-  prop: "size",
-  styleProp: ["minWidth", "minHeight"],
-  transform,
-})
-
-export const aspectRatio = style({
+const aspectRatio = style({
   prop: "aspectRatio",
 })
 

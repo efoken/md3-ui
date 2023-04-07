@@ -20,8 +20,5 @@ module.exports = {
   transformIgnorePatterns: [
     "node_modules/(?!(jest-)?react-native(-.*)?|@react-native(-community)?/)",
   ],
-  setupFilesAfterEnv: [
-    "@testing-library/jest-dom/extend-expect",
-    "./jest.setup.js",
-  ],
+  setupFilesAfterEnv: ["./jest.setup.js"],
 }
