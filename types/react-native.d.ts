@@ -56,7 +56,7 @@ declare module "react-native" {
     outlineStyle?: React.CSSProperties["outlineStyle"]
     /** @platform web */
     outlineWidth?: React.CSSProperties["outlineWidth"]
-    pointerEvents?: React.CSSProperties["pointerEvents"]
+    pointerEvents?: "all" | "none" | "box-only" | "box-none"
     /** @platform web */
     transition?: React.CSSProperties["transition"]
     userSelect?: React.CSSProperties["userSelect"]

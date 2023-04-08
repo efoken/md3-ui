@@ -39,6 +39,12 @@ export const MDXComponents = {
   p: ({ color, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <Text as="p" variant="bodyLarge" {...props} />
   ),
+  ul: ({ color, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+    <Text as="ul" variant="bodyLarge" {...props} />
+  ),
+  ol: ({ color, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
+    <Text as="ol" variant="bodyLarge" {...props} />
+  ),
   code: ({ color, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <Text
       as="code"

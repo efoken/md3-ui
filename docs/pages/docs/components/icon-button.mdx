@@ -20,10 +20,10 @@ There are two types of icon buttons: standard and contained.
 
 ## Types
 
-1. [Standard Icon Button](#standard-icon-button)
-2. [Filled Icon Button](#filled-icon-button)
-3. [Filled Tonal Icon Button](#filled-tonal-icon-button)
-4. [Outlined Icon Button](#outlined-icon-button)
+1. [Standard icon button](#standard-icon-button)
+2. [Filled icon button](#filled-icon-button)
+3. [Filled tonal icon button](#filled-tonal-icon-button)
+4. [Outlined icon button](#outlined-icon-button)
 
 ## Usage
 
@@ -54,6 +54,55 @@ for loading the icon font.
 </Stack>
 ```
 
+### Links
+
+Add an `href` and optionally a `hrefAttrs` prop to turn the icon button into a
+link.
+
+```jsx
+<IconButton href="https://google.com">
+  <Check />
+</IconButton>
+```
+
+### Toggle
+
+Toggle icon buttons allow a single choice to be selected or deselected, such as
+adding or removing something from favorites.
+
+```jsx
+<Stack spacing={2}>
+  <Stack direction="row" spacing={2}>
+    <IconButton selected={false}>
+      <Close />
+    </IconButton>
+    <FilledIconButton selected={false}>
+      <Close />
+    </FilledIconButton>
+    <TonalIconButton selected={false}>
+      <Close />
+    </TonalIconButton>
+    <OutlinedIconButton selected={false}>
+      <Close />
+    </OutlinedIconButton>
+  </Stack>
+  <Stack direction="row" spacing={2}>
+    <IconButton selected>
+      <Check />
+    </IconButton>
+    <FilledIconButton selected>
+      <Check />
+    </FilledIconButton>
+    <TonalIconButton selected>
+      <Check />
+    </TonalIconButton>
+    <OutlinedIconButton selected>
+      <Check />
+    </OutlinedIconButton>
+  </Stack>
+</Stack>
+```
+
 ## Accessibility
 
 Add an `aria-label` attribute to buttons whose labels need a more descriptive
@@ -65,7 +114,7 @@ label.
 </IconButton>
 ```
 
-## Standard Icon Button
+## Standard icon button
 
 Use [icon buttons](https://m3.material.io/components/icon-buttons/guidelines) to
 display actions in a compact layout. Icon buttons can represent opening actions
@@ -80,24 +129,7 @@ Icon buttons can be grouped together or they can stand alone.
 </IconButton>
 ```
 
-### Standard Icon Button Toggle
-
-Toggle icon buttons allow a single choice to be selected or deselected, such as
-adding or removing something from favorites.
-
-```jsx
-function StandardIconButtonToggle() {
-  const [selected, setSelected] = React.useState(false)
-
-  return (
-    <IconButton selected={selected} onPress={() => setSelected(!selected)}>
-      {selected ? <Star /> : <Check />}
-    </IconButton>
-  )
-}
-```
-
-## Filled Icon Button
+## Filled icon button
 
 Filled icon buttons have higher visual impact and are best for high emphasis
 actions.
@@ -108,24 +140,7 @@ actions.
 </FilledIconButton>
 ```
 
-### Filled Icon Button Toggle
-
-```jsx
-function FilledIconButtonToggle() {
-  const [selected, setSelected] = React.useState(false)
-
-  return (
-    <FilledIconButton
-      selected={selected}
-      onPress={() => setSelected(!selected)}
-    >
-      {selected ? <Star /> : <Check />}
-    </FilledIconButton>
-  )
-}
-```
-
-## Filled Tonal Icon Button
+## Filled tonal icon button
 
 Filled tonal icon buttons are a middle ground between filled and outlined icon
 buttons. They're useful in contexts where the button requires slightly more
@@ -138,21 +153,7 @@ high emphasis action.
 </TonalIconButton>
 ```
 
-### Filled Tonal Icon Button Toggle
-
-```jsx
-function TonalIconButtonToggle() {
-  const [selected, setSelected] = React.useState(false)
-
-  return (
-    <TonalIconButton selected={selected} onPress={() => setSelected(!selected)}>
-      {selected ? <Star /> : <Check />}
-    </TonalIconButton>
-  )
-}
-```
-
-## Outlined Icon Button
+## Outlined icon button
 
 Outlined icon buttons are medium-emphasis buttons. They're useful when an icon
 button needs more emphasis than a standard icon button but less than a filled or
@@ -164,24 +165,11 @@ filled tonal icon button.
 </OutlinedIconButton>
 ```
 
-### Outlined Icon Button Toggle
-
-```jsx
-function OutlinedIconButtonToggle() {
-  const [selected, setSelected] = React.useState(false)
-
-  return (
-    <OutlinedIconButton
-      selected={selected}
-      onPress={() => setSelected(!selected)}
-    >
-      {selected ? <Star /> : <Check />}
-    </OutlinedIconButton>
-  )
-}
-```
-
 ## API
+
+### IconButton Props
+
+<PropsTable of="IconButton" />
 
 ### FilledIconButton Props
 
@@ -194,9 +182,5 @@ function OutlinedIconButtonToggle() {
 ### OutlinedIconButton Props
 
 <PropsTable of="OutlinedIconButton" />
-
-### IconButton Props
-
-<PropsTable of="IconButton" />
 
 export default ({ children }) => <Layout meta={meta}>{children}</Layout>
