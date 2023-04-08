@@ -1,5 +1,5 @@
+import { Badge } from "@md3-ui/badge"
 import { ChangeHistory, Circle } from "@md3-ui/icons"
-import { Badge } from "@md3-ui/layout"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 import { NavigationBar, NavigationBarItem, NavigationBarProps } from "../src"

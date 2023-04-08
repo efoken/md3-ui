@@ -1,5 +1,5 @@
 {
-  "name": "@md3-ui/core",
+  "name": "@md3-ui/badge",
   "version": "0.2.1",
   "main": "dist/commonjs/index.js",
   "module": "dist/module/index.js",
@@ -18,7 +18,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/efoken/md3-ui",
-    "directory": "packages/core"
+    "directory": "packages/badge"
   },
   "keywords": [
     "react",
@@ -35,37 +35,18 @@
     "access": "public"
   },
   "dependencies": {
-    "@md3-ui/app-bar": "^0.2.1",
-    "@md3-ui/badge": "^0.2.1",
-    "@md3-ui/button": "^0.2.1",
-    "@md3-ui/card": "^0.2.1",
-    "@md3-ui/chip": "^0.2.1",
     "@md3-ui/hooks": "^0.2.1",
-    "@md3-ui/icon": "^0.2.1",
-    "@md3-ui/layout": "^0.2.1",
-    "@md3-ui/list": "^0.2.1",
-    "@md3-ui/modal": "^0.2.1",
-    "@md3-ui/navigation-bar": "^0.2.1",
-    "@md3-ui/navigation-drawer": "^0.2.1",
-    "@md3-ui/portal": "^0.2.1",
-    "@md3-ui/snackbar": "^0.2.1",
-    "@md3-ui/switch": "^0.2.1",
-    "@md3-ui/system": "^0.2.1",
-    "@md3-ui/text-field": "^0.2.1",
-    "@md3-ui/theme": "^0.2.1"
+    "@md3-ui/system": "^0.2.1"
   },
   "devDependencies": {
+    "@md3-ui/icons": "^0.2.1",
     "@types/react": "^18.0.33",
-    "@types/react-dom": "^18.0.11",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
     "react-native": "0.71.6"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-native": ">=0.71.3"
   },
   "scripts": {

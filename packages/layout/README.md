@@ -13,5 +13,5 @@ npm i @md3-ui/layout
 ## Import Components
 
 ```jsx
-import { Badge, Box, Divider, Grid, Link, Stack, Text } from "@md3-ui/layout"
+import { Box, Divider, Grid, Link, Stack, Text } from "@md3-ui/layout"
 ```

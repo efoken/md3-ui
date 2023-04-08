@@ -1,4 +1,5 @@
 export * from "@md3-ui/app-bar"
+export * from "@md3-ui/badge"
 export * from "@md3-ui/button"
 export * from "@md3-ui/card"
 export * from "@md3-ui/chip"
