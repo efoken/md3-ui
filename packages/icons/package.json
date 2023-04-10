@@ -43,7 +43,7 @@
     "@md3-ui/utils": "^0.2.1",
     "@svgr/core": "^7.0.0",
     "@types/lodash": "^4.14.192",
-    "@types/react": "^18.0.33",
+    "@types/react": "^18.0.34",
     "cross-fetch": "^3.1.5",
     "lodash": "^4.17.21",
     "react": "18.2.0",
