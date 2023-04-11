@@ -1,5 +1,5 @@
 import { useForkRef } from "@md3-ui/hooks"
-import { __DEV__, getOwnerDocument, runIfFn } from "@md3-ui/utils"
+import { getOwnerDocument, runIfFn } from "@md3-ui/utils"
 import * as React from "react"
 import { Platform } from "react-native"
 
@@ -67,7 +67,7 @@ export interface FocusTrapProps {
 }
 
 function getTabIndex(node: HTMLElement) {
-  const tabindexAttr = Number.parseInt(node.getAttribute("tabindex") ?? "0", 10)
+  const tabindexAttr = Number.parseInt(node.getAttribute("tabindex") ?? "", 10)
 
   if (!Number.isNaN(tabindexAttr)) {
     return tabindexAttr
@@ -211,7 +211,7 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
 
     if (!rootRef.current.contains(doc.activeElement)) {
       if (!rootRef.current.hasAttribute("tabIndex")) {
-        if (__DEV__) {
+        if (process.env.NODE_ENV !== "production") {
           console.error(
             [
               "MD3-UI: The modal content node does not accept focus.",

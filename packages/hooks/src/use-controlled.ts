@@ -1,4 +1,3 @@
-import { __DEV__ } from "@md3-ui/utils"
 import * as React from "react"
 
 export interface UseControlledProps<T = unknown> {
@@ -32,7 +31,7 @@ export function useControlled<T = unknown>({
   const [valueState, setValue] = React.useState(defaultProp)
   const value = controlled ? controlledProp : valueState
 
-  if (__DEV__) {
+  if (process.env.NODE_ENV !== "production") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
       if (controlled !== (controlledProp !== undefined)) {

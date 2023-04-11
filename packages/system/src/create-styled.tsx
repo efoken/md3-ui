@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import { __DEV__, cx, isFunction } from "@md3-ui/utils"
+import { cx, isFunction } from "@md3-ui/utils"
 import * as React from "react"
 import { PressableStateCallbackType as RNPressableStateCallbackType } from "react-native"
 import { TextStyleProvider, useTheme } from "./context"
@@ -100,11 +100,9 @@ export const styled: CreateStyled = <
       },
     ) as StyledComponent<T, React.ComponentProps<T>, {}>
 
-    if (__DEV__) {
-      Styled.displayName = componentName
-        ? `${componentName}${componentSlot || ""}`
-        : `styled(${getDisplayName(Component)})`
-    }
+    Styled.displayName = componentName
+      ? `${componentName}${componentSlot || ""}`
+      : `styled(${getDisplayName(Component)})`
 
     return Styled
   }

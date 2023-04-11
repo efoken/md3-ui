@@ -1,5 +1,3 @@
-import { __DEV__ } from "@md3-ui/utils"
-
 export interface Md3Duration {
   short1: number
   short2: number
@@ -110,24 +108,22 @@ export function createMotion(motion: CreateMotionOptions = {}): Motion {
       easing?: string | [number, number, number, number]
     } = {},
   ) => {
-    if (__DEV__) {
-      if (typeof props !== "string" && !Array.isArray(props)) {
-        console.error("MD3-UI: Argument `props` must be a string or Array.")
-      }
+    if (typeof props !== "string" && !Array.isArray(props)) {
+      throw new TypeError('create: argument "props" must be a string or array')
+    }
 
-      if (Number.isNaN(durationOption)) {
-        console.error(
-          `MD3-UI: Argument "duration" must be a number but found ${durationOption}.`,
-        )
-      }
+    if (Number.isNaN(durationOption)) {
+      throw new TypeError(
+        `create: argument "duration" must be a number but found ${durationOption}`,
+      )
+    }
 
-      if (typeof easingOption !== "string" && !Array.isArray(easingOption)) {
-        console.error('MD3-UI: Argument "easing" must be a string or Array.')
-      }
+    if (typeof easingOption !== "string" && !Array.isArray(easingOption)) {
+      throw new TypeError('create: argument "easing" must be a string or array')
+    }
 
-      if (Number.isNaN(delay)) {
-        console.error('MD3-UI: Argument "delay" must be a number.')
-      }
+    if (Number.isNaN(delay)) {
+      throw new TypeError('create: argument "delay" must be a number')
     }
 
     return (Array.isArray(props) ? props : [props])
