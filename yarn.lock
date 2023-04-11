@@ -11338,10 +11338,10 @@ kleur@^4.0.3, kleur@^4.1.4:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
-knip@^2.8.2:
-  version "2.8.2"
-  resolved "https://registry.yarnpkg.com/knip/-/knip-2.8.2.tgz#d7e532c512a0dea4a2d6b300e52d509ed69d686e"
-  integrity sha512-GUv6UliufgGMuwwkr2NkOsa/JuKNPRFgfGX1CjGPA2HGZYstYh3iiIBgl14pTuU1pelUVuzdlXW+U10AiV2D5A==
+knip@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/knip/-/knip-2.9.0.tgz#0c8a32a0baf638ed0457f86f129f17e421e13c7d"
+  integrity sha512-1Hw89B7vjQwXKlbqypwIVv7FAnjrX9Xli+hftvKUpk6rWCFsY0Iqv13O8U8/ACSdnTgWQ4pHZYIIXsKfxNNkDQ==
   dependencies:
     "@npmcli/map-workspaces" "^3.0.2"
     "@snyk/github-codeowners" "^1.1.0"
