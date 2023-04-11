@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
-import glob from "glob"
-import mkdirp from "mkdirp"
+import { glob } from "glob"
+import { mkdirp } from "mkdirp"
 import fs from "node:fs"
 import path from "node:path"
 import { ComponentDoc, withCustomConfig } from "react-docgen-typescript"
