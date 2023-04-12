@@ -46,7 +46,22 @@ export interface Theme {
   comp: Components
 }
 
-export function createTheme(theme: Partial<Theme> = {}): Theme {
+type PartialTheme = Omit<Partial<Theme>, "ref" | "sys" | "utils" | "vars"> & {
+  ref?: {
+    palette?: Partial<Palette>
+    typeface?: Partial<Typeface>
+  }
+  sys?: {
+    color?: Partial<Color>
+    elevation?: Partial<Elevation>
+    motion?: Partial<Motion>
+    shape?: Partial<Shape>
+    state?: Partial<State>
+    typescale?: Partial<Typescale>
+  }
+}
+
+export function createTheme(theme: PartialTheme = {}): Theme {
   const palette = createPalette(theme.ref?.palette)
   const typeface = createTypeface(theme.ref?.typeface)
 
