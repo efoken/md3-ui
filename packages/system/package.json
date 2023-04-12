@@ -42,7 +42,7 @@
     "css-mediaquery2": "^1.0.7"
   },
   "devDependencies": {
-    "@types/react": "^18.0.34",
+    "@types/react": "^18.0.35",
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-web": "^0.19.2"

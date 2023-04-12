@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "@md3-ui/button": "^0.2.1",
-    "@md3-ui/layout": "^0.2.1",
     "@md3-ui/system": "^0.2.1",
     "@types/react-is": "^17.0.3",
     "react-is": "18.2.0"
@@ -44,7 +43,7 @@
   "devDependencies": {
     "@md3-ui/badge": "^0.2.1",
     "@md3-ui/icons": "^0.2.1",
-    "@types/react": "^18.0.34",
+    "@types/react": "^18.0.35",
     "react": "18.2.0",
     "react-native": "0.71.6",
     "react-native-safe-area-context": "4.5.0"
