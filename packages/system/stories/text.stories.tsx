@@ -1,14 +1,14 @@
 import { Meta, StoryObj } from "@storybook/react"
-import { Stack, Text, TextProps } from "../src"
+import { Text, TextProps } from "../src"
 
 export default {
-  title: "Layout/Text",
+  title: "System/Text",
   component: Text,
 } as Meta<TextProps>
 
 export const Basic: StoryObj = {
   render: () => (
-    <Stack spacing={2}>
+    <>
       <Text variant="displayLarge">Display Large</Text>
       <Text variant="displayMedium">Display Medium</Text>
       <Text variant="displaySmall">Display Small</Text>
@@ -24,6 +24,6 @@ export const Basic: StoryObj = {
       <Text variant="bodyLarge">Body Large</Text>
       <Text variant="bodyMedium">Body Medium</Text>
       <Text variant="bodySmall">Body Small</Text>
-    </Stack>
+    </>
   ),
 }

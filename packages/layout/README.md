@@ -13,5 +13,5 @@ npm i @md3-ui/layout
 ## Import Components
 
 ```jsx
-import { Box, Divider, Grid, Link, Stack, Text } from "@md3-ui/layout"
+import { Divider, Grid, Link, Stack } from "@md3-ui/layout"
 ```

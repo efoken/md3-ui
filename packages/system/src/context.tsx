@@ -3,7 +3,7 @@ import {
   ThemeContext,
 } from "@emotion/react"
 import { Theme, theme } from "@md3-ui/theme"
-import { isEmptyObject, objectFilter } from "@md3-ui/utils"
+import { isEmptyObject, mergeDeep, objectFilter } from "@md3-ui/utils"
 import * as React from "react"
 import {
   Platform,
@@ -41,8 +41,14 @@ export interface ThemeProviderProps {
   theme?: Partial<Theme>
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = (props) => (
-  <EmotionThemeProvider {...props} theme={theme} />
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+  theme: themeProp,
+  ...props
+}) => (
+  <EmotionThemeProvider
+    theme={mergeDeep(theme, themeProp, { clone: false })}
+    {...props}
+  />
 )
 
 function useThemeWithoutDefault(defaultTheme?: Theme) {

@@ -1,10 +1,6 @@
-import {
-  createView,
-  OverridableComponent,
-  OverrideProps,
-  SxProps,
-} from "@md3-ui/system"
 import { View as RNView } from "react-native"
+import { createBox } from "../create-box"
+import { OverridableComponent, OverrideProps, SxProps } from "../types"
 
 export interface BoxTypeMap<
   P = {},
@@ -15,6 +11,10 @@ export interface BoxTypeMap<
      * The content of the component.
      */
     children?: React.ReactNode
+    /**
+     * The surface tint color.
+     */
+    surfaceTintColor?: string
     /**
      * The system prop that allows defining system overrides as well as
      * additional styles.
@@ -29,7 +29,7 @@ export type BoxProps<
   P = {},
 > = OverrideProps<BoxTypeMap<P, C>, C>
 
-export const Box = createView({
+export const Box = createBox({
   name: "Box",
 }) as OverridableComponent<BoxTypeMap>
 

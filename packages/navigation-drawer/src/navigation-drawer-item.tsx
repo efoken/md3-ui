@@ -1,8 +1,8 @@
 import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
-import { Text } from "@md3-ui/layout"
 import {
   StylesProp,
   SxProps,
+  Text,
   TextStyleProvider,
   styled,
   useTheme,

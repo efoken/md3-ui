@@ -1,11 +1,11 @@
 import { useEventCallback, useForkRef } from "@md3-ui/hooks"
 import {
+  Box,
   OwnerStateProps,
   Pressable,
   StyleSheet,
   StylesProp,
   SxProps,
-  View,
   styled,
   useTheme,
   useThemeProps,
@@ -127,7 +127,7 @@ const ButtonBaseRoot = styled(Pressable, {
   }),
 }))
 
-const ButtonBaseContainer = styled(View, {
+const ButtonBaseContainer = styled(Box, {
   name: "ButtonBase",
   slot: "Container",
   skipSx: true,

@@ -1,5 +1,6 @@
+import { Box, Text } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
-import { Box, Grid, GridProps, Text } from "../src"
+import { Grid, GridProps } from "../src"
 
 export default {
   title: "Layout/Grid",

@@ -7,20 +7,20 @@ import { styled } from "./create-styled"
 import { extendSxProp, styleFunctionSx } from "./style-function-sx"
 import { SxProps } from "./types"
 
-interface ViewProps extends RNViewProps {
+interface BoxProps extends RNViewProps {
   as?: React.ElementType
   surfaceTintColor?: string
   sx?: SxProps
 }
 
-export function createView({
+export function createBox({
   defaultTheme,
   name,
 }: {
   defaultTheme?: Theme
   name?: string
 } = {}) {
-  const ViewRoot = styled(
+  const BoxRoot = styled(
     React.forwardRef<RNView, RNViewProps & { surfaceTintColor: string }>(
       ({ children, style, surfaceTintColor, ...props }, ref) => (
         <RNView ref={ref} style={style} {...props}>
@@ -36,12 +36,12 @@ export function createView({
     },
   )(styleFunctionSx)
 
-  const View = React.forwardRef<RNView, ViewProps>((inProps, ref) => {
+  const Box = React.forwardRef<RNView, BoxProps>((inProps, ref) => {
     const { as, ...props } = extendSxProp(inProps)
     const theme = useTheme(defaultTheme)
 
-    return <ViewRoot ref={ref} as={as} theme={theme} {...props} />
+    return <BoxRoot ref={ref} as={as} theme={theme} {...props} />
   })
 
-  return View
+  return Box
 }

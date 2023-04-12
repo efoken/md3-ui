@@ -1,5 +1,5 @@
 import { ElevatedButton } from "@md3-ui/button"
-import { Box, Text } from "@md3-ui/layout"
+import { Box, Text } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 import { Modal, ModalProps } from "../src"

@@ -1,10 +1,10 @@
-import { Text } from "@md3-ui/layout"
 import {
   OwnerStateProps,
-  styled,
   StylesProp,
   SxProps,
+  Text,
   TextStyleProvider,
+  styled,
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"

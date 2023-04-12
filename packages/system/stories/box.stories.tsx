@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react"
 import { Box, BoxProps, Text } from "../src"
 
 export default {
-  title: "Layout/Box",
+  title: "System/Box",
   component: Box,
 } as Meta<BoxProps>
 

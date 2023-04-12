@@ -1,5 +1,5 @@
 import { IconProps } from "@md3-ui/icon"
-import { Box } from "@md3-ui/layout"
+import { Box } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import * as Md3Icons from "../src"
 

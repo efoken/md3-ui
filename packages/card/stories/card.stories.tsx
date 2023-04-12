@@ -1,5 +1,5 @@
 import { FilledButton, OutlinedButton, TonalButton } from "@md3-ui/button"
-import { Text } from "@md3-ui/layout"
+import { Text } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import { Card, CardActions, CardContent, CardMedia, CardProps } from "../src"
 
@@ -13,12 +13,12 @@ export const Elevated: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
+        <Text variant="titleLarge" sx={{ color: "onSurface", mb: 2 }}>
           Play
           <br />
           relaxing songs
         </Text>
-        <Text color="onSurfaceVariant" variant="bodyMedium">
+        <Text variant="bodyMedium" sx={{ color: "onSurfaceVariant" }}>
           From your recent favorites
         </Text>
       </CardContent>
@@ -39,12 +39,12 @@ export const Filled: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
+        <Text variant="titleLarge" sx={{ color: "onSurface", mb: 2 }}>
           Play
           <br />
           relaxing songs
         </Text>
-        <Text color="onSurfaceVariant" variant="bodyMedium">
+        <Text variant="bodyMedium" sx={{ color: "onSurfaceVariant" }}>
           From your recent favorites
         </Text>
       </CardContent>
@@ -65,12 +65,12 @@ export const Outlined: StoryObj<CardProps> = {
   render: (args) => (
     <Card {...args}>
       <CardContent>
-        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
+        <Text variant="titleLarge" sx={{ color: "onSurface", mb: 2 }}>
           Play
           <br />
           relaxing songs
         </Text>
-        <Text color="onSurfaceVariant" variant="bodyMedium">
+        <Text variant="bodyMedium" sx={{ color: "onSurfaceVariant" }}>
           From your recent favorites
         </Text>
       </CardContent>
@@ -97,10 +97,10 @@ export const Media: StoryObj<CardProps> = {
         sx={{ height: 140 }}
       />
       <CardContent>
-        <Text color="onSurface" variant="titleLarge" sx={{ mb: 2 }}>
+        <Text variant="titleLarge" sx={{ color: "onSurface", mb: 2 }}>
           Glass Souls&apos; World Tour
         </Text>
-        <Text color="onSurfaceVariant" variant="bodyMedium">
+        <Text variant="bodyMedium" sx={{ color: "onSurfaceVariant" }}>
           From your recent favorites
         </Text>
       </CardContent>

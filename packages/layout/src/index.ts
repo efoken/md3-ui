@@ -1,6 +1,4 @@
-export * from "./box"
 export * from "./divider"
 export * from "./grid"
 export * from "./link"
 export * from "./stack"
-export * from "./text"

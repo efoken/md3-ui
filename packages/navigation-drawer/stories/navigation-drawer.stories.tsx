@@ -1,6 +1,7 @@
 import { TextButton } from "@md3-ui/button"
 import { Circle, Mail } from "@md3-ui/icons"
-import { Box, Divider, Stack } from "@md3-ui/layout"
+import { Divider, Stack } from "@md3-ui/layout"
+import { Box } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 import { GestureResponderEvent, Pressable as RNPressable } from "react-native"

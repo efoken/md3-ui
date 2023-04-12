@@ -1,14 +1,14 @@
 import {
   OverridableComponent,
   OverrideProps,
-  styled,
   StylesProp,
   SxProps,
+  Text,
+  styled,
   useThemeProps,
 } from "@md3-ui/system"
 import * as React from "react"
 import { Text as RNText, TextStyle as RNTextStyle } from "react-native"
-import { Text } from "./text"
 
 export interface LinkTypeMap<
   P = {},

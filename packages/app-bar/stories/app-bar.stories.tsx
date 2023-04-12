@@ -6,7 +6,7 @@ import {
   MoreVert,
   Person,
 } from "@md3-ui/icons"
-import { Text } from "@md3-ui/layout"
+import { Text } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import { AppBar, AppBarProps, Toolbar } from "../src"
 
