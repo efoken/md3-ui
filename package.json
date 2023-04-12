@@ -82,9 +82,5 @@
     "test:ci": "jest --color --runInBand --ci",
     "test:watch": "jest --maxWorkers=25% --watch --onlyChanged",
     "typecheck": "tsc --noEmit"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "prettier --write",
-    "*.{md,mdx,json,eslintrc,prettierrc}": "prettier --write"
   }
 }
