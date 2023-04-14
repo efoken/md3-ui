@@ -6,7 +6,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@md3-ui/core": "^0.2.1",
-    "expo": "^48.0.10",
+    "expo": "^48.0.11",
     "expo-status-bar": "~1.4.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "babel-preset-expo": "^9.3.2",
-    "expo-modules-autolinking": "^1.1.2"
+    "expo-modules-autolinking": "^1.2.0"
   },
   "scripts": {
     "android": "expo start --android",
