@@ -5,6 +5,8 @@ import {
   elevatedButtonTheme,
   Md3CompElevatedButton,
 } from "./components/elevated-button"
+import { extendedFabTheme, Md3CompExtendedFab } from "./components/extended-fab"
+import { fabTheme, Md3CompFab } from "./components/fab"
 import {
   filledButtonTheme,
   Md3CompFilledButton,
@@ -37,6 +39,8 @@ export interface Components {
   badge: Md3CompBadge
   divider: Md3CompDivider
   elevatedButton: Md3CompElevatedButton
+  extendedFab: Md3CompExtendedFab
+  fab: Md3CompFab
   filledButton: Md3CompFilledButton
   filledIconButton: Md3CompFilledIconButton
   filterChip: Md3CompFilterChip
@@ -58,6 +62,8 @@ export function createComponents(theme: Record<string, any>): Components {
       badge: badgeTheme(theme),
       divider: dividerTheme(theme),
       elevatedButton: elevatedButtonTheme(theme),
+      extendedFab: extendedFabTheme(theme),
+      fab: fabTheme(theme),
       filledButton: filledButtonTheme(theme),
       filledIconButton: filledIconButtonTheme(theme),
       filterChip: filterChipTheme(theme),

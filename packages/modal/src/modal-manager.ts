@@ -1,6 +1,6 @@
 import { getOwnerDocument, getOwnerWindow } from "@md3-ui/utils"
 
-export interface ManagedModalProps {
+interface ManagedModalProps {
   disableScrollLock?: boolean
 }
 

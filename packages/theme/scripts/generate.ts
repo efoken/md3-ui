@@ -40,6 +40,8 @@ const componentMap = {
   badge: "badge",
   divider: "divider",
   elevatedButton: "elevatedButton",
+  extendedFab: "extendedFab",
+  fab: "fab",
   filledButton: "filledButton",
   filledIconButton: "filledIconButton",
   filledTonalButton: "tonalButton",

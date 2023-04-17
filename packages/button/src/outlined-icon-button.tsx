@@ -43,6 +43,8 @@ export interface OutlinedIconButtonProps extends ButtonBaseProps {
    * additional styles.
    */
   sx?: SxProps
+  /** @default false */
+  toggle?: boolean
 }
 
 export type OutlinedIconButtonStyleKey = keyof NonNullable<
@@ -51,7 +53,7 @@ export type OutlinedIconButtonStyleKey = keyof NonNullable<
 
 type OutlinedIconButtonOwnerState = Pick<
   OutlinedIconButtonProps,
-  "disabled" | "edge" | "selected"
+  "disabled" | "edge" | "selected" | "toggle"
 > & {
   focused: boolean
   hovered: boolean
@@ -141,6 +143,7 @@ export const OutlinedIconButton = React.forwardRef<
     selected = false,
     style,
     styles,
+    toggle = false,
     ...props
   } = useThemeProps({
     name: "OutlinedIconButton",
@@ -159,6 +162,7 @@ export const OutlinedIconButton = React.forwardRef<
     hovered,
     pressed,
     selected,
+    toggle,
   }
 
   return (

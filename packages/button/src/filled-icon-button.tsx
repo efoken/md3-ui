@@ -43,6 +43,8 @@ export interface FilledIconButtonProps extends ButtonBaseProps {
    * additional styles.
    */
   sx?: SxProps
+  /** @default false */
+  toggle?: boolean
 }
 
 export type FilledIconButtonStyleKey = keyof NonNullable<
@@ -51,12 +53,11 @@ export type FilledIconButtonStyleKey = keyof NonNullable<
 
 type FilledIconButtonOwnerState = Pick<
   FilledIconButtonProps,
-  "disabled" | "edge" | "selected"
+  "disabled" | "edge" | "selected" | "toggle"
 > & {
   focused: boolean
   hovered: boolean
   pressed: boolean
-  toggleable: boolean
 }
 
 const FilledIconButtonRoot = styled(ButtonBase, {
@@ -72,7 +73,7 @@ const FilledIconButtonRoot = styled(ButtonBase, {
   marginStart: ownerState.edge === "start" ? -12 : undefined,
   width: theme.comp.filledIconButton.container.size,
 
-  ...(ownerState.toggleable && {
+  ...(ownerState.toggle && {
     backgroundColor: ownerState.selected
       ? theme.comp.filledIconButton.selected.container.color
       : theme.comp.filledIconButton.unselected.container.color,
@@ -105,7 +106,7 @@ const FilledIconButtonContent = styled(TextStyleProvider, {
     color: theme.comp.filledIconButton.pressed.icon.color,
   }),
 
-  ...(ownerState.toggleable && {
+  ...(ownerState.toggle && {
     color: ownerState.selected
       ? theme.comp.filledIconButton.toggle.selected.icon.color
       : theme.comp.filledIconButton.toggle.unselected.icon.color,
@@ -146,6 +147,7 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
       selected,
       style,
       styles,
+      toggle = false,
       ...props
     } = useThemeProps({
       name: "FilledIconButton",
@@ -157,8 +159,6 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
     const { focused, hovered, pressed, ...buttonBaseProps } =
       useButtonBaseState(props)
 
-    const toggleable = selected != null
-
     const ownerState = {
       disabled,
       edge,
@@ -166,7 +166,7 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
       hovered,
       pressed,
       selected,
-      toggleable,
+      toggle,
     }
 
     return (
@@ -181,7 +181,7 @@ export const FilledIconButton = React.forwardRef<RNView, FilledIconButtonProps>(
         ownerState={ownerState}
         pressedColor={theme.comp.filledIconButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.filledIconButton.pressed.stateLayer.opacity}
-        {...(toggleable && {
+        {...(toggle && {
           focusColor: selected
             ? theme.comp.filledIconButton.toggle.selected.focus.stateLayer.color
             : theme.comp.filledIconButton.toggle.unselected.focus.stateLayer

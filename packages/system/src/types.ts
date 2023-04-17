@@ -96,9 +96,17 @@ type CSSInterpolation<S extends RNStyle = RNStyle> =
   | InterpolationPrimitive<S>
   | CSSInterpolation<S>[]
 
-export interface StyledComponent<InnerProps, OwnerState, P>
-  extends React.FunctionComponent<
-    InnerProps & OwnerState & P & { theme?: Theme }
+export interface StyledComponent<
+  InnerProps,
+  OwnerState extends { style?: any },
+  P,
+> extends React.FunctionComponent<
+    InnerProps &
+      Omit<OwnerState, "style"> &
+      P & {
+        style?: StyleProp<OwnerState["style"]>
+        theme?: Theme
+      }
   > {}
 
 export interface CreateStyledComponent<

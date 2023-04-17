@@ -95,7 +95,7 @@ describe("<OutlinedIconButton />", () => {
   describe("prop: selected", () => {
     it("should select the component", () => {
       render(
-        <OutlinedIconButton selected>
+        <OutlinedIconButton toggle selected>
           <Icon />
         </OutlinedIconButton>,
       )
@@ -106,7 +106,7 @@ describe("<OutlinedIconButton />", () => {
 
     it("should unselect the component", () => {
       render(
-        <OutlinedIconButton selected={false}>
+        <OutlinedIconButton toggle selected={false}>
           <Icon />
         </OutlinedIconButton>,
       )

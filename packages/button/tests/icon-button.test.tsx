@@ -92,6 +92,30 @@ describe("<IconButton />", () => {
     })
   })
 
+  describe("prop: selected", () => {
+    it("should select the component", () => {
+      render(
+        <IconButton toggle selected>
+          <Icon />
+        </IconButton>,
+      )
+      const button = screen.getByRole("button")
+
+      expect(button).toMatchSnapshot()
+    })
+
+    it("should unselect the component", () => {
+      render(
+        <IconButton toggle selected={false}>
+          <Icon />
+        </IconButton>,
+      )
+      const button = screen.getByRole("button")
+
+      expect(button).toMatchSnapshot()
+    })
+  })
+
   describe("prop: disabled", () => {
     it("should disable the component", () => {
       render(

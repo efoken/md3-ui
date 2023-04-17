@@ -65,7 +65,6 @@ const ElevatedButtonRoot = styled(ButtonBase, {
   {
     ...theme.comp.elevatedButton.container.elevation,
     alignItems: "center",
-    // elevation: 20,
     backgroundColor: theme.comp.elevatedButton.container.color,
     borderRadius: theme.comp.elevatedButton.container.shape,
     flexDirection: "row",

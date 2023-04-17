@@ -1,4 +1,5 @@
 export * from "./components/box"
+export * from "./components/elevation"
 export * from "./components/global"
 export * from "./components/pressable"
 export * from "./components/text"

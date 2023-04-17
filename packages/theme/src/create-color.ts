@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 29 Mar 2023 09:38:35 GMT
+ * Generated on Wed, 12 Apr 2023 15:53:00 GMT
  */
 
 import { mergeDeep } from "@md3-ui/utils"
@@ -104,7 +104,7 @@ export function createColor(palette: any, color: Partial<Color> = {}): Color {
       surfaceContainerLow: palette.neutral[96],
       surfaceContainerLowest: palette.neutral[100],
       surfaceDim: palette.neutral[87],
-      surfaceTint: palette.primary[40],
+      surfaceTint: "primary",
       surfaceVariant: palette.neutralVariant[90],
       tertiary: palette.tertiary[40],
       tertiaryContainer: palette.tertiary[90],

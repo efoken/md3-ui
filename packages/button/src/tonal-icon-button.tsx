@@ -43,6 +43,8 @@ export interface TonalIconButtonProps extends ButtonBaseProps {
    * additional styles.
    */
   sx?: SxProps
+  /** @default false */
+  toggle?: boolean
 }
 
 export type TonalIconButtonStyleKey = keyof NonNullable<
@@ -51,12 +53,11 @@ export type TonalIconButtonStyleKey = keyof NonNullable<
 
 type TonalIconButtonOwnerState = Pick<
   TonalIconButtonProps,
-  "disabled" | "edge" | "selected"
+  "disabled" | "edge" | "selected" | "toggle"
 > & {
   focused: boolean
   hovered: boolean
   pressed: boolean
-  toggleable: boolean
 }
 
 const TonalIconButtonRoot = styled(ButtonBase, {
@@ -72,7 +73,7 @@ const TonalIconButtonRoot = styled(ButtonBase, {
   marginStart: ownerState.edge === "start" ? -12 : undefined,
   width: theme.comp.tonalIconButton.container.size,
 
-  ...(ownerState.toggleable && {
+  ...(ownerState.toggle && {
     backgroundColor: ownerState.selected
       ? theme.comp.tonalIconButton.selected.container.color
       : theme.comp.tonalIconButton.unselected.container.color,
@@ -105,7 +106,7 @@ const TonalIconButtonContent = styled(TextStyleProvider, {
     color: theme.comp.tonalIconButton.pressed.icon.color,
   }),
 
-  ...(ownerState.toggleable && {
+  ...(ownerState.toggle && {
     color: ownerState.selected
       ? theme.comp.tonalIconButton.toggle.selected.icon.color
       : theme.comp.tonalIconButton.toggle.unselected.icon.color,
@@ -146,6 +147,7 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
       selected,
       style,
       styles,
+      toggle = false,
       ...props
     } = useThemeProps({
       name: "TonalIconButton",
@@ -157,8 +159,6 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
     const { focused, hovered, pressed, ...buttonBaseProps } =
       useButtonBaseState(props)
 
-    const toggleable = selected != null
-
     const ownerState = {
       disabled,
       edge,
@@ -166,7 +166,7 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
       hovered,
       pressed,
       selected,
-      toggleable,
+      toggle,
     }
 
     return (
@@ -181,7 +181,7 @@ export const TonalIconButton = React.forwardRef<RNView, TonalIconButtonProps>(
         ownerState={ownerState}
         pressedColor={theme.comp.tonalIconButton.pressed.stateLayer.color}
         pressedOpacity={theme.comp.tonalIconButton.pressed.stateLayer.opacity}
-        {...(toggleable && {
+        {...(toggle && {
           focusColor: selected
             ? theme.comp.tonalIconButton.toggle.selected.focus.stateLayer.color
             : theme.comp.tonalIconButton.toggle.unselected.focus.stateLayer

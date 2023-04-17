@@ -29,7 +29,7 @@ function getStyleValue(
   return value
 }
 
-export interface StyleOptions<PropKey> {
+interface StyleOptions<PropKey> {
   styleProp?: PropKey | keyof RNStyle | (PropKey | keyof RNStyle)[] | false
   prop: PropKey
   themeKey?: keyof Theme["sys"] | "spacing"

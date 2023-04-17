@@ -98,7 +98,7 @@ export const styled: CreateStyled = <
           createElement(FinalTag, newProps)
         )
       },
-    ) as StyledComponent<T, React.ComponentProps<T>, {}>
+    ) as unknown as StyledComponent<T, React.ComponentProps<T>, {}>
 
     Styled.displayName = componentName
       ? `${componentName}${componentSlot || ""}`

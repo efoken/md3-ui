@@ -43,13 +43,15 @@ export interface IconButtonProps extends ButtonBaseProps {
    * additional styles.
    */
   sx?: SxProps
+  /** @default false */
+  toggle?: boolean
 }
 
 export type IconButtonStyleKey = keyof NonNullable<IconButtonProps["styles"]>
 
 type IconButtonOwnerState = Pick<
   IconButtonProps,
-  "disabled" | "edge" | "selected"
+  "disabled" | "edge" | "selected" | "toggle"
 > & {
   focused: boolean
   hovered: boolean
@@ -113,6 +115,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
       selected,
       style,
       styles,
+      toggle = false,
       ...props
     } = useThemeProps({
       name: "IconButton",
@@ -131,6 +134,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
       hovered,
       pressed,
       selected,
+      toggle,
     }
 
     return (

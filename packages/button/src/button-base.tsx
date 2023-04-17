@@ -91,6 +91,7 @@ export interface ButtonBaseProps
   styles?: StylesProp<{
     root?: RNViewStyle
     container?: RNViewStyle
+    hover?: React.CSSProperties
   }>
   /** @ignore */
   surfaceTintColor?: string
@@ -166,7 +167,7 @@ const ButtonBaseRippleContainer = styled("span", {
   position: "absolute",
   right: 0,
   top: 0,
-  zIndex: 0,
+  zIndex: -1,
 })
 
 const ButtonBaseRipple = styled("span", {
@@ -569,16 +570,19 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
               : children}
             {Platform.OS === "web" && (
               <ButtonBaseHover
-                style={{
-                  backgroundColor:
-                    focused && focusVisible ? focusColor : hoverColor,
-                  opacity:
-                    focused && focusVisible
-                      ? focusOpacity
-                      : hovered
-                      ? hoverOpacity
-                      : 0,
-                }}
+                style={[
+                  {
+                    backgroundColor:
+                      focused && focusVisible ? focusColor : hoverColor,
+                    opacity:
+                      focused && focusVisible
+                        ? focusOpacity
+                        : hovered
+                        ? hoverOpacity
+                        : 0,
+                  },
+                  styles?.hover,
+                ]}
               />
             )}
             {Platform.OS === "web" && !disableRipple && (

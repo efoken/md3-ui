@@ -2,7 +2,7 @@ import { get } from "@md3-ui/utils"
 import { handleBreakpoints } from "./system/breakpoints"
 import { RNStyle } from "./types"
 
-export interface PaletteStyleOptions<PropKey> {
+interface PaletteStyleOptions<PropKey> {
   styleProp?: PropKey | keyof RNStyle | (PropKey | keyof RNStyle)[] | false
   prop: PropKey
 }

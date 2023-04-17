@@ -21,4 +21,8 @@ module.exports = {
     "node_modules/(?!(jest-)?react-native(-.*)?|@react-native(-community)?/)",
   ],
   setupFilesAfterEnv: ["./jest.setup.js"],
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
 }

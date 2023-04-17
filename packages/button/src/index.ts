@@ -1,5 +1,7 @@
 export * from "./button-base"
 export * from "./elevated-button"
+export * from "./extended-fab"
+export * from "./fab"
 export * from "./filled-button"
 export * from "./filled-icon-button"
 export * from "./icon-button"

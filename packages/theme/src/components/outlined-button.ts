@@ -1,6 +1,6 @@
 /**
  * Do not edit directly
- * Generated on Wed, 29 Mar 2023 09:38:35 GMT
+ * Generated on Wed, 12 Apr 2023 15:53:00 GMT
  */
 
 import { TextStyle as RNTextStyle } from "react-native"

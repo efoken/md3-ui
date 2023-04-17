@@ -3,7 +3,12 @@
   "entry": [],
   "project": [],
   "ignore": ["**/*.{native,test}.{ts,tsx}"],
-  "ignoreDependencies": ["@md3-ui/test-utils"],
+  "ignoreDependencies": [
+    "@md3-ui/test-utils",
+    "prettier",
+    "react-native-svg",
+    "react-native-web"
+  ],
   "rules": {
     "unresolved": "off"
   },
