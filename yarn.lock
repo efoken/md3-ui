@@ -11380,10 +11380,10 @@ kleur@^4.0.3, kleur@^4.1.4:
   resolved "https://registry.yarnpkg.com/kleur/-/kleur-4.1.5.tgz#95106101795f7050c6c650f350c683febddb1780"
   integrity sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==
 
-knip@^2.9.0:
-  version "2.9.0"
-  resolved "https://registry.yarnpkg.com/knip/-/knip-2.9.0.tgz#0c8a32a0baf638ed0457f86f129f17e421e13c7d"
-  integrity sha512-1Hw89B7vjQwXKlbqypwIVv7FAnjrX9Xli+hftvKUpk6rWCFsY0Iqv13O8U8/ACSdnTgWQ4pHZYIIXsKfxNNkDQ==
+knip@^2.10.2:
+  version "2.10.2"
+  resolved "https://registry.yarnpkg.com/knip/-/knip-2.10.2.tgz#fa42dbb91f21e872bae9eec6b0ffc53719fcf156"
+  integrity sha512-aZWiMfYWQyyj58RhjMwFmrHNo7npPD4T2KxNyurOb3fGbFnZPVMp6Iq1Bt2oiW25Zbjyj8jx9PXh7KBtiGdmUw==
   dependencies:
     "@npmcli/map-workspaces" "^3.0.2"
     "@snyk/github-codeowners" "^1.1.0"
@@ -11401,7 +11401,7 @@ knip@^2.9.0:
     summary "^2.1.0"
     typescript "^5.0.2"
     zod "^3.20.6"
-    zod-validation-error "1.2.1"
+    zod-validation-error "1.3.0"
 
 language-subtag-registry@~0.3.2:
   version "0.3.22"
@@ -18365,10 +18365,10 @@ yocto-queue@^0.1.0:
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
 
-zod-validation-error@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-1.2.1.tgz#3aae5f4b9d0033e8a7d02f233395129ce840c06a"
-  integrity sha512-xsWqzuFukr0C56QSoDCOJPrFOGWSmktNbTSPxV2ntT2ikUf1dOqHuM0Nt8g28Up7Cz889NTX8rc4K8LN7vy0Vw==
+zod-validation-error@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/zod-validation-error/-/zod-validation-error-1.3.0.tgz#6a37e8b1896e45362a4e4cf9506eca203fad3c6e"
+  integrity sha512-4WoQnuWnj06kwKR4A+cykRxFmy+CTvwMQO5ogTXLiVx1AuvYYmMjixh7sbkSsQTr1Fvtss6d5kVz8PGeMPUQjQ==
 
 zod@^3.20.6:
   version "3.21.4"
