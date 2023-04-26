@@ -55,8 +55,8 @@
     "@md3-ui/theme": "^0.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.6"

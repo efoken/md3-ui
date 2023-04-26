@@ -42,7 +42,7 @@
   "devDependencies": {
     "@md3-ui/button": "^0.2.1",
     "@md3-ui/icons": "^0.2.1",
-    "@types/react": "^18.0.37",
+    "@types/react": "^18.2.0",
     "react": "18.2.0",
     "react-native": "0.71.6"
   },
