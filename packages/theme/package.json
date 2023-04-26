@@ -43,7 +43,7 @@
     "@types/lodash": "^4.14.194",
     "adm-zip": "^0.5.10",
     "lodash": "^4.17.21",
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "react-native": "0.71.6",
     "style-dictionary": "^3.7.2"
   },
