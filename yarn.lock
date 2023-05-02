@@ -6870,10 +6870,10 @@ css-loader@^6.7.1:
     postcss-value-parser "^4.2.0"
     semver "^7.3.8"
 
-css-mediaquery2@^1.0.7:
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/css-mediaquery2/-/css-mediaquery2-1.0.7.tgz#9c16c1950d4de22e77eec1284acd9cd5a7ee96da"
-  integrity sha512-0bMWRq4Qawq2jO5Boi/Rg+dpWGG0jY/cfGK4rf2V6UVn3tFbY8xMUKBT41QOs83gZO4sLKWW3ZcZSGwaAtKpbA==
+css-mediaquery2@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/css-mediaquery2/-/css-mediaquery2-1.0.9.tgz#06108fce5c93e848cc6966393b9890dd59840ee3"
+  integrity sha512-XF0ELDZ9K6g+d/pTbx35J9mYyd6hIIe7H/KIJwsjzv/3MOdY8bSDopaHCTscrDjG9RIfB9DhDcA72zjfxMdypA==
 
 css-select@^4.1.3:
   version "4.3.0"

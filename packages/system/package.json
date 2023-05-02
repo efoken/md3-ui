@@ -39,7 +39,7 @@
     "@emotion/react": "^11.10.8",
     "@md3-ui/theme": "^0.2.1",
     "@md3-ui/utils": "^0.2.1",
-    "css-mediaquery2": "^1.0.7"
+    "css-mediaquery2": "^1.0.9"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
