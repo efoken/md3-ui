@@ -170,23 +170,23 @@ interface Container {
  * Modal to ensure proper styling of containers.
  */
 export const ModalManager = new (class ModalManager {
-  containers: Container[]
+  #containers: Container[]
 
-  modals: Modal[]
+  #modals: Modal[]
 
   constructor() {
-    this.modals = []
-    this.containers = []
+    this.#modals = []
+    this.#containers = []
   }
 
   add(modal: Modal, container: HTMLElement) {
-    let modalIndex = this.modals.indexOf(modal)
+    let modalIndex = this.#modals.indexOf(modal)
     if (modalIndex !== -1) {
       return modalIndex
     }
 
-    modalIndex = this.modals.length
-    this.modals.push(modal)
+    modalIndex = this.#modals.length
+    this.#modals.push(modal)
 
     // If the modal we are adding is already in the DOM.
     if (modal.modalRef) {
@@ -202,15 +202,15 @@ export const ModalManager = new (class ModalManager {
       true,
     )
 
-    const containerIndex = this.containers.findIndex(
+    const containerIndex = this.#containers.findIndex(
       (item) => item.container === container,
     )
     if (containerIndex !== -1) {
-      this.containers[containerIndex].modals.push(modal)
+      this.#containers[containerIndex].modals.push(modal)
       return modalIndex
     }
 
-    this.containers.push({
+    this.#containers.push({
       modals: [modal],
       container,
       restore: null,
@@ -221,7 +221,7 @@ export const ModalManager = new (class ModalManager {
   }
 
   mount(modal: Modal, props: ManagedModalProps) {
-    const containerInfo = this.containers.find((item) =>
+    const containerInfo = this.#containers.find((item) =>
       item.modals.includes(modal),
     )
 
@@ -231,19 +231,19 @@ export const ModalManager = new (class ModalManager {
   }
 
   remove(modal: Modal) {
-    const modalIndex = this.modals.indexOf(modal)
+    const modalIndex = this.#modals.indexOf(modal)
 
     if (modalIndex === -1) {
       return modalIndex
     }
 
-    const containerIndex = this.containers.findIndex((item) =>
+    const containerIndex = this.#containers.findIndex((item) =>
       item.modals.includes(modal),
     )
-    const containerInfo = this.containers[containerIndex]
+    const containerInfo = this.#containers[containerIndex]
 
     containerInfo.modals.splice(containerInfo.modals.indexOf(modal), 1)
-    this.modals.splice(modalIndex, 1)
+    this.#modals.splice(modalIndex, 1)
 
     // If that was the last modal in a container, clean up the container.
     if (containerInfo.modals.length === 0) {
@@ -262,7 +262,7 @@ export const ModalManager = new (class ModalManager {
         containerInfo.hiddenSiblings,
         false,
       )
-      this.containers.splice(containerIndex, 1)
+      this.#containers.splice(containerIndex, 1)
     } else {
       // Otherwise make sure the next top modal is visible to a screen reader.
       const nextTop = containerInfo.modals[containerInfo.modals.length - 1]
@@ -279,7 +279,7 @@ export const ModalManager = new (class ModalManager {
 
   isTopModal(modal: Modal) {
     return (
-      this.modals.length > 0 && this.modals[this.modals.length - 1] === modal
+      this.#modals.length > 0 && this.#modals[this.#modals.length - 1] === modal
     )
   }
 })()

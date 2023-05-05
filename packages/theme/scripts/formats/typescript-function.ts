@@ -1,11 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { get } from "@md3-ui/utils"
+import { lowerFirst } from "lodash"
 import prettier from "prettier"
 import { Format, formatHelpers } from "style-dictionary"
-
-function lowerCaseFirst(str: string) {
-  return str.charAt(0).toLowerCase() + str.slice(1)
-}
 
 export const TypescriptFunction: Format = {
   name: "typescript/function",
@@ -22,13 +19,13 @@ export const TypescriptFunction: Format = {
 
     export interface ${typeName} ${formatHelpers.getTypeScriptType(tokens)}
 
-    export function create${typeName}(${lowerCaseFirst(
+    export function create${typeName}(${lowerFirst(
       typeName,
     )}?: Partial<${typeName}>) {
       return mergeDeep(${JSON.stringify(tokens, null, 2)
         .replace(/"(\d{1,3})":/g, "$1:")
         // .replace(/palette\.(\w+)\.(\d{1,3})/g, "palette.$1[$2]")
-        .replace(/"md\.(.+?)"/g, "theme.$1")}, ${lowerCaseFirst(typeName)})
+        .replace(/"md\.(.+?)"/g, "theme.$1")}, ${lowerFirst(typeName)})
     }`
 
     return prettier.format(tpl, {

@@ -1,6 +1,8 @@
-import { Breakpoint, Theme } from "@md3-ui/theme"
+import { Theme } from "@md3-ui/theme"
 import { isEmptyObject, objectKeys } from "@md3-ui/utils"
 import { RNStyle, ResponsiveValue } from "../types"
+
+type Breakpoint = Theme["breakpoints"]["keys"][0]
 
 const values = {
   compact: 0,

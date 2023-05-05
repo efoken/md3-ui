@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Queue } from "@md3-ui/utils"
+import { PromisePool } from "@supercharge/promise-pool"
 import { Config, transform } from "@svgr/core"
 import { camelCase, kebabCase, startCase } from "lodash"
 import fs from "node:fs"
@@ -91,8 +91,9 @@ async function run() {
       }))
       .sort((a, b) => a.name.localeCompare(b.name))
 
-    const queue = new Queue<{ data: string; name: string }>(
-      async (icon) => {
+    await PromisePool.for(icons)
+      .withConcurrency(5)
+      .process(async (icon) => {
         const jsCode = await createComponent(icon)
         fs.writeFileSync(
           path.join(__dirname, `../src/${kebabCase(icon.name)}.tsx`),
@@ -102,11 +103,7 @@ async function run() {
           path.join(__dirname, "../src/index.ts"),
           `export * from "./${kebabCase(icon.name)}"\n`,
         )
-      },
-      { concurrency: 5 },
-    )
-    queue.push(icons)
-    await queue.wait({ empty: true })
+      })
   })
 }
 

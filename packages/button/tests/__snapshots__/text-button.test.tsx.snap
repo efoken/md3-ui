@@ -2,8 +2,7 @@
 
 exports[`<TextButton /> should render 1`] = `
 <button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-paddingInlineEnd-faml9v r-paddingInlineEnd-2dysd3"
-  data-class="TextButton-root ButtonBase-root Pressable-root"
+  class="css-view-175oi2r r-touchAction-1otgn73 Pressable-root ButtonBase-root r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr TextButton-root r-alignItems-1awozwy r-borderRadius-cpet4d r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-paddingInlineEnd-faml9v r-paddingInlineEnd-2dysd3"
   role="button"
   tabindex="0"
   type="button"
@@ -12,8 +11,7 @@ exports[`<TextButton /> should render 1`] = `
     style="color: rgb(103, 80, 164); display: contents;"
   >
     <div
-      class="css-text-146c3p1 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
-      data-class="TextButton-label Text-root"
+      class="css-text-146c3p1 Text-root TextButton-label r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       dir="auto"
       style="color: rgb(103, 80, 164);"
     >
@@ -21,56 +19,11 @@ exports[`<TextButton /> should render 1`] = `
     </div>
   </div>
   <span
-    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
-    data-class="ButtonBase-hover"
+    class="ButtonBase-hover r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
     style="background-color: rgb(103, 80, 164); opacity: 0;"
   />
   <span
-    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
-    data-class="ButtonBase-rippleContainer"
-  />
-</button>
-`;
-
-exports[`<TextButton /> should render a button with icon 1`] = `
-<button
-  class="css-view-175oi2r r-touchAction-1otgn73 r-cursor-1loqt21 r-outlineWidth-10paoce r-transition-71lksq r-userSelect-lrvibr r-alignItems-1awozwy r-borderRadius-cpet4d r-flexDirection-18u37iz r-height-eu3ka r-justifyContent-1777fci r-minWidth-1v6e3re r-paddingInlineEnd-1c4vpko r-paddingInlineEnd-2dysd3"
-  data-class="TextButton-root ButtonBase-root Pressable-root"
-  role="button"
-  tabindex="0"
-  type="button"
->
-  <div
-    style="color: rgb(103, 80, 164); display: contents;"
-  >
-    <div
-      class="css-view-175oi2r r-marginInlineEnd-1wron08"
-      data-class="TextButton-icon"
-    >
-      <span
-        height="18"
-        width="18"
-      >
-        icon
-      </span>
-    </div>
-    <div
-      class="css-text-146c3p1 r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
-      data-class="TextButton-label Text-root"
-      dir="auto"
-      style="color: rgb(103, 80, 164);"
-    >
-      Hello World
-    </div>
-  </div>
-  <span
-    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-position-u8s1d r-right-zchlnj r-top-ipm5af r-transition-sp8bj3 r-zIndex-1wyyakw"
-    data-class="ButtonBase-hover"
-    style="background-color: rgb(103, 80, 164); opacity: 0;"
-  />
-  <span
-    class="r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-417010"
-    data-class="ButtonBase-rippleContainer"
+    class="ButtonBase-rippleContainer r-borderRadius-sqpuna r-bottom-1p0dtai r-left-1d2f490 r-overflow-1udh08x r-position-u8s1d r-right-zchlnj r-top-ipm5af r-zIndex-1wyyakw"
   />
 </button>
 `;

@@ -1,10 +1,12 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
-import { Queue, retry, sleep } from "@md3-ui/utils"
-import fetch from "cross-fetch"
+import { PromisePool } from "@supercharge/promise-pool"
+import fetchRetry from "fetch-retry"
 import fs from "node:fs"
 import path from "node:path"
 import { Config, optimize } from "svgo"
 import yargs from "yargs"
+
+const fetch = fetchRetry(global.fetch)
 
 const svgoConfig: Config = {
   multipass: true,
@@ -108,6 +110,10 @@ function downloadIcon(icon: { index: number; name: string; version: string }) {
       const formattedTheme = themeMap[theme].split("_").join("")
       const response = await fetch(
         `https://fonts.gstatic.com/s/i/materialicons${formattedTheme}/${icon.name}/v${icon.version}/24px.svg`,
+        {
+          retries: 3,
+          retryDelay: (attempt) => (attempt - 1) * 100,
+        },
       )
       if (response.status !== 200) {
         throw new Error(`status ${response.status}`)
@@ -148,17 +154,11 @@ async function run() {
       .splice(((argv as any).startAfter as number) ?? 0)
     console.log(`${icons.length} icons to download`)
 
-    const queue = new Queue<(typeof icons)[0]>(
-      async (icon) => {
-        await retry(async ({ tries }) => {
-          await sleep((tries - 1) * 100)
-          await downloadIcon(icon)
-        })
-      },
-      { concurrency: 5 },
-    )
-    queue.push(icons)
-    await queue.wait({ empty: true })
+    await PromisePool.for(icons)
+      .withConcurrency(5)
+      .process(async (icon) => {
+        await downloadIcon(icon)
+      })
   } catch (error) {
     console.log("error", error)
     throw error

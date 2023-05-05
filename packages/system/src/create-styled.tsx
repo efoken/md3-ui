@@ -1,7 +1,10 @@
 import { Theme } from "@md3-ui/theme"
-import { cx, isFunction } from "@md3-ui/utils"
+import { isFunction } from "@md3-ui/utils"
 import * as React from "react"
-import { PressableStateCallbackType as RNPressableStateCallbackType } from "react-native"
+import {
+  Platform,
+  PressableStateCallbackType as RNPressableStateCallbackType,
+} from "react-native"
 import { TextStyleProvider, useTheme } from "./context"
 import { css } from "./create-css"
 import { styleFunctionSx } from "./style-function-sx"
@@ -48,7 +51,7 @@ export const styled: CreateStyled = <
 
   return function createStyledComponent(...styles: any[]) {
     const Styled = React.forwardRef<T, React.ComponentProps<T>>(
-      ({ dataSet, style, ...props }: React.ComponentProps<T> & any, ref) => {
+      ({ className, style, ...props }: React.ComponentProps<T> & any, ref) => {
         const theme = useTheme()
 
         const FinalTag = (shouldUseAs && props.as) || Component
@@ -67,6 +70,15 @@ export const styled: CreateStyled = <
           [mergedProps],
         )
 
+        const classNameStyles = Platform.select({
+          web: {
+            $$css: true,
+            ...(className && { className }),
+            ...(label && { [label]: label }),
+          },
+          default: {},
+        })
+
         const styleSheet = useStyleSheet(extendedStyles)
 
         const newProps = Object.keys(props).reduce((acc, key) => {
@@ -77,16 +89,13 @@ export const styled: CreateStyled = <
         }, {} as Record<string, any>)
 
         newProps.ref = ref
-        newProps.dataSet = {
-          ...dataSet,
-          class: cx(dataSet?.class, label),
-        }
         newProps.style = isFunction(style)
           ? (state: RNPressableStateCallbackType) => [
+              classNameStyles,
               styleSheet.style,
               style(state),
             ]
-          : [styleSheet.style, style]
+          : [classNameStyles, styleSheet.style, style]
 
         const { color } = StyleSheet.flatten(newProps.style)
 

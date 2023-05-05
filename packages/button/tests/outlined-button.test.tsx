@@ -20,9 +20,9 @@ describe("<OutlinedButton />", () => {
       <OutlinedButton icon={<span>icon</span>}>Hello World</OutlinedButton>,
     )
     const button = screen.getByRole("button")
-    const icon = button.querySelector('[data-class*="OutlinedButton-icon"]')
+    const icon = button.querySelector(".OutlinedButton-icon")
 
-    expect(button).toMatchSnapshot()
+    expect(button).toHaveClass("OutlinedButton-root")
     expect(icon).not.toBeNull()
   })
 
@@ -30,18 +30,14 @@ describe("<OutlinedButton />", () => {
     render(<OutlinedButton>Hello World</OutlinedButton>)
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).not.toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).not.toBeNull()
   })
 
   it("should disable the ripple", () => {
     render(<OutlinedButton disableRipple>Hello World</OutlinedButton>)
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).toBeNull()
   })
 
   it("should automatically change the button to an anchor element when href is provided", () => {

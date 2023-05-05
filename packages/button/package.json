@@ -42,12 +42,12 @@
   "devDependencies": {
     "@md3-ui/icons": "^0.2.1",
     "@md3-ui/layout": "^0.2.1",
-    "@types/react": "^18.2.0",
+    "@types/react": "^18.2.5",
     "react": "18.2.0",
     "react-native": "0.71.7"
   },
   "peerDependencies": {
-    "@types/react": "^18.0.0",
+    "@types/react": "^18.2.0",
     "react": "^18.2.0",
     "react-native": ">=0.71.3"
   },

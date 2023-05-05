@@ -5,47 +5,47 @@ import { CodeBlock } from "./components/code-block"
 import { PropsTable } from "./components/props-table"
 
 export const MDXComponents = {
-  h1: ({ color, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <Text as="h1" variant="displayLarge" {...props} />
   ),
   h2: ({
     children,
-    color,
+    id,
     ...props
   }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <Text as="h2" variant="displayMedium" {...props}>
-      <a href="#" style={{ textDecoration: "none" }}>
+    <Text as="h2" variant="displayMedium" id={id} {...props}>
+      <a href={`#${id}`} style={{ textDecoration: "none" }}>
         {children}
       </a>
     </Text>
   ),
   h3: ({
     children,
-    color,
+    id,
     ...props
   }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <Text as="h3" variant="displaySmall" {...props}>
-      <a href="#" style={{ textDecoration: "none" }}>
+    <Text as="h3" variant="displaySmall" id={id} {...props}>
+      <a href={`#${id}`} style={{ textDecoration: "none" }}>
         {children}
       </a>
     </Text>
   ),
-  h4: ({ color, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
+  h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <Text as="h4" variant="headlineLarge" {...props} />
   ),
   a: (props: React.HTMLAttributes<HTMLAnchorElement>) => (
     <Link as="a" {...props} />
   ),
-  p: ({ color, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+  p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <Text as="p" variant="bodyLarge" {...props} />
   ),
-  ul: ({ color, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
+  ul: (props: React.HTMLAttributes<HTMLUListElement>) => (
     <Text as="ul" variant="bodyLarge" {...props} />
   ),
-  ol: ({ color, ...props }: React.HTMLAttributes<HTMLOListElement>) => (
+  ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
     <Text as="ol" variant="bodyLarge" {...props} />
   ),
-  code: ({ color, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
+  code: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <Text
       as="code"
       variant="bodyLarge"

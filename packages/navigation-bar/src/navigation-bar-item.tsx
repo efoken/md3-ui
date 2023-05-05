@@ -16,7 +16,7 @@ import {
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
-import { NavigationBarContext } from "./context"
+import { NavigationBarContext } from "./navigation-bar-context"
 
 export interface NavigationBarItemProps
   extends Omit<ButtonBaseProps, "children"> {

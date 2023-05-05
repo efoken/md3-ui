@@ -14,7 +14,7 @@ import {
   ViewStyle as RNViewStyle,
 } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { NavigationBarContext } from "./context"
+import { NavigationBarContext } from "./navigation-bar-context"
 import { NavigationBarItemProps } from "./navigation-bar-item"
 
 export interface NavigationBarTypeMap<

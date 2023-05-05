@@ -17,6 +17,7 @@ import {
   View as RNView,
   ViewStyle as RNViewStyle,
 } from "react-native"
+import { useBadge } from "./use-badge"
 
 export interface BadgeTypeMap<
   P = {},
@@ -44,6 +45,7 @@ export interface BadgeTypeMap<
      */
     styles?: StylesProp<{
       root?: RNViewStyle
+      badge?: RNTextStyle
       value?: RNTextStyle
     }>
     /**
@@ -68,9 +70,14 @@ export type BadgeStyleKey = keyof NonNullable<BadgeProps["styles"]>
 
 type BadgeOwnerState = Pick<BadgeProps, "value">
 
-const BadgeRoot = styled(Animated.View, {
+const BadgeRoot = styled(RNView, {
   name: "Badge",
   slot: "Root",
+})()
+
+const BadgeBadge = styled(Animated.View, {
+  name: "Badge",
+  slot: "Badge",
 })<OwnerStateProps<BadgeOwnerState>>(({ ownerState, theme }) => ({
   backgroundColor: theme.comp.badge.color,
   borderRadius: theme.comp.badge.shape,
@@ -108,7 +115,7 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
   const {
     children,
     invisible: invisibleProp = false,
-    max = 99,
+    max: maxProp = 99,
     showZero = false,
     style,
     styles,
@@ -119,9 +126,14 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
     props: inProps,
   })
 
-  const { handleLayout, ...layout } = useLayout()
+  const { displayValue, invisible, value } = useBadge({
+    invisible: invisibleProp,
+    max: maxProp,
+    showZero,
+    value: valueProp,
+  })
 
-  const invisible = invisibleProp || (valueProp === 0 && !showZero)
+  const { handleLayout, ...layout } = useLayout()
 
   const [scale] = useAnimate({
     duration: 225,
@@ -132,17 +144,14 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
     toValue: invisible ? 0 : 1,
   })
 
-  const value =
-    valueProp != null && Number(valueProp) > max ? `${max}+` : valueProp
-
   const ownerState = {
     value,
   }
 
   return (
-    <RNView>
-      <BadgeRoot
-        ref={ref}
+    <BadgeRoot ref={ref} style={[style, styles?.root]} {...props}>
+      {children}
+      <BadgeBadge
         ownerState={ownerState}
         style={[
           {
@@ -152,21 +161,18 @@ export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
               { translateY: -(layout.height / 4) },
             ],
           },
-          style,
-          styles?.root,
+          styles?.badge,
         ]}
-        {...props}
       >
         <BadgeValue
           ownerState={ownerState}
           style={styles?.value}
           onLayout={handleLayout}
         >
-          {value}
+          {displayValue}
         </BadgeValue>
-      </BadgeRoot>
-      {children}
-    </RNView>
+      </BadgeBadge>
+    </BadgeRoot>
   )
 }) as OverridableComponent<BadgeTypeMap>
 

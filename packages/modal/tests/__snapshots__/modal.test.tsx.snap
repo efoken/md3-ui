@@ -8,14 +8,12 @@ exports[`<Modal /> should render 1`] = `
     aria-hidden="true"
   />
   <div
-    class="css-view-175oi2r r-bottom-1p0dtai r-left-1d2f490 r-position-1xcajam r-right-zchlnj r-top-ipm5af r-zIndex-1prsdax"
-    data-class="Modal-root"
+    class="css-view-175oi2r Modal-root r-bottom-1p0dtai r-left-1d2f490 r-position-1xcajam r-right-zchlnj r-top-ipm5af r-zIndex-1prsdax"
     role="presentation"
   >
     <div
       aria-hidden="true"
-      class="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73 r-backgroundColor-f9p2k4 r-height-1pi2tsx r-position-u8s1d r-width-13qz1uu r-zIndex-1wyyakw"
-      data-class="Modal-scrim"
+      class="css-view-175oi2r r-cursor-1loqt21 r-touchAction-1otgn73 Modal-scrim r-backgroundColor-f9p2k4 r-height-1pi2tsx r-position-u8s1d r-width-13qz1uu r-zIndex-1wyyakw"
       style="opacity: 1;"
       tabindex="-1"
     />

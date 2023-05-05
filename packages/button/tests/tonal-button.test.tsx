@@ -18,9 +18,9 @@ describe("<TonalButton />", () => {
   it("should render a button with icon", () => {
     render(<TonalButton icon={<span>icon</span>}>Hello World</TonalButton>)
     const button = screen.getByRole("button")
-    const icon = button.querySelector('[data-class*="TonalButton-icon"]')
+    const icon = button.querySelector(".TonalButton-icon")
 
-    expect(button).toMatchSnapshot()
+    expect(button).toHaveClass("TonalButton-root")
     expect(icon).not.toBeNull()
   })
 
@@ -28,18 +28,14 @@ describe("<TonalButton />", () => {
     render(<TonalButton>Hello World</TonalButton>)
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).not.toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).not.toBeNull()
   })
 
   it("should disable the ripple", () => {
     render(<TonalButton disableRipple>Hello World</TonalButton>)
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).toBeNull()
   })
 
   it("should automatically change the button to an anchor element when href is provided", () => {

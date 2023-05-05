@@ -11,10 +11,6 @@ import { useAccessibilityInfo } from "./use-accessibility-info"
 type DefaultMediaValues = Omit<
   Partial<MediaValues>,
   | "aspect-ratio"
-  | "device-aspect-ratio"
-  | "device-height"
-  | "device-pixel-ratio"
-  | "device-width"
   | "height"
   | "inverted-colors"
   | "prefers-color-scheme"
@@ -30,10 +26,6 @@ type DefaultMediaValues = Omit<
     | "type"
   > & {
     "aspect-ratio": number
-    "device-aspect-ratio": number
-    "device-height": number
-    "device-pixel-ratio": number
-    "device-width": number
     height: number
     width: number
   }
@@ -47,14 +39,11 @@ export function getDefaultMediaValues(): DefaultMediaValues {
     orientation: width > height ? "landscape" : "portrait",
     width,
     height,
-    "device-width": width,
-    "device-height": height,
     "aspect-ratio": width / height,
-    "device-aspect-ratio": width / height,
-    "device-pixel-ratio": scale,
     "prefers-color-scheme": Appearance.getColorScheme() ?? "light",
     "prefers-reduced-motion": "no-preference",
     "inverted-colors": "none",
+    resolution: scale * 96,
     type: Platform.OS === "web" ? "screen" : Platform.OS,
   }
 }
@@ -76,11 +65,11 @@ export const MediaValuesProvider: React.FC<MediaValuesProviderProps> = ({
       ...getDefaultMediaValues(),
       width,
       height,
-      "device-pixel-ratio": scale,
       "prefers-reduced-motion": reduceMotionEnabled
         ? "reduce"
         : "no-preference",
       "inverted-colors": invertColorsEnabled ? "inverted" : "none",
+      resolution: scale * 96,
     }),
     [height, invertColorsEnabled, reduceMotionEnabled, scale, width],
   )

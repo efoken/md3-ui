@@ -23,8 +23,6 @@ declare module "react-native" {
     }
   }
 
-  export interface TextStyle {}
-
   export interface ImageStyle {
     objectFit?: React.CSSProperties["objectFit"]
   }
@@ -114,10 +112,6 @@ declare module "react-native" {
     onAnimationEnd?: (event: React.AnimationEvent) => void
     /** @platform web */
     onAnimationStart?: (event: React.AnimationEvent) => void
-    tabIndex?: 0 | -1
-  }
-
-  export interface TouchableWithoutFeedbackProps extends KeyboardProps {
     tabIndex?: 0 | -1
   }
 }

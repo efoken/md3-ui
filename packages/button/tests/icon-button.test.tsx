@@ -35,9 +35,7 @@ describe("<IconButton />", () => {
     )
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).not.toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).not.toBeNull()
   })
 
   it("should disable the ripple", () => {
@@ -48,9 +46,7 @@ describe("<IconButton />", () => {
     )
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).toBeNull()
   })
 
   describe("prop: edge", () => {

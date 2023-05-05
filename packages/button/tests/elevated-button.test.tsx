@@ -20,9 +20,9 @@ describe("<ElevatedButton />", () => {
       <ElevatedButton icon={<span>icon</span>}>Hello World</ElevatedButton>,
     )
     const button = screen.getByRole("button")
-    const icon = button.querySelector('[data-class*="ElevatedButton-icon"]')
+    const icon = button.querySelector(".ElevatedButton-icon")
 
-    expect(button).toMatchSnapshot()
+    expect(button).toHaveClass("ElevatedButton-root")
     expect(icon).not.toBeNull()
   })
 
@@ -30,18 +30,14 @@ describe("<ElevatedButton />", () => {
     render(<ElevatedButton>Hello World</ElevatedButton>)
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).not.toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).not.toBeNull()
   })
 
   it("should disable the ripple", () => {
     render(<ElevatedButton disableRipple>Hello World</ElevatedButton>)
     const button = screen.getByRole("button")
 
-    expect(
-      button.querySelector('[data-class*="ButtonBase-rippleContainer"]'),
-    ).toBeNull()
+    expect(button.querySelector(".ButtonBase-rippleContainer")).toBeNull()
   })
 
   it("should automatically change the button to an anchor element when href is provided", () => {
