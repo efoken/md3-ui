@@ -8,6 +8,7 @@ import path from "node:path"
 const svgrConfig: Config = {
   expandProps: false,
   native: true,
+  plugins: ["@svgr/plugin-jsx"],
   typescript: true,
   template: (variables, { tpl }) => tpl`
     ${variables.imports}
@@ -51,10 +52,10 @@ function createComponentName(str: string) {
         .replace(/^3/, "three-")
         .replace(/^2/, "two-")
         .replace(/^1/, "one-")
-        .replace(/-/g, " ")
+        .replaceAll("-", " ")
         .trim(),
     ),
-  ).replace(/ /g, "")
+  ).replaceAll(" ", "")
 }
 
 async function createComponent(icon: { data: string; name: string }) {

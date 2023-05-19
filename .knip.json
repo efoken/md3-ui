@@ -4,22 +4,21 @@
   "project": [],
   "ignore": ["**/*.{native,test}.{ts,tsx}"],
   "ignoreDependencies": [
+    "@md3-ui/core",
     "@md3-ui/test-utils",
-    "prettier",
-    "react-native-svg",
-    "react-native-web"
+    "@preconstruct/hook",
+    "@svgr/plugin-jsx",
+    "prettier-plugin-organize-imports",
+    "webpack",
+    "yarn-deduplicate"
   ],
   "rules": {
     "unresolved": "off"
   },
   "workspaces": {
     ".": {
-      "entry": ["scripts/*.ts"],
-      "project": ["scripts/**/.ts"],
-      "ignoreDependencies": [
-        "prettier-plugin-organize-imports",
-        "yarn-deduplicate"
-      ]
+      "entry": [".storybook/main.ts", ".storybook/preview.tsx", "scripts/*.ts"],
+      "project": [".storybook/**/*.{ts,tsx}", "scripts/**/.ts"]
     },
     "app": {
       "entry": ["app.config.js", "metro.config.js", "src/index.ts"],
@@ -35,7 +34,8 @@
     "packages/*": {
       "entry": ["src/index.ts", "scripts/*.ts"],
       "project": ["src/**/*.{ts,tsx}", "scripts/**/.ts"],
-      "ignore": ["src/**/*.test.{ts,tsx}"]
+      "ignore": ["src/**/*.test.{ts,tsx}"],
+      "ignoreDependencies": ["prettier"]
     }
   }
 }

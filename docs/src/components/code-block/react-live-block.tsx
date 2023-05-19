@@ -59,7 +59,6 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
   return (
     <LiveProvider {...liveProviderProps}>
       <LivePreview
-        // @ts-expect-error: `style` does not exist in props, but works
         style={{
           backgroundColor: theme.sys.color.surface,
           borderColor: theme.sys.color.outlineVariant,

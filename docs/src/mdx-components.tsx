@@ -45,6 +45,9 @@ export const MDXComponents = {
   ol: (props: React.HTMLAttributes<HTMLOListElement>) => (
     <Text as="ol" variant="bodyLarge" {...props} />
   ),
+  li: (props: React.HTMLAttributes<HTMLLIElement>) => (
+    <Text as="li" {...props} />
+  ),
   code: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <Text
       as="code"

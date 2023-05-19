@@ -18,14 +18,14 @@ export const TypescriptComponent: Format = {
 
     export interface Md3Comp${upperFirst(typeName)} ${formatHelpers
       .getTypeScriptType(tokens)
-      .replace(/elevation: string/g, "elevation: any")
-      .replace(/opacity: string/g, "opacity: number")
-      .replace(/shape: string/g, "shape: number")
-      .replace(/textStyle: string/g, "textStyle: Partial<RNTextStyle>")}
+      .replaceAll("elevation: string", "elevation: any")
+      .replaceAll("opacity: string", "opacity: number")
+      .replaceAll("shape: string", "shape: number")
+      .replaceAll("textStyle: string", "textStyle: Partial<RNTextStyle>")}
 
     export const ${typeName}Theme = (theme: Record<string, any>): Md3Comp${upperFirst(
       typeName,
-    )} => (${JSON.stringify(tokens, null, 2).replace(
+    )} => (${JSON.stringify(tokens, null, 2).replaceAll(
       /"md\.(.+?)"/g,
       "theme.$1",
     )})`

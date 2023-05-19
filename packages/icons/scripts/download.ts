@@ -121,7 +121,7 @@ function downloadIcon(icon: { index: number; name: string; version: string }) {
       const svg = await response.text()
       const dataPath = path.join(
         __dirname,
-        `../assets.bak/${icon.name.replace(/_/g, "-")}${
+        `../assets.bak/${icon.name.replaceAll("_", "-")}${
           themeFileMap[theme]
         }.svg`,
       )

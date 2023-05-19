@@ -15,11 +15,30 @@ export { Fab } from "./fab"
 export type { FabProps, FabStyleKey } from "./fab"
 export { FilledButton } from "./filled-button"
 export type { FilledButtonProps, FilledButtonStyleKey } from "./filled-button"
-export * from "./filled-icon-button"
-export * from "./icon-button"
-export * from "./outlined-button"
-export * from "./outlined-icon-button"
-export * from "./text-button"
-export * from "./tonal-button"
-export * from "./tonal-icon-button"
-export * from "./use-button-base-state"
+export { FilledIconButton } from "./filled-icon-button"
+export type {
+  FilledIconButtonProps,
+  FilledIconButtonStyleKey,
+} from "./filled-icon-button"
+export { IconButton } from "./icon-button"
+export type { IconButtonProps, IconButtonStyleKey } from "./icon-button"
+export { OutlinedButton } from "./outlined-button"
+export type {
+  OutlinedButtonProps,
+  OutlinedButtonStyleKey,
+} from "./outlined-button"
+export { OutlinedIconButton } from "./outlined-icon-button"
+export type {
+  OutlinedIconButtonProps,
+  OutlinedIconButtonStyleKey,
+} from "./outlined-icon-button"
+export { TextButton } from "./text-button"
+export type { TextButtonProps, TextButtonStyleKey } from "./text-button"
+export { TonalButton } from "./tonal-button"
+export type { TonalButtonProps, TonalButtonStyleKey } from "./tonal-button"
+export { TonalIconButton } from "./tonal-icon-button"
+export type {
+  TonalIconButtonProps,
+  TonalIconButtonStyleKey,
+} from "./tonal-icon-button"
+export { useButtonBaseState } from "./use-button-base-state"

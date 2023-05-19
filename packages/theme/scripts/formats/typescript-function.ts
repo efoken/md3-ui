@@ -23,9 +23,9 @@ export const TypescriptFunction: Format = {
       typeName,
     )}?: Partial<${typeName}>) {
       return mergeDeep(${JSON.stringify(tokens, null, 2)
-        .replace(/"(\d{1,3})":/g, "$1:")
-        // .replace(/palette\.(\w+)\.(\d{1,3})/g, "palette.$1[$2]")
-        .replace(/"md\.(.+?)"/g, "theme.$1")}, ${lowerFirst(typeName)})
+        .replaceAll(/"(\d{1,3})":/g, "$1:")
+        // .replaceAll(/palette\.(\w+)\.(\d{1,3})/g, "palette.$1[$2]")
+        .replaceAll(/"md\.(.+?)"/g, "theme.$1")}, ${lowerFirst(typeName)})
     }`
 
     return prettier.format(tpl, {

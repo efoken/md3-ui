@@ -40,6 +40,7 @@
     "@md3-ui/button": "^0.2.1",
     "@md3-ui/card": "^0.2.1",
     "@md3-ui/chip": "^0.2.1",
+    "@md3-ui/divider": "^0.2.1",
     "@md3-ui/hooks": "^0.2.1",
     "@md3-ui/icon": "^0.2.1",
     "@md3-ui/layout": "^0.2.1",
@@ -55,18 +56,18 @@
     "@md3-ui/theme": "^0.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.5",
+    "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.71.7"
+    "react-native": "0.71.8"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-native": ">=0.71.3"
+    "react-native": ">=0.71.7"
   },
   "scripts": {
     "build": "bob build",

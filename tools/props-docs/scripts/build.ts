@@ -1,19 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies, no-console */
 import { glob } from "glob"
-import { mkdirp } from "mkdirp"
+import { startCase } from "lodash"
 import fs from "node:fs"
 import path from "node:path"
-import { ComponentDoc, withCustomConfig } from "react-docgen-typescript"
+import { outdent } from "outdent"
 
 interface ComponentInfo {
-  def: ComponentDoc
-  displayName: string
-  exportName: string
+  componentName: string
+  content: string
+  distJsonName: string
+  distJsonPath: string
   fileName: string
-  importPath: string
 }
-
-const excludedPropNames = new Set(["as", "style", "styles", "sx"])
 
 const sourcePath = path.join(__dirname, "../../../packages")
 const distPath = path.join(__dirname, "../dist")
@@ -23,192 +21,138 @@ const cjsIndexFilePath = path.join(distPath, "commonjs/index.js")
 const esmIndexFilePath = path.join(distPath, "module/index.js")
 const typeFilePath = path.join(distPath, "typescript/index.d.ts")
 
-const tsConfigPath = path.join(sourcePath, "..", "tsconfig.json")
-
-/**
- * Find all TypeScript files which could contain component definitions
- */
-async function findComponentFiles() {
-  const tsFiles = await glob("core/**/src/index.ts", {
-    cwd: sourcePath,
-  })
-  return tsFiles.filter((f) => !f.includes(".stories") && !f.includes(".test"))
-}
-
-/**
- * Parse files with react-doc-gen-typescript
- */
-function parseInfo(filePaths: string[]) {
-  const { parse } = withCustomConfig(tsConfigPath, {
-    shouldRemoveUndefinedFromOptional: true,
-    propFilter: (prop, component) => {
-      const isStyledSystemProp = excludedPropNames.has(prop.name)
-      const isNativeElementProp =
-        prop.parent?.fileName.includes("node_modules") ?? false
-      const isIgnoredProp = /@ignore/.test(prop.description)
-      const isHook = component.name.startsWith("use")
-      const isTypeScriptNative =
-        prop.parent?.fileName.includes("node_modules/typescript") ?? false
-
-      return (
-        (isHook && !isTypeScriptNative) ||
-        !(isStyledSystemProp || isNativeElementProp || isIgnoredProp)
-      )
-    },
-  })
-
-  return filePaths.flatMap((file) => parse(path.join(sourcePath, file)))
-}
-
-/**
- * Extract meta data of component docs
- */
-function extractComponentInfo(docs: ComponentDoc[]) {
-  return docs.reduce((acc, def) => {
-    if (Object.keys(def.props || {}).length === 0) {
-      return acc
-    }
-
-    function createUniqueName(displayName: string) {
-      const existing = acc.filter(
-        (prev) =>
-          prev.def.displayName.toLowerCase() === displayName.toLowerCase(),
-      )
-
-      if (existing.length === 0) {
-        return displayName
-      }
-
-      return `${displayName}${existing.length}`
-    }
-
-    const exportName = createUniqueName(def.displayName)
-    const fileName = `${exportName}.json`
-
-    acc.push({
-      def,
-      displayName: def.displayName,
-      exportName,
-      fileName,
-      importPath: `../components/${fileName}`,
-    })
-    return acc
-  }, [] as ComponentInfo[])
-}
-
-/**
- * Write component info as JSON to disk
- */
 function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
-  for (const info of componentInfo) {
-    const filePath = path.join(outputPath, info.fileName)
-    const content = JSON.stringify(info.def)
-    fs.writeFileSync(filePath, content)
+  for (const { content, distJsonPath } of componentInfo) {
+    fs.writeFileSync(distJsonPath, content)
   }
 }
 
-/**
- * Create and write the index file in CJS format
- */
 function writeIndexCJS(componentInfo: ComponentInfo[]) {
+  const allComponents = componentInfo
+    .map(({ componentName }) => `${componentName}`)
+    .join(",\n")
+
   const cjsExports = componentInfo.map(
-    ({ displayName, importPath }) =>
-      `module.exports["${displayName}"] = require("${importPath}")`,
-  )
+    ({ componentName, distJsonName }) =>
+      `const ${componentName} = require('../${distJsonName}')`,
+  ).concat(outdent`
+
+    const json = {
+    ${allComponents},
+    }
+
+    const allPropDocs = Object.fromEntries(
+      Object.values(json).flatMap((doc) => Object.entries(doc)),
+    )
+
+    const getPropDoc = (name) => allPropDocs[name]
+
+    module.exports = {
+    allPropDocs,
+    getPropDoc,
+    ${allComponents},
+    }
+  `)
+
   fs.mkdirSync(path.dirname(cjsIndexFilePath), { recursive: true })
   fs.writeFileSync(cjsIndexFilePath, cjsExports.join("\n"))
 }
 
-/**
- * Create and write the index file in ESM format
- */
 function writeIndexESM(componentInfo: ComponentInfo[]) {
+  const allComponents = componentInfo
+    .map(({ componentName }) => `${componentName}`)
+    .join(",\n")
+
   const esmPropImports = componentInfo
     .map(
-      ({ exportName, importPath }) =>
-        `import ${exportName}Import from "${importPath}"`,
+      ({ componentName, distJsonName }) =>
+        `import ${componentName}Json from "../${distJsonName}"`,
     )
     .join("\n")
 
   const esmPropExports = componentInfo
-    .map(({ exportName }) => `export const ${exportName} = ${exportName}Import`)
+    .map(
+      ({ componentName }) =>
+        `export const ${componentName} = ${componentName}Json`,
+    )
+    .concat(
+      outdent`
+
+        const json = {
+        ${allComponents}
+        }
+
+        export const allPropDocs = Object.fromEntries(
+          Object.values(json).flatMap((doc) => Object.entries(doc)),
+        )
+
+        export const getPropDoc = (name) => allPropDocs[name]
+      `,
+    )
     .join("\n")
 
   fs.mkdirSync(path.dirname(esmIndexFilePath), { recursive: true })
-  fs.writeFileSync(
-    esmIndexFilePath,
-    `${esmPropImports}
-${esmPropExports}`,
-  )
+  fs.writeFileSync(esmIndexFilePath, `${esmPropImports}\n\n${esmPropExports}`)
 }
 
 function writeTypes(componentInfo: ComponentInfo[]) {
   const typeExports = componentInfo
-    .map(({ exportName }) => `export declare const ${exportName}: PropDoc`)
+    .map(
+      ({ componentName }) => `export declare const ${componentName}: PropDoc`,
+    )
     .join("\n")
 
-  const baseType = `export interface Parent {
-  fileName: string
-  name: string
-}
+  const baseType = outdent`
+    export interface Prop {
+      type: string
+      defaultValue?: string | null
+      required: boolean
+      description?: string
+    }
 
-export interface Declaration {
-  fileName: string
-  name: string
-}
+    export interface PropDoc {
+      [componentOrHook: string]: Prop
+    }
+  `
 
-export interface DefaultProps {
-  declarations: Declaration[]
-  defaultValue?: any
-  description: string | JSX.Element
-  name: string
-  parent: Parent
-  required: boolean
-  type: { name: string }
-}
+  const getterTypes = outdent`
 
-export interface PropDoc {
-  description: string | JSX.Element
-  displayName: string
-  filePath: string
-  methods: any[]
-  props: {
-    components?: DefaultProps
-    defaultProps?: DefaultProps
-  }
-  tags: { see: string }
-}\n`
+    export declare const allPropDocs: Record<string, Prop>
+    export declare function getPropDoc(name: string): PropDoc | undefined
+  `
 
   fs.mkdirSync(path.dirname(typeFilePath), { recursive: true })
-  fs.writeFileSync(typeFilePath, `${baseType}\n${typeExports}`)
-}
-
-function log(...args: unknown[]) {
-  console.info("[props-docs]", ...args)
+  fs.writeFileSync(typeFilePath, `${baseType}\n${typeExports}\n${getterTypes}`)
 }
 
 export default async function main() {
-  const componentFiles = await findComponentFiles()
+  const componentFiles = glob.sync("packages/*/docs.json", {
+    cwd: path.dirname(sourcePath),
+    absolute: true,
+  })
 
   if (componentFiles.length > 0) {
-    await mkdirp(outputPath)
+    fs.mkdirSync(path.dirname(outputPath), { recursive: true })
   }
 
-  log("Parsing files for component types...")
-  const parsedInfo = parseInfo(componentFiles)
+  const componentInfo = componentFiles.map((file) => {
+    const baseName = path.basename(path.dirname(file))
+    const componentName = startCase(baseName)
+    return {
+      componentName,
+      content: fs.readFileSync(file, "utf8"),
+      distJsonName: path.join("components", `${componentName}.json`),
+      distJsonPath: path.join(outputPath, `${componentName}.json`),
+      fileName: path.join(baseName, `${componentName}.json`),
+    }
+  })
 
-  log("Extracting component info...")
-  const componentInfo = extractComponentInfo(parsedInfo)
-
-  log("Writing component info files...")
   writeComponentInfoFiles(componentInfo)
-
-  log("Writing index files...")
   writeIndexCJS(componentInfo)
   writeIndexESM(componentInfo)
   writeTypes(componentInfo)
 
-  log(`Processed ${componentInfo.length} components`)
+  console.log(`Props extracted for ${componentInfo.length} components 🎉`)
 }
 
 if (require.main === module) {

@@ -38,20 +38,21 @@
     "@md3-ui/system": "^0.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.5",
+    "@types/react": "^18.2.6",
     "react": "18.2.0",
-    "react-native": "0.71.7",
+    "react-native": "0.71.8",
     "react-native-svg": "13.4.0"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",
     "react": "^18.2.0",
-    "react-native": ">=0.71.3",
+    "react-native": ">=0.71.7",
     "react-native-svg": "^13.4.0"
   },
   "scripts": {
     "build": "bob build",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "typedocs": "tsx ../../scripts/generate-type-docs.ts"
   },
   "react-native-builder-bob": {
     "source": "src",

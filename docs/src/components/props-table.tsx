@@ -1,17 +1,17 @@
 import { Box, Stack, Text } from "@md3-ui/core"
-import * as propsDocs from "@md3-ui/props-docs"
+import { getPropDoc } from "@md3-ui/props-docs"
 import * as React from "react"
 import { MDXComponents } from "../mdx-components"
 import { convertBackticksToInlineCode } from "../utils/convert-backticks-to-inline-code"
 
 interface PropsTableProps {
-  of: keyof typeof propsDocs
+  of: string
   omit?: string[] | null
   only?: string[] | null
 }
 
 function makePropsTable({ of, omit, only }: PropsTableProps) {
-  const props = propsDocs[of]?.props
+  const props = getPropDoc(of)
 
   if (!props) {
     return []
@@ -29,10 +29,9 @@ function makePropsTable({ of, omit, only }: PropsTableProps) {
     })
     .map(([name, value]) => ({
       name,
-      required: value.required,
-      type: cleanType(value.type.name),
-      defaultValue: cleanDefaultValue(value.defaultValue?.value),
-      description: value.description,
+      ...value,
+      type: cleanType(value.type),
+      defaultValue: cleanDefaultValue(value.defaultValue),
     }))
 }
 

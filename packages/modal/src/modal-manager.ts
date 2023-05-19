@@ -265,11 +265,11 @@ export const ModalManager = new (class ModalManager {
       this.#containers.splice(containerIndex, 1)
     } else {
       // Otherwise make sure the next top modal is visible to a screen reader.
-      const nextTop = containerInfo.modals[containerInfo.modals.length - 1]
+      const nextTop = containerInfo.modals.at(-1)
       // As soon as a modal is adding its modalRef is undefined. it can't set
       // aria-hidden because the dom element doesn't exist either
       // when modal was unmounted before modalRef gets null
-      if (nextTop.modalRef) {
+      if (nextTop?.modalRef) {
         ariaHidden(nextTop.modalRef, false)
       }
     }
@@ -278,8 +278,6 @@ export const ModalManager = new (class ModalManager {
   }
 
   isTopModal(modal: Modal) {
-    return (
-      this.#modals.length > 0 && this.#modals[this.#modals.length - 1] === modal
-    )
+    return this.#modals.length > 0 && this.#modals.at(-1) === modal
   }
 })()

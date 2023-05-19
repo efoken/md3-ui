@@ -1,5 +1,9 @@
 import { mergeDeep } from "@md3-ui/utils"
 import { badgeTheme, Md3CompBadge } from "./components/badge"
+import {
+  circularProgressTheme,
+  Md3CompCircularProgress,
+} from "./components/circular-progress"
 import { dividerTheme, Md3CompDivider } from "./components/divider"
 import {
   elevatedButtonTheme,
@@ -17,6 +21,10 @@ import {
 } from "./components/filled-icon-button"
 import { filterChipTheme, Md3CompFilterChip } from "./components/filter-chip"
 import { iconButtonTheme, Md3CompIconButton } from "./components/icon-button"
+import {
+  linearProgressTheme,
+  Md3CompLinearProgress,
+} from "./components/linear-progress"
 import { listTheme, Md3CompList } from "./components/list"
 import {
   Md3CompOutlinedButton,
@@ -37,6 +45,7 @@ import {
 
 export interface Components {
   badge: Md3CompBadge
+  circularProgress: Md3CompCircularProgress
   divider: Md3CompDivider
   elevatedButton: Md3CompElevatedButton
   extendedFab: Md3CompExtendedFab
@@ -45,6 +54,7 @@ export interface Components {
   filledIconButton: Md3CompFilledIconButton
   filterChip: Md3CompFilterChip
   iconButton: Md3CompIconButton
+  linearProgress: Md3CompLinearProgress
   list: Md3CompList
   outlinedButton: Md3CompOutlinedButton
   outlinedIconButton: Md3CompOutlinedIconButton
@@ -60,6 +70,7 @@ export function createComponents(theme: Record<string, any>): Components {
   return mergeDeep(
     {
       badge: badgeTheme(theme),
+      circularProgress: circularProgressTheme(theme),
       divider: dividerTheme(theme),
       elevatedButton: elevatedButtonTheme(theme),
       extendedFab: extendedFabTheme(theme),
@@ -68,6 +79,7 @@ export function createComponents(theme: Record<string, any>): Components {
       filledIconButton: filledIconButtonTheme(theme),
       filterChip: filterChipTheme(theme),
       iconButton: iconButtonTheme(theme),
+      linearProgress: linearProgressTheme(theme),
       list: listTheme(theme),
       outlinedButton: outlinedButtonTheme(theme),
       outlinedIconButton: outlinedIconButtonTheme(theme),

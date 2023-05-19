@@ -2,7 +2,6 @@
 import { mapValues, mergeDeep } from "@md3-ui/utils"
 import AdmZip from "adm-zip"
 import { camelCase, kebabCase, mapKeys } from "lodash"
-import fs from "node:fs"
 import StyleDictionary from "style-dictionary"
 import { TypescriptColor } from "./formats/typescript-color"
 import { TypescriptComponent } from "./formats/typescript-component"
@@ -38,6 +37,7 @@ function objectify(obj: Record<string, any>) {
 
 const componentMap = {
   badge: "badge",
+  circularProgressIndicator: "circularProgress",
   divider: "divider",
   elevatedButton: "elevatedButton",
   extendedFab: "extendedFab",
@@ -48,6 +48,7 @@ const componentMap = {
   filledTonalIconButton: "tonalIconButton",
   filterChip: "filterChip",
   iconButton: "iconButton",
+  linearProgressIndicator: "linearProgress",
   list: "list",
   outlinedButton: "outlinedButton",
   outlinedIconButton: "outlinedIconButton",
@@ -105,9 +106,6 @@ export default async function main() {
     )
     tokens = mergeDeep(tokens, json)
   }
-
-  fs.writeFileSync("dist/tokens.json", JSON.stringify(tokens, undefined, 2))
-  // tokens = JSON.parse(fs.readFileSync("dist/tokens.json").toString())
 
   const transforms = [
     "attribute/cti",
@@ -214,7 +212,7 @@ export default async function main() {
     type: "value",
     name: "md/color",
     matcher: (token) =>
-      ["color", "shadowColor"].includes(token.path[token.path.length - 1]),
+      token.path.at(-1) === "color" || token.path.at(-1) === "shadowColor",
     transformer: (token) =>
       `md.sys.color.${token.value.replace(
         "onInverseSurface",
@@ -225,7 +223,7 @@ export default async function main() {
   dict.registerTransform({
     type: "value",
     name: "md/textStyle",
-    matcher: (token) => token.path[token.path.length - 1] === "textStyle",
+    matcher: (token) => token.path.at(-1) === "textStyle",
     transformer: (token) => `md.sys.typescale.${token.value}`,
   })
 

@@ -166,7 +166,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
       if (finished) {
         setPrevChecked(newChecked)
         setAlignItems(newChecked ? "flex-end" : "flex-start")
-        setTimeout(() => {
+        queueMicrotask(() => {
           switchAnimation.setValue(newChecked ? -1 : 1)
         })
       }

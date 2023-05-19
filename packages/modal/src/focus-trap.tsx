@@ -300,10 +300,10 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
           )
 
           const focusNext = tabbable[0]
-          const focusPrevious = tabbable[tabbable.length - 1]
+          const focusPrevious = tabbable.at(-1)
 
           if (shiftTab) {
-            focusPrevious.focus()
+            focusPrevious?.focus()
           } else {
             focusNext.focus()
           }

@@ -1,4 +1,5 @@
 import * as React from "react"
+import "react-native"
 
 declare module "react-native" {
   export interface PressableStateCallbackType {
@@ -21,6 +22,11 @@ declare module "react-native" {
       element: HTMLElement
       getStyleElement: () => React.ReactElement
     }
+  }
+
+  export function useLocaleContext(): {
+    direction: "ltr" | "rtl"
+    locale?: string
   }
 
   export interface ImageStyle {
@@ -47,6 +53,8 @@ declare module "react-native" {
     /** @platform web */
     gridTemplateColumns?: React.CSSProperties["gridTemplateColumns"]
     /** @platform web */
+    listStyleType?: React.CSSProperties["listStyleType"]
+    /** @platform web */
     outlineColor?: React.CSSProperties["outlineColor"]
     /** @platform web */
     outlineOffset?: React.CSSProperties["outlineOffset"]
@@ -60,6 +68,8 @@ declare module "react-native" {
     userSelect?: React.CSSProperties["userSelect"]
     /** @platform web */
     visibility?: React.CSSProperties["visibility"]
+    /** @platform web */
+    willChange?: React.CSSProperties["willChange"]
   }
 
   export interface AccessibilityProps {

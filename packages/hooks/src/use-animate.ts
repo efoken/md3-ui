@@ -141,11 +141,15 @@ export function useAnimate({
     }
   })
 
+  const stop = () => {
+    animation.stop()
+  }
+
   React.useEffect(() => {
     if (animate && (animatedValue as any)._value !== toValue) {
       start()
     }
   }, [animate, animatedValue, start, toValue])
 
-  return [animatedValue, { interpolate, reset, start }] as const
+  return [animatedValue, { interpolate, reset, start, stop }] as const
 }

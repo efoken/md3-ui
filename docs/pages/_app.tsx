@@ -23,10 +23,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => (
         frame: { width: 0, height: 0, x: 0, y: 0 },
         insets: { left: 0, right: 0, bottom: 0, top: 0 },
       }}
-      style={{
-        display: "contents" as any,
-        flex: 0,
-      }}
+      style={{ display: "contents" as any }}
     >
       <Md3Provider
         theme={createTheme({

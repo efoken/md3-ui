@@ -377,8 +377,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
           initialSize,
         )
 
-        const rippleId =
-          ripples.length === 0 ? 1 : ripples[ripples.length - 1].id + 1
+        const rippleId = (ripples.at(-1)?.id ?? 0) + 1
 
         const ripple = (
           <ButtonBaseRipple

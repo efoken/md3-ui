@@ -1,0 +1,492 @@
+{
+  "ButtonBase": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "ElevatedButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Element placed before the children."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "ExtendedFab": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "The icon to display."
+    },
+    "label": {
+      "type": "| string\n  | number\n  | boolean\n  | ReactElement<any, string | JSXElementConstructor<any>>\n  | ReactFragment\n  | ReactPortal",
+      "required": false,
+      "description": "The content of the component."
+    },
+    "lowered": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the component is lowered."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "Fab": {
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": true,
+      "description": "The icon to display."
+    },
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "lowered": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the component is lowered."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "FilledButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Element placed before the children."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "FilledIconButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "edge": {
+      "type": "false | \"start\" | \"end\"",
+      "required": false,
+      "description": "If given, uses a negative margin to counteract the padding on one side\n(this is often helpful for aligning the left or right side of the icon with\ncontent above or below, without ruining the border size and shape)."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the component is selected."
+    },
+    "surfaceTintColor": { "type": "string", "required": false },
+    "toggle": { "type": "boolean", "defaultValue": false, "required": false }
+  },
+  "IconButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "edge": {
+      "type": "false | \"start\" | \"end\"",
+      "required": false,
+      "description": "If given, uses a negative margin to counteract the padding on one side\n(this is often helpful for aligning the left or right side of the icon with\ncontent above or below, without ruining the border size and shape)."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the component is selected."
+    },
+    "surfaceTintColor": { "type": "string", "required": false },
+    "toggle": { "type": "boolean", "defaultValue": false, "required": false }
+  },
+  "OutlinedButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Element placed before the children."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "OutlinedIconButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "edge": {
+      "type": "false | \"start\" | \"end\"",
+      "required": false,
+      "description": "If given, uses a negative margin to counteract the padding on one side\n(this is often helpful for aligning the left or right side of the icon with\ncontent above or below, without ruining the border size and shape)."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the component is selected."
+    },
+    "surfaceTintColor": { "type": "string", "required": false },
+    "toggle": { "type": "boolean", "defaultValue": false, "required": false }
+  },
+  "TextButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Element placed before the children."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "TonalButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "icon": {
+      "type": "ReactElement<any, string | JSXElementConstructor<any>>",
+      "required": false,
+      "description": "Element placed before the children."
+    },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "surfaceTintColor": { "type": "string", "required": false }
+  },
+  "TonalIconButton": {
+    "centerRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripples are centered. They won't start at the cursor\ninteraction position."
+    },
+    "disabled": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the component is disabled."
+    },
+    "disableRipple": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the ripple effect is disabled."
+    },
+    "edge": {
+      "type": "false | \"start\" | \"end\"",
+      "required": false,
+      "description": "If given, uses a negative margin to counteract the padding on one side\n(this is often helpful for aligning the left or right side of the icon with\ncontent above or below, without ruining the border size and shape)."
+    },
+    "focusColor": { "type": "string", "required": false },
+    "focusOpacity": { "type": "number", "required": false },
+    "hoverColor": { "type": "string", "required": false },
+    "hoverOpacity": { "type": "number", "required": false },
+    "onFocusVisible": {
+      "type": "(event: NativeSyntheticEvent<TargetedEvent>) => void",
+      "required": false,
+      "description": "Callback fired when the component is focused with a keyboard. We also\ntrigger an `onFocus` callback."
+    },
+    "pressedColor": { "type": "string", "required": false },
+    "pressedOpacity": { "type": "number", "required": false },
+    "rippleColor": { "type": "string", "required": false },
+    "selected": {
+      "type": "boolean",
+      "required": false,
+      "description": "If `true`, the component is selected."
+    },
+    "surfaceTintColor": { "type": "string", "required": false },
+    "toggle": { "type": "boolean", "defaultValue": false, "required": false }
+  }
+}

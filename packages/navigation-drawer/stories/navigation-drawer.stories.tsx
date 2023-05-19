@@ -1,6 +1,7 @@
 import { TextButton } from "@md3-ui/button"
+import { Divider } from "@md3-ui/divider"
 import { Circle, Mail } from "@md3-ui/icons"
-import { Divider, Stack } from "@md3-ui/layout"
+import { Stack } from "@md3-ui/layout"
 import { Box } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"

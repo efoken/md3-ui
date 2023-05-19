@@ -1,4 +1,4 @@
-export interface Md3Duration {
+interface Md3Duration {
   short1: number
   short2: number
   short3: number
@@ -17,7 +17,7 @@ export interface Md3Duration {
   extraLong4: number
 }
 
-export interface Md3Easing {
+interface Md3Easing {
   linear: [number, number, number, number]
   standard: [number, number, number, number]
   standardAccelerate: [number, number, number, number]
@@ -44,7 +44,7 @@ export interface Motion {
 }
 
 // Follows https://m3.material.io/styles/motion/easing-and-duration/tokens-specs
-export const duration: Md3Duration = {
+const duration: Md3Duration = {
   short1: 50,
   short2: 100,
   short3: 150,
@@ -63,7 +63,7 @@ export const duration: Md3Duration = {
   extraLong4: 1000,
 }
 
-export const easing: Md3Easing = {
+const easing: Md3Easing = {
   linear: [0, 0, 0, 1],
   standard: [0.2, 0, 0, 1],
   standardAccelerate: [0.3, 0, 1, 1],

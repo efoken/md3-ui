@@ -48,11 +48,11 @@ export type CardMediaStyleKey = keyof NonNullable<CardMediaProps["styles"]>
 const CardContentRoot = styled(RNImage, {
   name: "CardMedia",
   slot: "Root",
-})(() => ({
+})({
   borderRadius: 12,
   objectFit: "cover",
   width: "100%",
-}))
+})
 
 export const CardMedia = React.forwardRef<RNImage, CardMediaProps>(
   (inProps, ref) => {

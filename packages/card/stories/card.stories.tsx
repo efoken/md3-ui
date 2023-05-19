@@ -6,7 +6,6 @@ import { Card, CardActions, CardContent, CardMedia, CardProps } from "../src"
 export default {
   title: "Components/Cards",
   component: Card,
-  // subcomponents: { CardActions, CardContent, CardMedia },
 } as Meta<CardProps>
 
 export const Elevated: StoryObj<CardProps> = {

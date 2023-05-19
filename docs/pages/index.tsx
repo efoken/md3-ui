@@ -2,6 +2,7 @@ import { Box, ElevatedButton, OutlinedButton, Stack, Text } from "@md3-ui/core"
 import { ChangeHistory } from "@md3-ui/icons"
 import { NextPage } from "next"
 import Head from "next/head"
+import { MDXComponents } from "../src/mdx-components"
 
 const Home: NextPage = () => (
   <>
@@ -50,6 +51,29 @@ const Home: NextPage = () => (
           </ElevatedButton>
           <OutlinedButton>$ npm i @md3-ui/core</OutlinedButton>
         </Stack>
+        <MDXComponents.ul>
+          <MDXComponents.li>
+            <Text sx={{ fontWeight: "500" }}>Accessible HTML</Text>. Support
+            different devices and input modes, render semantic tags.
+          </MDXComponents.li>
+          <MDXComponents.li>
+            <Text sx={{ fontWeight: "500" }}>High-quality interactions</Text>.
+            Support gestures and multiple input modes (touch, mouse, keyboard).
+          </MDXComponents.li>
+          <MDXComponents.li>
+            <Text sx={{ fontWeight: "500" }}>Reliable styles</Text>. Rely on
+            scoped styles and automatic vendor-prefixing. Support RTL layouts.
+          </MDXComponents.li>
+          <MDXComponents.li>
+            <Text sx={{ fontWeight: "500" }}>Responsive containers</Text>.
+            Respond to element resize events.
+          </MDXComponents.li>
+          <MDXComponents.li>
+            <Text sx={{ fontWeight: "500" }}>Incremental adoption</Text>.
+            Interoperates with existing React DOM components. Bundle only what
+            you use.
+          </MDXComponents.li>
+        </MDXComponents.ul>
       </Box>
     </Box>
   </>

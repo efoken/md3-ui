@@ -1,0 +1,28 @@
+{
+  "Badge": {
+    "invisible": {
+      "type": "boolean",
+      "defaultValue": false,
+      "required": false,
+      "description": "If `true`, the badge is invisible."
+    },
+    "max": {
+      "type": "number",
+      "defaultValue": "99",
+      "required": false,
+      "description": "Max count to show."
+    },
+    "showZero": { "type": "boolean", "defaultValue": false, "required": false },
+    "value": {
+      "type": "string | number",
+      "required": false,
+      "description": "The value rendered within the badge."
+    }
+  },
+  "UseBadge": {
+    "invisible": { "type": "boolean", "required": false },
+    "max": { "type": "number", "required": false },
+    "showZero": { "type": "boolean", "required": false },
+    "value": { "type": "string | number", "required": false }
+  }
+}

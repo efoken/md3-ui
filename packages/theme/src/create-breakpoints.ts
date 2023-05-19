@@ -1,4 +1,4 @@
-export type Breakpoint = "compact" | "medium" | "expanded"
+type Breakpoint = "compact" | "medium" | "expanded"
 
 export interface Breakpoints {
   keys: Breakpoint[]

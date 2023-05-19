@@ -1,7 +1,7 @@
 import { Platform, TextStyle as RNTextStyle } from "react-native"
 import { Typeface } from "./create-typeface"
 
-export type TypescaleStyle = Required<
+type TypescaleStyle = Required<
   Pick<
     RNTextStyle,
     "fontFamily" | "fontSize" | "fontWeight" | "letterSpacing" | "lineHeight"

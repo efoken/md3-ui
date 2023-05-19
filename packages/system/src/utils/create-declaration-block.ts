@@ -9,7 +9,7 @@ function hyphenateStyleName(name: string) {
     return cache.get(name)
   }
   const newName = name
-    .replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
+    .replaceAll(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
     .replace(/^ms-/, "-ms-")
   cache.set(name, newName)
   return newName

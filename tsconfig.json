@@ -25,11 +25,5 @@
     "scripts",
     "tools",
     "types"
-  ],
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS",
-      "noImplicitAny": false
-    }
-  }
+  ]
 }

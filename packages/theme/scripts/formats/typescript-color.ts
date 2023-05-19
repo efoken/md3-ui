@@ -22,8 +22,8 @@ export const TypescriptColor: Format = {
 
     export function createColor(palette: any, color: Partial<Color> = {}): Color {
       return mergeDeep(${JSON.stringify(tokens[colorScheme], null, 2)
-        .replace(/"(\d{1,3})":/g, "$1:")
-        .replace(
+        .replaceAll(/"(\d{1,3})":/g, "$1:")
+        .replaceAll(
           /"md\.ref\.palette\.(.+?)\.(\d{1,3})"/g,
           "palette.$1[$2]",
         )}, color)

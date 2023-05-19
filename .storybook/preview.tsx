@@ -34,7 +34,7 @@ const preview: Preview = {
   decorators: [
     withPerformance,
     (StoryFn, context) => (
-      <SafeAreaProvider style={{ height: "100%" }}>
+      <SafeAreaProvider style={{ display: "contents" as any }}>
         <Md3Provider theme={createTheme()}>
           <Box
             dir={context.globals.direction.toLowerCase()}

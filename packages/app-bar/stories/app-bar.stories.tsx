@@ -13,7 +13,6 @@ import { AppBar, AppBarProps, Toolbar } from "../src"
 export default {
   title: "Components/Top app bar",
   component: AppBar,
-  // subcomponents: { Toolbar },
 } as Meta<AppBarProps>
 
 export const CenterAligned: StoryObj<AppBarProps> = {

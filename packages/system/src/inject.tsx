@@ -13,7 +13,7 @@ if (isBrowser) {
   })()
 }
 
-export function hasCSS(id: string, text: string) {
+function hasCSS(id: string, text: string) {
   return cache.has(id) && cache.get(id)?.includes(text)
 }
 

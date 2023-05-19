@@ -1,4 +1,5 @@
 import { StorybookConfig } from "@storybook/react-webpack5"
+import webpack from "webpack"
 
 const config: StorybookConfig = {
   stories: ["../packages/*/stories/*.stories.tsx"],
@@ -20,6 +21,12 @@ const config: StorybookConfig = {
   },
   webpackFinal: (config) => ({
     ...config,
+    plugins: [
+      ...(config.plugins ?? []),
+      new webpack.DefinePlugin({
+        __DEV__: JSON.stringify(true),
+      }),
+    ],
     resolve: {
       ...config.resolve,
       alias: {

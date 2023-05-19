@@ -21,8 +21,9 @@ export function isEmptyObject(value: any) {
 // String assertions
 export type Media =
   | `@media (${"min-width" | "max-width"}: ${
-      | `${number | ""}${number | ""}${number}${"px" | "em" | "rem"}`
+      | `${number}${"px" | "em" | "rem"}`
       | "0"})`
+  | "@media (forced-colors: active)"
   | "@media print"
 
 export function isMedia(value: string): value is Media {

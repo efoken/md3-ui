@@ -134,8 +134,8 @@ export const NavigationDrawer = React.forwardRef<RNView, NavigationDrawerProps>(
       props: inProps,
     })
 
-    const { handleLayout, width: maxWidth } = useLayout()
-    const width = maxWidth === 0 ? 360 : maxWidth
+    const { handleLayout, ...layout } = useLayout()
+    const width = layout.width === 0 ? 360 : layout.width
 
     const { direction } = useLocale()
 
