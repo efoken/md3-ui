@@ -34,7 +34,7 @@
     "webpack": "^5.83.1"
   },
   "devDependencies": {
-    "eslint": "^8.40.0",
+    "eslint": "^8.43.0",
     "eslint-config-next": "^13.4.2"
   }
 }
