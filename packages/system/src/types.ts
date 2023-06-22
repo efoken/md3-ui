@@ -58,13 +58,16 @@ export type SystemProps = {
     | SystemStyleObject
 }
 
-export type SystemStyleObject =
-  | SystemProps
-  | ((theme: Theme) => SystemProps)
-  | Record<string, SystemProps>
-  | null
+export type SystemStyleObject = SystemProps | null
 
-export type SxProps = SystemStyleObject
+export type SxProps =
+  | SystemStyleObject
+  | ((theme: Theme) => SystemStyleObject)
+  | readonly (
+      | boolean
+      | SystemStyleObject
+      | ((theme: Theme) => SystemStyleObject)
+    )[]
 
 export type StylesProp<T> = {
   [K in keyof T]?: NonNullable<T[K]> extends React.CSSProperties

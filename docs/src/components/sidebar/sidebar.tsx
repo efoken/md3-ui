@@ -29,7 +29,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         borderColor: "surfaceVariant",
         borderRightWidth: 1,
         bottom: 0,
-        height: "100vh",
+        height: "100vh" as any,
         left: { compact: "auto", expanded: 0 },
         position: expanded ? ("sticky" as any) : ("fixed" as any),
         right: { compact: "100%", expanded: "auto" },

@@ -1,5 +1,5 @@
 import { ElevatedButton } from "@md3-ui/button"
-import { Box, Text } from "@md3-ui/system"
+import { Box, SxProps, Text } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
 import * as React from "react"
 import { Modal, ModalProps } from "../src"
@@ -9,14 +9,14 @@ export default {
   component: Modal,
 } as Meta<ModalProps>
 
-const style = {
-  bgColor: "background" as const,
+const style: SxProps = {
+  bgColor: "background",
   borderColor: "#000",
   borderWidth: 2,
-  elevation: "level5" as const,
+  elevation: "level5",
   left: "50%",
   pb: 8,
-  position: "absolute" as const,
+  position: "absolute",
   pt: 4,
   px: 8,
   top: "50%",

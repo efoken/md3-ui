@@ -29,10 +29,6 @@ declare module "react-native" {
     locale?: string
   }
 
-  export interface ImageStyle {
-    objectFit?: React.CSSProperties["objectFit"]
-  }
-
   export interface ViewStyle {
     /** @platform web */
     animationDuration?: React.CSSProperties["animationDuration"]
@@ -62,7 +58,6 @@ declare module "react-native" {
     outlineStyle?: React.CSSProperties["outlineStyle"]
     /** @platform web */
     outlineWidth?: React.CSSProperties["outlineWidth"]
-    pointerEvents?: "all" | "none" | "box-only" | "box-none"
     /** @platform web */
     transition?: React.CSSProperties["transition"]
     userSelect?: React.CSSProperties["userSelect"]

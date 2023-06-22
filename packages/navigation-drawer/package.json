@@ -44,9 +44,9 @@
     "@md3-ui/divider": "^0.2.1",
     "@md3-ui/icons": "^0.2.1",
     "@md3-ui/layout": "^0.2.1",
-    "@types/react": "^18.2.6",
+    "@types/react": "^18.2.13",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-native": "0.72.0"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",

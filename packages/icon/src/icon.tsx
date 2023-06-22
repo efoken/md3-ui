@@ -86,8 +86,8 @@ const IconRoot = styled(Svg, {
         Number(ownerState.height ?? 0),
         Number(ownerState.width ?? 0),
       ),
-      height: ownerState.height,
-      width: ownerState.width,
+      height: Number(ownerState.height),
+      width: Number(ownerState.width),
     }),
   }),
 )

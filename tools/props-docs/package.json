@@ -23,8 +23,8 @@
     "access": "public"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.194",
-    "glob": "^10.2.5",
+    "@types/lodash": "^4.14.195",
+    "glob": "^10.3.0",
     "lodash": "^4.17.21",
     "mkdirp": "^3.0.1",
     "outdent": "^0.8.0",

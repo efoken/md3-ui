@@ -36,16 +36,16 @@
   },
   "dependencies": {
     "@emotion/primitives-core": "^11.11.0",
-    "@emotion/react": "^11.11.0",
+    "@emotion/react": "^11.11.1",
     "@md3-ui/theme": "^0.2.1",
     "@md3-ui/utils": "^0.2.1",
     "css-mediaquery2": "^1.0.9"
   },
   "devDependencies": {
-    "@types/react": "^18.2.6",
+    "@types/react": "^18.2.13",
     "react": "18.2.0",
-    "react-native": "0.71.8",
-    "react-native-web": "^0.19.4"
+    "react-native": "0.72.0",
+    "react-native-web": "^0.19.5"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",

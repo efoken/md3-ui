@@ -38,9 +38,9 @@
     "@md3-ui/system": "^0.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.6",
+    "@types/react": "^18.2.13",
     "react": "18.2.0",
-    "react-native": "0.71.8"
+    "react-native": "0.72.0"
   },
   "peerDependencies": {
     "@types/react": "^18.2.0",

@@ -65,6 +65,6 @@ export const MDXComponents = {
         {React.Children.only(children) as React.ReactElement}
       </CodeBlock>
     ),
-  PropsTable,
+  PropsTable: PropsTable as any,
   ...(Md3Core as Record<string, any>),
 }

@@ -1,5 +1,6 @@
 import * as React from "react"
 import {
+  AnimatableNumericValue,
   Platform,
   View as RNView,
   ViewStyle as RNViewStyle,
@@ -27,7 +28,7 @@ const ElevationSurface = styled(RNView, {
   slot: "Surface",
 })<
   OwnerStateProps<{
-    borderRadius?: number
+    borderRadius?: AnimatableNumericValue
     opacity: number
     surfaceTintColor?: string
   }>
