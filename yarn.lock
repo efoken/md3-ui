@@ -3151,10 +3151,10 @@
     invariant "^2.2.4"
     nullthrows "^1.1.1"
 
-"@remix-run/router@1.6.3":
-  version "1.6.3"
-  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.6.3.tgz#8205baf6e17ef93be35bf62c37d2d594e9be0dad"
-  integrity sha512-EXJysQ7J3veRECd0kZFQwYYd5sJMcq2O/m60zu1W2l3oVQ9xtub8jTOtYRE0+M2iomyG/W3Ps7+vp2kna0C27Q==
+"@remix-run/router@1.8.0":
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/@remix-run/router/-/router-1.8.0.tgz#e848d2f669f601544df15ce2a313955e4bf0bafc"
+  integrity sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
@@ -4708,10 +4708,10 @@
     "@typescript-eslint/types" "5.60.0"
     eslint-visitor-keys "^3.3.0"
 
-"@ungap/url-search-params@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@ungap/url-search-params/-/url-search-params-0.1.4.tgz#727e9b4c811beaa6be6d7e4cc0516663c884cfd0"
-  integrity sha512-RLwrxCTDNiNev9hpr9rDq8NyeQ8Nn0X1we4Wu7Tlf368I8r+7hBj3uObhifhuLk74egaYaSX5nUsBlWz6kjj+A==
+"@ungap/url-search-params@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@ungap/url-search-params/-/url-search-params-0.2.2.tgz#2de3bdec21476a9b70ef11fd7b794752f9afa04c"
+  integrity sha512-qQsguKXZVKdCixOHX9jqnX/K/1HekPDpGKyEcXHT+zR6EjGA7S4boSuelL4uuPv6YfhN0n8c4UxW+v/Z3gM2iw==
 
 "@urql/core@2.3.6":
   version "2.3.6"
@@ -14639,20 +14639,20 @@ react-resize-detector@^7.1.2:
   dependencies:
     lodash "^4.17.21"
 
-react-router-native@^6.13.0:
-  version "6.13.0"
-  resolved "https://registry.yarnpkg.com/react-router-native/-/react-router-native-6.13.0.tgz#fb4c56285639552947f359254a310bddfdee0cd5"
-  integrity sha512-w6Ci+NwEUanU+c9Nq6v4j5pI3Z0yrV6gFkynvknnlHy5UgwSqiixykinadDUqtdPw1MUM1VvWdm1MFDFnYLzCA==
+react-router-native@^6.15.0:
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/react-router-native/-/react-router-native-6.15.0.tgz#36a5d8a74d03a7f8dac76423b765fd3c26b8e477"
+  integrity sha512-EXiYrLWHp/0IEHsOt4cHUOOEZBTRIC9YMUoO3ZaSHgUBv+UIEhFASAUiv8DMMcS+aJBwx7FzjeRpu5WbB27Xwg==
   dependencies:
-    "@ungap/url-search-params" "^0.1.4"
-    react-router "6.13.0"
+    "@ungap/url-search-params" "^0.2.2"
+    react-router "6.15.0"
 
-react-router@6.13.0:
-  version "6.13.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.13.0.tgz#7e4427a271dae0cafbdb88c56ccbd9b1434ee93f"
-  integrity sha512-Si6KnfEnJw7gUQkNa70dlpI1bul46FuSxX5t5WwlUBxE25DAz2BjVkwaK8Y2s242bQrZPXCpmwLPtIO5pv4tXg==
+react-router@6.15.0:
+  version "6.15.0"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-6.15.0.tgz#bf2cb5a4a7ed57f074d4ea88db0d95033f39cac8"
+  integrity sha512-NIytlzvzLwJkCQj2HLefmeakxxWHWAP+02EGqWEZy+DgfHHKQMUoBBjUQLOtFInBMhWtb3hiUy6MfFgwLjXhqg==
   dependencies:
-    "@remix-run/router" "1.6.3"
+    "@remix-run/router" "1.8.0"
 
 react-shallow-renderer@^16.15.0:
   version "16.15.0"
