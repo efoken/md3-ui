@@ -38,8 +38,8 @@
     "@md3-ui/hooks": "^0.2.1"
   },
   "devDependencies": {
-    "@types/react": "^18.2.13",
-    "@types/react-dom": "^18.2.6",
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.0"
