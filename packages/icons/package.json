@@ -43,7 +43,7 @@
     "@supercharge/promise-pool": "^2.4.0",
     "@svgr/core": "^8.0.0",
     "@svgr/plugin-jsx": "^8.0.1",
-    "@types/lodash": "^4.14.195",
+    "@types/lodash": "^4.14.198",
     "@types/react": "^18.2.21",
     "fetch-retry": "^5.0.6",
     "lodash": "^4.17.21",
