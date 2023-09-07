@@ -35,7 +35,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@ctrl/tinycolor": "^3.6.0",
+    "@ctrl/tinycolor": "^3.6.1",
     "@md3-ui/utils": "^0.2.1"
   },
   "devDependencies": {
