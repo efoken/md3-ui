@@ -42,7 +42,7 @@
     "@md3-ui/system": "^0.2.1",
     "@supercharge/promise-pool": "^2.4.0",
     "@svgr/core": "^8.1.0",
-    "@svgr/plugin-jsx": "^8.0.1",
+    "@svgr/plugin-jsx": "^8.1.0",
     "@types/lodash": "^4.14.198",
     "@types/react": "^18.2.21",
     "fetch-retry": "^5.0.6",
