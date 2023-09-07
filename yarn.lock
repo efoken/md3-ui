@@ -5994,10 +5994,10 @@ babel-plugin-react-docgen@^4.2.1:
     lodash "^4.17.15"
     react-docgen "^5.0.0"
 
-babel-plugin-react-native-web@^0.19.5:
-  version "0.19.5"
-  resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.19.5.tgz#ae55f988e801a15ede0243ebe4ef7f0a769d4f5a"
-  integrity sha512-6XFhCMkuWkG6IYiiPUUsNK9XWh0FMOVSuwWQkUFYnUG838XhqBhISpdNCQs0PfLCQpVzvxIf9p+bw2RuE/cmpQ==
+babel-plugin-react-native-web@^0.19.8:
+  version "0.19.8"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-native-web/-/babel-plugin-react-native-web-0.19.8.tgz#64920f108a9683a2bef772bae88fd3d15a2ce340"
+  integrity sha512-EnxczF63HfVwm4ZrNifEhKRXeHDlzXwCgzmoW8v0Ch81vWXHJogIetVY0MRwg1D63rO0T5Vzz2n+ERgjPd4ULw==
 
 babel-plugin-react-native-web@~0.18.10:
   version "0.18.12"
