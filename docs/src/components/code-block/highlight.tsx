@@ -1,8 +1,8 @@
 import { Box, Text } from "@md3-ui/core"
-import BaseHighlight, {
+import {
+  Highlight as BaseHighlight,
   Language,
   PrismTheme,
-  defaultProps,
 } from "prism-react-renderer"
 
 const RE = /{([\d,-]+)}/
@@ -41,12 +41,7 @@ export const Highlight: React.FC<HighlightProps> = ({
   const shouldHighlightLine = calculateLinesToHighlight(metastring)
 
   return (
-    <BaseHighlight
-      {...defaultProps}
-      code={codeString}
-      language={language}
-      theme={theme}
-    >
+    <BaseHighlight code={codeString} language={language} theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Box
           as="div"

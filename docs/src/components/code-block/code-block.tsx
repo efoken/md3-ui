@@ -1,6 +1,6 @@
 import { Box, useBoolean } from "@md3-ui/core"
 import dynamic from "next/dynamic"
-import theme from "prism-react-renderer/themes/vsDark"
+import { themes } from "prism-react-renderer"
 import { useEffect } from "react"
 import { CopyButton } from "./copy-button"
 import { Highlight } from "./highlight"
@@ -39,7 +39,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     mountStylesheet,
     noInline: manual,
     rawCode,
-    theme,
+    theme: themes.vsDark,
   }
 
   if (mounted && (language === "jsx" || language === "tsx") && live === true) {
@@ -72,7 +72,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
           language={language}
           metastring={ln}
           showLines={viewlines}
-          theme={theme}
+          theme={themes.vsDark}
         />
       </Box>
       <CopyButton code={rawCode} sx={{ top: 4 }} />
