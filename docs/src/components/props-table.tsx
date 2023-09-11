@@ -1,6 +1,6 @@
 import { Box, Stack, Text } from "@md3-ui/core"
 import { getPropDoc } from "@md3-ui/props-docs"
-import * as React from "react"
+import { useMemo } from "react"
 import { MDXComponents } from "../mdx-components"
 import { convertBackticksToInlineCode } from "../utils/convert-backticks-to-inline-code"
 
@@ -48,7 +48,7 @@ export const PropsTable: React.FC<PropsTableProps> = ({
   omit = ["layerStyle", "noOfLines", "textStyle", "orientation", "styleConfig"],
   only,
 }) => {
-  const propList = React.useMemo(
+  const propList = useMemo(
     () => makePropsTable({ of, omit, only }),
     [of, omit, only],
   )

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { isMedia, memoize, objectFilter } from "@md3-ui/utils"
 import MediaQuery, { MediaValues } from "css-mediaquery2"
-import * as React from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Platform } from "react-native"
 import { StyleSheet } from "./style-sheet"
 import { RNStyle } from "./types"
@@ -29,9 +29,9 @@ export function useStyleSheet(styles: RNStyle) {
 
     let setMediaValues: React.Dispatch<Partial<MediaValues>>
     ;[mediaValues, setMediaValues] =
-      React.useState<Partial<MediaValues>>(rawMediaValues)
+      useState<Partial<MediaValues>>(rawMediaValues)
 
-    React.useEffect(() => {
+    useEffect(() => {
       const nextMediaValues = objectFilter(rawMediaValues, (value, key) =>
         findMediaFeatures(styles).has(key),
       )
@@ -42,7 +42,7 @@ export function useStyleSheet(styles: RNStyle) {
     }, [mediaValues, rawMediaValues, styles])
   }
 
-  const createdStyles = React.useMemo(
+  const createdStyles = useMemo(
     () =>
       StyleSheet.create(
         { style: objectFilter(styles, (style) => style != null) },

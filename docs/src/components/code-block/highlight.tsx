@@ -4,7 +4,6 @@ import BaseHighlight, {
   PrismTheme,
   defaultProps,
 } from "prism-react-renderer"
-import * as React from "react"
 
 const RE = /{([\d,-]+)}/
 

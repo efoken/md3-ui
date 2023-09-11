@@ -1,4 +1,4 @@
-import * as React from "react"
+import { forwardRef } from "react"
 import { Icon, IconProps } from "./icon"
 
 interface CreateIconOptions {
@@ -14,7 +14,7 @@ export function createIcon({
   path,
   viewBox = "0 0 24 24",
 }: CreateIconOptions) {
-  const Component = React.forwardRef<any, IconProps>((props, ref) => (
+  const Component = forwardRef<any, IconProps>((props, ref) => (
     <Icon ref={ref} viewBox={viewBox} {...defaultProps} {...props}>
       {path}
     </Icon>

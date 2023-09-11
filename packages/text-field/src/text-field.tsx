@@ -8,7 +8,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { createChainedFunction } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef, useRef } from "react"
 import {
   Easing,
   Text as RNText,
@@ -152,7 +152,7 @@ const TextFieldHelperText = styled(RNText, {
   color: theme.sys.color.onSurface,
 }))
 
-export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
+export const TextField = forwardRef<RNTextInput, TextFieldProps>(
   (inProps, ref) => {
     const {
       children,
@@ -178,7 +178,7 @@ export const TextField = React.forwardRef<RNTextInput, TextFieldProps>(
 
     const theme = useTheme()
 
-    const rootRef = React.useRef<RNTextInput>(null)
+    const rootRef = useRef<RNTextInput>(null)
     const handleRef = useForkRef(rootRef, ref)
 
     const [filled, handleFilled] = useBoolean()

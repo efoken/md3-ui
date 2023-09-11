@@ -7,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import {
   TextStyle as RNTextStyle,
   View as RNView,
@@ -106,7 +106,7 @@ const IconButtonContent = styled(TextStyleProvider, {
   }),
 }))
 
-export const IconButton = React.forwardRef<RNView, IconButtonProps>(
+export const IconButton = forwardRef<RNView, IconButtonProps>(
   (inProps, ref) => {
     const {
       children,
@@ -178,7 +178,7 @@ export const IconButton = React.forwardRef<RNView, IconButtonProps>(
         {...props}
       >
         <IconButtonContent ownerState={ownerState} style={styles?.content}>
-          {React.cloneElement(children, {
+          {cloneElement(children, {
             height: theme.comp.iconButton.icon.size,
             width: theme.comp.iconButton.icon.size,
           })}

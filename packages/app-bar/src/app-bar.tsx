@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Platform,
   View as RNView,
@@ -101,7 +101,7 @@ const AppBarRoot = styled(RNView, {
   }),
 }))
 
-export const AppBar = React.forwardRef<RNView, AppBarProps>((inProps, ref) => {
+export const AppBar = forwardRef<RNView, AppBarProps>((inProps, ref) => {
   const {
     position = "relative",
     style,

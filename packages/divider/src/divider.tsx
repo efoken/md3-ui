@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
 export interface DividerTypeMap<
@@ -73,35 +73,33 @@ const DividerRoot = styled(RNView, {
   }),
 }))
 
-export const Divider = React.forwardRef<RNView, DividerProps>(
-  (inProps, ref) => {
-    const {
-      inset = false,
-      insetEnd = false,
-      insetStart = false,
-      style,
-      styles,
-      ...props
-    } = useThemeProps({
-      name: "Divider",
-      props: inProps,
-    })
+export const Divider = forwardRef<RNView, DividerProps>((inProps, ref) => {
+  const {
+    inset = false,
+    insetEnd = false,
+    insetStart = false,
+    style,
+    styles,
+    ...props
+  } = useThemeProps({
+    name: "Divider",
+    props: inProps,
+  })
 
-    const ownerState = {
-      inset,
-      insetEnd,
-      insetStart,
-    }
+  const ownerState = {
+    inset,
+    insetEnd,
+    insetStart,
+  }
 
-    return (
-      <DividerRoot
-        ref={ref}
-        ownerState={ownerState}
-        style={[style, styles?.root]}
-        {...props}
-      />
-    )
-  },
-) as OverridableComponent<DividerTypeMap>
+  return (
+    <DividerRoot
+      ref={ref}
+      ownerState={ownerState}
+      style={[style, styles?.root]}
+      {...props}
+    />
+  )
+}) as OverridableComponent<DividerTypeMap>
 
 Divider.displayName = "Divider"

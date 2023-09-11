@@ -1,5 +1,5 @@
-import * as React from "react"
+import { createElement as createReactElement } from "react"
 
 export function createElement(type: string | React.ElementType, props: any) {
-  return React.createElement(type, props)
+  return createReactElement(type, props)
 }

@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import * as React from "react"
+import { forwardRef } from "react"
 import { View as RNView, ViewProps as RNViewProps } from "react-native"
 import { Elevation } from "./components/elevation"
 import { useTheme } from "./context"
@@ -21,7 +21,7 @@ export function createBox({
   name?: string
 } = {}) {
   const BoxRoot = styled(
-    React.forwardRef<RNView, RNViewProps & { surfaceTintColor: string }>(
+    forwardRef<RNView, RNViewProps & { surfaceTintColor: string }>(
       ({ children, style, surfaceTintColor, ...props }, ref) => (
         <RNView ref={ref} style={style} {...props}>
           <Elevation style={style} surfaceTintColor={surfaceTintColor}>
@@ -36,7 +36,7 @@ export function createBox({
     },
   )(styleFunctionSx)
 
-  const Box = React.forwardRef<RNView, BoxProps>((inProps, ref) => {
+  const Box = forwardRef<RNView, BoxProps>((inProps, ref) => {
     const { as, ...props } = extendSxProp(inProps)
     const theme = useTheme(defaultTheme)
 

@@ -6,7 +6,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   ImageSourcePropType,
   Image as RNImage,
@@ -54,17 +54,13 @@ const CardContentRoot = styled(RNImage, {
   width: "100%",
 })
 
-export const CardMedia = React.forwardRef<RNImage, CardMediaProps>(
-  (inProps, ref) => {
-    const { style, styles, ...props } = useThemeProps({
-      name: "CardMedia",
-      props: inProps,
-    })
+export const CardMedia = forwardRef<RNImage, CardMediaProps>((inProps, ref) => {
+  const { style, styles, ...props } = useThemeProps({
+    name: "CardMedia",
+    props: inProps,
+  })
 
-    return (
-      <CardContentRoot ref={ref} style={[style, styles?.root]} {...props} />
-    )
-  },
-) as OverridableComponent<CardMediaTypeMap>
+  return <CardContentRoot ref={ref} style={[style, styles?.root]} {...props} />
+}) as OverridableComponent<CardMediaTypeMap>
 
 CardMedia.displayName = "CardMedia"

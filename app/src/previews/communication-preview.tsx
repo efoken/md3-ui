@@ -9,14 +9,14 @@ import {
   Text,
   TextButton,
 } from "@md3-ui/core"
-import * as React from "react"
+import { useState } from "react"
 import { Preview } from "../components/preview"
 import { PreviewCard } from "../components/preview-card"
 import { PreviewTitle } from "../components/preview-title"
 
 export const CommunicationPreview: React.FC = () => {
-  const [value, setValue] = React.useState("mail")
-  const [showSnackbar, setShowSnackbar] = React.useState(false)
+  const [value, setValue] = useState("mail")
+  const [showSnackbar, setShowSnackbar] = useState(false)
 
   return (
     <Preview>

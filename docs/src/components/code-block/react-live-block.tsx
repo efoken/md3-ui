@@ -1,5 +1,5 @@
 import { Box, BoxProps, Text, useTheme } from "@md3-ui/core"
-import * as React from "react"
+import { useState } from "react"
 import { LiveEditor, LiveError, LivePreview, LiveProvider } from "react-live"
 import { CodeContainer } from "./code-container"
 import { CopyButton } from "./copy-button"
@@ -43,7 +43,7 @@ const ReactLiveBlock: React.FC<ReactLiveBlockProps> = ({
   ...props
 }) => {
   const theme = useTheme()
-  const [editorCode, setEditorCode] = React.useState(rawCode.trim())
+  const [editorCode, setEditorCode] = useState(rawCode.trim())
 
   const handleChange = (newCode: string) => {
     setEditorCode(newCode.trim())

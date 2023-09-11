@@ -1,4 +1,5 @@
 {
+  "plugins": ["prettier-plugin-organize-imports"],
   "proseWrap": "always",
   "semi": false,
   "trailingComma": "all"

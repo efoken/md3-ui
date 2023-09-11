@@ -13,7 +13,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { getOwnerDocument } from "@md3-ui/utils"
-import * as React from "react"
+import { cloneElement, forwardRef, useEffect, useRef, useState } from "react"
 import {
   Animated,
   Easing,
@@ -134,7 +134,7 @@ const ModalScrim = styled(Animated.createAnimatedComponent(RNPressable), {
   zIndex: -1,
 }))
 
-export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
+export const Modal = forwardRef<RNModal, ModalProps>((inProps, ref) => {
   const {
     children,
     containerRef,
@@ -157,17 +157,17 @@ export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
     props: inProps,
   })
 
-  const mountNodeRef = React.useRef<any>(null)
-  const rootRef = React.useRef<RNModal>(null)
+  const mountNodeRef = useRef<any>(null)
+  const rootRef = useRef<RNModal>(null)
   const handleRef = useForkRef(rootRef, ref)
 
-  const modalRef = React.useRef({
+  const modalRef = useRef({
     modalRef: rootRef.current as unknown as HTMLElement,
     mountNode: mountNodeRef.current,
   })
 
-  const [exited, setExited] = React.useState(true)
-  const [hidden, setHidden] = React.useState(false)
+  const [exited, setExited] = useState(true)
+  const [hidden, setHidden] = useState(false)
 
   const [opacity, { start: animate }] = useAnimate({
     duration: 225,
@@ -241,7 +241,7 @@ export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
     setHidden(true)
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (open) {
       setExited(false)
       handleOpen()
@@ -251,7 +251,7 @@ export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
   }, [handleClose, handleOpen, open])
 
   // Close the modal on unmount
-  React.useEffect(() => handleClose, [handleClose])
+  useEffect(() => handleClose, [handleClose])
 
   useBackHandler(() => {
     onClose?.()
@@ -322,7 +322,7 @@ export const Modal = React.forwardRef<RNModal, ModalProps>((inProps, ref) => {
         enabled={isTopModal}
         open={open}
       >
-        {React.cloneElement(children, {
+        {cloneElement(children, {
           tabIndex: children.props.tabIndex ?? -1,
         })}
       </FocusTrap>

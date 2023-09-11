@@ -6,7 +6,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef, useEffect, useRef, useState } from "react"
 import {
   Animated,
   Easing,
@@ -96,7 +96,7 @@ const SwitchHandle = styled(Animated.View, {
   width: theme.comp.switch.unselected.handle.width,
 }))
 
-export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
+export const Switch = forwardRef<RNView, SwitchProps>((inProps, ref) => {
   const {
     checked: checkedProp,
     checkedIcon,
@@ -122,20 +122,18 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     state: "checked",
   })
 
-  const [prevChecked, setPrevChecked] = React.useState(checked)
+  const [prevChecked, setPrevChecked] = useState(checked)
 
   const [, handleHover] = useBoolean()
   const [pressed, handlePress] = useBoolean()
 
-  const [alignItems, setAlignItems] = React.useState<RNFlexAlignType>(
+  const [alignItems, setAlignItems] = useState<RNFlexAlignType>(
     checked ? "flex-end" : "flex-start",
   )
 
   const offset = 20
 
-  const switchAnimation = React.useRef(
-    new Animated.Value(checked ? -1 : 1),
-  ).current
+  const switchAnimation = useRef(new Animated.Value(checked ? -1 : 1)).current
 
   const animateSwitch = useEventCallback(
     (newChecked: boolean, callback?: Animated.EndCallback) => {
@@ -148,7 +146,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     },
   )
 
-  const handleAnimation = React.useRef(new Animated.Value(0)).current
+  const handleAnimation = useRef(new Animated.Value(0)).current
 
   const animateHandle = useEventCallback(
     (toValue: number, callback?: Animated.EndCallback) => {
@@ -174,13 +172,13 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
     animateHandle(0)
   })
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (checked !== checkedProp) {
       animate(!!checked)
     }
   }, [checked, checkedProp, animate])
 
-  React.useEffect(() => {
+  useEffect(() => {
     animateHandle(pressed ? 1 : 0)
   }, [animateHandle, pressed])
 
@@ -307,7 +305,7 @@ export const Switch = React.forwardRef<RNView, SwitchProps>((inProps, ref) => {
           >
             {prevChecked
               ? checkedIcon &&
-                React.cloneElement(checkedIcon, {
+                cloneElement(checkedIcon, {
                   height: theme.comp.switch.selected.icon.size,
                   width: theme.comp.switch.selected.icon.size,
                 })

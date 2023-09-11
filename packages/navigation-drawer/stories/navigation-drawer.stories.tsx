@@ -4,7 +4,7 @@ import { Circle, Mail } from "@md3-ui/icons"
 import { Stack } from "@md3-ui/layout"
 import { Box } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
-import * as React from "react"
+import { Fragment, useState } from "react"
 import { GestureResponderEvent, Pressable as RNPressable } from "react-native"
 import {
   NavigationDrawer,
@@ -19,7 +19,7 @@ export default {
 
 export const Modal: StoryObj = {
   render: () => {
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
       start: false,
       end: false,
     })
@@ -67,7 +67,7 @@ export const Modal: StoryObj = {
     return (
       <Stack direction="row">
         {(["start", "end"] as const).map((anchor) => (
-          <React.Fragment key={anchor}>
+          <Fragment key={anchor}>
             <TextButton onPress={toggleDrawer(anchor, true)}>
               {anchor}
             </TextButton>
@@ -79,7 +79,7 @@ export const Modal: StoryObj = {
             >
               {list(anchor)}
             </NavigationDrawer>
-          </React.Fragment>
+          </Fragment>
         ))}
       </Stack>
     )

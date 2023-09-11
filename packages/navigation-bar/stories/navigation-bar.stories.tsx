@@ -1,7 +1,7 @@
 import { Badge } from "@md3-ui/badge"
 import { ChangeHistory, Circle } from "@md3-ui/icons"
 import { Meta, StoryObj } from "@storybook/react"
-import * as React from "react"
+import { useState } from "react"
 import { NavigationBar, NavigationBarItem, NavigationBarProps } from "../src"
 
 export default {
@@ -11,7 +11,7 @@ export default {
 
 export const Basic: StoryObj<NavigationBarProps> = {
   render: ({ value: valueArg, ...args }) => {
-    const [value, setValue] = React.useState(0)
+    const [value, setValue] = useState(0)
 
     return (
       <NavigationBar

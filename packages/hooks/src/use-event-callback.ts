@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useRef } from "react"
 import { useEnhancedEffect } from "./use-enhanced-effect"
 
 /**
@@ -7,11 +7,11 @@ import { useEnhancedEffect } from "./use-enhanced-effect"
 export function useEventCallback<Args extends unknown[], Return>(
   fn: (...args: Args) => Return,
 ): (...args: Args) => Return {
-  const ref = React.useRef(fn)
+  const ref = useRef(fn)
   useEnhancedEffect(() => {
     ref.current = fn
   })
-  return React.useCallback(
+  return useCallback(
     // Eval the callback in global scope
     // See: https://stackoverflow.com/questions/40967162/what-is-the-meaning-of-this-code-0-function-in-javascript
     (...args: Args) => (() => ref.current!)()(...args),

@@ -1,6 +1,6 @@
 import { Theme } from "@md3-ui/theme"
 import { isFunction } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Pressable as RNPressable,
   PressableProps as RNPressableProps,
@@ -25,7 +25,7 @@ export function createPressable({
   name?: string
 } = {}) {
   const PressableRoot = styled(
-    React.forwardRef<RNView, RNPressableProps & { surfaceTintColor: string }>(
+    forwardRef<RNView, RNPressableProps & { surfaceTintColor: string }>(
       ({ children, style, surfaceTintColor, ...props }, ref) => (
         <RNPressable ref={ref} style={style} {...props}>
           {(state) => (
@@ -45,7 +45,7 @@ export function createPressable({
     },
   )(styleFunctionSx)
 
-  const Pressable = React.forwardRef<RNView, PressableProps>((inProps, ref) => {
+  const Pressable = forwardRef<RNView, PressableProps>((inProps, ref) => {
     const props = extendSxProp(inProps)
     const theme = useTheme(defaultTheme)
 

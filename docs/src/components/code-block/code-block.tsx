@@ -1,7 +1,7 @@
 import { Box, useBoolean } from "@md3-ui/core"
 import dynamic from "next/dynamic"
 import theme from "prism-react-renderer/themes/vsDark"
-import * as React from "react"
+import { useEffect } from "react"
 import { CopyButton } from "./copy-button"
 import { Highlight } from "./highlight"
 
@@ -16,7 +16,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
 }) => {
   const [mounted, { on }] = useBoolean()
   // Lazily-load <ReactLiveBlock /> to save bundle size.
-  React.useEffect(on, [on])
+  useEffect(on, [on])
 
   const {
     children,

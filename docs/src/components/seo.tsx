@@ -1,5 +1,4 @@
 import { NextSeo, NextSeoProps } from "next-seo"
-import * as React from "react"
 import app from "../../app.json"
 
 export const SEO: React.FC<Pick<NextSeoProps, "description" | "title">> = ({

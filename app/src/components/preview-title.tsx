@@ -1,6 +1,5 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Box, Icon, Text } from "@md3-ui/core"
-import * as React from "react"
 
 interface PreviewTitleProps {
   children?: React.ReactNode

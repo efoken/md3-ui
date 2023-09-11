@@ -4,7 +4,7 @@ import {
   useForceUpdate,
   useForkRef,
 } from "@md3-ui/hooks"
-import * as React from "react"
+import { cloneElement, forwardRef, isValidElement, useState } from "react"
 import { findNodeHandle } from "react-native"
 import { createPortal } from "./create-portal"
 import { useRootTag } from "./use-root-tag"
@@ -15,13 +15,13 @@ export interface PortalProps {
   disablePortal?: boolean
 }
 
-export const Portal = React.forwardRef<any, PortalProps>(
+export const Portal = forwardRef<any, PortalProps>(
   ({ children, containerRef, disablePortal = false }, ref) => {
     const rootTag = useRootTag()
 
-    const [mountNode, setMountNode] = React.useState<Element | number>()
+    const [mountNode, setMountNode] = useState<Element | number>()
     const handleRef = useForkRef(
-      React.isValidElement(children) ? (children as any).ref : null,
+      isValidElement(children) ? (children as any).ref : null,
       ref,
     )
 
@@ -50,8 +50,8 @@ export const Portal = React.forwardRef<any, PortalProps>(
     }, [ref, mountNode, disablePortal])
 
     if (disablePortal) {
-      if (React.isValidElement<any>(children)) {
-        return React.cloneElement(children, {
+      if (isValidElement<any>(children)) {
+        return cloneElement(children, {
           ref: handleRef,
         })
       }

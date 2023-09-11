@@ -8,7 +8,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import {
   TextStyle as RNTextStyle,
   View as RNView,
@@ -137,7 +137,7 @@ const OutlinedButtonLabel = styled(Text, {
   textAlign: "center",
 }))
 
-export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
+export const OutlinedButton = forwardRef<RNView, OutlinedButtonProps>(
   (inProps, ref) => {
     const {
       children,
@@ -178,7 +178,7 @@ export const OutlinedButton = React.forwardRef<RNView, OutlinedButtonProps>(
         <OutlinedButtonContent ownerState={ownerState} style={styles?.content}>
           {icon && (
             <OutlinedButtonIcon style={styles?.icon}>
-              {React.cloneElement(icon, {
+              {cloneElement(icon, {
                 height: theme.comp.outlinedButton.withIcon.icon.size,
                 width: theme.comp.outlinedButton.withIcon.icon.size,
               })}

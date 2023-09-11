@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   PressableProps as RNPressableProps,
   View as RNView,

@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useEffect, useRef } from "react"
 import { Animated, Platform } from "react-native"
 import { useEventCallback } from "./use-event-callback"
 
@@ -68,7 +68,7 @@ export function useAnimate({
 }: UseAnimateProps) {
   const animatedValue =
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    referenceValue ?? React.useRef(new Animated.Value(fromValue)).current
+    referenceValue ?? useRef(new Animated.Value(fromValue)).current
 
   const baseConfig = {
     easing,
@@ -95,7 +95,7 @@ export function useAnimate({
   }
   const sequenceAnimation = Animated.sequence(sequence)
 
-  const interpolate = React.useCallback(
+  const interpolate = useCallback(
     ({
       inputRange,
       outputRange,
@@ -145,7 +145,7 @@ export function useAnimate({
     animation.stop()
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (animate && (animatedValue as any)._value !== toValue) {
       start()
     }

@@ -2,7 +2,7 @@ import { ButtonBase, ButtonBaseProps } from "@md3-ui/button"
 import { useControlled } from "@md3-ui/hooks"
 import { StylesProp, SxProps, styled, useThemeProps } from "@md3-ui/system"
 import { createChainedFunction } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   GestureResponderEvent,
   NativeSyntheticEvent,
@@ -91,7 +91,7 @@ const SwitchBaseInput = styled("input", {
   zIndex: 1,
 })
 
-export const SwitchBase = React.forwardRef<RNView, SwitchBaseProps>(
+export const SwitchBase = forwardRef<RNView, SwitchBaseProps>(
   (inProps, ref) => {
     const {
       checked: checkedProp,

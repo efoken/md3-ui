@@ -1,5 +1,4 @@
 import { Theme } from "@md3-ui/theme"
-import * as React from "react"
 import {
   FlexStyle as RNFlexStyle,
   TextStyle as RNTextStyle,

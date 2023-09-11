@@ -1,6 +1,6 @@
 import * as Md3Core from "@md3-ui/core"
 import { Link, Text } from "@md3-ui/core"
-import * as React from "react"
+import { Children } from "react"
 import { CodeBlock } from "./components/code-block"
 import { PropsTable } from "./components/props-table"
 
@@ -62,7 +62,7 @@ export const MDXComponents = {
       <pre {...props}>{children}</pre>
     ) : (
       <CodeBlock {...props}>
-        {React.Children.only(children) as React.ReactElement}
+        {Children.only(children) as React.ReactElement}
       </CodeBlock>
     ),
   PropsTable: PropsTable as any,

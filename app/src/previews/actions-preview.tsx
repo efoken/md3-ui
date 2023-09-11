@@ -16,13 +16,13 @@ import {
   TonalButton,
   TonalIconButton,
 } from "@md3-ui/core"
-import * as React from "react"
+import { useState } from "react"
 import { Preview } from "../components/preview"
 import { PreviewCard } from "../components/preview-card"
 import { PreviewTitle } from "../components/preview-title"
 
 export const ActionsPreview: React.FC = () => {
-  const [selected, setSelected] = React.useState(
+  const [selected, setSelected] = useState(
     Array.from<boolean>({ length: 8 }).fill(false),
   )
 

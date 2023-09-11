@@ -12,7 +12,7 @@ import {
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
 import { resolveProps } from "@md3-ui/utils"
-import * as React from "react"
+import { createContext, forwardRef, useContext, useMemo } from "react"
 import {
   Platform,
   FlexStyle as RNFlexStyle,
@@ -327,13 +327,13 @@ const GridRoot = styled(RNView, {
   generateGrid,
 )
 
-export const GridContext = React.createContext<
+export const GridContext = createContext<
   Pick<GridProps, "columns" | "columnSpacing" | "rowSpacing">
 >({})
 
-export const Grid = React.forwardRef<RNView, GridProps>((inProps, ref) => {
+export const Grid = forwardRef<RNView, GridProps>((inProps, ref) => {
   // Props priority: `inProps` > `contextProps` > `themeDefaultProps`
-  const contextProps = React.useContext(GridContext)
+  const contextProps = useContext(GridContext)
   const resolvedProps = resolveProps<GridProps>(contextProps, inProps)
 
   const {
@@ -366,7 +366,7 @@ export const Grid = React.forwardRef<RNView, GridProps>((inProps, ref) => {
     wrap,
   }
 
-  const context = React.useMemo(
+  const context = useMemo(
     () => (container ? { columns, columnSpacing, rowSpacing } : {}),
     [columns, columnSpacing, container, rowSpacing],
   )

@@ -1,6 +1,6 @@
 import { Theme } from "@md3-ui/theme"
 import { isFunction } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef, useMemo } from "react"
 import {
   Platform,
   PressableStateCallbackType as RNPressableStateCallbackType,
@@ -50,18 +50,15 @@ export const styled: CreateStyled = <
     : undefined
 
   return function createStyledComponent(...styles: any[]) {
-    const Styled = React.forwardRef<T, React.ComponentProps<T>>(
+    const Styled = forwardRef<T, React.ComponentProps<T>>(
       ({ className, style, ...props }: React.ComponentProps<T> & any, ref) => {
         const theme = useTheme()
 
         const FinalTag = (shouldUseAs && props.as) || Component
 
-        const mergedProps = React.useMemo(
-          () => ({ ...props, theme }),
-          [props, theme],
-        )
+        const mergedProps = useMemo(() => ({ ...props, theme }), [props, theme])
 
-        const extendedStyles = React.useMemo<RNStyle>(
+        const extendedStyles = useMemo<RNStyle>(
           () =>
             css.apply(mergedProps, [
               ...styles,
@@ -81,12 +78,15 @@ export const styled: CreateStyled = <
 
         const styleSheet = useStyleSheet(extendedStyles)
 
-        const newProps = Object.keys(props).reduce((acc, key) => {
-          if (shouldForwardProp(key) && (!shouldUseAs || key !== "as")) {
-            acc[key] = props[key]
-          }
-          return acc
-        }, {} as Record<string, any>)
+        const newProps = Object.keys(props).reduce(
+          (acc, key) => {
+            if (shouldForwardProp(key) && (!shouldUseAs || key !== "as")) {
+              acc[key] = props[key]
+            }
+            return acc
+          },
+          {} as Record<string, any>,
+        )
 
         newProps.ref = ref
         newProps.style = isFunction(style)

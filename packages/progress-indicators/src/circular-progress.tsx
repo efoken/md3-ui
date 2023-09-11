@@ -9,7 +9,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { clamp } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef, useEffect } from "react"
 import {
   Animated,
   Easing,
@@ -164,7 +164,7 @@ const CircularProgressSpinnerCircle = styled(RNView, {
   },
 }))
 
-export const CircularProgress = React.forwardRef<RNView, CircularProgressProps>(
+export const CircularProgress = forwardRef<RNView, CircularProgressProps>(
   (inProps, ref) => {
     const {
       // fourColor = false,
@@ -209,7 +209,7 @@ export const CircularProgress = React.forwardRef<RNView, CircularProgressProps>(
       isInteraction: false,
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (visible) {
         if (indeterminate) {
           startAnimation()

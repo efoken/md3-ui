@@ -1,12 +1,12 @@
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons"
 import { Icon, NavigationBar, NavigationBarItem, Text } from "@md3-ui/core"
-import * as React from "react"
+import { useState } from "react"
 import { Preview } from "../components/preview"
 import { PreviewCard } from "../components/preview-card"
 import { PreviewTitle } from "../components/preview-title"
 
 export const NavigationPreview: React.FC = () => {
-  const [value, setValue] = React.useState("explore")
+  const [value, setValue] = useState("explore")
 
   return (
     <Preview>

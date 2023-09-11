@@ -8,7 +8,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import {
   TextStyle as RNTextStyle,
   View as RNView,
@@ -83,7 +83,7 @@ const NavigationDrawerItemLabel = styled(Text, {
   ...theme.sys.typescale.labelLarge,
 }))
 
-export const NavigationDrawerItem = React.forwardRef<
+export const NavigationDrawerItem = forwardRef<
   RNView,
   NavigationDrawerItemProps
 >((inProps, ref) => {
@@ -104,7 +104,7 @@ export const NavigationDrawerItem = React.forwardRef<
       <NavigationDrawerItemContent style={styles?.content}>
         {icon && (
           <NavigationDrawerItemIcon style={styles?.icon}>
-            {React.cloneElement(icon, {
+            {cloneElement(icon, {
               height: 24,
               width: 24,
             })}

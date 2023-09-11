@@ -18,10 +18,10 @@ interface TypeSearchOptions {
   shouldIgnoreProp?: (prop: ts.Symbol) => boolean | undefined
 }
 
-function tryPrettier(typeName: string) {
+async function tryPrettier(typeName: string) {
   try {
     const prefix = "type ONLY_FOR_FORMAT ="
-    const prettyType = prettier.format(prefix + typeName, {
+    const prettyType = await prettier.format(prefix + typeName, {
       parser: "typescript",
       semi: false,
     })
@@ -50,7 +50,7 @@ function sortByRequiredProps(props: ComponentTypeProps) {
   )
 }
 
-function extractPropsOfTypeName(
+async function extractPropsOfTypeName(
   searchTerm: string | RegExp,
   sourceFile: ts.SourceFile,
   typeChecker: ts.TypeChecker,
@@ -93,7 +93,8 @@ function extractPropsOfTypeName(
       const typeName = typeChecker.typeToString(nonNullableType)
       const required = nonNullableType === type && typeName !== "any"
 
-      const prettyType = tryPrettier(typeName)
+      // eslint-disable-next-line no-await-in-loop
+      const prettyType = await tryPrettier(typeName)
 
       props[propName] = {
         type: prettyType,
@@ -136,10 +137,11 @@ function createTypeSearch(
   const program = ts.createProgram(fileNames, options)
   const sourceFiles = program.getSourceFiles()
 
-  return (searchTerm: Parameters<typeof extractPropsOfTypeName>[0]) => {
+  return async (searchTerm: Parameters<typeof extractPropsOfTypeName>[0]) => {
     const results: Record<string, ComponentTypeProps> = {}
     for (const sourceFile of sourceFiles) {
-      const typeInfo = extractPropsOfTypeName(
+      // eslint-disable-next-line no-await-in-loop
+      const typeInfo = await extractPropsOfTypeName(
         searchTerm,
         sourceFile,
         program.getTypeChecker(),
@@ -204,8 +206,12 @@ export default async function main() {
     shouldIgnoreProp: defaultShouldIgnoreProp,
   })
 
-  const typeExports = extractTypeExports(code)
-    .map((type) => searchType(type))
+  const typeExports = (
+    await Promise.all(
+      extractTypeExports(code).map(async (type) => searchType(type)),
+    )
+  )
+    // eslint-disable-next-line unicorn/no-await-expression-member
     .filter((value) => Object.keys(value).length > 0)
     .reduce((acc, value) => ({ ...acc, ...value }), {})
 
@@ -216,12 +222,11 @@ export default async function main() {
   }
 
   if (Object.keys(typeExportsWithThemeProps).length > 0) {
-    fs.writeFileSync(
-      "docs.json",
-      prettier.format(JSON.stringify(typeExportsWithThemeProps), {
-        parser: "json",
-      }),
+    const json = await prettier.format(
+      JSON.stringify(typeExportsWithThemeProps),
+      { parser: "json" },
     )
+    fs.writeFileSync("docs.json", json)
   }
 }
 

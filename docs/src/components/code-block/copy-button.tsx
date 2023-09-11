@@ -1,6 +1,6 @@
 import { ElevatedButton, ElevatedButtonProps } from "@md3-ui/core"
 import copy from "copy-to-clipboard"
-import * as React from "react"
+import { useCallback, useEffect, useState } from "react"
 
 interface CopyButtonProps extends ElevatedButtonProps {
   code: string
@@ -11,13 +11,13 @@ export const CopyButton: React.FC<CopyButtonProps> = ({
   sx,
   ...props
 }) => {
-  const [copied, setCopied] = React.useState(false)
+  const [copied, setCopied] = useState(false)
 
-  const handleCopy = React.useCallback(() => {
+  const handleCopy = useCallback(() => {
     setCopied(copy(code))
   }, [code])
 
-  React.useEffect(() => {
+  useEffect(() => {
     let timeoutId: number | undefined
 
     if (copied) {

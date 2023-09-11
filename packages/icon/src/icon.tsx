@@ -8,7 +8,7 @@ import {
   useTextStyle,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import { Platform, ViewStyle as RNViewStyle } from "react-native"
 import Svg from "react-native-svg"
 
@@ -92,7 +92,7 @@ const IconRoot = styled(Svg, {
   }),
 )
 
-export const Icon = React.forwardRef<any, IconProps>((inProps, ref) => {
+export const Icon = forwardRef<any, IconProps>((inProps, ref) => {
   const {
     children,
     color: colorProp,

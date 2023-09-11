@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Platform,
   Text as RNText,
@@ -44,7 +44,7 @@ export function createText({
     styleFunctionSx,
   )
 
-  const Text = React.forwardRef<RNText, TextProps>((inProps, ref) => {
+  const Text = forwardRef<RNText, TextProps>((inProps, ref) => {
     const { as, style, variant = "inherit", ...props } = extendSxProp(inProps)
     const theme = useTheme(defaultTheme)
 

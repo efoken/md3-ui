@@ -10,7 +10,7 @@ import {
 } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
 import { memoize } from "@md3-ui/utils"
-import * as React from "react"
+import { Children, cloneElement, forwardRef, isValidElement } from "react"
 import {
   Text as RNText,
   TextStyle as RNTextStyle,
@@ -255,120 +255,118 @@ const ListItemSupportingText = styled(RNText, {
   }),
 }))
 
-export const ListItem = React.forwardRef<RNView, ListItemProps>(
-  (inProps, ref) => {
-    const {
-      autoFocus = false,
-      disabled = false,
-      end: endProp,
-      headline,
-      multilineSupportingText = false,
-      start: startProp,
-      style,
-      styles,
-      supportingText,
-      tabIndex: tabIndexProp,
-      ...props
-    } = useThemeProps({
-      name: "ListItem",
-      props: inProps,
-    })
+export const ListItem = forwardRef<RNView, ListItemProps>((inProps, ref) => {
+  const {
+    autoFocus = false,
+    disabled = false,
+    end: endProp,
+    headline,
+    multilineSupportingText = false,
+    start: startProp,
+    style,
+    styles,
+    supportingText,
+    tabIndex: tabIndexProp,
+    ...props
+  } = useThemeProps({
+    name: "ListItem",
+    props: inProps,
+  })
 
-    const { focused, hovered, pressed, ...buttonBaseProps } =
-      useButtonBaseState(props)
+  const { focused, hovered, pressed, ...buttonBaseProps } =
+    useButtonBaseState(props)
 
-    const theme = useTheme()
+  const theme = useTheme()
 
-    const tabIndex = disabled
-      ? -1
-      : autoFocus
-      ? 0
-      : // Do not reset anything if it's the user has set `tabIndex` manually.
-        tabIndexProp ?? -1
+  const tabIndex = disabled
+    ? -1
+    : autoFocus
+    ? 0
+    : // Do not reset anything if it's the user has set `tabIndex` manually.
+      tabIndexProp ?? -1
 
-    const ownerState = {
-      disabled,
-      focused,
-      hovered,
-      pressed,
-      withOneLine: !supportingText,
-      withThreeLine: !!supportingText && multilineSupportingText,
-      withTwoLine: !!supportingText && !multilineSupportingText,
+  const ownerState = {
+    disabled,
+    focused,
+    hovered,
+    pressed,
+    withOneLine: !supportingText,
+    withThreeLine: !!supportingText && multilineSupportingText,
+    withTwoLine: !!supportingText && !multilineSupportingText,
+  }
+
+  let start = isValidElement<any>(startProp) ? startProp : undefined
+
+  switch (start?.type) {
+    case ListItemIcon: {
+      start = cloneElement<ListItemIconProps>(start, {
+        style: listItemStartIconStyle(theme, ownerState),
+      })
+      break
     }
-
-    let start = React.isValidElement<any>(startProp) ? startProp : undefined
-
-    switch (start?.type) {
-      case ListItemIcon: {
-        start = React.cloneElement<ListItemIconProps>(start, {
-          style: listItemStartIconStyle(theme, ownerState),
-        })
-        break
-      }
-      case ListItemImage: {
-        start = React.cloneElement<ListItemImageProps>(start, {
-          style: listItemStartImageStyle(ownerState),
-        })
-        break
-      }
-      default: {
-        start = undefined
-      }
+    case ListItemImage: {
+      start = cloneElement<ListItemImageProps>(start, {
+        style: listItemStartImageStyle(ownerState),
+      })
+      break
     }
+    default: {
+      start = undefined
+    }
+  }
 
-    const end =
-      endProp && React.Children.only(endProp)
-        ? React.isValidElement<ListItemIconProps>(endProp) &&
-          endProp.type === ListItemIcon
-          ? React.cloneElement(endProp, {
-              style: listItemEndIconStyle(theme, ownerState),
-            })
-          : undefined
+  const end =
+    endProp && Children.only(endProp)
+      ? isValidElement<ListItemIconProps>(endProp) &&
+        endProp.type === ListItemIcon
+        ? cloneElement(endProp, {
+            style: listItemEndIconStyle(theme, ownerState),
+          })
         : undefined
+      : undefined
 
-    return (
-      <ListItemRoot
-        ref={ref}
-        focusColor={theme.comp.list.listItem.focus.stateLayer.color}
-        focusOpacity={theme.comp.list.listItem.focus.stateLayer.opacity}
-        hoverColor={theme.comp.list.listItem.hover.stateLayer.color}
-        hoverOpacity={theme.comp.list.listItem.hover.stateLayer.opacity}
-        ownerState={ownerState}
-        pressedColor={theme.comp.list.listItem.pressed.stateLayer.color}
-        pressedOpacity={theme.comp.list.listItem.pressed.stateLayer.opacity}
-        role="listitem"
-        style={[style, styles?.root]}
-        tabIndex={tabIndex}
-        {...buttonBaseProps}
-        {...props}
-      >
-        {start && (
-          <ListItemStart ownerState={ownerState} style={styles?.start}>
-            {start}
-          </ListItemStart>
+  return (
+    <ListItemRoot
+      ref={ref}
+      focusColor={theme.comp.list.listItem.focus.stateLayer.color}
+      focusOpacity={theme.comp.list.listItem.focus.stateLayer.opacity}
+      hoverColor={theme.comp.list.listItem.hover.stateLayer.color}
+      hoverOpacity={theme.comp.list.listItem.hover.stateLayer.opacity}
+      ownerState={ownerState}
+      pressedColor={theme.comp.list.listItem.pressed.stateLayer.color}
+      pressedOpacity={theme.comp.list.listItem.pressed.stateLayer.opacity}
+      role="listitem"
+      style={[style, styles?.root]}
+      tabIndex={tabIndex}
+      {...buttonBaseProps}
+      {...props}
+    >
+      {start && (
+        <ListItemStart ownerState={ownerState} style={styles?.start}>
+          {start}
+        </ListItemStart>
+      )}
+      <ListItemBody style={styles?.body}>
+        <ListItemHeadline ownerState={ownerState} style={styles?.headline}>
+          {headline}
+        </ListItemHeadline>
+        {supportingText && (
+          <ListItemSupportingText
+            numberOfLines={multilineSupportingText ? 2 : 1}
+            ownerState={ownerState}
+            style={styles?.supportingText}
+          >
+            {supportingText}
+          </ListItemSupportingText>
         )}
-        <ListItemBody style={styles?.body}>
-          <ListItemHeadline ownerState={ownerState} style={styles?.headline}>
-            {headline}
-          </ListItemHeadline>
-          {supportingText && (
-            <ListItemSupportingText
-              numberOfLines={multilineSupportingText ? 2 : 1}
-              ownerState={ownerState}
-              style={styles?.supportingText}
-            >
-              {supportingText}
-            </ListItemSupportingText>
-          )}
-        </ListItemBody>
-        {end && (
-          <ListItemEnd ownerState={ownerState} style={styles?.end}>
-            {end}
-          </ListItemEnd>
-        )}
-      </ListItemRoot>
-    )
-  },
-)
+      </ListItemBody>
+      {end && (
+        <ListItemEnd ownerState={ownerState} style={styles?.end}>
+          {end}
+        </ListItemEnd>
+      )}
+    </ListItemRoot>
+  )
+})
 
 ListItem.displayName = "ListItem"

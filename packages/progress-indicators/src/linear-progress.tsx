@@ -8,7 +8,7 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { clamp, createChainedFunction } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef, useEffect } from "react"
 import {
   Animated,
   Easing,
@@ -112,7 +112,7 @@ const LinearProgressActiveIndicator = styled(Animated.View, {
   },
 }))
 
-export const LinearProgress = React.forwardRef<RNView, LinearProgressProps>(
+export const LinearProgress = forwardRef<RNView, LinearProgressProps>(
   (inProps, ref) => {
     const {
       // fourColor = false,
@@ -160,7 +160,7 @@ export const LinearProgress = React.forwardRef<RNView, LinearProgressProps>(
       isInteraction: false,
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (visible) {
         if (indeterminate) {
           startAnimation()

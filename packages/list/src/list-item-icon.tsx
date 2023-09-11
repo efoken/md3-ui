@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
 export interface ListItemIconTypeMap<
@@ -48,7 +48,7 @@ const ListItemIconRoot = styled(RNView, {
   slot: "Root",
 })()
 
-export const ListItemIcon = React.forwardRef<RNView, ListItemIconProps>(
+export const ListItemIcon = forwardRef<RNView, ListItemIconProps>(
   (inProps, ref) => {
     const { children, style, styles, ...props } = useThemeProps({
       name: "ListItemIcon",
@@ -59,7 +59,7 @@ export const ListItemIcon = React.forwardRef<RNView, ListItemIconProps>(
 
     return (
       <ListItemIconRoot ref={ref} style={[style, styles?.root]} {...props}>
-        {React.cloneElement(children, {
+        {cloneElement(children, {
           height,
           width,
         })}

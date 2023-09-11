@@ -7,7 +7,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import {
   Platform,
   TextStyle as RNTextStyle,
@@ -137,7 +137,7 @@ const ExtendedFabLabel = styled(Text, {
   }),
 }))
 
-export const ExtendedFab = React.forwardRef<RNView, ExtendedFabProps>(
+export const ExtendedFab = forwardRef<RNView, ExtendedFabProps>(
   (inProps, ref) => {
     const {
       icon,
@@ -181,7 +181,7 @@ export const ExtendedFab = React.forwardRef<RNView, ExtendedFabProps>(
       >
         {icon && (
           <ExtendedFabIcon ownerState={ownerState} style={styles?.icon}>
-            {React.cloneElement(icon, {
+            {cloneElement(icon, {
               height: theme.comp.extendedFab.primary.icon.size,
               width: theme.comp.extendedFab.primary.icon.size,
             })}

@@ -1,5 +1,4 @@
 import { Global } from "@md3-ui/system"
-import * as React from "react"
 
 export const CSSBaseline: React.FC = () => (
   <Global

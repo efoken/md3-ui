@@ -1,4 +1,3 @@
-import * as React from "react"
 import componentsSidebar from "../../configs/components-sidebar.json"
 import { PageContainer } from "../components/page-container"
 import { Sidebar } from "../components/sidebar"

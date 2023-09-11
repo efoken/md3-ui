@@ -6,7 +6,13 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useMemo,
+} from "react"
 import { isFragment } from "react-is"
 import {
   GestureResponderEvent,
@@ -79,7 +85,7 @@ const NavigationBarRoot = styled(RNView, {
   width: "100%",
 }))
 
-export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
+export const NavigationBar = forwardRef<RNView, NavigationBarProps>(
   (inProps, ref) => {
     const {
       children,
@@ -96,10 +102,7 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
 
     const insets = useSafeAreaInsets()
 
-    const context = React.useMemo(
-      () => ({ onChange, value }),
-      [onChange, value],
-    )
+    const context = useMemo(() => ({ onChange, value }), [onChange, value])
 
     return (
       <NavigationBarContext.Provider value={context}>
@@ -115,14 +118,14 @@ export const NavigationBar = React.forwardRef<RNView, NavigationBarProps>(
           ]}
           {...props}
         >
-          {React.Children.map(
+          {Children.map(
             isFragment(children) ? children.props.children : children,
             (child, index) => {
-              if (!React.isValidElement<NavigationBarItemProps>(child)) {
+              if (!isValidElement<NavigationBarItemProps>(child)) {
                 return null
               }
 
-              return React.cloneElement(child, {
+              return cloneElement(child, {
                 hideLabel: child.props.hideLabel ?? hideLabels,
                 value: child.props.value ?? index,
               })

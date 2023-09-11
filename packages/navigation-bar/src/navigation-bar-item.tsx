@@ -9,7 +9,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef, useContext } from "react"
 import {
   GestureResponderEvent,
   TextStyle as RNTextStyle,
@@ -104,62 +104,67 @@ const NavigationBarItemLabel = styled(Text, {
   marginTop: 4,
 }))
 
-export const NavigationBarItem = React.forwardRef<
-  RNView,
-  NavigationBarItemProps
->((inProps, ref) => {
-  const {
-    hideLabel = false,
-    icon,
-    label,
-    onPress,
-    style,
-    styles,
-    value: valueProp,
-    ...props
-  } = useThemeProps({
-    name: "NavigationBarItem",
-    props: inProps,
-  })
+export const NavigationBarItem = forwardRef<RNView, NavigationBarItemProps>(
+  (inProps, ref) => {
+    const {
+      hideLabel = false,
+      icon,
+      label,
+      onPress,
+      style,
+      styles,
+      value: valueProp,
+      ...props
+    } = useThemeProps({
+      name: "NavigationBarItem",
+      props: inProps,
+    })
 
-  const { onChange, value } = React.useContext(NavigationBarContext)
+    const { onChange, value } = useContext(NavigationBarContext)
 
-  const theme = useTheme()
+    const theme = useTheme()
 
-  const selected = valueProp === value
+    const selected = valueProp === value
 
-  const handlePress = (event: GestureResponderEvent) => {
-    onPress?.(event)
-    onChange?.(event, valueProp)
-  }
+    const handlePress = (event: GestureResponderEvent) => {
+      onPress?.(event)
+      onChange?.(event, valueProp)
+    }
 
-  const ownerState = {
-    selected,
-  }
+    const ownerState = {
+      selected,
+    }
 
-  return (
-    <NavigationBarItemRoot
-      ref={ref}
-      rippleColor={theme.sys.color.onSurface}
-      style={[style, styles?.root]}
-      onPress={handlePress}
-      {...props}
-    >
-      <NavigationBarItemContent ownerState={ownerState} style={styles?.content}>
-        <NavigationBarItemIcon ownerState={ownerState} style={styles?.icon}>
-          {React.cloneElement(icon, {
-            height: 24,
-            width: 24,
-          })}
-        </NavigationBarItemIcon>
-        {!hideLabel && (
-          <NavigationBarItemLabel ownerState={ownerState} style={styles?.label}>
-            {label}
-          </NavigationBarItemLabel>
-        )}
-      </NavigationBarItemContent>
-    </NavigationBarItemRoot>
-  )
-})
+    return (
+      <NavigationBarItemRoot
+        ref={ref}
+        rippleColor={theme.sys.color.onSurface}
+        style={[style, styles?.root]}
+        onPress={handlePress}
+        {...props}
+      >
+        <NavigationBarItemContent
+          ownerState={ownerState}
+          style={styles?.content}
+        >
+          <NavigationBarItemIcon ownerState={ownerState} style={styles?.icon}>
+            {cloneElement(icon, {
+              height: 24,
+              width: 24,
+            })}
+          </NavigationBarItemIcon>
+          {!hideLabel && (
+            <NavigationBarItemLabel
+              ownerState={ownerState}
+              style={styles?.label}
+            >
+              {label}
+            </NavigationBarItemLabel>
+          )}
+        </NavigationBarItemContent>
+      </NavigationBarItemRoot>
+    )
+  },
+)
 
 NavigationBarItem.displayName = "NavigationBarItem"

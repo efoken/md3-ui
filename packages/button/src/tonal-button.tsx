@@ -8,7 +8,7 @@ import {
   useTheme,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import {
   Platform,
   TextStyle as RNTextStyle,
@@ -141,7 +141,7 @@ const TonalButtonLabel = styled(Text, {
   textAlign: "center",
 }))
 
-export const TonalButton = React.forwardRef<RNView, TonalButtonProps>(
+export const TonalButton = forwardRef<RNView, TonalButtonProps>(
   (inProps, ref) => {
     const {
       children,
@@ -182,7 +182,7 @@ export const TonalButton = React.forwardRef<RNView, TonalButtonProps>(
         <TonalButtonContent ownerState={ownerState} style={styles?.content}>
           {icon && (
             <TonalButtonIcon style={styles?.icon}>
-              {React.cloneElement(icon, {
+              {cloneElement(icon, {
                 height: theme.comp.tonalButton.withIcon.icon.size,
                 width: theme.comp.tonalButton.withIcon.icon.size,
               })}

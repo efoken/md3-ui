@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from "@storybook/react"
-import * as React from "react"
+import { useRef } from "react"
 import { Portal, PortalProps } from "../src"
 
 export default {
@@ -18,7 +18,7 @@ export const Basic: StoryObj = {
 
 export const WithMountRef: StoryObj = {
   render: () => {
-    const ref = React.useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLDivElement>(null)
 
     return (
       <>

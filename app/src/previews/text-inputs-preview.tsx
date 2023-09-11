@@ -1,5 +1,4 @@
 import { Box, Text, TextField } from "@md3-ui/core"
-import * as React from "react"
 import { Preview } from "../components/preview"
 import { PreviewCard } from "../components/preview-card"
 import { PreviewTitle } from "../components/preview-title"

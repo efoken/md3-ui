@@ -6,7 +6,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Text as RNText,
   TextStyle as RNTextStyle,
@@ -96,7 +96,7 @@ const SnackbarContentAction = styled(RNView, {
   paddingStart: 16,
 })
 
-export const SnackbarContent = React.forwardRef<RNView, SnackbarContentProps>(
+export const SnackbarContent = forwardRef<RNView, SnackbarContentProps>(
   (inProps, ref) => {
     const {
       action,

@@ -1,17 +1,17 @@
-import * as React from "react"
+import { useCallback, useState } from "react"
 
 export function useBoolean(initialState?: boolean | (() => boolean)) {
-  const [state, setState] = React.useState(initialState ?? false)
+  const [state, setState] = useState(initialState ?? false)
 
-  const handleOn = React.useCallback(() => {
+  const handleOn = useCallback(() => {
     setState(true)
   }, [])
 
-  const handleOff = React.useCallback(() => {
+  const handleOff = useCallback(() => {
     setState(false)
   }, [])
 
-  const handleToggle = React.useCallback(() => {
+  const handleToggle = useCallback(() => {
     setState((prevState) => !prevState)
   }, [])
 

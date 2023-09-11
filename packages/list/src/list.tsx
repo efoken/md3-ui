@@ -8,7 +8,13 @@ import {
   useThemeProps,
 } from "@md3-ui/system"
 import { createChainedFunction } from "@md3-ui/utils"
-import * as React from "react"
+import {
+  Children,
+  cloneElement,
+  forwardRef,
+  isValidElement,
+  useState,
+} from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 import { ListItem, ListItemProps } from "./list-item"
 
@@ -110,18 +116,18 @@ function getPrevItem<T extends React.ReactElement<ListItemProps>>(
   }
 }
 
-export const List = React.forwardRef<RNView, ListProps>((inProps, ref) => {
+export const List = forwardRef<RNView, ListProps>((inProps, ref) => {
   const { children, onKeyDown, style, styles, ...props } = useThemeProps({
     name: "List",
     props: inProps,
   })
 
-  const items = React.Children.toArray(children).filter(
+  const items = Children.toArray(children).filter(
     (item): item is React.ReactElement<ListItemProps> =>
-      React.isValidElement(item) && item.type === ListItem,
+      isValidElement(item) && item.type === ListItem,
   )
 
-  const [focusedItem, setFocusedItem] = React.useState(getFocusedItem(items))
+  const [focusedItem, setFocusedItem] = useState(getFocusedItem(items))
 
   const handleKeyDown = useEventCallback(
     (event: React.KeyboardEvent<Element>) => {
@@ -198,7 +204,7 @@ export const List = React.forwardRef<RNView, ListProps>((inProps, ref) => {
       {...props}
     >
       {items.map((item, i) =>
-        React.cloneElement(item, {
+        cloneElement(item, {
           autoFocus: focusedItem === i,
         }),
       )}

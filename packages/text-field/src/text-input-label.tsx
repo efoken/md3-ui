@@ -6,7 +6,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef, useEffect, useRef } from "react"
 import {
   Animated,
   Platform,
@@ -65,7 +65,7 @@ const TextInputLabelContainer = styled(RNView, {
   top: 0,
 }))
 
-export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
+export const TextInputLabel = forwardRef<RNText, TextInputLabelProps>(
   (inProps, ref) => {
     const {
       htmlFor,
@@ -78,10 +78,10 @@ export const TextInputLabel = React.forwardRef<RNText, TextInputLabelProps>(
       props: inProps,
     })
 
-    const rootRef = React.useRef<RNText>(null)
+    const rootRef = useRef<RNText>(null)
     const handleRef = useForkRef(rootRef, ref)
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (Platform.OS === "web" && rootRef.current != null && htmlFor != null) {
         ;(rootRef.current as unknown as HTMLLabelElement).htmlFor = htmlFor
       }

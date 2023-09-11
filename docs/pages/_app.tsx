@@ -3,7 +3,6 @@ import { MDXProvider } from "@mdx-js/react"
 import { AppProps } from "next/app"
 import { Roboto } from "next/font/google"
 import Head from "next/head"
-import * as React from "react"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { MDXComponents } from "../src/mdx-components"
 

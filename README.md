@@ -41,7 +41,6 @@ npm i @md3-ui/core
 Here is a simple example to get you started:
 
 ```jsx
-import * as React from "react"
 import { AppRegistry } from "react-native"
 import { Md3Provider, FilledButton } from "@md3-ui/core"
 

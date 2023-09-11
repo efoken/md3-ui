@@ -130,21 +130,24 @@ export function resolveBreakpointValues<T>({
 
   let previous: Breakpoint | number
 
-  return keys.reduce((acc, breakpoint, i) => {
-    if (Array.isArray(breakpointValues)) {
-      acc[breakpoint] = (
-        breakpointValues[i] != null
-          ? breakpointValues[i]
-          : breakpointValues[previous as number]
-      ) as T
-      previous = i
-    } else {
-      acc[breakpoint] =
-        (breakpointValues as any)[breakpoint] != null
-          ? (breakpointValues as any)[breakpoint]
-          : (breakpointValues as any)[previous] || breakpointValues
-      previous = breakpoint
-    }
-    return acc
-  }, {} as Record<string, T>) as Record<Breakpoint, T>
+  return keys.reduce(
+    (acc, breakpoint, i) => {
+      if (Array.isArray(breakpointValues)) {
+        acc[breakpoint] = (
+          breakpointValues[i] != null
+            ? breakpointValues[i]
+            : breakpointValues[previous as number]
+        ) as T
+        previous = i
+      } else {
+        acc[breakpoint] =
+          (breakpointValues as any)[breakpoint] != null
+            ? (breakpointValues as any)[breakpoint]
+            : (breakpointValues as any)[previous] || breakpointValues
+        previous = breakpoint
+      }
+      return acc
+    },
+    {} as Record<string, T>,
+  ) as Record<Breakpoint, T>
 }

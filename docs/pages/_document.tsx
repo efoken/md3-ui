@@ -6,7 +6,7 @@ import NextDocument, {
   Main,
   NextScript,
 } from "next/document"
-import * as React from "react"
+import { Children } from "react"
 import { AppRegistry } from "react-native"
 import config from "../app.json"
 
@@ -33,7 +33,7 @@ export default class Document extends NextDocument {
       getStyleElement(),
       flush(),
     ]
-    return { ...page, styles: React.Children.toArray(styles) }
+    return { ...page, styles: Children.toArray(styles) }
   }
 
   render() {

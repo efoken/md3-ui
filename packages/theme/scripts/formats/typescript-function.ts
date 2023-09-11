@@ -1,7 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { get } from "@md3-ui/utils"
 import { lowerFirst } from "lodash"
-import prettier from "prettier"
 import { Format, formatHelpers } from "style-dictionary"
 
 export const TypescriptFunction: Format = {
@@ -28,10 +27,6 @@ export const TypescriptFunction: Format = {
         .replaceAll(/"md\.(.+?)"/g, "theme.$1")}, ${lowerFirst(typeName)})
     }`
 
-    return prettier.format(tpl, {
-      parser: "typescript",
-      semi: false,
-      trailingComma: "all",
-    })
+    return tpl
   },
 }

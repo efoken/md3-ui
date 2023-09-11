@@ -1,7 +1,7 @@
-import * as React from "react"
+import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { AccessibilityChangeEventName, AccessibilityInfo } from "react-native"
 
-const AccessibilityInfoContext = React.createContext({
+const AccessibilityInfoContext = createContext({
   invertColorsEnabled: false,
   reduceMotionEnabled: false,
 })
@@ -16,9 +16,9 @@ function useAccessibilityChangeEventHandler(
     | "isReduceTransparencyEnabled"
     | "isScreenReaderEnabled",
 ) {
-  const [enabled, setEnabled] = React.useState(false)
+  const [enabled, setEnabled] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!AccessibilityInfo[initializerName]) {
       return () => {}
     }
@@ -54,7 +54,7 @@ export const AccessibilityInfoProvider: React.FC<
     "isReduceMotionEnabled",
   )
 
-  const context = React.useMemo(
+  const context = useMemo(
     () => ({ invertColorsEnabled, reduceMotionEnabled }),
     [invertColorsEnabled, reduceMotionEnabled],
   )
@@ -67,5 +67,5 @@ export const AccessibilityInfoProvider: React.FC<
 }
 
 export function useAccessibilityInfo() {
-  return React.useContext(AccessibilityInfoContext)
+  return useContext(AccessibilityInfoContext)
 }

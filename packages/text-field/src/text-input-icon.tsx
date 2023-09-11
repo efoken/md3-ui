@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Text as RNText,
   View as RNView,
@@ -64,7 +64,7 @@ const TextInputIconRoot = styled(RNView, {
   }),
 }))
 
-export const TextInputIcon = React.forwardRef<RNView, TextInputIconProps>(
+export const TextInputIcon = forwardRef<RNView, TextInputIconProps>(
   (inProps, ref) => {
     const { children, position, style, styles, ...props } = useThemeProps({
       name: "TextInputIcon",

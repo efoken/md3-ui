@@ -8,7 +8,7 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Animated,
   Easing,
@@ -111,7 +111,7 @@ const BadgeValue = styled(RNText, {
   }),
 }))
 
-export const Badge = React.forwardRef<RNView, BadgeProps>((inProps, ref) => {
+export const Badge = forwardRef<RNView, BadgeProps>((inProps, ref) => {
   const {
     children,
     invisible: invisibleProp = false,

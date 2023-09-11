@@ -1,7 +1,7 @@
 import { ElevatedButton } from "@md3-ui/button"
 import { Box, SxProps, Text } from "@md3-ui/system"
 import { Meta, StoryObj } from "@storybook/react"
-import * as React from "react"
+import { useState } from "react"
 import { Modal, ModalProps } from "../src"
 
 export default {
@@ -26,7 +26,7 @@ const style: SxProps = {
 
 export const Basic: StoryObj<ModalProps> = {
   render: ({ open: openArg, ...args }) => {
-    const [open, setOpen] = React.useState(false)
+    const [open, setOpen] = useState(false)
 
     const handleOpen = () => setOpen(true)
     const handleClose = () => setOpen(false)
@@ -57,7 +57,7 @@ export const Basic: StoryObj<ModalProps> = {
 
 export const NestedModal: StoryObj<ModalProps> = {
   render: ({ open: openArg, ...args }) => {
-    const [open, setOpen] = React.useState<[boolean, boolean]>([false, false])
+    const [open, setOpen] = useState<[boolean, boolean]>([false, false])
 
     const handleOpenParent = () => setOpen((prevOpen) => [true, prevOpen[1]])
     const handleCloseParent = () => setOpen((prevOpen) => [false, prevOpen[1]])

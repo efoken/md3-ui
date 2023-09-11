@@ -6,7 +6,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import { View as RNView, ViewStyle as RNViewStyle } from "react-native"
 
 export interface CardContentTypeMap<
@@ -47,7 +47,7 @@ const CardContentRoot = styled(RNView, {
   padding: 16,
 })
 
-export const CardContent = React.forwardRef<RNView, CardContentProps>(
+export const CardContent = forwardRef<RNView, CardContentProps>(
   (inProps, ref) => {
     const { style, styles, ...props } = useThemeProps({
       name: "CardContent",

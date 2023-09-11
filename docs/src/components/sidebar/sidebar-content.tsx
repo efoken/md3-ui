@@ -1,6 +1,5 @@
 import { Box, Text } from "@md3-ui/core"
 import NextLink from "next/link"
-import * as React from "react"
 import { Pressable } from "react-native"
 import { Route } from "./types"
 

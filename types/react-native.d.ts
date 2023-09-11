@@ -1,4 +1,3 @@
-import * as React from "react"
 import "react-native"
 
 declare module "react-native" {

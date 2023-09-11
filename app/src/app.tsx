@@ -1,6 +1,5 @@
 import { Md3Provider } from "@md3-ui/core"
 import { StatusBar } from "expo-status-bar"
-import * as React from "react"
 import {
   initialWindowMetrics,
   SafeAreaProvider,

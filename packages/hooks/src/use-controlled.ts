@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 export interface UseControlledProps<T = unknown> {
   /**
@@ -27,13 +27,13 @@ export function useControlled<T = unknown>({
 }: UseControlledProps<T>) {
   // The `controlled` variable is ignored in the hook dependency lists as it
   // should never change.
-  const { current: controlled } = React.useRef(controlledProp !== undefined)
-  const [valueState, setValue] = React.useState(defaultProp)
+  const { current: controlled } = useRef(controlledProp !== undefined)
+  const [valueState, setValue] = useState(defaultProp)
   const value = controlled ? controlledProp : valueState
 
   if (process.env.NODE_ENV !== "production") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
+    useEffect(() => {
       if (controlled !== (controlledProp !== undefined)) {
         console.error(
           [
@@ -54,10 +54,10 @@ export function useControlled<T = unknown>({
     }, [controlledProp, name, state])
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const { current: defaultValue } = React.useRef(defaultProp)
+    const { current: defaultValue } = useRef(defaultProp)
 
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    React.useEffect(() => {
+    useEffect(() => {
       if (!controlled && defaultValue !== defaultProp) {
         console.error(
           [
@@ -70,7 +70,7 @@ export function useControlled<T = unknown>({
     }, [JSON.stringify(defaultProp)])
   }
 
-  const setValueIfUncontrolled = React.useCallback((newValue: T) => {
+  const setValueIfUncontrolled = useCallback((newValue: T) => {
     if (!controlled) {
       setValue(newValue)
     }

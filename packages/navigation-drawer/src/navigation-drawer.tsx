@@ -7,7 +7,7 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Animated,
   Easing,
@@ -117,7 +117,7 @@ const NavigationDrawerSurface = styled(Animated.View, {
   }),
 )
 
-export const NavigationDrawer = React.forwardRef<RNView, NavigationDrawerProps>(
+export const NavigationDrawer = forwardRef<RNView, NavigationDrawerProps>(
   (inProps, ref) => {
     const {
       anchor = "start",

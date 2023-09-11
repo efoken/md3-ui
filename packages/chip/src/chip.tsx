@@ -8,7 +8,7 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { cloneElement, forwardRef } from "react"
 import {
   TextStyle as RNTextStyle,
   View as RNView,
@@ -191,7 +191,7 @@ const ChipLabel = styled(Text, {
   }),
 )
 
-export const Chip = React.forwardRef<RNView, ChipProps>((inProps, ref) => {
+export const Chip = forwardRef<RNView, ChipProps>((inProps, ref) => {
   const {
     children,
     disabled = false,
@@ -238,7 +238,7 @@ export const Chip = React.forwardRef<RNView, ChipProps>((inProps, ref) => {
       <ChipContent>
         {icon && (
           <ChipIcon ownerState={ownerState} style={styles?.icon}>
-            {React.cloneElement(icon, {
+            {cloneElement(icon, {
               height: 18,
               width: 18,
             })}

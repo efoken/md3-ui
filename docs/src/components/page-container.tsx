@@ -1,6 +1,6 @@
 import { Box, Text } from "@md3-ui/core"
 import { useRouter } from "next/router"
-import * as React from "react"
+import { cloneElement, useEffect, useState } from "react"
 import { View } from "react-native"
 import { Meta } from "../types"
 import { SEO } from "./seo"
@@ -18,9 +18,9 @@ export const PageContainer: React.FC<PageContainerProps> = ({
 }) => {
   const router = useRouter()
 
-  const [menuOpen, setMenuOpen] = React.useState(true)
+  const [menuOpen, setMenuOpen] = useState(true)
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleRouteChange = () => {
       document.querySelector("h1")?.focus()
     }
@@ -48,7 +48,7 @@ export const PageContainer: React.FC<PageContainerProps> = ({
         <View>
           <Box sx={{ flexDirection: "row", flexWrap: "wrap" }}>
             {sidebar &&
-              React.cloneElement(sidebar, {
+              cloneElement(sidebar, {
                 open: menuOpen,
                 onMenuClose: handleMenuClose,
               })}

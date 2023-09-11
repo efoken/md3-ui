@@ -7,7 +7,7 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import { Text as RNText, TextStyle as RNTextStyle } from "react-native"
 
 export interface LinkTypeMap<
@@ -53,7 +53,7 @@ const LinkRoot = styled(Text, {
   },
 }))
 
-export const Link = React.forwardRef<RNText, LinkProps>((inProps, ref) => {
+export const Link = forwardRef<RNText, LinkProps>((inProps, ref) => {
   const { children, style, styles, ...props } = useThemeProps({
     name: "Link",
     props: inProps,

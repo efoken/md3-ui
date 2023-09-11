@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef } from "react"
 import {
   Platform,
   TextStyle as RNTextStyle,
@@ -77,41 +77,39 @@ const SnackbarRoot = styled(RNView, {
   },
 }))
 
-export const Snackbar = React.forwardRef<RNView, SnackbarProps>(
-  (inProps, ref) => {
-    const {
-      action,
-      message,
-      open = false,
-      style,
-      styles,
-      ...props
-    } = useThemeProps({
-      name: "Snackbar",
-      props: inProps,
-    })
+export const Snackbar = forwardRef<RNView, SnackbarProps>((inProps, ref) => {
+  const {
+    action,
+    message,
+    open = false,
+    style,
+    styles,
+    ...props
+  } = useThemeProps({
+    name: "Snackbar",
+    props: inProps,
+  })
 
-    const insets = useSafeAreaInsets()
+  const insets = useSafeAreaInsets()
 
-    return (
-      <Portal>
-        {open && (
-          <SnackbarRoot
-            ref={ref}
-            role="presentation"
-            style={[{ marginBottom: insets.bottom }, style, styles?.root]}
-            {...props}
-          >
-            <SnackbarContent
-              action={action}
-              message={message}
-              style={styles?.content}
-            />
-          </SnackbarRoot>
-        )}
-      </Portal>
-    )
-  },
-) as OverridableComponent<SnackbarTypeMap>
+  return (
+    <Portal>
+      {open && (
+        <SnackbarRoot
+          ref={ref}
+          role="presentation"
+          style={[{ marginBottom: insets.bottom }, style, styles?.root]}
+          {...props}
+        >
+          <SnackbarContent
+            action={action}
+            message={message}
+            style={styles?.content}
+          />
+        </SnackbarRoot>
+      )}
+    </Portal>
+  )
+}) as OverridableComponent<SnackbarTypeMap>
 
 Snackbar.displayName = "Snackbar"

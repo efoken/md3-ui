@@ -1,5 +1,5 @@
 import MediaQuery, { MediaValues } from "css-mediaquery2"
-import * as React from "react"
+import { createContext, useContext, useMemo } from "react"
 import {
   Appearance,
   Dimensions,
@@ -48,7 +48,7 @@ export function getDefaultMediaValues(): DefaultMediaValues {
   }
 }
 
-const MediaValuesContext = React.createContext(getDefaultMediaValues())
+const MediaValuesContext = createContext(getDefaultMediaValues())
 
 export interface MediaValuesProviderProps {
   children?: React.ReactNode
@@ -60,7 +60,7 @@ export const MediaValuesProvider: React.FC<MediaValuesProviderProps> = ({
   const { invertColorsEnabled, reduceMotionEnabled } = useAccessibilityInfo()
   const { width, height, scale } = useWindowDimensions()
 
-  const context = React.useMemo<DefaultMediaValues>(
+  const context = useMemo<DefaultMediaValues>(
     () => ({
       ...getDefaultMediaValues(),
       width,
@@ -82,5 +82,5 @@ export const MediaValuesProvider: React.FC<MediaValuesProviderProps> = ({
 }
 
 export function useMediaValues() {
-  return React.useContext(MediaValuesContext)
+  return useContext(MediaValuesContext)
 }

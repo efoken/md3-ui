@@ -1,6 +1,6 @@
 import { useForkRef } from "@md3-ui/hooks"
 import { getOwnerDocument, runIfFn } from "@md3-ui/utils"
-import * as React from "react"
+import { cloneElement, useEffect, useRef } from "react"
 import { Platform } from "react-native"
 
 // Inspired by https://github.com/focus-trap/tabbable
@@ -179,21 +179,21 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
   getTabbable = defaultGetTabbable,
   open,
 }) => {
-  const ignoreNextEnforceFocus = React.useRef<boolean>()
-  const sentinelStartRef = React.useRef<HTMLDivElement>(null)
-  const sentinelEndRef = React.useRef<HTMLDivElement>(null)
-  const restoreTarget = React.useRef<HTMLElement | null>(null)
-  const focusEventTarget = React.useRef<HTMLElement | null>(null)
+  const ignoreNextEnforceFocus = useRef<boolean>()
+  const sentinelStartRef = useRef<HTMLDivElement>(null)
+  const sentinelEndRef = useRef<HTMLDivElement>(null)
+  const restoreTarget = useRef<HTMLElement | null>(null)
+  const focusEventTarget = useRef<HTMLElement | null>(null)
   // This variable is useful when `disableAutoFocus` is `true`.
   // It waits for the active element to move into the component to activate.
-  const activated = React.useRef(false)
+  const activated = useRef(false)
 
-  const rootRef = React.useRef<HTMLElement>(null)
+  const rootRef = useRef<HTMLElement>(null)
   const handleRef = useForkRef((children as any).ref, rootRef)
 
-  const lastKeydown = React.useRef<KeyboardEvent>()
+  const lastKeydown = useRef<KeyboardEvent>()
 
-  React.useEffect(() => {
+  useEffect(() => {
     // We might render an empty child.
     if (!open || rootRef.current == null) {
       return
@@ -201,7 +201,7 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
     activated.current = !disableAutoFocus
   }, [disableAutoFocus, open])
 
-  React.useEffect(() => {
+  useEffect(() => {
     // We might render an empty child.
     if (!open || rootRef.current == null) {
       return () => {}
@@ -242,7 +242,7 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open])
 
-  React.useEffect(() => {
+  useEffect(() => {
     // We might render an empty child.
     if (!open || rootRef.current == null) {
       return () => {}
@@ -396,7 +396,7 @@ export const FocusTrap: React.FC<FocusTrapProps> = ({
         tabIndex={0}
         onFocus={handleFocusSentinel}
       />
-      {React.cloneElement(children, { ref: handleRef, onFocus: handleFocus })}
+      {cloneElement(children, { ref: handleRef, onFocus: handleFocus })}
       <div
         ref={sentinelEndRef}
         data-testid="sentinel-end"

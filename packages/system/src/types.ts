@@ -1,7 +1,16 @@
 import { DistributiveOmit, PropsOf } from "@emotion/react"
 import { Theme } from "@md3-ui/theme"
 import { Media, Pseudo } from "@md3-ui/utils"
-import * as React from "react"
+import {
+  CSSProperties,
+  ComponentClass,
+  ComponentProps,
+  ComponentPropsWithRef,
+  ElementType,
+  FunctionComponent,
+  JSXElementConstructor,
+  Ref,
+} from "react"
 import {
   ImageStyle as RNImageStyle,
   TextStyle as RNTextStyle,
@@ -70,7 +79,7 @@ export type SxProps =
     )[]
 
 export type StylesProp<T> = {
-  [K in keyof T]?: NonNullable<T[K]> extends React.CSSProperties
+  [K in keyof T]?: NonNullable<T[K]> extends CSSProperties
     ? T[K]
     : StyleProp<NonNullable<T[K]>>
 }
@@ -103,7 +112,7 @@ export interface StyledComponent<
   InnerProps,
   OwnerState extends { style?: any },
   P,
-> extends React.FunctionComponent<
+> extends FunctionComponent<
     InnerProps &
       Omit<OwnerState, "style"> &
       P & {
@@ -161,73 +170,74 @@ export interface FilteringStyledOptions<
 
 export interface CreateStyled {
   <
-    C extends React.ComponentClass<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+    C extends ComponentClass<ComponentProps<C>>,
+    ForwardedProps extends keyof ComponentProps<C> = keyof ComponentProps<C>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
+    options: FilteringStyledOptions<ComponentProps<C>, ForwardedProps>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
-      as?: React.ElementType
+      as?: ElementType
       sx?: SxProps
     },
     {},
     {
-      ref?: React.Ref<InstanceType<C>>
+      ref?: Ref<InstanceType<C>>
     }
   >
 
-  <C extends React.ComponentClass<React.ComponentProps<C>>>(
+  <C extends ComponentClass<ComponentProps<C>>>(
     component: C,
     options?: StyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
-      as?: React.ElementType
+      as?: ElementType
       sx?: SxProps
     },
     {},
     {
-      ref?: React.Ref<InstanceType<C>>
+      ref?: Ref<InstanceType<C>>
     }
   >
 
   <
-    C extends React.JSXElementConstructor<React.ComponentProps<C>>,
-    ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
+    C extends JSXElementConstructor<ComponentProps<C>>,
+    ForwardedProps extends keyof ComponentProps<C> = keyof ComponentProps<C>,
   >(
     component: C,
-    options: FilteringStyledOptions<React.ComponentProps<C>, ForwardedProps>,
+    options: FilteringStyledOptions<ComponentProps<C>, ForwardedProps>,
   ): CreateStyledComponent<
     Pick<PropsOf<C>, ForwardedProps> & {
       theme?: Theme
-      as?: React.ElementType
+      as?: ElementType
       sx?: SxProps
     }
   >
 
-  <C extends React.JSXElementConstructor<React.ComponentProps<C>>>(
+  <C extends JSXElementConstructor<ComponentProps<C>>>(
     component: C,
     options?: StyledOptions,
   ): CreateStyledComponent<
     PropsOf<C> & {
       theme?: Theme
-      as?: React.ElementType
+      as?: ElementType
       sx?: SxProps
     }
   >
 
   <
     Tag extends keyof JSX.IntrinsicElements,
-    ForwardedProps extends keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
+    ForwardedProps extends
+      keyof JSX.IntrinsicElements[Tag] = keyof JSX.IntrinsicElements[Tag],
   >(
     tag: Tag,
     options: FilteringStyledOptions<JSX.IntrinsicElements[Tag], ForwardedProps>,
   ): CreateStyledComponent<
     {
       theme?: Theme
-      as?: React.ElementType
+      as?: ElementType
       sx?: SxProps
     },
     Pick<JSX.IntrinsicElements[Tag], ForwardedProps>
@@ -239,7 +249,7 @@ export interface CreateStyled {
   ): CreateStyledComponent<
     {
       theme?: Theme
-      as?: React.ElementType
+      as?: ElementType
       sx?: SxProps
     },
     JSX.IntrinsicElements[Tag]
@@ -252,7 +262,7 @@ export interface CreateCSS {
 
 export interface OverridableTypeMap {
   props: {}
-  defaultAs: React.ElementType
+  defaultAs: ElementType
 }
 
 /**
@@ -265,21 +275,18 @@ export type BaseProps<M extends OverridableTypeMap> = M["props"]
  */
 export type OverrideProps<
   M extends OverridableTypeMap,
-  C extends React.ElementType,
+  C extends ElementType,
 > = BaseProps<M> &
-  DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
+  DistributiveOmit<ComponentPropsWithRef<C>, keyof BaseProps<M>>
 
 /**
  * Props if `as={Component}` is NOT used.
  */
 export type DefaultComponentProps<M extends OverridableTypeMap> = BaseProps<M> &
-  DistributiveOmit<
-    React.ComponentPropsWithRef<M["defaultAs"]>,
-    keyof BaseProps<M>
-  >
+  DistributiveOmit<ComponentPropsWithRef<M["defaultAs"]>, keyof BaseProps<M>>
 
 export interface OverridableComponent<M extends OverridableTypeMap> {
-  <C extends React.ElementType>(
+  <C extends ElementType>(
     props: {
       /**
        * The component used for the root node.

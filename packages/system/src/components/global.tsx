@@ -1,6 +1,5 @@
 import { Global as EmotionGlobal, Interpolation } from "@emotion/react"
 import { Theme } from "@md3-ui/theme"
-import * as React from "react"
 import { Platform } from "react-native"
 
 export interface GlobalProps {

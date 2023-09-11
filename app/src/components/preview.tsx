@@ -1,5 +1,4 @@
 import { Card } from "@md3-ui/core"
-import * as React from "react"
 
 interface PreviewProps {
   children?: React.ReactNode

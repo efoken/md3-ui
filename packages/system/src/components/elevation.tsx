@@ -1,4 +1,4 @@
-import * as React from "react"
+import { useMemo } from "react"
 import {
   AnimatableNumericValue,
   Platform,
@@ -56,7 +56,7 @@ export const Elevation: React.FC<ElevationProps> = ({
 }) => {
   const { borderRadius, elevation = 0 } = StyleSheet.flatten([style])
 
-  const opacity = React.useMemo(
+  const opacity = useMemo(
     () => (4.5 * Math.log(elevation + 1) + 2) / 100,
     [elevation],
   )

@@ -1,5 +1,5 @@
 import { isBrowser, isNative } from "@md3-ui/utils"
-import * as React from "react"
+import { useEffect, useLayoutEffect } from "react"
 
 export const useEnhancedEffect =
-  isBrowser || isNative ? React.useLayoutEffect : React.useEffect
+  isBrowser || isNative ? useLayoutEffect : useEffect

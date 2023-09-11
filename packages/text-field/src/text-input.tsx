@@ -7,7 +7,7 @@ import {
   styled,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { forwardRef, useCallback, useEffect, useRef } from "react"
 import {
   Platform,
   TextInput as RNTextInput,
@@ -103,7 +103,7 @@ const TextInputContainer = styled(RNView, {
   }),
 }))
 
-export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
+export const TextInput = forwardRef<RNTextInput, TextInputProps>(
   (inProps, ref) => {
     const {
       defaultValue,
@@ -125,23 +125,23 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
       props: inProps,
     })
 
-    const rootRef = React.useRef<RNTextInput>(null)
+    const rootRef = useRef<RNTextInput>(null)
     const handleRef = useForkRef(rootRef, ref)
 
-    const { current: controlled } = React.useRef(valueProp != null)
+    const { current: controlled } = useRef(valueProp != null)
     const [value, setValue] = useControlled({
       controlled: valueProp,
       default: defaultValue,
       name: "TextInput",
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
       if (Platform.OS === "web" && rootRef.current != null && name != null) {
         ;(rootRef.current as unknown as HTMLInputElement).name = name
       }
     }, [name])
 
-    const checkDirty = React.useCallback(
+    const checkDirty = useCallback(
       (checkProps: Pick<TextInputProps, "defaultValue" | "value">) => {
         if (isFilled(checkProps)) {
           onFilled?.()
@@ -168,7 +168,7 @@ export const TextInput = React.forwardRef<RNTextInput, TextInputProps>(
 
     // Check the input state on mount, in case it was filled by the user or auto
     // filled by the browser before the hydration (for SSR).
-    React.useEffect(() => {
+    useEffect(() => {
       checkDirty({ defaultValue, value })
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])

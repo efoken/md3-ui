@@ -7,7 +7,7 @@ import {
   render as rtlRender,
 } from "@testing-library/react"
 import { JestAxeConfigureOptions, axe, toHaveNoViolations } from "jest-axe"
-import * as React from "react"
+import { Fragment, cloneElement, createRef, isValidElement } from "react"
 
 expect.extend(toHaveNoViolations)
 
@@ -22,7 +22,7 @@ export interface TestOptions extends RenderOptions {}
  */
 export const render = (
   ui: React.ReactElement,
-  { wrapper: Wrapper = React.Fragment, ...options }: TestOptions = {},
+  { wrapper: Wrapper = Fragment, ...options }: TestOptions = {},
 ): RenderResult => {
   const result = rtlRender(
     <Md3Provider>
@@ -44,7 +44,7 @@ export async function testA11y(
     ...options
   }: TestOptions & { axeOptions?: JestAxeConfigureOptions } = {},
 ) {
-  const container = React.isValidElement(ui)
+  const container = isValidElement(ui)
     ? render(ui, options).container
     : (ui as HTMLElement)
   expect(await axe(container, axeOptions)).toHaveNoViolations()
@@ -59,8 +59,8 @@ function testRef(
   mount: NonNullable<ConformanceOptions["render"]>,
   onRef: (instance: unknown, result: RenderResult) => void = assertDOMNode,
 ) {
-  const ref = React.createRef()
-  const result = mount(React.cloneElement(element, { ref }))
+  const ref = createRef()
+  const result = mount(cloneElement(element, { ref }))
   onRef(ref.current, result)
 }
 
@@ -73,7 +73,7 @@ function testAsProp(
       const { render: testRender = render, testAsPropWith: as = "em" } =
         getOptions()
 
-      const { container } = testRender(React.cloneElement(ui, { as }))
+      const { container } = testRender(cloneElement(ui, { as }))
 
       expect(container.querySelectorAll(as).length).toBeTruthy()
     })
@@ -89,7 +89,7 @@ function testClassName(
     const className = `s${Math.random().toString(36).slice(2)}`
 
     const { container } = testRender(
-      React.cloneElement(ui, { dataSet: { class: className } }),
+      cloneElement(ui, { dataSet: { class: className } }),
     )
 
     expect(container.firstElementChild?.getAttribute("data-class")).toMatch(
@@ -114,7 +114,7 @@ function testPropsSpread(
     const value = `s${Math.random().toString(36).slice(2)}`
 
     const { container } = testRender(
-      React.cloneElement(ui, { dataSet: { [testProp]: value } }),
+      cloneElement(ui, { dataSet: { [testProp]: value } }),
     )
 
     expect(container.querySelector(inheritComponent)).toHaveAttribute(

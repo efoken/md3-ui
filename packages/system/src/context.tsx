@@ -4,7 +4,7 @@ import {
 } from "@emotion/react"
 import { Theme, theme } from "@md3-ui/theme"
 import { isEmptyObject, mergeDeep, objectFilter } from "@md3-ui/utils"
-import * as React from "react"
+import { createContext, useContext, useMemo } from "react"
 import {
   Platform,
   TextStyle as RNTextStyle,
@@ -52,7 +52,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 )
 
 function useThemeWithoutDefault(defaultTheme?: Theme) {
-  const contextTheme = React.useContext(ThemeContext) as Theme | undefined
+  const contextTheme = useContext(ThemeContext) as Theme | undefined
   return contextTheme == null || isEmptyObject(contextTheme)
     ? (defaultTheme as Theme)
     : contextTheme
@@ -62,7 +62,7 @@ export function useTheme(defaultTheme: Theme = theme) {
   return useThemeWithoutDefault(defaultTheme)
 }
 
-export const TextStyleContext = React.createContext<RNTextStyle>({})
+export const TextStyleContext = createContext<RNTextStyle>({})
 
 export interface TextStyleProviderProps {
   children?: React.ReactNode
@@ -75,10 +75,7 @@ export const TextStyleProvider: React.FC<TextStyleProviderProps> = ({
   style: styleProp = {},
   wrapChildren = true,
 }) => {
-  const style = React.useMemo(
-    () => StyleSheet.flatten([styleProp]),
-    [styleProp],
-  )
+  const style = useMemo(() => StyleSheet.flatten([styleProp]), [styleProp])
 
   return (
     <TextStyleContext.Provider value={style}>
@@ -99,7 +96,7 @@ export const TextStyleProvider: React.FC<TextStyleProviderProps> = ({
 }
 
 export function useTextStyle() {
-  return objectFilter(React.useContext(TextStyleContext), (value, key) =>
+  return objectFilter(useContext(TextStyleContext), (value, key) =>
     TEXT_STYLE_KEYS.has(key),
   )
 }

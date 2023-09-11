@@ -7,7 +7,7 @@ import {
   SxProps,
   useThemeProps,
 } from "@md3-ui/system"
-import * as React from "react"
+import { Children, forwardRef } from "react"
 import {
   FlexStyle,
   View as RNView,
@@ -66,7 +66,7 @@ const StackItem = styled(RNView, {
   skipSx: true,
 })()
 
-export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
+export const Stack = forwardRef<RNView, StackProps>((inProps, ref) => {
   const {
     children,
     direction = "column",
@@ -88,7 +88,7 @@ export const Stack = React.forwardRef<RNView, StackProps>((inProps, ref) => {
       style={[style, styles?.root]}
       {...props}
     >
-      {React.Children.map(children, (child) => (
+      {Children.map(children, (child) => (
         <StackItem style={styles?.item}>{child}</StackItem>
       ))}
     </StackRoot>

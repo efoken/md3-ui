@@ -8,7 +8,6 @@ import {
   Text,
   Toolbar,
 } from "@md3-ui/core"
-import * as React from "react"
 import { getStatusBarHeight } from "react-native-iphone-x-helper"
 import { Outlet, useLocation, useNavigate } from "react-router-native"
 

@@ -16,7 +16,7 @@ import {
   isHTMLElement,
   splitProps,
 } from "@md3-ui/utils"
-import * as React from "react"
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react"
 import {
   NativeSyntheticEvent,
   Platform,
@@ -208,7 +208,7 @@ const ButtonBaseRipple = styled("span", {
   zIndex: -1,
 }))
 
-export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
+export const ButtonBase = forwardRef<RNView, ButtonBaseProps>(
   (inProps, ref) => {
     const {
       centerRipple = false,
@@ -236,16 +236,16 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
 
     const theme = useTheme()
 
-    const rootRef = React.useRef<RNView>(null)
+    const rootRef = useRef<RNView>(null)
     const handleRef = useForkRef(rootRef, ref)
 
-    const [focusVisible, setFocusVisible] = React.useState(false)
+    const [focusVisible, setFocusVisible] = useState(false)
 
     if (disabled && focusVisible) {
       setFocusVisible(false)
     }
 
-    const [ripples, setRipples] = React.useState<
+    const [ripples, setRipples] = useState<
       { id: number; ripple: React.ReactElement }[]
     >([])
 
@@ -308,8 +308,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
 
       const initialSize = Math.floor(maxSize * RIPPLE_INITIAL_ORIGIN_SCALE)
 
-      const hypotenuse = Math.sqrt(width ** 2 + height ** 2)
-      const maxRadius = hypotenuse + RIPPLE_PADDING
+      const maxRadius = Math.hypot(width, height) + RIPPLE_PADDING
 
       return {
         initialSize,
@@ -329,7 +328,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       return { x: event.pageX - documentX, y: event.pageY - documentY }
     }
 
-    const getTranslationCoordinates = React.useCallback(
+    const getTranslationCoordinates = useCallback(
       (event: Event | undefined, initialSize: number) => {
         const currentRef = rootRef.current as unknown as HTMLDivElement
 
@@ -363,7 +362,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       setRipples((prevRipples) => prevRipples.filter((r) => r.id !== rippleId))
     }
 
-    const appendRipple = React.useCallback(
+    const appendRipple = useCallback(
       (event?: PointerEvent) => {
         const currentRef = rootRef.current as HTMLDivElement | null
 
@@ -491,7 +490,7 @@ export const ButtonBase = React.forwardRef<RNView, ButtonBaseProps>(
       setFocusVisible(false)
     })
 
-    React.useEffect(() => {
+    useEffect(() => {
       const currentRef = rootRef.current
 
       if (isHTMLElement<HTMLDivElement>(currentRef)) {

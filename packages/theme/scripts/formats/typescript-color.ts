@@ -1,5 +1,4 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import prettier from "prettier"
 import { Format, formatHelpers } from "style-dictionary"
 
 export const TypescriptColor: Format = {
@@ -29,10 +28,6 @@ export const TypescriptColor: Format = {
         )}, color)
     }`
 
-    return prettier.format(tpl, {
-      parser: "typescript",
-      semi: false,
-      trailingComma: "all",
-    })
+    return tpl
   },
 }
