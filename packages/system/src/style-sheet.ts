@@ -74,9 +74,12 @@ export class StyleSheet {
   }
 
   static flatten<T>(style?: StyleProp<T>): T extends (infer U)[] ? U : T {
+    if (Platform.OS === "web") {
+      console.warn("MD3-UI: `StyleSheet.flatten` is deprecated.")
+    }
     return Array.isArray(style)
       ? style
-          .flat()
+          .flat(21)
           .filter(Boolean)
           .reduce(
             // For retrieving all styles in React Native Web, we need to call

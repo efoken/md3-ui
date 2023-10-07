@@ -250,7 +250,9 @@ export const ButtonBase = forwardRef<RNView, ButtonBaseProps>(
     >([])
 
     const [{ backgroundColor = null, ...containerStyle }] = splitProps(
-      StyleSheet.flatten([style, styles?.root]),
+      Platform.OS === "web"
+        ? ({ backgroundColor: undefined } as RNViewStyle)
+        : StyleSheet.flatten([style, styles?.root]),
       [
         "backgroundColor",
         "borderRadius",

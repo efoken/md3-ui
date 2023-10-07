@@ -1,6 +1,6 @@
 import { Md3Provider } from "@md3-ui/core"
 import { objectKeys } from "@md3-ui/utils"
-import "@testing-library/jest-dom/extend-expect"
+import "@testing-library/jest-dom"
 import {
   RenderOptions,
   RenderResult,

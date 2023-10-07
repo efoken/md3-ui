@@ -97,7 +97,10 @@ export const styled: CreateStyled = <
             ]
           : [classNameStyles, styleSheet.style, style]
 
-        const { color } = StyleSheet.flatten(newProps.style)
+        const { color } =
+          Platform.OS === "web"
+            ? { color: "inherit" }
+            : StyleSheet.flatten(newProps.style)
 
         return color ? (
           <TextStyleProvider style={{ color }} wrapChildren={false}>

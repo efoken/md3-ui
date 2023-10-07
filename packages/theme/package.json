@@ -1,18 +1,7 @@
 {
   "name": "@md3-ui/theme",
   "version": "0.2.1",
-  "main": "dist/commonjs/index.js",
-  "module": "dist/module/index.js",
-  "react-native": "src/index.ts",
-  "types": "dist/typescript/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/typescript/index.d.ts",
-      "import": "./dist/module/index.js",
-      "require": "./dist/commonjs/index.js"
-    },
-    "./package.json": "./package.json"
-  },
+  "main": "src/index.ts",
   "license": "MIT",
   "homepage": "https://eikefoken.com/md3-ui/",
   "repository": {
@@ -39,20 +28,22 @@
     "@md3-ui/utils": "^0.2.1"
   },
   "devDependencies": {
-    "@types/adm-zip": "^0.5.0",
-    "@types/lodash": "^4.14.198",
+    "@types/adm-zip": "^0.5.2",
+    "@types/lodash": "^4.14.199",
     "adm-zip": "^0.5.10",
     "lodash": "^4.17.21",
     "prettier": "^3.0.3",
-    "react-native": "0.72.4",
+    "react-native": "0.72.5",
     "style-dictionary": "^3.8.0"
   },
   "peerDependencies": {
-    "react-native": ">=0.71.7"
+    "react-native": ">=0.72.5"
   },
   "scripts": {
     "build": "bob build",
     "generate": "tsx scripts/generate.ts",
+    "prepack": "clean-package",
+    "postpack": "clean-package restore",
     "typecheck": "tsc --noEmit"
   },
   "react-native-builder-bob": {

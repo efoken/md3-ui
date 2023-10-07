@@ -8,14 +8,12 @@ exports[`<FilledIconButton /> prop: selected should select the component 1`] = `
   type="button"
 >
   <div
-    style="color: rgb(255, 255, 255); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#ffffff"
       fill="currentColor"
       size="24"
-      style="color: rgb(255, 255, 255);"
     />
   </div>
   <span
@@ -36,14 +34,12 @@ exports[`<FilledIconButton /> prop: selected should unselect the component 1`] =
   type="button"
 >
   <div
-    style="color: rgb(103, 80, 164); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#6750a4"
       fill="currentColor"
       size="24"
-      style="color: rgb(103, 80, 164);"
     />
   </div>
   <span
@@ -64,15 +60,13 @@ exports[`<FilledIconButton /> should render 1`] = `
   type="button"
 >
   <div
-    style="color: rgb(255, 255, 255); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#ffffff"
       data-testid="icon"
       fill="currentColor"
       size="24"
-      style="color: rgb(255, 255, 255);"
     />
   </div>
   <span

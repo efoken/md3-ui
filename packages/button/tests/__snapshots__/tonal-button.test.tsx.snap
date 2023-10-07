@@ -8,12 +8,11 @@ exports[`<TonalButton /> should render 1`] = `
   type="button"
 >
   <div
-    style="color: rgb(29, 25, 43); display: contents;"
+    style="display: contents;"
   >
     <div
       class="css-text-146c3p1 Text-root TonalButton-label r-fontFamily-rxj5oj r-fontSize-1b43r93 r-fontWeight-majxgm r-letterSpacing-8ay8q1 r-lineHeight-rjixqe r-textAlign-q4m81j"
       dir="auto"
-      style="color: rgb(29, 25, 43);"
     >
       Hello World
     </div>

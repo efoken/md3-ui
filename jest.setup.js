@@ -1,3 +1,5 @@
+import "@testing-library/jest-dom"
+
 if (typeof window.matchMedia !== "function") {
   Object.defineProperty(window, "matchMedia", {
     enumerable: true,

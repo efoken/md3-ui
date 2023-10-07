@@ -75,7 +75,13 @@ export const TextStyleProvider: React.FC<TextStyleProviderProps> = ({
   style: styleProp = {},
   wrapChildren = true,
 }) => {
-  const style = useMemo(() => StyleSheet.flatten([styleProp]), [styleProp])
+  const style = useMemo(
+    () =>
+      Platform.OS === "web"
+        ? (styleProp as RNTextStyle)
+        : StyleSheet.flatten([styleProp]),
+    [styleProp],
+  )
 
   return (
     <TextStyleContext.Provider value={style}>

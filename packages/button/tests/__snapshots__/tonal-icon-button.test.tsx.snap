@@ -8,14 +8,12 @@ exports[`<TonalIconButton /> prop: selected should select the component 1`] = `
   type="button"
 >
   <div
-    style="color: rgb(29, 25, 43); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#1d192b"
       fill="currentColor"
       size="24"
-      style="color: rgb(29, 25, 43);"
     />
   </div>
   <span
@@ -36,14 +34,12 @@ exports[`<TonalIconButton /> prop: selected should unselect the component 1`] = 
   type="button"
 >
   <div
-    style="color: rgb(73, 69, 79); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#49454f"
       fill="currentColor"
       size="24"
-      style="color: rgb(73, 69, 79);"
     />
   </div>
   <span
@@ -64,15 +60,13 @@ exports[`<TonalIconButton /> should render 1`] = `
   type="button"
 >
   <div
-    style="color: rgb(29, 25, 43); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#1d192b"
       data-testid="icon"
       fill="currentColor"
       size="24"
-      style="color: rgb(29, 25, 43);"
     />
   </div>
   <span

@@ -8,14 +8,12 @@ exports[`<OutlinedIconButton /> prop: selected should select the component 1`] =
   type="button"
 >
   <div
-    style="color: rgb(244, 239, 244); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#f4eff4"
       fill="currentColor"
       size="24"
-      style="color: rgb(244, 239, 244);"
     />
   </div>
   <span
@@ -36,14 +34,12 @@ exports[`<OutlinedIconButton /> prop: selected should unselect the component 1`]
   type="button"
 >
   <div
-    style="color: rgb(73, 69, 79); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#49454f"
       fill="currentColor"
       size="24"
-      style="color: rgb(73, 69, 79);"
     />
   </div>
   <span
@@ -64,15 +60,13 @@ exports[`<OutlinedIconButton /> should render 1`] = `
   type="button"
 >
   <div
-    style="color: rgb(73, 69, 79); display: contents;"
+    style="display: contents;"
   >
     <svg
       class="Icon-root r-flexShrink-1q142lx r-fontSize-1x35g6 r-height-1472mwg r-width-lrsllp"
-      color="#49454f"
       data-testid="icon"
       fill="currentColor"
       size="24"
-      style="color: rgb(73, 69, 79);"
     />
   </div>
   <span
