@@ -1,6 +1,6 @@
+import { CSSBaseline } from "@md3-ui/components"
 import { MediaValuesProvider, ThemeProvider } from "@md3-ui/system"
 import { Theme } from "@md3-ui/theme"
-import { CSSBaseline } from "./css-baseline"
 
 export interface Md3ProviderProps {
   children?: React.ReactNode

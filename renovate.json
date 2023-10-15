@@ -11,6 +11,6 @@
       "matchPackageNames": ["react", "react-dom", "react-is"]
     }
   ],
-  "postUpdateOptions": ["yarnDedupeHighest"],
+  "postUpdateOptions": ["pnpmDedupe"],
   "rangeStrategy": "bump"
 }

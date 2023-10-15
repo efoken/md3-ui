@@ -19,5 +19,6 @@ module.exports = {
     ],
     // 3. Force Metro to resolve (sub)dependencies only from `nodeModulesPaths`
     disableHierarchicalLookup: true,
+    unstable_enableSymlinks: true,
   },
 }

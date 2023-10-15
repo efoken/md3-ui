@@ -1,4 +1,4 @@
-import { isObject, runIfFn, splitProps } from "@md3-ui/utils"
+import { isFunction, isObject, runIfFn, splitProps } from "@md3-ui/utils"
 import { getThemeValue, propToStyleFunction } from "./get-theme-value"
 import {
   createEmptyBreakpointObject,
@@ -30,7 +30,7 @@ export function styleFunctionSx(props: any = {}) {
    */
   function traverse(sxInput: any) {
     let sxObject = sxInput
-    if (typeof sxInput === "function") {
+    if (isFunction(sxInput)) {
       sxObject = sxInput(theme)
     } else if (typeof sxInput !== "object") {
       return sxInput
@@ -90,7 +90,7 @@ export function extendSxProp<T extends { sx?: SxProps } = {}>({
   let finalSx: any
   if (Array.isArray(inSx)) {
     finalSx = [systemProps, ...inSx]
-  } else if (typeof inSx === "function") {
+  } else if (isFunction(inSx)) {
     finalSx = (...args: any[]) => {
       // @ts-expect-error
       const result = inSx(...args)

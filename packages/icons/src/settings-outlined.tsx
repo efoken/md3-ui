@@ -1,4 +1,4 @@
-import { createIcon } from "@md3-ui/icon"
+import { createIcon } from "@md3-ui/components"
 import { Path } from "react-native-svg"
 
 export const SettingsOutlined = createIcon({

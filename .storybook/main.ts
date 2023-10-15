@@ -1,43 +1,51 @@
-import { StorybookConfig } from "@storybook/react-webpack5"
-import webpack from "webpack"
+import { StorybookConfig } from "@storybook/react-vite"
+import { mergeConfig } from "vite"
+
+const extensions = [
+  ".web.js",
+  ".js",
+  ".web.jsx",
+  ".jsx",
+  ".web.ts",
+  ".ts",
+  ".web.tsx",
+  ".tsx",
+  ".json",
+]
 
 const config: StorybookConfig = {
-  stories: ["../packages/*/stories/*.stories.tsx"],
+  stories: ["../packages/*/src/**/*.stories.tsx"],
   addons: [
     "@storybook/addon-a11y",
-    "@storybook/addon-essentials",
+    {
+      name: "@storybook/addon-essentials",
+      options: {
+        docs: false,
+      },
+    },
     "storybook-addon-performance",
     "storybook-dark-mode",
   ],
   framework: {
-    name: "@storybook/react-webpack5",
+    name: "@storybook/react-vite",
     options: {
       strictMode: true,
-      builder: {
-        fsCache: true,
-        lazyCompilation: true,
-      },
     },
   },
-  webpackFinal: (config) => ({
-    ...config,
-    plugins: [
-      ...(config.plugins ?? []),
-      new webpack.DefinePlugin({
-        __DEV__: JSON.stringify(true),
-      }),
-    ],
-    resolve: {
-      ...config.resolve,
-      alias: {
-        ...config.resolve?.alias,
-        "react-native": "react-native-web",
+  viteFinal: (config) =>
+    mergeConfig(config, {
+      optimizeDeps: {
+        esbuildOptions: {
+          resolveExtensions: extensions,
+        },
       },
-      extensions: [".web.js", ".web.jsx", ".web.ts", ".web.tsx"].concat(
-        config.resolve?.extensions ?? [],
-      ),
-    },
-  }),
+      resolve: {
+        alias: {
+          "react-native": "react-native-web",
+        },
+        extensions,
+      },
+    }),
 }
 
 export default config

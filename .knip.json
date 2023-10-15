@@ -6,11 +6,8 @@
   "ignoreDependencies": [
     "@md3-ui/core",
     "@md3-ui/test-utils",
-    "@preconstruct/hook",
     "@svgr/plugin-jsx",
-    "prettier-plugin-organize-imports",
-    "webpack",
-    "yarn-deduplicate"
+    "prettier-plugin-organize-imports"
   ],
   "rules": {
     "unresolved": "off"

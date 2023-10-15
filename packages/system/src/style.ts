@@ -1,5 +1,5 @@
 import { Theme } from "@md3-ui/theme"
-import { get } from "@md3-ui/utils"
+import { get, isFunction } from "@md3-ui/utils"
 import { handleBreakpoints } from "./system/breakpoints"
 import { RNStyle } from "./types"
 import { merge } from "./utils/merge"
@@ -14,7 +14,7 @@ function getStyleValue(
 ) {
   let value: StyleValue | undefined
 
-  if (typeof themeMapping === "function") {
+  if (isFunction(themeMapping)) {
     value = themeMapping(propValueFinal)
   } else if (Array.isArray(themeMapping)) {
     value = themeMapping[propValueFinal] ?? userValue

@@ -27,23 +27,12 @@
     "micro-memoize": "^4.1.2"
   },
   "scripts": {
-    "build": "bob build",
+    "build": "tsup src/index.ts --dts",
     "prepack": "clean-package",
     "postpack": "clean-package restore",
     "typecheck": "tsc --noEmit"
   },
-  "react-native-builder-bob": {
-    "source": "src",
-    "output": "dist",
-    "targets": [
-      "commonjs",
-      "module",
-      [
-        "typescript",
-        {
-          "project": "tsconfig.build.json"
-        }
-      ]
-    ]
+  "tsup": {
+    "clean": true
   }
 }

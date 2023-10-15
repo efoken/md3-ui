@@ -30,7 +30,7 @@ const config = {
     ],
   },
   transformIgnorePatterns: [
-    "node_modules/(?!(jest-)?react-native(-.*)?|@react-native(-community)?/)",
+    "node_modules/(?!(?:.pnpm/)?((jest-)?react-native(-.*)?|@react-native(-community)?/))",
   ],
   setupFilesAfterEnv: ["./jest.setup.js"],
   watchPlugins: [

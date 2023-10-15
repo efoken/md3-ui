@@ -166,9 +166,9 @@ function getSourceFileName(symbol: ts.Symbol): string | undefined {
  * ASSUMPTION: All files use a type-only export (and it can't be inline).
  *
  * @example
- * export type { ElevatedButtonProps } from '@md3-ui/button'
+ * export type { ElevatedButtonProps } from '@md3-ui/components'
  * // NOT
- * export { type ElevatedButtonProps } from '@md3-ui/button'
+ * export { type ElevatedButtonProps } from '@md3-ui/components'
  */
 function extractTypeExports(code: string) {
   const exported: Record<string, any> = {}

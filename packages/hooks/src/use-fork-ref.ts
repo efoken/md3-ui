@@ -1,3 +1,4 @@
+import { isFunction } from "@md3-ui/utils"
 import { useMemo } from "react"
 
 export function setRef<T>(
@@ -8,7 +9,7 @@ export function setRef<T>(
     | undefined,
   value: T | null,
 ): void {
-  if (typeof ref === "function") {
+  if (isFunction(ref)) {
     ref(value)
   } else if (ref) {
     // eslint-disable-next-line no-param-reassign

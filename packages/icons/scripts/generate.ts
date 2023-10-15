@@ -12,7 +12,7 @@ const svgrConfig: Config = {
   typescript: true,
   template: (variables, { tpl }) => tpl`
     ${variables.imports}
-    import { createIcon } from '@md3-ui/icon';
+    import { createIcon } from '@md3-ui/components';
     ${"\n"}
     export const ${variables.componentName} = createIcon({
       path: ${variables.jsx},

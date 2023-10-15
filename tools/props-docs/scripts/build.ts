@@ -23,6 +23,7 @@ const typeFilePath = path.join(distPath, "typescript/index.d.ts")
 
 function writeComponentInfoFiles(componentInfo: ComponentInfo[]) {
   for (const { content, distJsonPath } of componentInfo) {
+    fs.mkdirSync(path.dirname(distJsonPath), { recursive: true })
     fs.writeFileSync(distJsonPath, content)
   }
 }

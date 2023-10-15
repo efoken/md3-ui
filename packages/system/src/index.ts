@@ -14,7 +14,14 @@ export {
   handleBreakpoints,
   resolveBreakpointValues,
 } from "./system/breakpoints"
-export * from "./types"
+export type {
+  OverridableComponent,
+  OverrideProps,
+  OwnerStateProps,
+  ResponsiveValue,
+  StylesProp,
+  SxProps,
+} from "./types"
 export * from "./use-accessibility-info"
 export * from "./use-media-values"
 export * from "./use-theme-props"
