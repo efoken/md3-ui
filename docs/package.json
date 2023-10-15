@@ -28,7 +28,7 @@
     "react-native-svg": "13.10.0",
     "react-native-web": "^0.19.9",
     "remark-emoji": "^4.0.0",
-    "remark-gfm": "^3.0.1",
+    "remark-gfm": "^4.0.0",
     "remark-slug": "^7.0.1"
   },
   "devDependencies": {
